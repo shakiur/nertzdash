@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => redirect('/games')
+
   get '/games' => 'games#index', as: :games
   post '/games/create' => 'games#create', as: :create_game
 
