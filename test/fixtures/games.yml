@@ -2,10 +2,11 @@
 #
 # Table name: games
 #
-#  id           :integer          not null, primary key
-#  date_of_game :date
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id            :integer          not null, primary key
+#  date          :date
+#  winning_score :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

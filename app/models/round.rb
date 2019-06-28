@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: game_rounds
+# Table name: rounds
 #
 #  id           :integer          not null, primary key
-#  game_id      :integer
-#  team_id      :integer
+#  game_id      :integer          not null
+#  team_id      :integer          not null
 #  round_number :integer
 #  score        :integer
-#  nertz        :boolean          default(FALSE)
+#  nertz        :boolean          default(FALSE), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
 
-class GameRound < ApplicationRecord
+class Round < ApplicationRecord
 end
