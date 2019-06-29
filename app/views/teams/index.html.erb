@@ -1,5 +1,32 @@
-<div>
-  <span>
-    Hello world
-  </span>
-</div>
+<h1>Nertz Teams</h1>
+<hr>
+<%= form_tag(create_team_path, method: 'post') do %>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <%= content_tag(:span, "Team Name", class: "input-group-text") %>
+    </div>
+    <%= text_field_tag(:team_name) %>
+  </div>
+  
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        Player 1
+      </span>
+    </div>
+    <%= select_tag(:player1, options_from_collection_for_select(@players, :id, :name)) %>
+  </div>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        Player 2
+      </span>
+    </div>
+    <%= select_tag(:player2, options_from_collection_for_select(@players, :id, :name)) %>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Create Team
+  </button>
+<% end %>
