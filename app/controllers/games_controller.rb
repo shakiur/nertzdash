@@ -6,4 +6,8 @@ class GamesController < ApplicationController
   def create
     return redirect_to games_path
   end
+
+  def scores
+    @hello = "world"
+  end
 end
