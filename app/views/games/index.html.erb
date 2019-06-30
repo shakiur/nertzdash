@@ -1,4 +1,41 @@
 <h1>Nertz Games</h1>
 <hr>
 
-<button class="btn btn-success">Test button</button>
+<%= form_tag create_game_path, :method => :put, :class => 'form-inline' do %>
+  <div class="col-auto form-group">
+    <label>Date:</label>
+    <input type="date" class="form-control mx-sm-3" name="game[date]" value=<%= Time.zone.today %>>
+  </div>
+
+  <div class="col-auto form-group">
+    <label>Winning score:</label>
+    <input type="text" class="form-control mx-sm-3" placeholder="0 for uncapped game">
+  </div>
+  <button type="submit" class="btn btn-success mx-sm-3">Create new game</button>
+<% end %>
+
+<br>
+
+<h2>Past Games</h2>
+<table class="table">
+  <thead>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Winning team</th>
+    <th>Winning score</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% 20.times do |x| %>
+      <tr>
+        <td><%= x %></td>
+        <td><%= Time.zone.today %></td>
+        <td>Sham</td>
+        <td>100</td>
+        <td>
+          <button class="btn btn-sm btn-outline-info">More info</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
