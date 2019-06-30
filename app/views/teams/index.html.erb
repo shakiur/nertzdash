@@ -1,32 +1,43 @@
 <h1>Nertz Teams</h1>
 <hr>
-<%= form_tag(create_team_path, method: 'post') do %>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <%= content_tag(:span, "Team Name", class: "input-group-text") %>
-    </div>
-    <%= text_field_tag(:team_name) %>
+
+<%= form_tag create_team_path, :method => :post, :class => 'form-inline' do %>
+  <div class="col-auto form-group">
+    <label>Team Name:</label>
+    <input type="text" class="form-control mx-sm-3" id="team_name" name="team_name">
   </div>
   
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        Player 1
-      </span>
-    </div>
-    <%= select_tag(:player1, options_from_collection_for_select(@players, :id, :name)) %>
+  <div class="col-auto form-group">
+    <label>Player 1:</label>
+    <%= select_tag(:player1, options_from_collection_for_select(@all_players, :id, :name), class: "form-control mx-sm-3") %>
   </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">
-        Player 2
-      </span>
-    </div>
-    <%= select_tag(:player2, options_from_collection_for_select(@players, :id, :name)) %>
+  <div class="col-auto form-group">
+    <label>Player 2:</label>
+    <%= select_tag(:player2, options_from_collection_for_select(@all_players, :id, :name), class: "form-control mx-sm-3") %>
   </div>
 
-  <button type="submit" class="btn btn-primary">
+  <button type="submit" class="btn btn-success mx-sm-3">
     Create Team
   </button>
 <% end %>
+
+<br>
+
+<h2>Existing Teams</h2>
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Players</th>
+  </thead>
+  <tbody>
+    <% @all_teams.each do |team| %>
+      <tr>
+        <td><%= team.id %></td>
+        <td><%= team.name %></td>
+        <td><%= team.team_players.map(&:player).map(&:name).join(', ')%></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

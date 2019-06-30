@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
   def index
-    @players = Player.all
+    @all_players = Player.all
+    @all_teams = Team.includes(team_players: :player).all 
   end
 
   def create
@@ -21,7 +22,7 @@ class TeamsController < ApplicationController
     team_player2.team_id = team.id
     team_player2.player_id = player2_id
     team_player2.save
-
-    redirect_to teams_path
+    
+    return redirect_to teams_path
   end
 end
