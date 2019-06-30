@@ -7,4 +7,7 @@ Rails.application.routes.draw do
 
   get '/teams' => 'teams#index', as: :teams
   post '/teams/create' => 'teams#create', as: :create_team
+
+  get '/players' => 'players#index', as: :players
+  post '/players/create' => 'players#create', as: :create_player
 end

@@ -1,0 +1,29 @@
+<h1> Nertz Players</h1>
+<hr>
+
+<%= form_tag create_player_path, :method => :post, :class => 'form-inline' do %>
+  <div class="col-auto form-group">
+    <label>Player Name:</label>
+    <input type="text" class="form-control mx-sm-3" name="player_name">
+  </div>
+
+  <button type="submit" class="btn btn-success mx-sm-3">Create new player</button>
+<% end %>
+
+<br>
+
+<h2>Existing players</h2>
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    <% @all_players.each do |player| %>
+      <tr>
+        <td><%= player.id %></td>
+        <td><%= player.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
