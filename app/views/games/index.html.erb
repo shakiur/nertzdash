@@ -9,7 +9,7 @@
 
   <div class="col-auto form-group">
     <label>Winning score:</label>
-    <input type="text" class="form-control mx-sm-3" placeholder="0 for uncapped game">
+    <input type="text" class="form-control mx-sm-3" placeholder="0 for uncapped game" name="game[winning_score]">
   </div>
   <button type="submit" class="btn btn-success mx-sm-3">Create new game</button>
 <% end %>
@@ -21,19 +21,21 @@
   <thead>
     <th>ID</th>
     <th>Date</th>
+    <th>Participants</th>
     <th>Winning team</th>
     <th>Winning score</th>
     <th></th>
   </thead>
   <tbody>
-    <% 20.times do |x| %>
+    <% Game.all.sort_by(&:date).reverse.each do |game| %>
       <tr>
-        <td><%= x %></td>
-        <td><%= Time.zone.today %></td>
-        <td>Sham</td>
-        <td>100</td>
+        <td><%= game.id %></td>
+        <td><%= game.date %></td>
+        <td><%= 'Sham Team1 Team2 Team3' %></td>
+        <td><%= 'Sham' %></td>
+        <td><%= game.winning_score %></td>
         <td>
-          <button class="btn btn-sm btn-outline-info">More info</button>
+          <%= link_to 'More info', game_scores_path(game_id: game.id), class: 'btn btn-sm btn-outline-info' %>
         </td>
       </tr>
     <% end %>

@@ -10,4 +10,18 @@
 #
 
 class Game < ApplicationRecord
+
+  # The team that is winning this game instance
+  # @return [Team]
+  def winning_team
+    # TODO
+    return 'Sham'
+  end
+
+  # The winning score of this game instance
+  # @return [Integer]
+  def winning_score
+    # TODO
+    return 100
+  end
 end
