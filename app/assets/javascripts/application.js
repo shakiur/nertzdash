@@ -17,3 +17,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+
+setTimeout(function(){
+  $('.flash-msg').slideUp(500);
+}, 5000);
