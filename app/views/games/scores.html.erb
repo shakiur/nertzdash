@@ -7,6 +7,7 @@
     <% @teams.each do |team| %>
       <th><%= team.name %></th>
     <% end %>
+    <th></th>
     <th>
       <%= form_tag add_team_to_game_path,
         :method => :post,
@@ -27,6 +28,10 @@
         <td><%= round.score %></td>
       <% end %>
     <% end %>
+    <td>
+      <button class="btn btn-sm btn-outline-success">Save round</button>
+    </td>
+    <td></td>
   </tbody>
 </table>
 
