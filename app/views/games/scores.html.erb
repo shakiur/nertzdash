@@ -4,12 +4,14 @@
 <table class="table table-condensed table-striped table-hover">
   <thead>
     <th>Round</th>
-    <th></th>
+    <% @teams.each do |team| %>
+      <th><%= team.name %></th>
+    <% end %>
     <th>
       <%= form_tag add_team_to_game_path,
         :method => :post,
         :id => 'add-team-form' do %>
-        <select class="custom-select" id="team-selector" name="team_id">
+        <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
            <option selected value="0">Add team</option>
           <% Team.all.each do |team| %>
             <option value=<%= team.id %>><%= team.name %></option>
@@ -19,7 +21,12 @@
     </th>
   </thead>
   <tbody>
-
+    <% @rounds_by_number.keys.sort.each do |round_number| %>
+      <td><%= round_number %></td>
+      <% @rounds_by_number[round_number].each do |round| %>
+        <td><%= round.score %></td>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 

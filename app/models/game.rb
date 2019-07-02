@@ -13,6 +13,15 @@ class Game < ApplicationRecord
   has_many :rounds
   has_many :teams, :through => :rounds
 
+  def current_round_number
+    return 1 unless self.rounds.any?
+    return self.rounds.pluck(:round_number).max
+  end
+
+  def next_round_number
+    self.current_round_number + 1
+  end
+
   # The team that is winning this game instance
   # @return [Team]
   def winning_team
