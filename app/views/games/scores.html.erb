@@ -5,8 +5,28 @@
   <thead>
     <th>Round</th>
     <th></th>
+    <th>
+      <%= form_tag add_team_to_game_path,
+        :method => :post,
+        :id => 'add-team-form' do %>
+        <select class="custom-select" id="team-selector" name="team_id">
+           <option selected value="0">Add team</option>
+          <% Team.all.each do |team| %>
+            <option value=<%= team.id %>><%= team.name %></option>
+          <% end %>
+        </select>
+      <% end %>
+    </th>
   </thead>
   <tbody>
 
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $(function() {
+    $('select#team-selector').change(function(e) {
+      $('#add-team-form').submit();
+    })
+  })
+</script>

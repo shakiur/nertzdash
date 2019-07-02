@@ -17,5 +17,12 @@ class GamesController < ApplicationController
 
   def scores
     @game = Game.find(params[:game_id])
+
+  end
+
+  def add_team
+    new_team = Team.find(params[:team_id])
+    flash[:success] = "Added new team: #{new_team.name}"
+    return redirect_to game_scores_path(game_id: params[:game_id])
   end
 end
