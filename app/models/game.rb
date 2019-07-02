@@ -10,6 +10,8 @@
 #
 
 class Game < ApplicationRecord
+  has_many :rounds
+  has_many :teams, :through => :rounds
 
   # The team that is winning this game instance
   # @return [Team]

@@ -10,4 +10,6 @@
 
 class Team < ApplicationRecord
   has_many :team_players
+  has_many :rounds
+  has_many :games, :through => :rounds
 end

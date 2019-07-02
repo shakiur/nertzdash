@@ -21,7 +21,13 @@ class GamesController < ApplicationController
   end
 
   def add_team
+    @game = Game.find(params[:game_id])
     new_team = Team.find(params[:team_id])
+
+    # Adding a new team really manifests as the creation of a new Round
+    # for that Team, attached to this Game
+    
+
     flash[:success] = "Added new team: #{new_team.name}"
     return redirect_to game_scores_path(game_id: params[:game_id])
   end
