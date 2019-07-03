@@ -11,14 +11,14 @@ class GamesController < ApplicationController
     game.winning_score = winning_score.blank? ? nil : winning_score
     game.save!
 
-    flash[:success] = "Successfully created Game #{game.id}"
+    flash[:success] = "Created new Game #{game.id}"
     return redirect_to game_scores_path(game_id: game.id)
   end
 
   def scores
     @game = Game.find(params[:game_id])
     @teams = @game.teams
-    @rounds_by_number = @game.rounds.group_by { |round| round.round_number }
+    @rounds_by_number = @game.rounds.group_by(&:round_number)
   end
 
   def add_team
@@ -42,5 +42,12 @@ class GamesController < ApplicationController
 
     flash[:success] = "Added new team: #{new_team.name}"
     return redirect_to game_scores_path(game_id: params[:game_id])
+  end
+
+  def save_round
+    round = Round.find(params[:round_id])
+
+    flash[:success] = "Saved Round #{round.id}"
+    redirect_to game_scores_path(game_id: params[:game_id])
   end
 end

@@ -10,7 +10,7 @@
     <th></th>
     <th>
       <%= form_tag add_team_to_game_path,
-        :method => :post,
+        :method => :put,
         :id => 'add-team-form' do %>
         <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
            <option selected value="0">Add team</option>
@@ -23,21 +23,17 @@
   </thead>
   <tbody>
     <% @rounds_by_number.keys.sort.each do |round_number| %>
-      <td><%= round_number %></td>
-      <% @rounds_by_number[round_number].each do |round| %>
-        <td><%= round.score %></td>
-      <% end %>
+      <tr>
+        <%= render 'round_row', round_number: round_number %>
+      </tr>
     <% end %>
-    <td>
-      <button class="btn btn-sm btn-outline-success">Save round</button>
-    </td>
-    <td></td>
   </tbody>
 </table>
 
 <script type="text/javascript">
   $(function() {
-    $('select#team-selector').change(function(e) {
+    // For on-select adding of new Teams to the Game
+    $('select#team-selector').change(function() {
       $('#add-team-form').submit();
     })
   })
