@@ -45,9 +45,35 @@ class GamesController < ApplicationController
   end
 
   def save_round
-    round = Round.find(params[:round_id])
+    this_rounds = []
+    # Save the scores and nerzted team for this round number
+    nertzed_round_id = params[:nertzed].to_i
+    scores_by_round_id = params[:scores]
 
-    flash[:success] = "Saved Round #{round.id}"
+    ActiveRecord::Base.transaction do
+      scores_by_round_id.each do |round_id, score|
+        round = Round.find(round_id.to_i)
+        round.score = score.to_i
+        round.nertz = round_id == nertzed_round_id
+        round.save!
+
+        this_rounds << round
+      end
+    end
+
+    # Create the next row of rounds for each team in this round
+    ActiveRecord::Base.transaction do
+      this_rounds.each do |this_round|
+        next_round = Round.new
+        next_round.game_id = this_round.game_id
+        next_round.team_id = this_round.team_id
+        next_round.round_number = this_round.round_number + 1
+        next_round.score = 0
+        next_round.save!
+      end
+    end
+
+    flash[:success] = "Saved Round #{params[:round_number]}"
     redirect_to game_scores_path(game_id: params[:game_id])
   end
 end

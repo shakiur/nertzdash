@@ -9,17 +9,25 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text pb-0">
-                  <label class="form-group-label">
-                    <input checked type="radio" name="gender" value="Mrs"> Nertzed
-                  </label>
-                </div>
-                <div class="input-group-text pb-0">
                   <label>
-                    <input type="radio" name="gender" value="Mr"> No
+                    <input
+                      required
+                      <%= 'checked' if round.nertz %>
+                      type="radio"
+                      name="nertzed"
+                      value=<%= round.id %>
+                    >
                   </label>
                 </div>
               </div>
-              <input type="text" class="form-control" aria-label="Text input with radio button">
+              <input
+                type="number"
+                name="scores[<%= round.id %>]"
+                class="form-control"
+                min="-26"
+                step="1"
+                value=<%= round.score %>
+              />
             </div>
           </div>
         </div>
