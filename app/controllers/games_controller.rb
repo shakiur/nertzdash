@@ -18,6 +18,7 @@ class GamesController < ApplicationController
   def scores
     @game = Game.find(params[:game_id])
     @teams = @game.teams
+    @winning_team = @game.winning_team
     @rounds_by_number = @game.rounds.group_by(&:round_number)
   end
 
@@ -26,7 +27,7 @@ class GamesController < ApplicationController
     new_team = Team.find(params[:team_id])
 
     # Graceful notice if this Team has already been added to this Game
-    if Round.where(game_id: @game.id, team_id: new_team.id, round_number: 1).any?
+    if Round.where(game_id: @game.id, team_id: new_team.id).any?
       flash[:notice] = "#{new_team.name} already added to this game"
       return redirect_to game_scores_path(game_id: params[:game_id])
     end
@@ -58,7 +59,12 @@ class GamesController < ApplicationController
       end
     end
 
-    flash[:success] = "Saved Round #{params[:round_number]}"
+    flash[:success] = "Saved round #{params[:round_number]}"
+    redirect_to game_scores_path(game_id: params[:game_id])
+  end
+
+  def new_round
+    flash[:success] = "Created new round"
     redirect_to game_scores_path(game_id: params[:game_id])
   end
 end

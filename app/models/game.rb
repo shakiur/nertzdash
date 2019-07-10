@@ -25,14 +25,17 @@ class Game < ApplicationRecord
   # The team that is winning this game instance
   # @return [Team]
   def winning_team
-    # TODO
-    return 'Sham'
+    self.teams.sort_by { |team| team.total_score_for_game(self) }.last
   end
 
   # The winning score of this game instance
   # @return [Integer]
   def winning_score
-    # TODO
-    return 100
+    return 0 unless winning_team
+    winning_team.total_score_for_game(self)
+  end
+
+  def team_names
+    self.teams.map(&:name).join(', ')
   end
 end

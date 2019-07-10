@@ -1,0 +1,16 @@
+<td> - </td>
+<% @teams.each do |team| %>
+  <td>
+    <h3>
+      <span class="badge badge-secondary <%= 'badge-warning' if team == @winning_team %>">
+        <%= team.total_score_for_game(@game) %>
+      </span>
+    </h3>
+  </td>
+<% end %>
+<td>
+  <%= form_tag new_round_path do %>
+    <button type="submit" class="btn btn-sm btn-success">New round</button>
+  <% end %>
+</td>
+<td></td>
