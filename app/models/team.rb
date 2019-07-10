@@ -14,6 +14,8 @@ class Team < ApplicationRecord
   has_many :rounds
   has_many :games, -> { distinct }, :through => :rounds
 
+  # Get the total score this team has scored so far in given game
+  # @return [Integer]
   def total_score_for_game(game)
     Round.where(team: self, game: game).map(&:score).sum
   end

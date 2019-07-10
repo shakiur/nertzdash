@@ -13,11 +13,15 @@ class Game < ApplicationRecord
   has_many :rounds
   has_many :teams, -> { distinct }, :through => :rounds
 
+  # The most recently logged round number for this game
+  # @return [Integer]
   def current_round_number
     return 1 unless self.rounds.any?
     return self.rounds.pluck(:round_number).max
   end
 
+  # The next round number for this game
+  # @return [Integer]
   def next_round_number
     self.current_round_number + 1
   end
@@ -35,6 +39,8 @@ class Game < ApplicationRecord
     winning_team.total_score_for_game(self)
   end
 
+  # Comma separated string of team names participating in this game
+  # @return [String]
   def team_names
     self.teams.map(&:name).join(', ')
   end

@@ -18,6 +18,8 @@ class Round < ApplicationRecord
 
   validates :round_number, uniqueness: { scope: [:game_id, :team_id] }
 
+  # Question mark suffixed method alias for whether or not this team for this round nertzed
+  # @return [Boolean]
   def nertz?
     self.nertz
   end
