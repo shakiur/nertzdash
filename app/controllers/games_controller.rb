@@ -67,13 +67,15 @@ class GamesController < ApplicationController
     game = Game.find(params[:game_id])
     next_round_number = game.next_round_number
 
-    game.teams.each do |team|
-      new_round = Round.new
-      new_round.game_id = game.id
-      new_round.team_id = team.id
-      new_round.round_number = next_round_number
-      new_round.score = 0
-      new_round.save!
+    ActiveRecord::Base.transaction do
+      game.teams.each do |team|
+        new_round = Round.new
+        new_round.game_id = game.id
+        new_round.team_id = team.id
+        new_round.round_number = next_round_number
+        new_round.score = 0
+        new_round.save!
+      end
     end
 
     flash[:success] = "Created new round #{next_round_number}"

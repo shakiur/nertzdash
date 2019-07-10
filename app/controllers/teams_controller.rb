@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
       return redirect_to teams_path
     end
 
-    if team_type == 'double'
+    if team_type == Team::DOUBLES
       if player1_id.blank?
         flash[:notice] = "Player 1 must be selected"
         return redirect_to teams_path
@@ -50,7 +50,7 @@ class TeamsController < ApplicationController
       end
     end
 
-    if team_type == 'single'
+    if team_type == Team::SINGLES
       if player1_id.blank?
         flash[:notice] = 'Player 1 must be selected'
         return redirect_to teams_path
@@ -58,7 +58,7 @@ class TeamsController < ApplicationController
 
       player1 = Player.find(player1_id)
 
-      if player1.teams.where(team_type: 'single').any?
+      if player1.teams.where(team_type: Team::SINGLES).any?
         flash[:notice] = "Player '#{player1.name}' is already on a singles team"
         return redirect_to teams_path
       end
@@ -76,7 +76,7 @@ class TeamsController < ApplicationController
         team_player1.player_id = player1_id
         team_player1.save
 
-        if team_type == 'double'
+        if team_type == Team::DOUBLES
           team_player2 = TeamPlayer.new
           team_player2.team_id = team.id
           team_player2.player_id = player2_id

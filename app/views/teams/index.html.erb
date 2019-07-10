@@ -6,7 +6,7 @@
     <label>Type:</label>
     <%= select_tag(
           :team_type,
-          options_for_select([ ["Double","double"], ["Single","single"] ]),
+          options_for_select([["Doubles", Team::DOUBLES], ["Singles", Team::SINGLES]]),
           class: "form-control mx-sm-3") %>
   </div>
 
@@ -54,7 +54,7 @@
         <td><%= team.id %></td>
         <td><%= team.team_type %></td>
         <td><%= team.name %></td>
-        <td><%= team.team_players.map(&:player).map(&:name).join(', ')%></th>
+        <td><%= team.team_players.map(&:player).map(&:name).join(', ')%></td>
       </tr>
     <% end %>
   </tbody>
@@ -66,9 +66,9 @@
     $('select#team_type').change(function() {
       $('#player2').val('');
 
-      if ( $('select#team_type').val() == 'double' ) {
+      if ( $('select#team_type').val() == 'doubles' ) {
         $('#player2_div').show();
-      } else if ( $('select#team_type').val() == 'single' ) {
+      } else if ( $('select#team_type').val() == 'singles' ) {
         $('#player2_div').hide();
       }
     })
