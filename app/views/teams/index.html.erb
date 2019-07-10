@@ -3,22 +3,38 @@
 
 <%= form_tag create_team_path, :method => :post, :class => 'form-inline' do %>
   <div class="col-auto form-group">
-    <label>Team Name:</label>
-    <input type="text" class="form-control mx-sm-3" id="team_name" name="team_name">
-  </div>
-  
-  <div class="col-auto form-group">
-    <label>Player 1:</label>
-    <%= select_tag(:player1, options_from_collection_for_select(@all_players, :id, :name), class: "form-control mx-sm-3") %>
+    <label>Type:</label>
+    <%= select_tag(
+          :team_type,
+          options_for_select([ ["Double","double"], ["Single","single"] ]),
+          class: "form-control mx-sm-3") %>
   </div>
 
   <div class="col-auto form-group">
+    <label>Name:</label>
+    <input type="text" class="form-control mx-sm-3" id="team_name" name="team_name">
+  </div>
+
+  <div class="col-auto form-group">
+    <label>Player 1:</label>
+    <%= select_tag(
+          :player1,
+          options_from_collection_for_select(@all_players, :id, :name),
+          include_blank: true,
+          class: "form-control mx-sm-3") %>
+  </div>
+
+  <div id="player2_div" class="col-auto form-group">
     <label>Player 2:</label>
-    <%= select_tag(:player2, options_from_collection_for_select(@all_players, :id, :name), class: "form-control mx-sm-3") %>
+    <%= select_tag(
+          :player2,
+          options_from_collection_for_select(@all_players, :id, :name),
+          include_blank: true,
+          class: "form-control mx-sm-3") %>
   </div>
 
   <button type="submit" class="btn btn-success mx-sm-3">
-    Create Team
+    Create new team
   </button>
 <% end %>
 
@@ -28,6 +44,7 @@
 <table class="table table-striped">
   <thead>
     <th>ID</th>
+    <th>Type</th>
     <th>Name</th>
     <th>Players</th>
   </thead>
@@ -35,9 +52,25 @@
     <% @all_teams.each do |team| %>
       <tr>
         <td><%= team.id %></td>
+        <td><%= team.team_type %></td>
         <td><%= team.name %></td>
         <td><%= team.team_players.map(&:player).map(&:name).join(', ')%></th>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script type="text/javascript">
+  $(function() {
+    // Show and hide player 2 when switching from doubles to singles
+    $('select#team_type').change(function() {
+      $('#player2').val('');
+
+      if ( $('select#team_type').val() == 'double' ) {
+        $('#player2_div').show();
+      } else if ( $('select#team_type').val() == 'single' ) {
+        $('#player2_div').hide();
+      }
+    })
+  })
+</script>
