@@ -17,4 +17,8 @@ class Round < ApplicationRecord
   belongs_to :team
 
   validates :round_number, uniqueness: { scope: [:game_id, :team_id] }
+
+  def nertz?
+    self.nertz
+  end
 end

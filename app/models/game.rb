@@ -11,7 +11,7 @@
 
 class Game < ApplicationRecord
   has_many :rounds
-  has_many :teams, -> {distinct }, :through => :rounds
+  has_many :teams, -> { distinct }, :through => :rounds
 
   def current_round_number
     return 1 unless self.rounds.any?

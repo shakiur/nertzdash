@@ -11,8 +11,7 @@
                 <div class="input-group-text pb-0">
                   <label>
                     <input
-                      required
-                      <%= 'checked' if round.nertz %>
+                      <%= 'checked' if round.nertz? %>
                       type="radio"
                       name="nertzed"
                       value=<%= round.id %>
@@ -33,6 +32,9 @@
         </div>
       </div>
     </td>
+  <% end %>
+  <% (@teams.count - @rounds_by_number[round_number].count).times do %>
+    <td></td>
   <% end %>
   <td>
     <%= hidden_field_tag :round_number, round_number %>

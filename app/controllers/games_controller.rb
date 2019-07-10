@@ -45,9 +45,8 @@ class GamesController < ApplicationController
   end
 
   def save_round
-    this_rounds = []
     # Save the scores and nerzted team for this round number
-    nertzed_round_id = params[:nertzed].to_i
+    nertzed_round_id = params[:nertzed]
     scores_by_round_id = params[:scores]
 
     ActiveRecord::Base.transaction do
@@ -56,20 +55,6 @@ class GamesController < ApplicationController
         round.score = score.to_i
         round.nertz = round_id == nertzed_round_id
         round.save!
-
-        this_rounds << round
-      end
-    end
-
-    # Create the next row of rounds for each team in this round
-    ActiveRecord::Base.transaction do
-      this_rounds.each do |this_round|
-        next_round = Round.new
-        next_round.game_id = this_round.game_id
-        next_round.team_id = this_round.team_id
-        next_round.round_number = this_round.round_number + 1
-        next_round.score = 0
-        next_round.save!
       end
     end
 
