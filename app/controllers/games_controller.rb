@@ -81,4 +81,10 @@ class GamesController < ApplicationController
     flash[:success] = "Created new round #{next_round_number}"
     redirect_to game_scores_path(game_id: game.id)
   end
+
+  def archive_game
+    # game = Game.find(params[:game_id])
+    flash[:warning] = "Archive feature still WIP"
+    redirect_to games_path
+  end
 end
