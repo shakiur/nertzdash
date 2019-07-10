@@ -39,9 +39,32 @@
           <%= link_to 'More info', game_scores_path(game_id: game.id), class: 'btn btn-sm btn-outline-info' %>
         </td>
         <td>
-          <%= form_tag archive_game_path(game_id: game.id) do %>
-            <button type="submit" class="btn btn-sm btn-outline-danger">Archive</button>
-          <% end %>
+          <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target=".archive-confirm-modal">
+            Archive
+          </button>
+
+          <div class="modal fade archive-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="Confirm Archive" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">
+                    Confirm Archive of Game <%= game.id %>?
+                  </h5>
+                </div>
+                <div class="modal-body">
+                  <p>
+                    Archiving a game means that it would no longer be visible, and its results will not be considered in the overall stats.
+                  </p>
+                </div>
+                <div class="modal-footer">
+                  <%= form_tag archive_game_path(game_id: game.id) do %>
+                    <button type="submit" class="btn btn-danger">Archive</button>
+                  <% end %>
+                  <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
     <% end %>
