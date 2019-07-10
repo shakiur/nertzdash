@@ -83,8 +83,11 @@ class GamesController < ApplicationController
   end
 
   def archive_game
-    # game = Game.find(params[:game_id])
-    flash[:warning] = "Archive feature still WIP"
+    game = Game.find(params[:game_id])
+    game.archived = true
+    game.save!
+
+    flash[:notice] = "Archived Game #{game.id}"
     redirect_to games_path
   end
 end

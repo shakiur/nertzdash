@@ -14,6 +14,8 @@ class Game < ApplicationRecord
   has_many :rounds
   has_many :teams, -> { distinct }, :through => :rounds
 
+  default_scope { where(archived: false) }
+
   # The most recently logged round number for this game
   # @return [Integer]
   def current_round_number
