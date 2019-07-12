@@ -1,6 +1,6 @@
 <%= form_tag save_round_path do %>
   <td><%= round_number %></td>
-  <% @rounds_by_number[round_number].each do |round| %>
+  <% @rounds_by_number[round_number].sort_by { |r| r.team_id }.each do |round| %>
     <td>
       <div class="container">
         <div class="row">

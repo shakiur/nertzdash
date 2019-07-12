@@ -17,7 +17,7 @@ class GamesController < ApplicationController
 
   def scores
     @game = Game.find(params[:game_id])
-    @teams = @game.teams
+    @teams = @game.teams.sort_by(&:id)
     @winning_team = @game.winning_team
     @rounds_by_number = @game.rounds.group_by(&:round_number)
   end
