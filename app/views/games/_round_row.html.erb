@@ -1,39 +1,41 @@
 <%= form_tag save_round_path do %>
   <td><%= round_number %></td>
-  <% @rounds_by_number[round_number].sort_by { |r| r.team_id }.each do |round| %>
-    <td>
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <div class="input-group-text pb-0">
-                  <label>
-                    <input
-                      <%= 'checked' if round.nertz? %>
-                      type="radio"
-                      name="nertzed"
-                      value=<%= round.id %>
-                    >
-                  </label>
+  <% @teams.each_with_index do |team| %>
+    <% round = @rounds_by_number[round_number].select{ |round| round.team_id == team.id }.first %>
+    <% if round.present? %>
+      <td>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text pb-0">
+                    <label>
+                      <input
+                        <%= 'checked' if round.nertz? %>
+                        type="radio"
+                        name="nertzed"
+                        value=<%= round.id %>
+                      >
+                    </label>
+                  </div>
                 </div>
+                <input
+                  type="number"
+                  name="scores[<%= round.id %>]"
+                  class="form-control"
+                  min="-26"
+                  step="1"
+                  value=<%= round.score %>
+                />
               </div>
-              <input
-                type="number"
-                name="scores[<%= round.id %>]"
-                class="form-control"
-                min="-26"
-                step="1"
-                value=<%= round.score %>
-              />
             </div>
           </div>
         </div>
-      </div>
-    </td>
-  <% end %>
-  <% (@teams.count - @rounds_by_number[round_number].count).times do %>
-    <td></td>
+      </td>
+    <% else %>
+      <td></td>
+    <% end %>
   <% end %>
   <td>
     <%= hidden_field_tag :round_number, round_number %>
