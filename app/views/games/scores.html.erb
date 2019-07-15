@@ -13,8 +13,8 @@
         :id => 'add-team-form' do %>
         <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
            <option selected value="0">Add team</option>
-          <% Team.all.each do |team| %>
-            <option value=<%= team.id %>><%= team.name %></option>
+          <% Team.all.sort_by(&:name).each do |team| %>
+            <option value=<%= team.id %>><%= team.label_with_players %></option>
           <% end %>
         </select>
       <% end %>

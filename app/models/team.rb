@@ -30,4 +30,10 @@ class Team < ApplicationRecord
   def total_score_for_game(game)
     Round.where(team: self, game: game).map(&:score).sum
   end
+
+  # Returns pretty string representation of team name with its players
+  # @return [String]
+  def label_with_players
+    "#{self.name} (#{self.players.map(&:name).join(' + ')})"
+  end
 end
