@@ -14,7 +14,7 @@
                       <input
                         <%= 'checked' if round.nertz? %>
                         type="radio"
-                        name="nertzed"
+                        name="nertzed-<%= round_number %>"
                         value=<%= round.id %>
                       >
                     </label>
