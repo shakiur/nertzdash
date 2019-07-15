@@ -22,6 +22,7 @@
     <th>ID</th>
     <th>Date</th>
     <th>Participants</th>
+    <th>Rounds</th>
     <th>Winning team</th>
     <th>Winning score</th>
     <th></th>
@@ -31,8 +32,9 @@
     <% Game.all.sort_by(&:date).reverse.each do |game| %>
       <tr>
         <td><%= game.id %></td>
-        <td><%= game.date %></td>
+        <td><%= game.date.strftime("%m/%d/%Y") %></td>
         <td><%= game.team_names %></td>
+        <td><%= game.current_round_number %></td>
         <td><%= game.winning_team&.name %></td>
         <td><%= game.winning_score %></td>
         <td>
