@@ -48,7 +48,9 @@ class GamesController < ApplicationController
 
   def save_round
     # Save the scores and nerzted team for this round number
-    nertzed_round_id = params[:nertzed]
+    round_number = params[:round_number].to_i
+    nertzed_field_name = "nertzed-#{round_number}"
+    nertzed_round_id = params[nertzed_field_name]
     scores_by_round_id = params[:scores]
 
     ActiveRecord::Base.transaction do
