@@ -16,6 +16,7 @@
 class Round < ApplicationRecord
   belongs_to :game
   belongs_to :team
+  belongs_to :team_game
 
   validates :round_number, uniqueness: { scope: [:game_id, :team_id] }
 

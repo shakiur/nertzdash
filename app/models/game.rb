@@ -12,8 +12,9 @@
 
 class Game < ApplicationRecord
   has_many :rounds
-  has_many :teams, -> { distinct }, :through => :rounds
-
+  has_many :team_games
+  has_many :teams, -> { distinct }, :through => :team_games
+ 
   default_scope { where(archived: false) }
 
   # The most recently logged round number for this game
