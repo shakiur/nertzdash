@@ -19,6 +19,8 @@ class Round < ApplicationRecord
   belongs_to :team
   belongs_to :team_game
 
+  default_scope { where(archived: false) }
+
   validates :round_number, uniqueness: { scope: [:game_id, :team_id] }
 
   # Question mark suffixed method alias for whether or not this team for this round nertzed

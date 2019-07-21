@@ -23,7 +23,7 @@
   <tbody>
     <% @rounds_by_number.keys.sort.each do |round_number| %>
       <tr>
-        <%= render 'round_row', round_number: round_number %>
+        <%= render 'round_row', round_number: round_number, game_id: @game.id %>
       </tr>
     <% end %>
     <%= render 'new_round_row' %>

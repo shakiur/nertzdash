@@ -95,4 +95,22 @@ class GamesController < ApplicationController
     flash[:notice] = "Archived Game #{game.id}"
     redirect_to games_path
   end
+
+  def archive_round
+    team_game_id = params[:team_game_id]
+    round_number = params[:round_number]
+    game_id = params[:game_id]
+
+    ActiveRecord::Base.transaction do 
+      round = Round.where(game_id: game_id, team_game_id: team_game_id, round_number: round_number).take
+      round.archived = true
+      round.save!
+
+      team_game = TeamGame.find(team_game_id)
+      team_game.total_score = team_game.rounds.sum(&:score)
+      team_game.save!
+    end
+ 
+    redirect_to game_scores_path(game_id: game_id)
+  end
 end
