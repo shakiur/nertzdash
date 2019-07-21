@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: team_games
+#
+#  id          :integer          not null, primary key
+#  team_id     :integer          not null
+#  game_id     :integer          not null
+#  total_score :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_id: 1
+  game_id: 1
+  total_score: 1
+
+two:
+  team_id: 1
+  game_id: 1
+  total_score: 1

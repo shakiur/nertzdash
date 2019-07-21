@@ -5,6 +5,7 @@
 #  id           :integer          not null, primary key
 #  game_id      :integer          not null
 #  team_id      :integer          not null
+#  team_game_id :integer
 #  round_number :integer
 #  score        :integer
 #  nertz        :boolean          default(FALSE), not null

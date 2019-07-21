@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190710214128) do
+ActiveRecord::Schema.define(version: 20190721034846) do
 
   create_table "games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date     "date"
@@ -29,11 +29,20 @@ ActiveRecord::Schema.define(version: 20190710214128) do
   create_table "rounds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "game_id",                      null: false
     t.integer  "team_id",                      null: false
+    t.integer  "team_game_id"
     t.integer  "round_number"
     t.integer  "score"
     t.boolean  "nertz",        default: false, null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+  end
+
+  create_table "team_games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "team_id",     null: false
+    t.integer  "game_id",     null: false
+    t.integer  "total_score"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "team_players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
