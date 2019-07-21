@@ -18,8 +18,8 @@ class GamesController < ApplicationController
 
   def scores
     @game = Game.find(params[:game_id])
-    @teams = @game.teams.sort_by(&:id)
-    @winning_team = @game.winning_team
+    @team_games = @game.team_games.sort_by(&:id)
+    @winning_team_game = @game.winning_team_game
     @rounds_by_number = @game.rounds.group_by(&:round_number)
   end
 
@@ -33,14 +33,11 @@ class GamesController < ApplicationController
       return redirect_to game_scores_path(game_id: params[:game_id])
     end
 
-    # Adding a new team really manifests as the creation of a new Round
-    # for that Team, attached to this Game
-    new_round = Round.new
-    new_round.game_id = @game.id
-    new_round.team_id = new_team.id
-    new_round.round_number = @game.current_round_number
-    new_round.score = 0
-    new_round.save!
+    team_game = TeamGame.new
+    team_game.game_id = @game.id
+    team_game.team_id = new_team.id
+    team_game.total_score = 0
+    team_game.save!
 
     flash[:success] = "Added new team: #{new_team.name}"
     return redirect_to game_scores_path(game_id: params[:game_id])
@@ -59,6 +56,10 @@ class GamesController < ApplicationController
         round.score = score.to_i
         round.nertz = round_id == nertzed_round_id
         round.save!
+
+        team_game = round.team_game
+        team_game.total_score = team_game.rounds.sum(&:score)
+        team_game.save!
       end
     end
 
@@ -71,10 +72,11 @@ class GamesController < ApplicationController
     next_round_number = game.next_round_number
 
     ActiveRecord::Base.transaction do
-      game.teams.each do |team|
+      game.team_games.each do |team_game|
         new_round = Round.new
         new_round.game_id = game.id
-        new_round.team_id = team.id
+        new_round.team_id = team_game.team.id
+        new_round.team_game_id = team_game.id
         new_round.round_number = next_round_number
         new_round.score = 0
         new_round.save!

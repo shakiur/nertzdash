@@ -1,7 +1,7 @@
 <%= form_tag save_round_path do %>
   <td><%= round_number %></td>
-  <% @teams.each do |team| %>
-    <% round = @rounds_by_number[round_number].find { |round| round.team_id == team.id } %>
+  <% @team_games.each do |team_game| %>
+    <% round = @rounds_by_number[round_number].find { |round| round.team_game_id == team_game.id } %>
     <% if round.present? %>
       <td>
         <div class="container">

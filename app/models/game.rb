@@ -30,17 +30,17 @@ class Game < ApplicationRecord
     self.current_round_number + 1
   end
 
-  # The team that is winning this game instance
-  # @return [Team]
-  def winning_team
-    self.teams.sort_by { |team| team.total_score_for_game(self) }.last
+  # The TeamGame that is winning this game instance
+  # @return [TeamGame]
+  def winning_team_game
+    self.team_games.sort_by { |team_game| team_game.total_score }.last
   end
 
   # The winning score of this game instance
   # @return [Integer]
   def winning_score
-    return 0 unless winning_team
-    winning_team.total_score_for_game(self)
+    return 0 unless winning_team_game
+    winning_team_game.total_score
   end
 
   # Comma separated string of team names participating in this game
