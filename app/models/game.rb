@@ -20,7 +20,7 @@ class Game < ApplicationRecord
   # The most recently logged round number for this game
   # @return [Integer]
   def current_round_number
-    return 1 unless self.rounds.any?
+    return 0 unless self.rounds.any?
     return self.rounds.pluck(:round_number).max
   end
 
