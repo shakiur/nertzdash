@@ -41,11 +41,11 @@
           <%= link_to 'More info', game_scores_path(game_id: game.id), class: 'btn btn-sm btn-outline-info' %>
         </td>
         <td>
-          <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target=".archive-confirm-modal">
+          <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#archiveConfirmModal-<%= game.id %>">
             Archive
           </button>
 
-          <div class="modal fade archive-confirm-modal" tabindex="-1" role="dialog" aria-labelledby="Confirm Archive" aria-hidden="true">
+          <div class="modal fade archive-confirm-modal" id="archiveConfirmModal-<%= game.id %>" tabindex="-1" role="dialog" aria-labelledby="Confirm Archive" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
