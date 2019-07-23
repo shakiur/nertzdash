@@ -28,7 +28,7 @@ class GamesController < ApplicationController
     new_team = Team.find(params[:team_id])
 
     # Graceful notice if this Team has already been added to this Game
-    if Round.where(game_id: @game.id, team_id: new_team.id).any?
+    if TeamGame.where(game_id: @game.id, team_id: new_team.id).any?
       flash[:notice] = "#{new_team.name} already added to this game"
       return redirect_to game_scores_path(game_id: params[:game_id])
     end
