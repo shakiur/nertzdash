@@ -37,4 +37,21 @@ class Team < ApplicationRecord
   def label_with_players
     "#{self.name} (#{self.players.map(&:name).join(' + ')})"
   end
+
+  # Builds a hash of all teams info that's sorted by players name so it's easy to navigate
+  # @return [Hash]
+  def self.build_alphabetical_hash_of_teams
+    teams = Team.includes(team_players: :player).map { |team|
+      team_players = team.team_players.map(&:player)
+      team_players_sorted = team_players.sort_by(&:name)
+      team_players_names = team_players_sorted.map(&:name)
+
+      { :id => team.id,
+        :team_name => team.name,
+        :team_type => team.team_type.capitalize,
+        :team_players_names => team_players_names.join(', ') }
+    }
+
+    return teams.sort_by { |team| team[:team_players_names] }
+  end
 end

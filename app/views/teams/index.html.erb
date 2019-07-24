@@ -49,12 +49,12 @@
     <th>Players</th>
   </thead>
   <tbody>
-    <% @all_teams.each do |team| %>
+    <% @all_teams_sorted.each do |team_info| %>
       <tr>
-        <td><%= team.id %></td>
-        <td><%= team.team_type.capitalize %></td>
-        <td><%= team.name %></td>
-        <td><%= team.team_players.map(&:player).map(&:name).join(', ')%></td>
+        <td><%= team_info[:id] %></td>
+        <td><%= team_info[:team_type] %></td>
+        <td><%= team_info[:team_name] %></td>
+        <td><%= team_info[:team_players_names] %></td>
       </tr>
     <% end %>
   </tbody>

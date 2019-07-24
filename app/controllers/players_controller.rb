@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def index
-    @all_players = Player.all
+    @all_players = Player.order(:name).all
   end
 
   def create
