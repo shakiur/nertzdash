@@ -6,6 +6,7 @@
 #  team_id     :integer          not null
 #  game_id     :integer          not null
 #  total_score :integer
+#  archived    :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
