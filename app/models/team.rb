@@ -26,6 +26,9 @@ class Team < ApplicationRecord
 
   validates :team_type, inclusion: { in: VALID_TEAM_TYPES }
 
+  scope :singles, -> { where(team_type: SINGLES) }
+  scope :doubles, -> { where(team_type: DOUBLES) }
+
   # Get the total score this team has scored so far in given game
   # @return [Integer]
   def total_score_for_game(game)

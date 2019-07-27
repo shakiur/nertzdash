@@ -5,10 +5,17 @@
     :id => 'add-team-form',
     class: 'pull-right' do %>
     <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
-       <option selected value="0">Add team</option>
-      <% Team.all.sort_by(&:name).each do |team| %>
-        <option value=<%= team.id %>><%= team.label_with_players %></option>
-      <% end %>
+      <option selected value="0">Add team to game</option>
+      <optgroup label="Singles">
+        <% Team.singles.sort_by(&:name).each do |team| %>
+          <option value=<%= team.id %>><%= team.label_with_players %></option>
+        <% end %>
+      </optgroup>
+      <optgroup label="Doubles">
+        <% Team.doubles.sort_by(&:name).each do |team| %>
+          <option value=<%= team.id %>><%= team.label_with_players %></option>
+        <% end %>
+      </optgroup>
     </select>
   <% end %>
 </div>
