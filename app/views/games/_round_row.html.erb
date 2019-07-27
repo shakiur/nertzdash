@@ -43,9 +43,16 @@
   </td>
 <% end %>
 <td>
-  <%= form_tag archive_round_path(round_number: round_number), :method => :put, :id => "remove-team-form-#{round_number}" do  %>
+  <%= form_tag
+    archive_round_path(round_number: round_number),
+    :method => :put,
+    :id => "remove-team-form-#{round_number}" do %>
     <%= hidden_field_tag :game_id, game_id %>
-    <select class="custom-select" id="remove-round-select-<%= round_number %>" name="team_game_id" style="width:auto">
+    <select
+      class="custom-select"
+      id="remove-round-select-<%= round_number %>"
+      name="team_game_id"
+      style="width:auto">
       <option selected value="0">Remove team</option>
         <% @team_games.sort_by { |team_game| team_game.team.name }.each do |team_game| %>
           <option value=<%= team_game.id %>>
@@ -53,6 +60,12 @@
           </option>
         <% end %>
     </select>
-    <button title="Remove selected team" type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+
+    <button
+      title="Remove selected team"
+      type="submit"
+      class="btn btn-outline-danger">
+      <i class="fa fa-trash"></i>
+    </button>
   <% end %>
 </td>
