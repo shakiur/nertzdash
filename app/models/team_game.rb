@@ -22,4 +22,10 @@ class TeamGame < ApplicationRecord
   def active?
     self.active
   end
+
+  # Pretty string for whether this Team is active or inactive
+  # @return [String]
+  def active_label
+    self.active? ? 'active' : 'inactive'
+  end
 end

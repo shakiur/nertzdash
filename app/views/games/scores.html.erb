@@ -26,8 +26,8 @@
               class="form-check-input"
               id="toggle-team-check-input-<%= team_game.id %>"
               type="checkbox"
-              value="1"
-              name="team_game_id">
+              name="team_game_id"
+              <%= 'checked' if team_game.active? %>>
             <label
               title="<%= team_game.team.team_members_label %>"
               class="form-check-label"

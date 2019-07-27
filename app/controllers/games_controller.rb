@@ -100,8 +100,11 @@ class GamesController < ApplicationController
 
   def toggle_team_game_active
     team_game = TeamGame.find(params[:team_game_id])
+    team_game.active = !team_game.active?
+    team_game.save!
 
-    flash[:notice] = "Team #{team_game.team.name} is now thingie"
+    flash_msg = "Team #{team_game.team.name} is now #{team_game.active_label}!"
+    flash[:notice] =  "#{flash_msg} Future rounds will #{'not' unless team_game.active?} be created for them."
     return redirect_to game_scores_path(game_id: team_game.game_id)
   end
 
