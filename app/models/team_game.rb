@@ -16,4 +16,10 @@ class TeamGame < ApplicationRecord
   belongs_to :game
 
   has_many :rounds
+
+  # Whether or not the referenced Team is currently active in this Game
+  # @return [Boolean]
+  def active?
+    self.active
+  end
 end
