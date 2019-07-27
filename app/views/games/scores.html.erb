@@ -1,4 +1,18 @@
-<h1>Nertz Scores for Game <%= @game.id %></h1>
+<div>
+  <h1 class="pull-left">Nertz Scores for Game <%= @game.id %></h1>
+  <%= form_tag add_team_to_game_path,
+    :method => :put,
+    :id => 'add-team-form',
+    class: 'pull-right' do %>
+    <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
+       <option selected value="0">Add team</option>
+      <% Team.all.sort_by(&:name).each do |team| %>
+        <option value=<%= team.id %>><%= team.label_with_players %></option>
+      <% end %>
+    </select>
+  <% end %>
+</div>
+
 
 <table class="table table-condensed table-striped table-hover <%= 'small' if @team_games.size > 5 %>" style="text-align: center">
   <thead>
@@ -7,18 +21,7 @@
       <th><%= team_game.team.name %></th>
     <% end %>
     <th></th>
-    <th>
-      <%= form_tag add_team_to_game_path,
-        :method => :put,
-        :id => 'add-team-form' do %>
-        <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
-           <option selected value="0">Add team</option>
-          <% Team.all.sort_by(&:name).each do |team| %>
-            <option value=<%= team.id %>><%= team.label_with_players %></option>
-          <% end %>
-        </select>
-      <% end %>
-    </th>
+    <th></th>
   </thead>
   <tbody>
     <% @rounds_by_number.keys.sort.each do |round_number| %>
