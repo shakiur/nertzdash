@@ -19,12 +19,16 @@
     <th>Round</th>
     <% @team_games.each do |team_game| %>
       <th>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="checkbox" id="team-game-<%= team_game.id %>" value="<%= team_game.id %>" name="teamgame_id">
-          <label class="form-check-label" for="team-game-<%= team_game.id %>">
-            <%= team_game.team.name %>
-          </label>
-        </div>
+        <%= form_tag toggle_team_game_active_path(team_game_id: team_game.id),
+          :method => :post,
+          :id => 'toggle-team-game-form' do %>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="toggle-team-check-input" type="checkbox" value="1" name="team_game_id">
+            <label title="<%= team_game.team.team_members_label %>" class="form-check-label" for="team-game-<%= team_game.id %>">
+              <%= team_game.team.name %>
+            </label>
+          </div>
+        <% end %>
       </th>
     <% end %>
     <th></th>
@@ -44,6 +48,12 @@
     // For on-select adding of new Teams to the Game
     $('select#team-selector').change(function() {
       $('#add-team-form').submit();
+    })
+
+    // For on-checked toggling of TeamGame active boolean
+    $('input#toggle-team-check-input').change(function() {
+      console.log("hello")
+      $('#toggle-team-game-form').submit();
     })
   })
 </script>

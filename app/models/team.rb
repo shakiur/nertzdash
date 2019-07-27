@@ -32,10 +32,16 @@ class Team < ApplicationRecord
     Round.where(team: self, game: game).map(&:score).sum
   end
 
+  # Returns pretty string representation of its players
+  # @return [String]
+  def team_members_label
+    self.players.map(&:name).join(' + ')
+  end
+
   # Returns pretty string representation of team name with its players
   # @return [String]
   def label_with_players
-    "#{self.name} (#{self.players.map(&:name).join(' + ')})"
+    "#{self.name} (#{self.team_members_label})"
   end
 
   # Builds a hash of all teams info that's sorted by players name so it's easy to navigate

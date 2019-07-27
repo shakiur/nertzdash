@@ -98,6 +98,13 @@ class GamesController < ApplicationController
     redirect_to game_scores_path(game_id: game.id)
   end
 
+  def toggle_team_game_active
+    team_game = TeamGame.find(params[:team_game_id])
+
+    flash[:notice] = "Team #{team_game.team.name} is now thingie"
+    return redirect_to game_scores_path(game_id: team_game.game_id)
+  end
+
   def archive_game
     game = Game.find(params[:game_id])
     game.archived = true
