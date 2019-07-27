@@ -39,7 +39,7 @@
   <% end %>
   <td>
     <%= hidden_field_tag :round_number, round_number %>
-    <button type="submit" class="btn btn-outline-success">Save round</button>
+    <button title="Save round" type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
   </td>
 <% end %>
 <td>
@@ -53,6 +53,6 @@
           </option>
         <% end %>
     </select>
-    <button type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
+    <button title="Remove selected team" type="submit" class="btn btn-outline-danger"><i class="fa fa-trash"></i></button>
   <% end %>
 </td>
