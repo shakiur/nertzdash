@@ -43,8 +43,7 @@
   </td>
 <% end %>
 <td>
-  <%= form_tag
-    archive_round_path(round_number: round_number),
+  <%= form_tag archive_round_path(round_number: round_number),
     :method => :put,
     :id => "remove-team-form-#{round_number}" do %>
     <%= hidden_field_tag :game_id, game_id %>
