@@ -17,6 +17,9 @@ class TeamGame < ApplicationRecord
 
   has_many :rounds
 
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+
   # Whether or not the referenced Team is currently active in this Game
   # @return [Boolean]
   def active?

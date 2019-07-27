@@ -72,18 +72,7 @@ class GamesController < ApplicationController
     next_round_number = game.next_round_number
 
     ActiveRecord::Base.transaction do
-      game.team_games.each do |team_game|
-        previous_round_number = next_round_number - 1
-
-        team_game_rounds = Round.where(
-          game_id: game.id,
-          team_game_id: team_game.id)
-
-        team_game_missing_from_previous_round = team_game_rounds.select { |round| round.round_number == previous_round_number }.empty?
-        team_game_was_previously_playing = team_game_rounds.any?
-
-        next if team_game_missing_from_previous_round && team_game_was_previously_playing
-
+      game.team_games.active.each do |team_game|
         new_round = Round.new
         new_round.game_id = game.id
         new_round.team_id = team_game.team.id
