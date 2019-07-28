@@ -10,6 +10,6 @@ class StatsController < ApplicationController
   end
 
   def view_stat
-    # Break out page per stat TBD
+    # Break out page per stat TBD on performance observations
   end
 end
