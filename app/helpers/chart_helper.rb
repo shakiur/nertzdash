@@ -2,6 +2,8 @@ module ChartHelper
   # Graphs a round number series of Teams' total scores
   # @param game [Game] Given Game to create chart for
   def line_chart_total_score_over_rounds(game:)
+    max_score = -99999
+    min_score = 99999
     scores_data = []
     game.team_games.each do |team_game|
       scores_series = {}
@@ -10,6 +12,9 @@ module ChartHelper
       team_game.rounds.sort_by(&:round_number).each do |round|
         running_score += round.score
         scores_series[round.round_number] = running_score
+
+        min_score = running_score if running_score < min_score
+        max_score = running_score if running_score > max_score
       end
       scores_data << {
         name: team_game.team.name,
@@ -23,7 +28,9 @@ module ChartHelper
         ytitle: 'Total score',
         discrete: true,
         points: true,
-        curve: false
+        curve: false,
+        min: min_score,
+        max: max_score
       )
   end
 end
