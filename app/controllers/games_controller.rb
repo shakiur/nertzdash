@@ -102,7 +102,12 @@ class GamesController < ApplicationController
     game.archived = true
     game.save!
 
-    flash[:notice] = "Archived Game #{game.id}"
+    game.rounds.each do |round|
+      round.archived = true
+      round.save!
+    end
+
+    flash[:notice] = "Archived Game #{game.id} and its Rounds"
     redirect_to games_path
   end
 end
