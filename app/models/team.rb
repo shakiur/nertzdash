@@ -25,6 +25,7 @@ class Team < ApplicationRecord
   ]
 
   validates :team_type, inclusion: { in: VALID_TEAM_TYPES }
+  validates_uniqueness_of :name, scope: :team_type
 
   scope :singles, -> { where(team_type: SINGLES) }
   scope :doubles, -> { where(team_type: DOUBLES) }

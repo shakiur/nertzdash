@@ -1,4 +1,12 @@
 module ChartHelper
+  def stats_builder(stats_class:)
+    self.send(
+      stats_class.graph_type,
+      stats_class.data,
+      stats_class.graph_options
+    )
+  end
+
   # Graphs a round number series of Teams' total scores
   # @param game [Game] Given Game to create chart for
   def line_chart_total_score_over_rounds(game:)
