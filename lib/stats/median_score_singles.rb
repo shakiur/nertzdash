@@ -11,7 +11,7 @@ module MedianScoreSingles
 
   def graph_options
     {
-      xtitle: 'Player name',
+      xtitle: 'Player',
       ytitle: 'Median score'
     }
   end
