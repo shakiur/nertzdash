@@ -1,7 +1,8 @@
 <h1>Nertz Stats</h1>
 <hr>
 
-<% @stats_modules.each do |name, klass| %>
+<% @stats_modules.keys.sort.each do |name| %>
+  <% klass = @stats_modules[name] %>
   <h3><%= name.underscore.humanize %></h3>
   <p><%= klass.description %></p>
   <%= stats_builder(stats_class: klass) %>
