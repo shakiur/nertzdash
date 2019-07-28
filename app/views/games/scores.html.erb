@@ -56,13 +56,7 @@
   </tbody>
 </table>
 
-<%= line_chart @scores_data,
-  xtitle: 'Round number',
-  ytitle: 'Total score',
-  discrete: true,
-  points: true,
-  curve: false
-%>
+<%= line_chart_total_score_over_rounds(game: @game) %>
 
 <script type="text/javascript">
   $(function() {
@@ -70,7 +64,6 @@
     $('select#team-selector').change(function() {
       $('#add-team-form').submit();
     })
-
     // For on-checked toggling of TeamGame active boolean
     $('input.form-check-input').change(function() {
       $(this).parents('form:first').submit();
