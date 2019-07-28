@@ -17,6 +17,8 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require chartkick
+//= require Chart.bundle
 
 setTimeout(function(){
   $('.flash-msg').slideUp(500);

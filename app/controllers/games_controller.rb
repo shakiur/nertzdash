@@ -21,6 +21,21 @@ class GamesController < ApplicationController
     @team_games = @game.team_games.sort_by(&:id)
     @winning_team_game = @game.winning_team_game
     @rounds_by_number = @game.rounds.group_by(&:round_number)
+
+    @scores_data = []
+    @team_games.each do |team_game|
+      scores_series = {}
+      running_score = 0
+      scores_series[0] = running_score
+      team_game.rounds.sort_by(&:round_number).each do |round|
+        running_score += round.score
+        scores_series[round.round_number] = running_score
+      end
+      @scores_data << {
+        name: team_game.team.name,
+        data: scores_series
+      }
+    end
   end
 
   def add_team

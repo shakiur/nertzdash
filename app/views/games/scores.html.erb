@@ -20,8 +20,7 @@
   <% end %>
 </div>
 
-
-<table class="table table-condensed table-striped table-hover <%= 'small' if @team_games.size > 5 %>" style="text-align: center">
+<table class="table table-condensed table-striped table-hover" style="text-align: center">
   <thead>
     <th>Round</th>
     <% @team_games.each do |team_game| %>
@@ -56,6 +55,14 @@
     <%= render 'new_round_row' %>
   </tbody>
 </table>
+
+<%= line_chart @scores_data,
+  xtitle: 'Round number',
+  ytitle: 'Total score',
+  discrete: true,
+  points: true,
+  curve: false
+%>
 
 <script type="text/javascript">
   $(function() {

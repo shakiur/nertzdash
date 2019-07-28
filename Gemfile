@@ -58,3 +58,5 @@ gem 'bundler'
 gem 'bootstrap', '~> 4.0.0'
 
 gem "font-awesome-rails"
+
+gem "chartkick"
