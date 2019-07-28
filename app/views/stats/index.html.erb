@@ -1,0 +1,6 @@
+<h1>Nertz Stats</h1>
+<hr>
+
+<% @stats_modules.each do |name, stat_class| %>
+  <h3><%= name.underscore.humanize %></h3>
+<% end %>
