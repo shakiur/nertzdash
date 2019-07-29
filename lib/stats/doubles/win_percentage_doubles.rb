@@ -1,12 +1,12 @@
-module WinPercentageSingles
+module WinPercentageDoubles
   module_function
 
   def team_type
-    Team::SINGLES
+    Team::DOUBLES
   end
 
   def description
-    "Win percentage of players that have won at least once and have played at minimum of five rounds."
+    "Win percentage of teams that have won at least once and have played at minimum of five rounds."
   end
 
   def graph_type
@@ -21,10 +21,10 @@ module WinPercentageSingles
   def data
     data = {}
     winning_team_games = Game.all.map { |game| game.winning_team_game }
-    total_number_of_games = winning_team_games.count { |tg| tg.team.singles? }
+    total_number_of_games = winning_team_games.count { |tg| tg.team.doubles? }
 
     winning_team_games.map(&:team).uniq.each do |team|
-      next unless team.singles?
+      next unless team.doubles?
       next unless team.rounds.count >= 5
 
       number_of_times_won = winning_team_games.count { |tg| tg.team_id == team.id }
