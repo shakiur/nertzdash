@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
     new_player.name = player_name
     new_player.save
 
+    flash[:success] = "Created new Player: #{new_player.name}"
     return redirect_to players_path
   end
 end

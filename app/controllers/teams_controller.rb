@@ -88,6 +88,7 @@ class TeamsController < ApplicationController
       return redirect_to teams_path
     end
 
+    flash[:success] = "Created new Team: #{team.label_with_players}"
     return redirect_to teams_path
   end
 end
