@@ -29,7 +29,7 @@
     <th></th>
   </thead>
   <tbody>
-    <% @games.sort_by(&:date).reverse.each do |game| %>
+    <% @games.sort_by { |game| [game.date, game.created_at] }.reverse.each do |game| %>
       <tr>
         <td><%= game.id %></td>
         <td><%= game.date.strftime("%m/%d/%Y") %></td>
