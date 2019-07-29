@@ -1,7 +1,8 @@
 class TeamsController < ApplicationController
   def index
     @all_players = Player.order(:name).all
-    @all_teams_sorted = Team.build_alphabetical_hash_of_teams
+    @singles_teams_sorted = Team.singles.build_alphabetical_hash_of_teams
+    @doubles_teams_sorted = Team.doubles.build_alphabetical_hash_of_teams
   end
 
   def create
