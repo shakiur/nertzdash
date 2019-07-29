@@ -33,7 +33,7 @@
       <tr>
         <td><%= game.id %></td>
         <td><%= game.date.strftime("%m/%d/%Y") %></td>
-        <td><%= game.team_names %></td>
+        <td class="small"><%= game.team_names %></td>
         <td><%= game.current_round_number %></td>
         <td>
           <%= game.winning_team_game.present? ? game.winning_team_game.team.label_with_players : ""  %>
