@@ -85,12 +85,13 @@ class TeamsController < ApplicationController
           team_player2.save!
         end
       end
+
+      flash[:success] = "Created new Team: #{team.reload.label_with_players}"
     rescue
       flash[:notice] = "There was an error creating your team"
       return redirect_to teams_path
     end
 
-    flash[:success] = "Created new Team: #{team.reload.label_with_players}"
     return redirect_to teams_path
   end
 end
