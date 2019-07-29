@@ -66,25 +66,26 @@ class TeamsController < ApplicationController
     end
 
     begin
+      team = Team.new
+      team_player1 = TeamPlayer.new
+
       ActiveRecord::Base.transaction do
-        team = Team.new
         team.team_type = team_type
         team.name = team_name
         team.save!
 
-        team_player1 = TeamPlayer.new
         team_player1.team_id = team.id
         team_player1.player_id = player1_id
-        team_player1.save
+        team_player1.save!
 
         if team_type == Team::DOUBLES
           team_player2 = TeamPlayer.new
           team_player2.team_id = team.id
           team_player2.player_id = player2_id
-          team_player2.save
+          team_player2.save!
         end
       end
-    rescue => e
+    rescue
       flash[:notice] = "There was an error creating your team"
       return redirect_to teams_path
     end
