@@ -3,6 +3,10 @@
   <td>
     <h3>
       <span class="badge badge-secondary <%= 'badge-warning' if team_game == @winning_team_game %>">
+        <%= team_game.team.name %>
+      </span>
+      <br/>
+      <span class="badge badge-secondary <%= 'badge-warning' if team_game == @winning_team_game %>">
         <%= team_game.total_score %>
       </span>
     </h3>
