@@ -48,6 +48,7 @@ GEM
       sass (>= 3.5.2)
     builder (3.2.3)
     byebug (11.0.1)
+    chartkick (3.2.1)
     coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -175,6 +176,7 @@ DEPENDENCIES
   bootstrap (~> 4.0.0)
   bundler
   byebug
+  chartkick
   coffee-rails (~> 4.2)
   font-awesome-rails
   jbuilder (~> 2.5)

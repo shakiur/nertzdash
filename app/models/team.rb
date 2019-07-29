@@ -25,9 +25,22 @@ class Team < ApplicationRecord
   ]
 
   validates :team_type, inclusion: { in: VALID_TEAM_TYPES }
+  validates_uniqueness_of :name, scope: :team_type
 
   scope :singles, -> { where(team_type: SINGLES) }
   scope :doubles, -> { where(team_type: DOUBLES) }
+
+  # Is team type for singles
+  # @return [Boolean]
+  def singles?
+    self.team_type == SINGLES
+  end
+
+  # Is team type for doubles
+  # @return [Boolean]
+  def doubles?
+    self.team_type == DOUBLES
+  end
 
   # Get the total score this team has scored so far in given game
   # @return [Integer]
@@ -44,7 +57,11 @@ class Team < ApplicationRecord
   # Returns pretty string representation of team name with its players
   # @return [String]
   def label_with_players
-    "#{self.name} (#{self.team_members_label})"
+    if self.singles?
+      return self.name
+    else
+      "#{self.name} (#{self.team_members_label})"
+    end
   end
 
   # Builds a hash of all teams info that's sorted by players name so it's easy to navigate

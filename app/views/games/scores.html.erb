@@ -20,8 +20,7 @@
   <% end %>
 </div>
 
-
-<table class="table table-condensed table-striped table-hover <%= 'small' if @team_games.size > 5 %>" style="text-align: center">
+<table class="table table-condensed table-striped table-hover" style="text-align: center">
   <thead>
     <th>Round</th>
     <% @team_games.each do |team_game| %>
@@ -57,13 +56,14 @@
   </tbody>
 </table>
 
+<%= line_chart_total_score_over_rounds(game: @game) %>
+
 <script type="text/javascript">
   $(function() {
     // For on-select adding of new Teams to the Game
     $('select#team-selector').change(function() {
       $('#add-team-form').submit();
     })
-
     // For on-checked toggling of TeamGame active boolean
     $('input.form-check-input').change(function() {
       $(this).parents('form:first').submit();

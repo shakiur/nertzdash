@@ -7,7 +7,7 @@
     <%= select_tag(
           :team_type,
           options_for_select([["Doubles", Team::DOUBLES], ["Singles", Team::SINGLES]]),
-          class: "form-control mx-sm-3") %>
+          class: "form-control mx-sm-3 custom-select") %>
   </div>
 
   <div class="col-auto form-group">
@@ -21,7 +21,7 @@
           :player1,
           options_from_collection_for_select(@all_players, :id, :name),
           include_blank: true,
-          class: "form-control mx-sm-3") %>
+          class: "form-control mx-sm-3 custom-select") %>
   </div>
 
   <div id="player2_div" class="col-auto form-group">
@@ -30,7 +30,7 @@
           :player2,
           options_from_collection_for_select(@all_players, :id, :name),
           include_blank: true,
-          class: "form-control mx-sm-3") %>
+          class: "form-control mx-sm-3 custom-select") %>
   </div>
 
   <button type="submit" class="btn btn-success mx-sm-3">
