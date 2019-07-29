@@ -1,8 +1,12 @@
-module AverageScoreDoubles
- module_function
+module AverageScoreSingles
+  module_function
+
+  def team_type
+    Team::SINGLES
+  end
 
   def description
-    "Average score of doubles teams per round. Does not account for teams wth less than five rounds on record."
+    "Average score of singles players per round. Does not account for players wth less than five rounds on record."
   end
 
   def graph_type
@@ -11,14 +15,14 @@ module AverageScoreDoubles
 
   def graph_options
     {
-      xtitle: 'Team',
+      xtitle: 'Player',
       ytitle: 'Average score'
     }
   end
 
   def data
     data = {}
-    Team.doubles.each do |team|
+    Team.singles.each do |team|
       next unless team.rounds.count >= 5
       scores = team.rounds.pluck(:score)
       num_scores = scores.count

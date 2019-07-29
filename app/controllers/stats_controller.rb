@@ -5,6 +5,8 @@ class StatsController < ApplicationController
       require stat_lib
       class_name = File.basename(stat_lib, '.rb').camelize
       stat_class = class_name.constantize
+
+      next unless stat_class.team_type == params[:team_type]
       @stats_modules[class_name] = stat_class
     end
   end

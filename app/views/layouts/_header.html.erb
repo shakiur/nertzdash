@@ -17,8 +17,18 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= players_url %>">Players</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= stats_url %>">Stats <span class="badge badge-danger">New</span></a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="statsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Stats <span class="badge badge-danger">New</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="statsDropdown">
+          <a class="dropdown-item" href="<%= stats_url(Team::SINGLES) %>">
+            Singles
+          </a>
+          <a class="dropdown-item" href="<%= stats_url(Team::DOUBLES) %>">
+            Doubles
+          </a>
+        </div>
       </li>
     </ul>
   </div>

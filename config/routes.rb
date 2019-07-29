@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   get '/players' => 'players#index', as: :players
   post '/players/create' => 'players#create', as: :create_player
 
-  get '/stats' => 'stats#index', as: :stats
+  get '/stats/:team_type' => 'stats#index', as: :stats
 end
