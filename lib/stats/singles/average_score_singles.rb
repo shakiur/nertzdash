@@ -6,7 +6,7 @@ module AverageScoreSingles
   end
 
   def description
-    "Average score of singles players per round. Does not account for players wth less than five rounds on record."
+    "Average score of singles players per round. Only accounts for players who have played at minimum of 10 rounds across 2 games."
   end
 
   def graph_type
@@ -23,7 +23,9 @@ module AverageScoreSingles
   def data
     data = {}
     Team.singles.each do |team|
-      next unless team.rounds.count >= 5
+      next unless team.rounds.count >= 10
+      next unless team.team_games.count >= 2
+
       scores = team.rounds.pluck(:score)
       num_scores = scores.count
       total_score = scores.sum
