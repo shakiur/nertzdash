@@ -15,6 +15,8 @@ class Game < ApplicationRecord
   has_many :team_games
   has_many :teams, -> { distinct }, :through => :team_games
 
+  scope :archived, -> { unscoped.where(archived: true) }
+
   default_scope { where(archived: false) }
 
   # The most recently logged round number for this game
@@ -47,5 +49,11 @@ class Game < ApplicationRecord
   # @return [String]
   def team_names
     self.teams.map(&:name).join(', ')
+  end
+
+  # Archives this record (self)
+  def archive!
+    self.archived = true
+    self.save!
   end
 end

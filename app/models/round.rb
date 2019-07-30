@@ -19,6 +19,8 @@ class Round < ApplicationRecord
   belongs_to :team
   belongs_to :team_game
 
+  scope :archived, -> { unscoped.where(archived: true) }
+
   default_scope { where(archived: false) }
 
   validate :unique_unarchived_round_number_and_team_game_id
@@ -27,6 +29,12 @@ class Round < ApplicationRecord
   # @return [Boolean]
   def nertz?
     self.nertz
+  end
+
+  # Archives this record (self)
+  def archive!
+    self.archived = true
+    self.save!
   end
 
   def unique_unarchived_round_number_and_team_game_id

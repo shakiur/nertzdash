@@ -20,6 +20,7 @@ class TeamGame < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+  scope :archived, -> { unscoped.where(archived: true) }
 
   default_scope { where(archived: false) }
 
@@ -33,5 +34,11 @@ class TeamGame < ApplicationRecord
   # @return [String]
   def active_label
     self.active? ? 'active' : 'inactive'
+  end
+
+  # Archives this record (self)
+  def archive!
+    self.archived = true
+    self.save!
   end
 end
