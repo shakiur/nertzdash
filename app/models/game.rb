@@ -46,6 +46,6 @@ class Game < ApplicationRecord
   # Comma separated string of team names participating in this game
   # @return [String]
   def team_names
-    self.teams.map(&:name).join(', ')
+    self.team_games.map(&:team).map(&:name).join(', ')
   end
 end
