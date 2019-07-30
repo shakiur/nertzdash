@@ -21,11 +21,20 @@ class Round < ApplicationRecord
 
   default_scope { where(archived: false) }
 
-  validates :round_number, uniqueness: { scope: [:game_id, :team_id] }
+  validate :unique_unarchived_round_number_and_team_game_id
 
   # Question mark suffixed method alias for whether or not this team for this round nertzed
   # @return [Boolean]
   def nertz?
     self.nertz
+  end
+
+  def unique_unarchived_round_number_and_team_game_id
+    if Round.where(
+        team_game_id: self.team_game_id,
+        round_number: self.round_number
+      ).count > 1
+      self.errors.add(:round_number, "must be unique per team per game")
+    end
   end
 end
