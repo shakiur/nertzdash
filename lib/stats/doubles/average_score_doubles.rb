@@ -6,7 +6,7 @@ module AverageScoreDoubles
   end
 
   def description
-    "Average score of doubles teams per round. Does not account for teams wth less than five rounds on record."
+    "Average score of doubles teams per round. Only accounts for teams who have played at minimum of 8 rounds."
   end
 
   def graph_type
@@ -23,7 +23,8 @@ module AverageScoreDoubles
   def data
     data = {}
     Team.doubles.each do |team|
-      next unless team.rounds.count >= 5
+      next unless team.rounds.count >= 8
+
       scores = team.rounds.pluck(:score)
       num_scores = scores.count
       total_score = scores.sum

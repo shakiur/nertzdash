@@ -6,7 +6,7 @@ module WinPercentageDoubles
   end
 
   def description
-    "Win percentage of teams that have won at least once and have played at minimum of five rounds."
+    "Win percentage of teams that have won at least once. Only accounts for teams who have played at minimum of 8 rounds."
   end
 
   def graph_type
@@ -28,7 +28,7 @@ module WinPercentageDoubles
     total_number_of_games = winning_team_games.count
 
     winning_team_games.map(&:team).uniq.each do |team|
-      next unless team.rounds.count >= 5
+      next unless team.rounds.count >= 8
 
       number_of_times_won = winning_team_games.count { |team_game|
         team_game.team_id == team.id
