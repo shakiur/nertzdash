@@ -43,6 +43,28 @@
   </td>
 <% end %>
 <td>
-  <%= hidden_field_tag :round_number, round_number %>
-  <button title="Archive round" type="submit" class="btn btn-outline-danger"><i class="fa fa-archive"></i></button>
+  <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#archiveConfirmModal-<%= round_number %>"><i class="fa fa-archive"></i></button>
+
+  <div class="modal fade archive-confirm-modal" id="archiveConfirmModal-<%= round_number %>" tabindex="-1" role="dialog" aria-labelledby="Confirm Archive" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Confirm Archive of Round <%= round_number %>?
+          </h5>
+        </div>
+        <div class="modal-body">
+          <p style="text-align: left;">
+            Archiving a round will void all the scores and results for that round number.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <%= form_tag archive_round_path(game_id: @game.id, round_number: round_number) do %>
+            <button type="submit" class="btn btn-danger">Archive</button>
+          <% end %>
+          <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </td>

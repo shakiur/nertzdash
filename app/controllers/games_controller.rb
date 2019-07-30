@@ -97,6 +97,32 @@ class GamesController < ApplicationController
     return redirect_to game_scores_path(game_id: team_game.game_id)
   end
 
+  def archive_round
+    round_number = params[:round_number].to_i
+    game = Game.find(params[:game_id])
+
+    archived_rounds = game.rounds.where(round_number: round_number)
+
+    ActiveRecord::Base.transaction do
+      archived_rounds.each do |round|
+        round.archived = true
+        round.save!
+      end
+
+      # All subsequent rounds need to have their round number decremented
+      game.rounds.select { |round|
+        round.round_number > round_number
+      }.each do |round|
+        next if round.round_number == 1
+        round.round_number -= 1
+        round.save!
+      end
+    end
+
+    flash[:notice] = "Archived Round #{round_number} for Game #{game.id}"
+    return redirect_to game_scores_path(game_id: game.id)
+  end
+
   def archive_game
     game = Game.find(params[:game_id])
     game.archived = true
@@ -107,7 +133,7 @@ class GamesController < ApplicationController
       round.save!
     end
 
-    flash[:notice] = "Archived Game #{game.id} and its Rounds"
+    flash[:notice] = "Archived Game #{game.id} and its Rounds."
     redirect_to games_path
   end
 end

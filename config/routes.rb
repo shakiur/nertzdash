@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/games/scores/:game_id/save_round' => 'games#save_round', as: :save_round
   post '/games/scores/:game_id/new_round' => 'games#new_round', as: :new_round
   post '/games/scores/:game_id/toggle_team/:team_game_id' => 'games#toggle_team_game_active', as: :toggle_team_game_active
+  post '/games/scores/:game_id/archive_round/:round_number' => 'games#archive_round', as: :archive_round
 
   get '/teams' => 'teams#index', as: :teams
   post '/teams/create' => 'teams#create', as: :create_team
