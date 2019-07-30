@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   def scores
     @game = Game.find(params[:game_id])
     @team_games = @game.team_games.sort_by(&:id)
-    @winning_team_game = @game.winning_team_game
+    @winning_score = @game.winning_score
     @rounds_by_number = @game.rounds.group_by(&:round_number)
     @team_games_with_colors = {}
     @team_games.each do |team_game|

@@ -2,12 +2,12 @@
 <% @team_games.each do |team_game| %>
   <td>
     <h3>
-      <span class="badge badge-secondary" style="background-color: <%= @team_games_with_colors[team_game] %>;">
-        <%= team_game.team.name %>
-      </span>
-      <br/>
-      <span class="badge badge-secondary <%= 'badge-warning' if team_game == @winning_team_game %>">
+      <span class="badge <%= team_game.total_score == @winning_score ? 'badge-warning' : 'badge-secondary' %>">
         <%= team_game.total_score %>
+      </span>
+      <br>
+      <span class="badge badge-secondary badge-pill" style="background-color: <%= @team_games_with_colors[team_game] %>">
+        <%= team_game.team.name %>
       </span>
     </h3>
   </td>

@@ -38,6 +38,7 @@ module ChartHelper
         discrete: true,
         points: true,
         curve: false,
+        legend: false,
         min: min_score,
         max: max_score,
         colors: team_games_with_colors.values
