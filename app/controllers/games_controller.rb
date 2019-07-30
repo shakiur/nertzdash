@@ -105,8 +105,7 @@ class GamesController < ApplicationController
 
     ActiveRecord::Base.transaction do
       archived_rounds.each do |round|
-        round.archived = true
-        round.save!
+        round.archive!
       end
 
       # All subsequent rounds need to have their round number decremented
@@ -125,12 +124,14 @@ class GamesController < ApplicationController
 
   def archive_game
     game = Game.find(params[:game_id])
-    game.archived = true
-    game.save!
+    game.archive!
 
     game.rounds.each do |round|
-      round.archived = true
-      round.save!
+      round.archive!
+    end
+
+    game.team_games.each do |team_game|
+      team_game.archive!
     end
 
     flash[:notice] = "Archived Game #{game.id} and its Rounds."
