@@ -7,6 +7,7 @@
 #  game_id     :integer          not null
 #  total_score :integer
 #  active      :boolean          default(TRUE)
+#  archived    :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

@@ -7,6 +7,7 @@
 #  game_id     :integer          not null
 #  total_score :integer
 #  active      :boolean          default(TRUE)
+#  archived    :boolean          default(FALSE)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -19,6 +20,8 @@ class TeamGame < ApplicationRecord
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+
+  default_scope { where(archived: false) }
 
   # Whether or not the referenced Team is currently active in this Game
   # @return [Boolean]

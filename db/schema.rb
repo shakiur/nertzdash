@@ -39,12 +39,13 @@ ActiveRecord::Schema.define(version: 20190730201057) do
   end
 
   create_table "team_games", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "team_id",                    null: false
-    t.integer  "game_id",                    null: false
+    t.integer  "team_id",                     null: false
+    t.integer  "game_id",                     null: false
     t.integer  "total_score"
     t.boolean  "active",      default: true
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "archived",    default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "team_players", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
