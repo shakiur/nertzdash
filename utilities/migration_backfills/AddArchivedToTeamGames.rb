@@ -5,5 +5,6 @@ Game.unscoped.where(archived: true).each do |game|
   end
   game.rounds.each do |round|
     round.archived = true
+    round.save!
   end
 end
