@@ -26,7 +26,8 @@
                   class="form-control"
                   min="-26"
                   step="1"
-                  value=<%= round.score %>
+                  value="<%= round.score %>"
+                  style="background-color: <%= score_heatmap(score: round.score) %>"
                 />
               </div>
             </div>
