@@ -20,6 +20,8 @@ class TeamGame < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
 
+  default_scope { joins(:game).where(games: {archived: false}) }
+
   # Whether or not the referenced Team is currently active in this Game
   # @return [Boolean]
   def active?
