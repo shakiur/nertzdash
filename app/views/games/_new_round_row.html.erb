@@ -2,7 +2,7 @@
 <% @team_games.each do |team_game| %>
   <td>
     <h3>
-      <span class="badge badge-secondary <%= 'badge-warning' if team_game == @winning_team_game %>">
+      <span class="badge badge-secondary" style="background-color: <%= @team_games_with_colors[team_game] %>;">
         <%= team_game.team.name %>
       </span>
       <br/>

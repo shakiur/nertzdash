@@ -1,4 +1,5 @@
 module ChartHelper
+  # Helper for generating ChartKick graph UI given lib/stats/* module params
   def stats_builder(stats_class:)
     self.send(
       stats_class.graph_type,
@@ -9,11 +10,11 @@ module ChartHelper
 
   # Graphs a round number series of Teams' total scores
   # @param game [Game] Given Game to create chart for
-  def line_chart_total_score_over_rounds(game:)
+  def line_chart_total_score_over_rounds(team_games_with_colors:)
     max_score = -99999
     min_score = 99999
     scores_data = []
-    game.team_games.each do |team_game|
+    team_games_with_colors.keys.each do |team_game|
       scores_series = {}
       running_score = 0
       scores_series[0] = running_score
@@ -38,7 +39,8 @@ module ChartHelper
         points: true,
         curve: false,
         min: min_score,
-        max: max_score
+        max: max_score,
+        colors: team_games_with_colors.values
       )
   end
 end

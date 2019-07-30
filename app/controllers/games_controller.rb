@@ -21,6 +21,10 @@ class GamesController < ApplicationController
     @team_games = @game.team_games.sort_by(&:id)
     @winning_team_game = @game.winning_team_game
     @rounds_by_number = @game.rounds.group_by(&:round_number)
+    @team_games_with_colors = {}
+    @team_games.each do |team_game|
+      @team_games_with_colors[team_game] = "\##{SecureRandom.hex(3)}"
+    end
   end
 
   def add_team
