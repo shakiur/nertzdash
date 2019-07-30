@@ -6,7 +6,7 @@ module AverageScoreSingles
   end
 
   def description
-    "Average score of singles players per round. Only accounts for players who have played at minimum of 10 rounds across 2 games."
+    "Average score of singles players per round. Only accounts for players who have played at minimum of 10 rounds across 2 or more games."
   end
 
   def graph_type
