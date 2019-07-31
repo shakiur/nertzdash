@@ -4,19 +4,27 @@
     :method => :put,
     :id => 'add-team-form',
     class: 'pull-right' do %>
-    <select class="custom-select" id="team-selector" name="team_id" style="width:auto">
-      <option selected value="0">Add team to game</option>
-      <optgroup label="Singles">
-        <% Team.singles.sort_by(&:name).each do |team| %>
-          <option value=<%= team.id %>><%= team.label_with_players %></option>
-        <% end %>
-      </optgroup>
-      <optgroup label="Doubles">
-        <% Team.doubles.sort_by(&:name).each do |team| %>
-          <option value=<%= team.id %>><%= team.label_with_players %></option>
-        <% end %>
-      </optgroup>
+
+    <select class="custom-select" id="team-type" name="team_type" style="width:auto">
+      <option selected value=<%= Team::DOUBLES %>>Doubles</option>
+      <option value=<%= Team::SINGLES %>>Singles</option>
     </select>
+
+    <select class="custom-select" id="player-1" name="player_1" style="width:auto">
+      <option selected value="0">Player 1</option>
+      <% Player.order(:name).each do |player| %>
+        <option value=<%= player.id %>><%= player.name %></option>
+      <% end %>
+    </select>
+
+    <select class="custom-select" id="player-2" name="player_2" style="width:auto">
+      <option selected value="0">Player 2</option>
+      <% Player.order(:name).each do |player| %>
+        <option value=<%= player.id %>><%= player.name %></option>
+      <% end %>
+    </select>
+
+    <button type="submit" class="btn btn-success mx-sm-3"><i class="fa fa-plus-square"></i> Add team</button>
   <% end %>
 </div>
 
@@ -61,13 +69,16 @@
 
 <script type="text/javascript">
   $(function() {
-    // For on-select adding of new Teams to the Game
-    $('select#team-selector').change(function() {
-      $('#add-team-form').submit();
+    // Show and hide player 2 when switching from doubles to singles
+    $('select#team-type').change(function() {
+      $('#player-2').val(0);
+
+      if ( $('select#team-type' ).val() == 'doubles' ) {
+        $('#player-2').css('visibility','visible');
+      } else if ( $('select#team-type').val() == 'singles') {
+        $('#player-2').css('visibility','hidden');
+      }
     })
-    // For on-checked toggling of TeamGame active boolean
-    $('input.form-check-input').change(function() {
-      $(this).parents('form:first').submit();
-    })
+
   })
 </script>

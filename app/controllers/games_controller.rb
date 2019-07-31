@@ -29,21 +29,88 @@ class GamesController < ApplicationController
 
   def add_team
     @game = Game.find(params[:game_id])
-    new_team = Team.find(params[:team_id])
 
-    # Graceful notice if this Team has already been added to this Game
-    if TeamGame.where(game_id: @game.id, team_id: new_team.id).any?
-      flash[:notice] = "#{new_team.name} already added to this game"
-      return redirect_to game_scores_path(game_id: params[:game_id])
+    team_type = params[:team_type]
+    player1_id = params[:player_1]
+    player2_id = params[:player_2]
+
+    if team_type == Team::DOUBLES
+      # Notice if a player is missing
+      if player1_id == "0" || player2_id == "0"
+        flash[:notice] = "Both players must be selected to add a team"
+        return redirect_to game_scores_path(game_id: @game.id)
+      end
+
+      player1 = Player.find(player1_id.to_i)
+      player2 = Player.find(player2_id.to_i)
+
+      # Notice if the same player has been picked twice
+      if player1 == player2
+        flash[:notice] = "#{player1.name} cannot be on a team twice"
+        return redirect_to game_scores_path(game_id: @game.id)
+      end
+
+      player1_teams = player1.teams.doubles
+      player2_teams = player2.teams.doubles
+
+      @team_match = (player1_teams & player2_teams).first
+
+      # Notice is no team exists for the two players
+      if @team_match.nil?
+        flash[:notice] = "No team found for #{player1.name} and #{player2.name}"
+        return redirect_to game_scores_path(game_id: @game.id)
+      end
+
+      # Graceful notice if this Team has already been added to this Game
+      if TeamGame.where(game_id: @game.id, team_id: @team_match.id).any?
+        flash[:notice] = "#{@team_match.name} already added to this game"
+        return redirect_to game_scores_path(game_id: params[:game_id])
+      end
+
+      team_game = TeamGame.new
+      team_game.game_id = @game.id
+      team_game.team_id = @team_match.id
+      team_game.total_score = 0
+      team_game.save!
+    elsif team_type == Team::SINGLES
+      if player1_id == "0"
+        flash[:notice] = "Player 1 must be selected to create a singles team"
+        return redirect_to game_score_path(game_id: @game.id)
+      end
+
+      player1 = Player.find(player1_id.to_i)
+ 
+      @team_match = player1.teams.singles.take
+
+      # If no singles team is found, create one for Player 1
+      if @team_match.nil?
+        new_team = Team.new
+        new_team.team_type = Team::SINGLES
+        new_team.name = player1.name
+        new_team.save!
+
+        new_team_player = TeamPlayer.new
+        new_team_player.team_id = new_team.id
+        new_team_player.player_id = player1.id
+        new_team_player.save!
+
+        @team_match = new_team
+      end
+
+      # Graceful notice if this Team has already been added to this Game
+      if TeamGame.where(game_id: @game.id, team_id: @team_match.id).any?
+        flash[:notice] = "#{@team_match.name} already added to this game"
+        return redirect_to game_scores_path(game_id: params[:game_id])
+      end
+
+      team_game = TeamGame.new
+      team_game.game_id = @game.id
+      team_game.team_id = @team_match.id
+      team_game.total_score = 0
+      team_game.save!
     end
 
-    team_game = TeamGame.new
-    team_game.game_id = @game.id
-    team_game.team_id = new_team.id
-    team_game.total_score = 0
-    team_game.save!
-
-    flash[:success] = "Added new team: #{new_team.name}"
+    flash[:success] = "Added new team: #{@team_match.name}"
     return redirect_to game_scores_path(game_id: params[:game_id])
   end
 
