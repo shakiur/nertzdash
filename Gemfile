@@ -59,4 +59,10 @@ gem 'bootstrap', '~> 4.0.0'
 
 gem "font-awesome-rails"
 
+gem 'semantic-ui-sass'
+
 gem "chartkick"
+
+gem 'webpacker'
+
+gem 'react-rails'
