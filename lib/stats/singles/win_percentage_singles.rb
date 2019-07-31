@@ -10,11 +10,13 @@ module WinPercentageSingles
   end
 
   def graph_type
-    :pie_chart
+    :column_chart
   end
 
   def graph_options
     {
+      xtitle: 'Player',
+      ytitle: 'Win percentage'
     }
   end
 
@@ -22,10 +24,7 @@ module WinPercentageSingles
     data = {}
     winning_team_games = Game.all.map { |game|
       game.winning_team_game
-    }.select { |team_game|
-      team_game.team.singles?
-    }
-    total_number_of_games = winning_team_games.count
+    }.select { |team_game| team_game.singles? }
 
     winning_team_games.map(&:team).uniq.each do |team|
       next unless team.rounds.count >= 10
@@ -34,7 +33,9 @@ module WinPercentageSingles
       number_of_times_won = winning_team_games.count { |team_game|
         team_game.team_id == team.id
       }
-      win_percentage = (number_of_times_won.to_f / total_number_of_games) * 100
+      total_number_of_games_played = TeamGame.where(team_id: team.id).count
+
+      win_percentage = (number_of_times_won.to_f / total_number_of_games_played) * 100
       data[team.name] = win_percentage.round
     end
 

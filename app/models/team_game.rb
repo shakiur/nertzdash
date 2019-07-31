@@ -36,6 +36,17 @@ class TeamGame < ApplicationRecord
     self.active? ? 'active' : 'inactive'
   end
 
+  # Whether this team game is a singles team
+  # @return [Boolean]
+  def singles?
+    self.team.singles?
+  end
+
+  # Whether this team game is a doubles team
+  def doubles?
+    self.team.doubles?
+  end
+
   # Archives this record (self)
   def archive!
     self.archived = true
