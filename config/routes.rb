@@ -21,4 +21,10 @@ Rails.application.routes.draw do
   get '/stats/:team_type' => 'stats#index', as: :stats
 
   get '/experimental' => 'experimental#index', as: :experimental
+
+  namespace :api do
+    namespace :v1 do
+      resources :players
+    end
+  end
 end
