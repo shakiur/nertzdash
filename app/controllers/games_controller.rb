@@ -55,10 +55,29 @@ class GamesController < ApplicationController
 
       @team_match = (player1_teams & player2_teams).first
 
-      # Notice is no team exists for the two players
+      # Create a team if one hasn't been made already
       if @team_match.nil?
-        flash[:notice] = "No team found for #{player1.name} and #{player2.name}"
-        return redirect_to game_scores_path(game_id: @game.id)
+        player1_partial_name = player1.name[0..3]
+        player2_partial_name = player2.name[0..3]
+
+        combo_name = player1_partial_name + player2_partial_name.downcase
+
+        new_team = Team.new
+        new_team.team_type = Team::DOUBLES
+        new_team.name = combo_name
+        new_team.save!
+
+        new_team_player1 = TeamPlayer.new
+        new_team_player1.team_id = new_team.id
+        new_team_player1.player_id = player1.id
+        new_team_player1.save!
+
+        new_team_player2 = TeamPlayer.new
+        new_team_player2.team_id = new_team.id
+        new_team_player2.player_id = player2.id
+        new_team_player2.save!
+
+        @team_match = new_team
       end
 
       # Graceful notice if this Team has already been added to this Game
