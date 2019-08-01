@@ -6,7 +6,7 @@ module PositiveScoreStreakSingles
   end
 
   def description
-    "Longest positive scores streak for singles. Only displays streaks of 3 or longer."
+    "Longest positive scores streak for singles. Only displays streaks of 4 or longer."
   end
 
   def graph_type
@@ -35,7 +35,7 @@ module PositiveScoreStreakSingles
         end
       end
       longest_streak = streaks.max
-      data[team.name] = longest_streak if longest_streak > 2
+      data[team.name] = longest_streak if longest_streak >= 4
     end
     return data.sort_by { |name, streak| streak }.reverse
   end
