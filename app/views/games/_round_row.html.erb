@@ -28,6 +28,7 @@
                   step="1"
                   value="<%= round.score %>"
                   style="background-color: <%= score_heatmap(score: round.score) %>"
+                  <%= 'autofocus' if @focus_on_adding_scores && round.id == @first_round_id_of_current_round %>
                 />
               </div>
             </div>

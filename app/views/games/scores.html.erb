@@ -5,7 +5,7 @@
     :id => 'add-team-form',
     class: 'pull-right' do %>
 
-    <select class="custom-select" id="team-type" name="team_type" style="width:auto">
+    <select class="custom-select" id="team-type" name="team_type" style="width:auto" <%= 'autofocus' if @focus_on_adding_teams %>>
       <option selected value=<%= Team::DOUBLES %>>Doubles</option>
       <option value=<%= Team::SINGLES %>>Singles</option>
     </select>

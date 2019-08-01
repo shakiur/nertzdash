@@ -25,6 +25,9 @@ class GamesController < ApplicationController
     @team_games.each do |team_game|
       @team_games_with_colors[team_game] = "\##{SecureRandom.hex(3)}"
     end
+    @focus_on_adding_teams = !@game.rounds.any?
+    @focus_on_adding_scores = !@focus_on_adding_teams
+    @first_round_id_of_current_round = @rounds_by_number[@rounds_by_number.keys.last]&.first&.id
   end
 
   def add_team
@@ -98,7 +101,7 @@ class GamesController < ApplicationController
       end
 
       player1 = Player.find(player1_id.to_i)
- 
+
       @team_match = player1.teams.singles.take
 
       # If no singles team is found, create one for Player 1
