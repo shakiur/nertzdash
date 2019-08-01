@@ -3,7 +3,7 @@
   <% @team_games.each do |team_game| %>
     <% round = @rounds_by_number[round_number].find { |round| round.team_game_id == team_game.id } %>
     <% if round.present? %>
-      <td>
+      <td title="<%= "Round ID #{round.id}" %>">
         <div class="container">
           <div class="row">
             <div class="col">
