@@ -69,6 +69,11 @@
 
 <script type="text/javascript">
   $(function() {
+    // For on-checked toggling of TeamGame active boolean
+    $('input.form-check-input').change(function() {
+      $(this).parents('form:first').submit();
+    })
+
     // Show and hide player 2 when switching from doubles to singles
     $('select#team-type').change(function() {
       $('#player-2').val(0);
