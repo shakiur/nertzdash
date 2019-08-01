@@ -26,7 +26,9 @@ module NertzStreakDoubles
       streaks = [0]
       team.team_games.each do |team_game|
         count = 0
-        team_game.rounds.pluck(:nertz).each do |has_nertzed|
+        team_game.rounds
+          .sort_by(&:round_number)
+          .pluck(:nertz).each do |has_nertzed|
           count += 1 if has_nertzed
           count = 0 if !has_nertzed
           streaks << count
