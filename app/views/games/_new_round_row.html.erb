@@ -13,8 +13,8 @@
   </td>
 <% end %>
 <td>
-  <%= form_tag new_round_path do %>
-    <button title="New round" type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+  <%= form_tag new_round_path, id: 'new-round-form' do %>
+    <button title="New round (shift+n)" type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
   <% end %>
 </td>
 <td></td>

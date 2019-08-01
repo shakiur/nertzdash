@@ -85,5 +85,11 @@
       }
     })
 
+    // Hotkey shortcut for New Round (Shift + n)
+    window.addEventListener('keypress', function(e) {
+      if (e.shiftKey && e.keyCode == 78) {
+        $('form#new-round-form').submit();
+      }
+    });
   })
 </script>
