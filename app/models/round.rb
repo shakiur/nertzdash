@@ -33,8 +33,7 @@ class Round < ApplicationRecord
 
   # Archives this record (self)
   def archive!
-    self.archived = true
-    self.save!
+    self.update_attribute(:archived, true)
   end
 
   def unique_unarchived_round_number_and_team_game_id

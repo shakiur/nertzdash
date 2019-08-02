@@ -49,7 +49,6 @@ class TeamGame < ApplicationRecord
 
   # Archives this record (self)
   def archive!
-    self.archived = true
-    self.save!
+    self.update_attribute(:archived, true)
   end
 end
