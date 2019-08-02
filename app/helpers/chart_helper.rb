@@ -1,11 +1,7 @@
 module ChartHelper
   # Helper for generating ChartKick graph UI given lib/stats/* module params
-  def stats_builder(stats_class:)
-    self.send(
-      stats_class.graph_type,
-      stats_class.data,
-      stats_class.graph_options
-    )
+  def stats_builder(graph_type:, data:, graph_options: {})
+    self.send(graph_type, data, graph_options)
   end
 
   # Graphs a round number series of Teams' total scores

@@ -7,7 +7,19 @@ class StatsController < ApplicationController
       stat_class = class_name.constantize
 
       next unless stat_class.team_type == params[:team_type]
-      @stats_modules[class_name] = stat_class
+
+      data = {}
+      stat_perf = Benchmark.measure do
+        data = stat_class.data
+      end.real.round(3)
+
+      @stats_modules[class_name] = {
+        graph_type: stat_class.graph_type,
+        graph_options: stat_class.graph_options,
+        description: stat_class.description,
+        data: data,
+        performance: stat_perf
+      }
     end
   end
 
