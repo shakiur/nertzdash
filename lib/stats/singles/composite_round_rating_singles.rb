@@ -25,15 +25,22 @@ module CompositeRoundRatingSingles
   def data
     data = {}
 
-    Game.all.each do |game|
-      rounds_by_number = game.rounds.group_by(&:round_number)
-      rounds_by_number.values.each do |rounds_in_number|
-        next if skip_rating_for_insignificant_rounds?(rounds_in_number)
-        composite_ratings = derive_composite_ratings_for_given_rounds(rounds_in_number)
-        composite_ratings.each do |team_name, rating|
-          data[team_name] = [] unless data.key? team_name
-          data[team_name] << rating
-        end
+    data_set = Round.joins(:team).where(teams: { team_type: Team::SINGLES }).group_by { |round| [round.game_id, round.round_number] }
+    data_set.values.each do |rounds_in_number|
+      round_scores = rounds_in_number.map(&:score)
+      scores_min = round_scores.min
+      scores_max = round_scores.max
+
+      next if skip_for_nonsignificant_rounds?(min: scores_min, max: scores_max)
+
+      composite_ratings = derive_composite_ratings_for_given_rounds(
+        rounds: rounds_in_number,
+        min: scores_min,
+        max: scores_max
+      )
+      composite_ratings.each do |team_name, rating|
+        data[team_name] = [] unless data.key? team_name
+        data[team_name] << rating
       end
     end
 
@@ -48,25 +55,20 @@ module CompositeRoundRatingSingles
   end
 
   private
-  def self.derive_composite_ratings_for_given_rounds(rounds)
+  def self.derive_composite_ratings_for_given_rounds(rounds:, min:, max:)
     ratings_by_team_name = {}
-    round_scores = rounds.map(&:score)
-    total_score_distribution = round_scores.max - round_scores.min
+    total_score_distribution = max - min
 
     rounds.each do |round|
-      rating = (round.score - round_scores.min).to_f / total_score_distribution
+      rating = (round.score - min).to_f / total_score_distribution
       ratings_by_team_name[round.team.name] = rating
     end
 
     return ratings_by_team_name
   end
 
-  def self.skip_rating_for_insignificant_rounds?(rounds)
-    # Composite ratings for rounds are insignificant if all teams receive the same score
-    round_scores = rounds.map(&:score)
-    return true if round_scores.max == round_scores.min
-    # Skip rating if rounds comprise of non-homogenous team types
-    return true if rounds.any? { |round| round.team.doubles? }
-    return false
+  # Composite ratings for rounds are insignificant if all teams receive the same score
+  def self.skip_for_nonsignificant_rounds?(min:, max:)
+    return min == max
   end
 end
