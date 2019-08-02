@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/games/scores/:game_id/archive_round/:round_number' => 'games#archive_round', as: :archive_round
 
   get '/teams' => 'teams#index', as: :teams
+  get '/teams/:team_id' => 'teams#past_games', as: :past_games
   post '/teams/create' => 'teams#create', as: :create_team
 
   get '/players' => 'players#index', as: :players

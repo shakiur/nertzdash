@@ -46,6 +46,7 @@
     <th>ID</th>
     <th>Name</th>
     <th>Players</th>
+    <th></th>
   </thead>
   <tbody>
     <% @singles_teams_sorted.each do |team_info| %>
@@ -53,6 +54,11 @@
         <td><%= team_info[:id] %></td>
         <td><%= team_info[:team_name] %></td>
         <td><%= team_info[:team_players_names] %></td>
+        <td>
+          <%= link_to past_games_path(team_id: team_info[:id]), class: 'btn btn-sm btn-outline-info' do %>
+            <i class="fa fa-info-circle"></i> Past games
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -64,6 +70,7 @@
     <th>ID</th>
     <th>Name</th>
     <th>Players</th>
+    <th></th>
   </thead>
   <tbody>
     <% @doubles_teams_sorted.each do |team_info| %>
@@ -71,6 +78,11 @@
         <td><%= team_info[:id] %></td>
         <td><%= team_info[:team_name] %></td>
         <td><%= team_info[:team_players_names] %></td>
+        <td>
+          <%= link_to past_games_path(team_id: team_info[:id]), class: 'btn btn-sm btn-outline-info' do %>
+            <i class="fa fa-info-circle"></i> Past games
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

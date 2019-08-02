@@ -1,0 +1,32 @@
+<h2><%= title %></h2>
+
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Participants</th>
+    <th>Rounds</th>
+    <th>Winning team</th>
+    <th>Winning score</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% games.each do |game| %>
+      <tr>
+        <td><%= game.id %></td>
+        <td><%= game.date.strftime("%m/%d/%Y") %></td>
+        <td class="small"><%= game.team_names %></td>
+        <td><%= game.current_round_number %></td>
+        <td>
+          <%= game.winning_team_game.present? ? game.winning_team_game.team.label_with_players : ""  %>
+        </td>
+        <td><%= game.winning_score %></td>
+        <td>
+          <%= link_to game_scores_path(game_id: game.id), class: 'btn btn-sm btn-outline-info' do %>
+            <i class="fa fa-info-circle"></i> More info
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
