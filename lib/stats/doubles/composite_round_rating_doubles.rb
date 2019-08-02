@@ -1,12 +1,12 @@
-module CompositeRoundRatingSingles
+module CompositeRoundRatingDoubles
   module_function
 
   def team_type
-    Team::SINGLES
+    Team::DOUBLES
   end
 
   def description
-    "A composite rating from 0 to 100 on the average performance of a player round over round, where a 100 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to players within the same round."
+    "A composite rating from 0 to 100 on the average performance of a team round over round, where a 100 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to teams within the same round."
   end
 
   def graph_type
@@ -26,7 +26,7 @@ module CompositeRoundRatingSingles
     data = {}
 
     data_set = Round.joins(:team)
-      .where(teams: { team_type: Team::SINGLES })
+      .where(teams: { team_type: Team::DOUBLES })
       .group_by { |round| [round.game_id, round.round_number] }
 
     data_set.values.each do |rounds_in_number|
