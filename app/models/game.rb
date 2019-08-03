@@ -55,4 +55,19 @@ class Game < ApplicationRecord
   def archive!
     self.update_attribute(:archived, true)
   end
+
+  def team_results(team)
+    sorted_team_games = Hash.new
+    place = 1
+
+    self.team_games.order(total_score: :desc).each do |team_game|
+      sorted_team_games[team_game.team_id] = {
+        :place => place,
+        :total_score => team_game.total_score }
+
+      place += 1
+    end
+
+    return sorted_team_games[team.id]
+  end
 end
