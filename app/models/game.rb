@@ -56,6 +56,9 @@ class Game < ApplicationRecord
     self.update_attribute(:archived, true)
   end
 
+  # Used within the previous games table, calculates the place / score of team within a game
+  # @param [Team]
+  # @return [Hash]
   def team_results(team)
     sorted_team_games = Hash.new
     place = 1
@@ -69,5 +72,38 @@ class Game < ApplicationRecord
     end
 
     return sorted_team_games[team.id]
+  end
+
+  # Calculates all Composite Round Ratings for a team within a game
+  # @param [Team]
+  # @return [Integer]
+  def all_composite_round_ratings_by_team(team)
+    all_crrs = []
+
+    all_rounds = self.rounds
+    round_numbers = all_rounds.pluck(:round_number).uniq
+
+    round_numbers.each do |round_number|
+      single_row_of_rounds = all_rounds.select { |round| round.round_number == round_number }
+      sorted_rounds = single_row_of_rounds.sort_by(&:score)
+
+      min_score = sorted_rounds.first.score
+      max_score = sorted_rounds.last.score
+      next if min_score == max_score
+
+      team_round = sorted_rounds.select { |round| round.team_id == team.id }.last
+      next if team_round.nil?
+
+      team_score = team_round.score
+
+      total_round_differential = max_score - min_score
+      total_team_differential = team_score - min_score
+
+      round_rating = total_team_differential.to_f / total_round_differential.to_f
+
+      all_crrs << round_rating
+    end
+
+    return all_crrs
   end
 end

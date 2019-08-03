@@ -3,3 +3,12 @@
 
 <%= render 'games_table', title: "#{@team.team_type.capitalize} Games (#{@games.count})", games: @games %>
 
+<h3>Composite Round Rating By Month</h3>
+<%=
+  line_chart(
+    @composite_round_rating_by_month,
+    xtitle: "Month",
+    ytitle: "Composite Round Rating",
+    curve: false
+  )
+%>

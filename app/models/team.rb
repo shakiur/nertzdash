@@ -63,4 +63,49 @@ class Team < ApplicationRecord
       "#{self.name} (#{self.team_members_label})"
     end
   end
+
+  # Builds a Composite Round Rating history by month
+  # @return [Hash] - Example: { '1/1/2019' => 0.42, '2/1/2019' => 0.55 }
+  def calculate_composite_round_rating_by_month
+    games_played = self.games
+    return nil if games_played.empty?
+
+    crr_history = Hash.new
+    first_game_date = games_played.order(:date).first.date
+    history_date = first_game_date.beginning_of_month
+
+    while (history_date < Time.zone.today)
+      average_crr = calculate_average_composite_round_rating_for_month(history_date)
+      crr_history[history_date] = average_crr if average_crr.present?
+
+      history_date += 1.month
+    end
+
+    return crr_history
+  end
+
+  # Calculates the average Composite Round Ratings for a month by looking for all games
+  # played within a month, and then calculating the average of all rounds
+  # @param [Date]
+  # @return [Integer]
+  def calculate_average_composite_round_rating_for_month(date)
+    beginning_of_month = date
+    end_of_month = date.end_of_month
+
+    games_played = self.games.where(date: beginning_of_month..end_of_month)
+    return nil if games_played.empty?
+
+    all_composite_round_ratings = []
+
+    games_played.each do |game|
+      all_composite_round_ratings << game.all_composite_round_ratings_by_team(self)
+    end
+
+    all_composite_round_ratings = all_composite_round_ratings.flatten
+    return nil if all_composite_round_ratings.empty?
+
+    composite_round_ratings_average = all_composite_round_ratings.sum.to_f / all_composite_round_ratings.size.to_f
+
+    return composite_round_ratings_average
+  end
 end
