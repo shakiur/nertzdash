@@ -99,4 +99,15 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:team_id])
     @games = @team.games
   end
+
+  def change
+    new_team_param = "new_team_name_#{params[:team_id]}"
+
+    @team = Team.find(params[:team_id])
+    @team.name = params[new_team_param]
+    @team.save!
+
+    flash[:success] = "Successfully changed team name to: #{@team.name}"
+    redirect_to teams_path
+  end
 end

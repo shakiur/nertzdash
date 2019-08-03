@@ -47,6 +47,7 @@
     <th>Name</th>
     <th>Players</th>
     <th></th>
+    <th></th>
   </thead>
   <tbody>
     <% @singles_teams_sorted.each do |team_info| %>
@@ -57,6 +58,42 @@
         <td>
           <%= link_to past_games_path(team_id: team_info[:id]), class: 'btn btn-sm btn-outline-info' do %>
             <i class="fa fa-info-circle"></i> Past games
+          <% end %>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#editTeamNameModal-<%= team_info[:id] %>"><i class="fa fa-edit"></i> Edit name</button>
+
+          <%= form_tag change_team_path(team_id: team_info[:id]) do %>
+            <div class="modal fade edit-team-name-modal" id="editTeamNameModal-<%= team_info[:id] %>" tab-index="-1" role="dialog" aria-labelledby="Confirm Name Change" aria-hidden="true">
+
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Change Team Name For <%= team_info[:team_name] %>
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="new-team-name-box-<%= team_info[:id] %>">New name:</span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="TeanName"
+                        aria-described-by="new-team-name-box-<%= team_info[:id] %>"
+                        id="new_team_name_<%= team_info[:id] %>"
+                        name="new_team_name_<%= team_info[:id] %>">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Change Team Name</button>
+                    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
         </td>
       </tr>

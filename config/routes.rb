@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/teams' => 'teams#index', as: :teams
   get '/teams/:team_id' => 'teams#past_games', as: :past_games
   post '/teams/create' => 'teams#create', as: :create_team
+  post '/teams/:team_id/change' => 'teams#change', as: :change_team
 
   get '/players' => 'players#index', as: :players
   post '/players/create' => 'players#create', as: :create_player
