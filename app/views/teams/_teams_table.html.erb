@@ -1,0 +1,63 @@
+<h3><%= title %></h3>
+<table class="table table-striped">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Players</th>
+    <th>Games Played</th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <% teams.each do |team| %>
+      <tr>
+        <td><%= team.id %></td>
+        <td><%= team.name %></td>
+        <td><%= team.team_members_label %></td>
+        <td><%= team.games.count %></td>
+        <td>
+          <%= link_to past_games_path(team_id: team.id), class: 'btn btn-sm btn-outline-info' do %>
+            <i class="fa fa-info-circle"></i> Past games
+          <% end %>
+        </td>
+        <td>
+          <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#editTeamNameModal-<%= team.id %>"><i class="fa fa-edit"></i> Edit name</button>
+
+          <%= form_tag change_team_path(team_id: team.id) do %>
+            <div class="modal fade edit-team-name-modal" id="editTeamNameModal-<%= team.id %>" tab-index="-1" role="dialog" aria-labelledby="Confirm Name Change" aria-hidden="true">
+
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Change Team Name For <%= team.name %>
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="new-team-name-box-<%= team.id %>">New name:</span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="TeanName"
+                        aria-described-by="new-team-name-box-<%= team.id %>"
+                        id="new_team_name_<%= team.id %>"
+                        name="new_team_name_<%= team.id %>">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Change Team Name</button>
+                    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
