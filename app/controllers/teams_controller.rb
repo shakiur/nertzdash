@@ -97,17 +97,6 @@ class TeamsController < ApplicationController
 
   def past_games
     @team = Team.find(params[:team_id])
-
-    if @team.singles?
-      @singles_games = @team.games
- 
-      player = @team.team_players.take.player
-      doubles_teams = player.teams.doubles
-      @all_doubles_games = doubles_teams.map(&:games).flatten
-    end
-
-    if @team.doubles?
-      @doubles_games = @team.games
-    end
+    @games = @team.games
   end
 end

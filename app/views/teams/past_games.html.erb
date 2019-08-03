@@ -1,13 +1,5 @@
 <h1><%= @team.name %>'s Games</h1>
 <hr>
 
-<% if @team.singles? %>
-  <%= render 'games_table', title: "Singles Games (#{@singles_games.count})", games: @singles_games %>
-  <br>
-  <%= render 'games_table', title: "Doubles Games (#{@all_doubles_games.count})", games: @all_doubles_games %>
-<% end %>
-
-<% if @team.doubles? %>
-  <%= render 'games_table', title: "Doubles Games (#{@doubles_games.count})", games: @doubles_games %>
-<% end %>
+<%= render 'games_table', title: "#{@team.team_type.capitalize} Games (#{@games.count})", games: @games %>
 
