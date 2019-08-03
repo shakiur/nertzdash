@@ -97,7 +97,7 @@ class TeamsController < ApplicationController
 
   def past_games
     @team = Team.find(params[:team_id])
-    @games = @team.games
+    @games = @team.games.order(date: :desc)
     @composite_round_rating_by_month = @team.calculate_composite_round_rating_by_month
   end
 
