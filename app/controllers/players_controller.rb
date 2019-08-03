@@ -23,4 +23,15 @@ class PlayersController < ApplicationController
     flash[:success] = "Created new Player: #{new_player.name}. Created new single player Team."
     return redirect_to players_path
   end
+
+  def change
+    new_player_param = "new_player_name_#{params[:player_id]}"
+
+    @player = Player.find(params[:player_id])
+    @player.name = params[new_player_param]
+    @player.save!
+
+    flash[:success] = "Successfully change player name to: #{@player.name}"
+    return redirect_to players_path
+  end
 end

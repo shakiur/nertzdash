@@ -17,12 +17,49 @@
   <thead>
     <th>ID</th>
     <th>Name</th>
+    <th></th>
   </thead>
   <tbody>
     <% @all_players.each do |player| %>
       <tr>
         <td><%= player.id %></td>
         <td><%= player.name %></td>
+        <td>
+          <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#editPlayerNameModal-<%= player.id %>"><i class="fa fa-edit"></i> Edit name</button>
+
+          <%= form_tag change_player_path(player_id: player.id) do %>
+            <div class="modal fade edit-player-name-modal" id="editPlayerNameModal-<%= player.id %>" tab-index="-1" role="dialog" aria-labelledby="Confirm Name Change" aria-hidden="true">
+
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      Change Player Name For <%= player.name %>
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="new-player-name-box-<%= player.id %>">New Player Name:</span>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        aria-label="PlayerName"
+                        aria-described-by="new-player-name-box-<%= player.id %>"
+                        id="new_player_name_<%= player.id %>"
+                        name="new_player_name_<%= player.id %>">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Change Player Name</button>
+                    <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
