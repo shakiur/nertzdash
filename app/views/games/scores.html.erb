@@ -22,7 +22,7 @@
           <select class="custom-select custom-select-sm" id="solitaire-select" name="solitaire[<%= team_game.id %>]" style="width:auto">
             <option value=0></option>
             <% team_game.team.players.each do |player| %>
-              <option value=<%= player.id %>><%= player.name %></option>
+              <option <%= 'selected' if team_game.solitaire_player_id == player.id %> value=<%= player.id %>><%= player.name %></option>
             <% end %>
           </select>
         </td>

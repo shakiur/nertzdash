@@ -193,8 +193,11 @@ class GamesController < ApplicationController
   def set_solitaire_players
     ActiveRecord::Base.transaction do
       params[:solitaire].each do |team_game_id, player_id|
-        team_game = TeamGame.find(team_game_id.to_i)
+        player_id = player_id.nil? ? 0 : player_id.to_i
 
+        team_game = TeamGame.find(team_game_id.to_i)
+        team_game.solitaire_player_id = player_id
+        team_game.save!
       end
     end
 
