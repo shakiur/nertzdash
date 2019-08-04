@@ -1,31 +1,6 @@
 <div>
   <h1 class="pull-left">Nertz Scores for Game <%= @game.id %></h1>
-  <%= form_tag add_team_to_game_path,
-    :method => :put,
-    :id => 'add-team-form',
-    class: 'pull-right' do %>
-
-    <select class="custom-select" id="team-type" name="team_type" style="width:auto" <%= 'autofocus' if @focus_on_adding_teams %>>
-      <option selected value=<%= Team::DOUBLES %>>Doubles</option>
-      <option value=<%= Team::SINGLES %>>Singles</option>
-    </select>
-
-    <select class="custom-select" id="player-1" name="player_1" style="width:auto">
-      <option selected value="0">Player 1</option>
-      <% Player.order(:name).each do |player| %>
-        <option value=<%= player.id %>><%= player.name %></option>
-      <% end %>
-    </select>
-
-    <select class="custom-select" id="player-2" name="player_2" style="width:auto">
-      <option selected value="0">Player 2</option>
-      <% Player.order(:name).each do |player| %>
-        <option value=<%= player.id %>><%= player.name %></option>
-      <% end %>
-    </select>
-
-    <button type="submit" class="btn btn-success mx-sm-3"><i class="fa fa-plus-square"></i> Add team</button>
-  <% end %>
+  <%= render 'add_team_form' %>
 </div>
 
 <table class="table table-condensed table-striped table-hover" style="text-align: center">
@@ -33,27 +8,21 @@
     <th>Round</th>
     <% @team_games.each do |team_game| %>
       <th>
-        <%= form_tag toggle_team_game_active_path(team_game_id: team_game.id),
-          :method => :post do %>
-          <div class="form-check form-check-inline">
-            <input
-              class="form-check-input"
-              id="toggle-team-check-input-<%= team_game.id %>"
-              type="checkbox"
-              name="team_game_id"
-              <%= 'checked' if team_game.active? %>>
-            <label
-              title="<%= team_game.team.team_members_label %>"
-              class="form-check-label"
-              for="toggle-team-check-input-<%= team_game.id %>">
-              <%= team_game.team.name %>
-            </label>
-          </div>
-        <% end %>
+        <%= render 'toggle_team_active_form', team_game: team_game %>
       </th>
     <% end %>
     <th></th>
     <th></th>
+  </thead>
+  <thead>
+    <td>-</td>
+    <% @team_games.each do |team_game| %>
+      <td>
+
+      </td>
+    <% end %>
+    <td>Save</td>
+    <td>-</td>
   </thead>
   <tbody>
     <% @rounds_by_number.keys.sort.each do |round_number| %>
