@@ -190,6 +190,18 @@ class GamesController < ApplicationController
     return redirect_to game_scores_path(game_id: team_game.game_id)
   end
 
+  def set_solitaire_players
+    ActiveRecord::Base.transaction do
+      params[:solitaire].each do |team_game_id, player_id|
+        team_game = TeamGame.find(team_game_id.to_i)
+
+      end
+    end
+
+    flash[:notice] =  "Set initial solitaire players."
+    return redirect_to game_scores_path(game_id: params[:game_id])
+  end
+
   def archive_round
     round_number = params[:round_number].to_i
     game = Game.find(params[:game_id])

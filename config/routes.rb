@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/games/scores/:game_id/new_round' => 'games#new_round', as: :new_round
   post '/games/scores/:game_id/toggle_team/:team_game_id' => 'games#toggle_team_game_active', as: :toggle_team_game_active
   post '/games/scores/:game_id/archive_round/:round_number' => 'games#archive_round', as: :archive_round
+  post '/games/scores/:game_id/set_solitaire_players' => 'games#set_solitaire_players', as: :set_solitaire_players
 
   get '/teams' => 'teams#index', as: :teams
   get '/teams/:team_id' => 'teams#past_games', as: :past_games

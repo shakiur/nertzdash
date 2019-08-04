@@ -15,14 +15,23 @@
     <th></th>
   </thead>
   <thead>
-    <td>-</td>
-    <% @team_games.each do |team_game| %>
+    <td class="small">1st Player Solitairing</td>
+    <%= form_tag set_solitaire_players_path do %>
+      <% @team_games.each do |team_game| %>
+        <td>
+          <select class="custom-select custom-select-sm" id="solitaire-select" name="solitaire[<%= team_game.id %>]" style="width:auto">
+            <option value=0></option>
+            <% team_game.team.players.each do |player| %>
+              <option value=<%= player.id %>><%= player.name %></option>
+            <% end %>
+          </select>
+        </td>
+      <% end %>
       <td>
-
+        <button title="Set 1st solitaire player" type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
       </td>
     <% end %>
-    <td>Save</td>
-    <td>-</td>
+    <td></td>
   </thead>
   <tbody>
     <% @rounds_by_number.keys.sort.each do |round_number| %>
