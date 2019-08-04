@@ -191,6 +191,11 @@ class GamesController < ApplicationController
   end
 
   def set_solitaire_players
+    if params[:solitaire].nil?
+      flash[:notice] =  "No initial solitaire players to set."
+      return redirect_to game_scores_path(game_id: params[:game_id])
+    end
+
     ActiveRecord::Base.transaction do
       params[:solitaire].each do |team_game_id, player_id|
         player_id = player_id.nil? ? 0 : player_id.to_i

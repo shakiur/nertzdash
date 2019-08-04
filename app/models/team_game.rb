@@ -44,8 +44,22 @@ class TeamGame < ApplicationRecord
   end
 
   # Whether this team game is a doubles team
+  # @return [Boolean]
   def doubles?
     self.team.doubles?
+  end
+
+  # Returns the initial solitaire player for this team/game instance
+  # Returns the only player on the team if team is a singles team
+  # Returns nil if solitaire player is not set
+  # return [Player, nil]
+  def initial_solitaire_player
+    if self.singles?
+      return self.team.players.first
+    else
+      return nil if self.solitaire_player_id.nil?
+      return Player.find(self.solitaire_player_id)
+    end
   end
 
   # Archives this record (self)

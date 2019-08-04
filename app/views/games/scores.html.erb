@@ -19,12 +19,18 @@
     <%= form_tag set_solitaire_players_path do %>
       <% @team_games.each do |team_game| %>
         <td>
-          <select class="custom-select custom-select-sm" id="solitaire-select" name="solitaire[<%= team_game.id %>]" style="width:auto">
-            <option value=0></option>
-            <% team_game.team.players.each do |player| %>
-              <option <%= 'selected' if team_game.solitaire_player_id == player.id %> value=<%= player.id %>><%= player.name %></option>
-            <% end %>
-          </select>
+          <% if team_game.team.singles? %>
+            <select disabled class="custom-select custom-select-sm" style="width:auto">
+              <option><%= team_game.team.players.first.name %></option>
+            </select>
+          <% else %>
+            <select class="custom-select custom-select-sm" id="solitaire-select" name="solitaire[<%= team_game.id %>]" style="width:auto">
+              <option value=0></option>
+              <% team_game.team.players.each do |player| %>
+                <option <%= 'selected' if team_game.solitaire_player_id == player.id %> value=<%= player.id %>><%= player.name %></option>
+              <% end %>
+            </select>
+          <% end %>
         </td>
       <% end %>
       <td>
