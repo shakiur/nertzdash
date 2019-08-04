@@ -6,7 +6,7 @@ module CompositeRoundRatingSingles
   end
 
   def description
-    "A composite rating from 0 to 100 on the average performance of a team round over round, where a 100 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to teams within the same round. Only considers players with a minimum of 10 rounds played."
+    "A composite rating from 0 to 100 on the average performance of a player round over round, where a 100 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to players within the same round. Only considers players with a minimum of 10 rounds played."
   end
 
   def graph_type
