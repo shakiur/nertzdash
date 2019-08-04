@@ -1,0 +1,26 @@
+<%= form_tag add_team_to_game_path,
+  :method => :put,
+  :id => 'add-team-form',
+  class: 'pull-right' do %>
+
+  <select class="custom-select" id="team-type" name="team_type" style="width:auto" <%= 'autofocus' if @focus_on_adding_teams %>>
+    <option selected value=<%= Team::DOUBLES %>>Doubles</option>
+    <option value=<%= Team::SINGLES %>>Singles</option>
+  </select>
+
+  <select class="custom-select" id="player-1" name="player_1" style="width:auto">
+    <option selected value="0">Player 1</option>
+    <% Player.order(:name).each do |player| %>
+      <option value=<%= player.id %>><%= player.name %></option>
+    <% end %>
+  </select>
+
+  <select class="custom-select" id="player-2" name="player_2" style="width:auto">
+    <option selected value="0">Player 2</option>
+    <% Player.order(:name).each do |player| %>
+      <option value=<%= player.id %>><%= player.name %></option>
+    <% end %>
+  </select>
+
+  <button type="submit" class="btn btn-success mx-sm-3"><i class="fa fa-plus-square"></i> Add team</button>
+<% end %>
