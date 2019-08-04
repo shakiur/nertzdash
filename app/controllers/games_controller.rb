@@ -22,8 +22,14 @@ class GamesController < ApplicationController
     @winning_score = @game.winning_score
     @rounds_by_number = @game.rounds.group_by(&:round_number)
     @team_games_with_colors = {}
-    @team_games.each do |team_game|
-      @team_games_with_colors[team_game] = "\##{SecureRandom.hex(3)}"
+    @team_games.each_with_index do |team_game, index|
+      if index.in?(TeamGame::TEAM_GAME_COLORS.keys)
+        color = TeamGame::TEAM_GAME_COLORS[index]
+      else
+        color = "\##{SecureRandom.hex(3)}"
+      end
+
+      @team_games_with_colors[team_game] = color
     end
     @focus_on_adding_teams = !@game.rounds.any?
     @focus_on_adding_scores = !@focus_on_adding_teams

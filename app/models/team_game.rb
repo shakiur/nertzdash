@@ -25,6 +25,19 @@ class TeamGame < ApplicationRecord
 
   default_scope { where(archived: false) }
 
+  TEAM_GAME_COLORS = {
+    0 => '#c62828', # Red
+    1 => '#6a1b9a', # Purple
+    2 => '#2e7d32', # Green
+    3 => '#1565c0', # Blue
+    4 => '#4e342e', # Brown
+    5 => '#ad1457', # Pink
+    6 => '#283593', # Indigo
+    7 => '#00838f', # Cyan
+    8 => '#ef6c00', # Orange
+    9 => '#424242', # Grey
+  }
+
   # Whether or not the referenced Team is currently active in this Game
   # @return [Boolean]
   def active?
