@@ -25,7 +25,7 @@
         <td><%= player.id %></td>
         <td><%= player.name %></td>
         <td>
-          <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#editPlayerNameModal-<%= player.id %>"><i class="fa fa-edit"></i> Edit name</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#editPlayerNameModal-<%= player.id %>"><i class="fa fa-edit"></i> Edit name</button>
 
           <%= form_tag change_player_path(player_id: player.id) do %>
             <div class="modal fade edit-player-name-modal" id="editPlayerNameModal-<%= player.id %>" tab-index="-1" role="dialog" aria-labelledby="Confirm Name Change" aria-hidden="true">
@@ -52,7 +52,7 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Change Player Name</button>
+                    <button type="submit" class="btn btn-warning">Change Player Name</button>
                     <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
                   </div>
                 </div>

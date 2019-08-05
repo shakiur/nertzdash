@@ -21,7 +21,7 @@
           <% end %>
         </td>
         <td>
-          <button type="button" class="btn btn-sm btn-outline-info" data-toggle="modal" data-target="#editTeamNameModal-<%= team.id %>"><i class="fa fa-edit"></i> Edit name</button>
+          <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#editTeamNameModal-<%= team.id %>"><i class="fa fa-edit"></i> Edit name</button>
 
           <%= form_tag change_team_path(team_id: team.id) do %>
             <div class="modal fade edit-team-name-modal" id="editTeamNameModal-<%= team.id %>" tab-index="-1" role="dialog" aria-labelledby="Confirm Name Change" aria-hidden="true">
@@ -48,7 +48,7 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger">Change Team Name</button>
+                    <button type="submit" class="btn btn-warning">Change Team Name</button>
                     <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
                   </div>
                 </div>
@@ -60,4 +60,3 @@
     <% end %>
   </tbody>
 </table>
-
