@@ -1,0 +1,31 @@
+<button
+  type="button"
+  class="btn btn-sm btn-outline-danger"
+  data-toggle="modal"
+  data-target="#archiveTeamGameConfirmModal-<%= team_game.id %>"
+  style=""
+><i class="fa fa-times"></i>
+</button>
+
+<div class="modal fade archive-confirm-modal" id="archiveTeamGameConfirmModal-<%= team_game.id %>" tabindex="-1" role="dialog" aria-labelledby="Confirm Archive" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Confirm Archive of <%= team_game.team.name %>'s' team column?
+        </h5>
+      </div>
+      <div class="modal-body">
+        <p style="text-align: left;">
+          Archiving TeamGame <%= team_game.id %> will archive and void all related round scores associated to this game.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <%= form_tag archive_team_game_path(team_game_id: team_game.id), :method => :post do %>
+          <button type="submit" class="btn btn-danger">Archive</button>
+        <% end %>
+        <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

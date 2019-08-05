@@ -8,7 +8,12 @@
     <th>Round</th>
     <% @team_games.each do |team_game| %>
       <th>
-        <%= render 'toggle_team_active_form', team_game: team_game %>
+        <div style="display: inline-block">
+          <%= render 'toggle_team_active_form', team_game: team_game %>
+        </div>
+        <div style="display: inline-block">
+          <%= render 'archive_team_game_form', team_game: team_game %>
+        </div>
       </th>
     <% end %>
     <th></th>
