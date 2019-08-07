@@ -5,7 +5,7 @@ module ChartHelper
   end
 
   # Graphs a round number series of Teams' total scores
-  # @param game [Game] Given Game to create chart for
+  # @param team_games_with_colors [Hash] { TeamGame => String }
   def line_chart_total_score_over_rounds(team_games_with_colors:)
     max_score = -99999
     min_score = 99999
@@ -39,5 +39,48 @@ module ChartHelper
         max: max_score,
         colors: team_games_with_colors.values
       )
+  end
+
+  # Graphs a round number series of a Game's round over round volume of positive and negative scores
+  # @param team_games [Array<TeamGame>]
+  def area_chart_score_volume_over_rounds(team_games:)
+    positive_volume_data = {0 => 0}
+    negative_volume_data = {0 => 0}
+
+    rounds_by_number = Round
+      .where(team_game_id: team_games.map(&:id))
+      .group_by(&:round_number)
+
+    rounds_by_number.each do |round_number, rounds|
+      positive_volume = 0
+      negative_volume = 0
+
+      rounds.pluck(:score).each do |score|
+        positive_volume += score if score.positive?
+        negative_volume += score.abs if score.negative?
+      end
+
+      positive_volume_data[round_number] = positive_volume
+      negative_volume_data[round_number] = negative_volume
+    end
+
+    data = [
+      {
+        name: 'Positive volume',
+        data: positive_volume_data
+      },
+      {
+        name: 'Negative volume',
+        data: negative_volume_data
+      }
+    ]
+
+    return area_chart(
+      data,
+      xtitle: 'Round number',
+      ytitle: 'Score volume',
+      curve: true,
+      discrete: true
+    )
   end
 end
