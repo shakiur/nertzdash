@@ -106,6 +106,6 @@ class Team < ApplicationRecord
 
     composite_round_ratings_average = all_composite_round_ratings.sum.to_f / all_composite_round_ratings.size.to_f
 
-    return composite_round_ratings_average
+    return composite_round_ratings_average.round
   end
 end

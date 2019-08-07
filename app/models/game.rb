@@ -99,9 +99,9 @@ class Game < ApplicationRecord
       total_round_differential = max_score - min_score
       total_team_differential = team_score - min_score
 
-      round_rating = total_team_differential.to_f / total_round_differential.to_f
+      round_rating = (total_team_differential.to_f / total_round_differential.to_f) * 1000
 
-      all_crrs << round_rating
+      all_crrs << round_rating.round
     end
 
     return all_crrs
