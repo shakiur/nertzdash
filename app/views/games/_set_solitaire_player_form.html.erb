@@ -1,4 +1,4 @@
-<%= form_tag set_solitaire_players_path do %>
+
   <% @team_games.each do |team_game| %>
     <td>
       <% if team_game.team.singles? %>
@@ -6,7 +6,11 @@
           <option><%= team_game.team.players.first.name %></option>
         </select>
       <% else %>
-        <select class="custom-select custom-select-sm" name="solitaire[<%= team_game.id %>]" style="width:auto">
+        <select
+          form="set-solitaire-players-form"
+          class="custom-select custom-select-sm"
+          name="solitaire[<%= team_game.id %>]"
+          style="width:auto">
           <option value=0></option>
           <% team_game.team.players.each do |player| %>
             <option
@@ -20,6 +24,12 @@
     </td>
   <% end %>
   <td>
-    <button title="Set 1st solitaire player" type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
+    <%= form_tag set_solitaire_players_path, {id: "set-solitaire-players-form"} do %>
+      <button
+        title="Set 1st solitaire player"
+        type="submit"
+        class="btn btn-outline-success">
+          <i class="fa fa-save"></i>
+      </button>
+      <% end %>
   </td>
-<% end %>
