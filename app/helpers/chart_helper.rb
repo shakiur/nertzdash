@@ -80,7 +80,8 @@ module ChartHelper
       xtitle: 'Round number',
       ytitle: 'Score volume',
       curve: true,
-      discrete: true
+      discrete: true,
+      colors: ['#189D35', '#D82535']
     )
   end
 end
