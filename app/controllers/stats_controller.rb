@@ -1,4 +1,8 @@
 class StatsController < ApplicationController
+  SINGLES = Team::SINGLES
+  DOUBLES = Team::DOUBLES
+  GENERAL = 'general'
+
   def index
     @stats_modules = {}
     Dir['./lib/stats/**/*.rb'].each do |stat_lib|
@@ -6,7 +10,7 @@ class StatsController < ApplicationController
       class_name = File.basename(stat_lib, '.rb').camelize
       stat_class = class_name.constantize
 
-      next unless stat_class.team_type == params[:team_type]
+      next unless stat_class.stat_type == params[:stat_type]
 
       data = {}
       stat_perf = Benchmark.measure do

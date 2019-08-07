@@ -1,8 +1,8 @@
 module CompositeRoundRatingDoubles
   module_function
 
-  def team_type
-    Team::DOUBLES
+  def stat_type
+    StatsController::DOUBLES
   end
 
   def description

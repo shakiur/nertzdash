@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   post '/players/create' => 'players#create', as: :create_player
   post '/players/:player_id/change' => 'players#change', as: :change_player
 
-  get '/stats/:team_type' => 'stats#index', as: :stats
+  get '/stats/:stat_type' => 'stats#index', as: :stats
 
   get '/experimental' => 'experimental#index', as: :experimental
 

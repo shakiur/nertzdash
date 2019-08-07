@@ -1,8 +1,8 @@
 module NertzStreakSingles
   module_function
 
-  def team_type
-    Team::SINGLES
+  def stat_type
+    StatsController::SINGLES
   end
 
   def description
