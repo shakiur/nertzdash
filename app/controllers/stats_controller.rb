@@ -1,7 +1,7 @@
 class StatsController < ApplicationController
-  SINGLES = Team::SINGLES
-  DOUBLES = Team::DOUBLES
-  GENERAL = 'general'
+  SINGLES = Team::SINGLES # Singles category of stats
+  DOUBLES = Team::DOUBLES # Doubles category of stats
+  GENERAL = 'general'     # General category of stats
 
   def index
     @stats_modules = {}
