@@ -6,7 +6,7 @@ module CompositeRoundRatingDoubles
   end
 
   def description
-    "A composite rating from 0 to 100 on the average performance of a team round over round, where a 100 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to teams within the same round. Only considers teams with a minimum of 8 rounds played."
+    "A composite rating from 0 to 1000 on the average performance of a team round over round, where a 1000 would be a top scorer in that round, and a 0 would be the bottom scorer in that round. Tracks the significance of relative performance to teams within the same round. Only considers teams with a minimum of 8 rounds played."
   end
 
   def graph_type
@@ -18,7 +18,7 @@ module CompositeRoundRatingDoubles
       xtitle: 'Player',
       ytitle: 'Rating',
       min: 0,
-      max: 100
+      max: 1000
     }
   end
 
@@ -55,7 +55,7 @@ module CompositeRoundRatingDoubles
     averaged_rating_data = {}
     data.each do |team_name, rating_array|
       next if rating_array.empty?
-      rating = (rating_array.sum.to_f / rating_array.count) * 100
+      rating = (rating_array.sum.to_f / rating_array.count) * 1000
       averaged_rating_data[team_name] = rating.round
     end
 
