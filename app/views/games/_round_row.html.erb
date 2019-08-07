@@ -1,49 +1,51 @@
-<%= form_tag save_round_path do %>
-  <td><%= round_number %></td>
-  <% @team_games.each do |team_game| %>
-    <% round = @rounds_by_number[round_number].find { |round| round.team_game_id == team_game.id } %>
-    <% if round.present? %>
-      <td title="<%= "Round ID #{round.id}" %>">
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text pb-0">
-                    <label>
-                      <input
-                        <%= 'checked' if round.nertz? %>
-                        type="radio"
-                        name="nertzed-<%= round_number %>"
-                        value=<%= round.id %>
-                      >
-                    </label>
-                  </div>
+<td><%= round_number %></td>
+<% @team_games.each do |team_game| %>
+  <% round = @rounds_by_number[round_number].find { |round| round.team_game_id == team_game.id } %>
+  <% if round.present? %>
+    <td title="<%= "Round ID #{round.id}" %>">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text pb-0">
+                  <label>
+                    <input
+                      <%= 'checked' if round.nertz? %>
+                      form="save_round_<%= round_number %>"
+                      type="radio"
+                      name="nertzed-<%= round_number %>"
+                      value=<%= round.id %>
+                    >
+                  </label>
                 </div>
-                <input
-                  type="number"
-                  name="scores[<%= round.id %>]"
-                  class="form-control"
-                  min="-26"
-                  step="1"
-                  value="<%= round.score %>"
-                  style="background-color: <%= score_heatmap(score: round.score) %>"
-                  <%= 'autofocus' if @focus_on_adding_scores && round.id == @first_round_id_of_current_round %>
-                />
               </div>
+              <input
+                form="save_round_<%= round_number %>"
+                type="number"
+                name="scores[<%= round.id %>]"
+                class="form-control"
+                min="-26"
+                step="1"
+                value="<%= round.score %>"
+                style="background-color: <%= score_heatmap(score: round.score) %>"
+                <%= 'autofocus' if @focus_on_adding_scores && round.id == @first_round_id_of_current_round %>
+              />
             </div>
           </div>
         </div>
-      </td>
-    <% else %>
-      <td></td>
-    <% end %>
+      </div>
+    </td>
+  <% else %>
+    <td></td>
   <% end %>
-  <td>
-    <%= hidden_field_tag :round_number, round_number %>
-    <button title="Save round" type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
-  </td>
 <% end %>
+  <td>
+    <%= form_tag(save_round_path, {:id => "save_round_#{round_number}"}) do %>
+      <%= hidden_field_tag :round_number, round_number %>
+      <button title="Save round" type="submit" class="btn btn-outline-success"><i class="fa fa-save"></i></button>
+    <% end %>
+  </td>
 <td>
   <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#archiveConfirmModal-<%= round_number %>"><i class="fa fa-archive"></i></button>
 
