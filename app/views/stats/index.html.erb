@@ -1,4 +1,4 @@
-<h1>Nertz Stats</h1>
+<h1><%= params[:stat_type].capitalize %> Nertz Stats</h1>
 <hr>
 
 <% @stats_modules.sort.to_h.each do |name, params| %>
