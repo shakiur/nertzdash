@@ -6,7 +6,7 @@ module NumberOfRoundsPlayedOverTime
   end
 
   def description
-    "Volume of rounds played over time."
+    "Volume of rounds played over time - overall, singles, and doubles."
   end
 
   def graph_type
@@ -22,17 +22,34 @@ module NumberOfRoundsPlayedOverTime
   end
 
   def data
-    data = {}
+    overall_data = {}
+    singles_data = {}
+    doubles_data = {}
 
     Round
-      .joins(:game)
-      .select('games.date')
+      .joins(:game, :team)
+      .select('games.date, teams.team_type')
       .group_by { |round|
         round.date.beginning_of_month
       }.each do |month_date, rounds|
-      data[month_date] = rounds.size
+      overall_data[month_date] = rounds.size
+      singles_data[month_date] = rounds.select { |round| round.team_type == Team::SINGLES }.size
+      doubles_data[month_date] = rounds.select { |round| round.team_type == Team::DOUBLES }.size
     end
 
-    return data.sort_by { |month_date, num_rounds| month_date }
+    return [
+      {
+        name: 'Overall count',
+        data: overall_data.sort_by { |month_date, num_rounds| month_date }
+      },
+      {
+        name: 'Singles count',
+        data: singles_data.sort_by { |month_date, num_rounds| month_date }
+      },
+      {
+        name: 'Doubles count',
+        data: doubles_data.sort_by { |month_date, num_rounds| month_date }
+      }
+    ]
   end
 end
