@@ -23,17 +23,14 @@ module CompositeRoundRatingTotal
   end
 
   def data
-    # Calculate singles data
-    data = Hash.new { |h, k| h[k] = [] }
-
-    included_team_ids = Team
+    included_team_ids_singles = Team
       .singles
       .joins(:rounds)
       .group('teams.id')
       .having('count(team_id) >= 8')
       .pluck(:id)
 
-    data_set = Round
+    singles_data_set = Round
       .joins(:team)
       .select('rounds.team_id,
         rounds.game_id,
@@ -41,10 +38,30 @@ module CompositeRoundRatingTotal
         rounds.score,
         teams.name,
         teams.id')
-      .where(teams: { id: included_team_ids })
+      .where(teams: { id: included_team_ids_singles })
       .group_by { |round| [round.game_id, round.round_number] }
+
+    included_team_ids_doubles = Team
+      .doubles
+      .joins(:rounds)
+      .group('teams.id')
+      .pluck(:id)
+
+    doubles_data_set = Round
+      .joins(:team)
+      .select('rounds.team_id,
+        rounds.game_id,
+        rounds.round_number,
+        rounds.score,
+        teams.name,
+        teams.id')
+      .where(teams: { id: included_team_ids_doubles })
+      .group_by { |round| [round.game_id, round.round_number] }
+
+    # Calculate singles data
+    data = Hash.new { |h, k| h[k] = [] }
       
-    data_set.values.each do |rounds_in_number|
+    singles_data_set.values.each do |rounds_in_number|
       round_scores = rounds_in_number.pluck(:score)
       scores_min = round_scores.min
       scores_max = round_scores.max
@@ -71,25 +88,7 @@ module CompositeRoundRatingTotal
     # Calculate doubles data, per player
     data = Hash.new { |h, k| h[k] = [] }
 
-    included_team_ids = Team
-      .doubles
-      .joins(:rounds)
-      .group('teams.id')
-      .having('count(team_id) >= 8')
-      .pluck(:id)
-
-    data_set = Round
-      .joins(:team)
-      .select('rounds.team_id,
-        rounds.game_id,
-        rounds.round_number,
-        rounds.score,
-        teams.name,
-        teams.id')
-      .where(teams: { id: included_team_ids })
-      .group_by { |round| [round.game_id, round.round_number] }
-
-    data_set.values.each do |rounds_in_number|
+    doubles_data_set.values.each do |rounds_in_number|
       round_scores = rounds_in_number.pluck(:score)
       scores_min = round_scores.min
       scores_max = round_scores.max
