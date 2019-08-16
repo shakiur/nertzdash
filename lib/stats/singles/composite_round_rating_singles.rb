@@ -23,19 +23,28 @@ module CompositeRoundRatingSingles
   end
 
   def data
-    data = {}
+    data = Hash.new { |h, k| h[k] = [] }
 
-    included_team_ids = Team.singles
+    included_team_ids = Team
+      .singles
       .joins(:rounds)
       .group('teams.id')
       .having('count(team_id) >= 10')
       .pluck(:id)
-    data_set = Round.joins(:team)
+
+    data_set = Round
+      .joins(:team)
+      .select('rounds.team_id,
+        rounds.game_id,
+        rounds.round_number,
+        rounds.score,
+        teams.name,
+        teams.id')
       .where(teams: { id: included_team_ids })
       .group_by { |round| [round.game_id, round.round_number] }
-
+      
     data_set.values.each do |rounds_in_number|
-      round_scores = rounds_in_number.map(&:score)
+      round_scores = rounds_in_number.pluck(:score)
       scores_min = round_scores.min
       scores_max = round_scores.max
 
@@ -47,7 +56,6 @@ module CompositeRoundRatingSingles
         max: scores_max
       )
       composite_ratings.each do |team_name, rating|
-        data[team_name] = [] unless data.key? team_name
         data[team_name] << rating
       end
     end
@@ -69,7 +77,7 @@ module CompositeRoundRatingSingles
 
     rounds.each do |round|
       rating = (round.score - min).to_f / total_score_distribution
-      ratings_by_team_name[round.team.name] = rating
+      ratings_by_team_name[round.name] = rating
     end
 
     return ratings_by_team_name
