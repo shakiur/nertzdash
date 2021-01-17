@@ -2,6 +2,7 @@ import "./CardGameView.scss";
 
 import React from "react";
 import PropTypes from "prop-types";
+import PlayerTable from "./components/PlayerTable/PlayerTable"
 
 class CardGameView extends React.Component {
   state = {
@@ -16,32 +17,26 @@ class CardGameView extends React.Component {
     return (
       <div className="CardGameView">
         <div className="TopRow">
-          <div className="Player">
-          </div>
-          <div className="Player">
-          </div>
+          <PlayerTable/>
+          <PlayerTable/>
         </div>
 
         <div className="SpaceRow">
         </div>
 
         <div className="MiddleRow">
-          <div className="Player">
-          </div>
+          <PlayerTable/>
           <div className="CenterTable">
           </div>
-          <div className="Player">
-          </div>
+          <PlayerTable/>
         </div>
 
         <div className="SpaceRow">
         </div>
 
         <div className="BottomRow">
-          <div className="Player">
-          </div>
-          <div className="Player">
-          </div>
+          <PlayerTable/>
+          <PlayerTable/>
         </div>
       </div>
     );
