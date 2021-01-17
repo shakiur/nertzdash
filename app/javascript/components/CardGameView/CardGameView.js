@@ -16,29 +16,29 @@ class CardGameView extends React.Component {
 
   render () {
     return (
-      <div className="CardGameView">
-        <div className="TopRow">
+      <section className="CardGameView">
+        <section className="TopRow">
           <PlayerTable/>
           <PlayerTable/>
-        </div>
+        </section>
 
         <div className="SpaceRow">
         </div>
 
-        <div className="MiddleRow">
+        <section className="MiddleRow">
           <PlayerTable/>
           <CenterTable/>
           <PlayerTable/>
-        </div>
+        </section>
 
         <div className="SpaceRow">
         </div>
 
-        <div className="BottomRow">
+        <section className="BottomRow">
           <PlayerTable/>
           <PlayerTable/>
-        </div>
-      </div>
+        </section>
+      </section>
     );
   }
 }
