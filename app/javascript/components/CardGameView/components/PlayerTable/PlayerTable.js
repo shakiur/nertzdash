@@ -7,6 +7,28 @@ export default class PlayerTable extends React.Component {
   render() {
     return (
       <div className="PlayerTable">
+        <div className="CardDeckArea">
+          <div className="Card">
+          </div>
+        </div>
+        <div className="CardDisplayArea">
+        </div>
+        <div className="SolitaireArea">
+          <div className="CardHolder">
+          </div>
+        </div>
+        <div className="SolitaireArea">
+          <div className="CardHolder">
+          </div>
+        </div>
+        <div className="SolitaireArea">
+          <div className="CardHolder">
+          </div>
+        </div>
+        <div className="SolitaireArea">
+          <div className="CardHolder">
+          </div>
+        </div>
       </div>
     )
   }
