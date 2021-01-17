@@ -1,0 +1,59 @@
+body, html, body > div, .base > div {
+  width: 100%;
+  height: 100%;
+}
+
+.base {
+  width: 90%;
+  height: 100%;
+}
+
+.CardGameView {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  .TopRow {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 30%;
+  }
+
+  .MiddleRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    width: 100%;
+    height: 30%;
+  }
+
+  .BottomRow {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 100%;
+    height: 30%;
+  }
+
+  .SpaceRow {
+    width: 100%;
+    height: 5%;
+  }
+
+  .CenterTable {
+    height: 100%;
+    width: 40%;
+    border: 1px solid black;
+  }
+
+  .Player {
+    height: 100%;
+    width: 25%;
+    border: 1px solid black;
+  }
+}
