@@ -11,16 +11,44 @@ export default class CenterTable extends React.Component {
         <div className="CardHolderVerticalArea">
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
+        </div>
+        <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
+        </div>
+        <div className="CardHolderVerticalArea">
+          <CardHolder/>
+          <CardHolder/>
+          <CardHolder/>
         </div>
         <div className="CardHolderVerticalArea">
         </div>
