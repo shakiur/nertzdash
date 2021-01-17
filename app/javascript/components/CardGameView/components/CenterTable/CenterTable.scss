@@ -1,5 +1,15 @@
 .CenterTable {
+  display: flex;
+
   height: 100%;
   width: 40%;
   border: 1px solid black;
+
+  .CardHolderVerticalArea {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 10%;
+  }
 }

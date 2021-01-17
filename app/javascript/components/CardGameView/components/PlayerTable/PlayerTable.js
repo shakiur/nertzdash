@@ -3,6 +3,7 @@ import './PlayerTable.scss'
 import React from "react";
 import Draggable from "react-draggable";
 import PropTypes from "prop-types";
+import CardHolder from "../../components/CardHolder/CardHolder"
 
 export default class PlayerTable extends React.Component {
   render() {
@@ -17,20 +18,16 @@ export default class PlayerTable extends React.Component {
         <div className="CardDisplayArea">
         </div>
         <div className="SolitaireArea">
-          <div className="CardHolder">
-          </div>
+          <CardHolder/>
         </div>
         <div className="SolitaireArea">
-          <div className="CardHolder">
-          </div>
+          <CardHolder/>
         </div>
         <div className="SolitaireArea">
-          <div className="CardHolder">
-          </div>
+          <CardHolder/>
         </div>
         <div className="SolitaireArea">
-          <div className="CardHolder">
-          </div>
+          <CardHolder/>
         </div>
       </div>
     )

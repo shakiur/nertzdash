@@ -13,14 +13,6 @@
     width: 20%;
   }
 
-  .CardDisplayArea {
-    display: flex;
-    flex-direction: column;
-
-    height: 100%;
-    width: 20%;
-  }
-
   .SolitaireArea {
     display: flex;
     flex-direction: column;
@@ -33,19 +25,9 @@
     margin: 10%;
 
     width: 80%;
-    height: 25%;
+    height: 30%;
 
     border: 1px solid black;
-    border-radius: 10%;
-  }
-
-  .CardHolder {
-    margin: 10%;
-
-    width: 80%;
-    height: 25%;
-
-    border: 1px dashed grey;
     border-radius: 10%;
   }
 }
