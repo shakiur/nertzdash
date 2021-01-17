@@ -1,6 +1,7 @@
 import './PlayerTable.scss'
 
 import React from "react";
+import Draggable from "react-draggable";
 import PropTypes from "prop-types";
 
 export default class PlayerTable extends React.Component {
@@ -8,8 +9,10 @@ export default class PlayerTable extends React.Component {
     return (
       <div className="PlayerTable">
         <div className="CardDeckArea">
-          <div className="Card">
-          </div>
+          <Draggable>
+            <div className="Card">
+            </div>
+          </Draggable>
         </div>
         <div className="CardDisplayArea">
         </div>
