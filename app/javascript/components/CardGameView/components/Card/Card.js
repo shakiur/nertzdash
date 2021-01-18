@@ -11,35 +11,42 @@ export default class Card extends React.Component {
     highlightCard: false
   }
 
-  handleHighlightWhileDragging = () => {
+  handleHighlight = () => {
     this.setState({highlightCard: true})
   }
 
   handleSnapPosition = () => {
-    if(
+    let nearSolitaire1 = (
       (this.state.x_pos > 35 && this.state.x_pos < 85) &&
       (this.state.y_pos > 0 && this.state.y_pos < 35)
-    ) {
-      this.setState({x_pos: 60, y_pos: 0, highlightCard: true});
-    } else if(
+    )
+
+    let nearSolitaire2 = (
       (this.state.x_pos > 95 && this.state.x_pos < 145) &&
       (this.state.y_pos > 0 && this.state.y_pos < 35)
-    ) {
-      this.setState({x_pos: 120, y_pos: 0, highlightCard: true});
-    } else if(
+    )
+
+    let nearSolitaire3 = (
       (this.state.x_pos > 155 && this.state.x_pos < 205) &&
       (this.state.y_pos > 0 && this.state.y_pos < 35)
-    ) {
-      this.setState({x_pos: 180, y_pos: 0, highlightCard: true});
-    } else if (
+    )
+
+    let nearSolitaire4 = (
       (this.state.x_pos > 215 && this.state.x_pos < 265) &&
       (this.state.y_pos > 0 && this.state.y_pos < 35)
-    ) {
+    )
+
+    if(nearSolitaire1) {
+      this.setState({x_pos: 60, y_pos: 0, highlightCard: true});
+    } else if(nearSolitaire2) {
+      this.setState({x_pos: 120, y_pos: 0, highlightCard: true});
+    } else if(nearSolitaire3) {
+      this.setState({x_pos: 180, y_pos: 0, highlightCard: true});
+    } else if (nearSolitaire4) {
       this.setState({x_pos: 240, y_pos: 0, highlightCard: true});
     } else {
       this.setState({x_pos: 0, y_pos: 0, highlightCard: false});
     }
-
   }
 
   updateXYPos = (event, ui) => {
@@ -56,7 +63,7 @@ export default class Card extends React.Component {
     return (
       <Draggable
         onDrag={this.updateXYPos}
-        onStart={this.handleHighlightWhileDragging}
+        onStart={this.handleHighlight}
         onStop={this.handleSnapPosition}
         position={{x: this.state.x_pos, y: this.state.y_pos}}
       >
