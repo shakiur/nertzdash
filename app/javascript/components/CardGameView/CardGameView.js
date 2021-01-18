@@ -22,17 +22,11 @@ class CardGameView extends React.Component {
           <PlayerTable/>
         </section>
 
-        <div className="SpaceRow">
-        </div>
-
         <section className="MiddleRow">
           <PlayerTable/>
           <CenterTable/>
           <PlayerTable/>
         </section>
-
-        <div className="SpaceRow">
-        </div>
 
         <section className="BottomRow">
           <PlayerTable/>

@@ -9,8 +9,6 @@ export default class CenterTable extends React.Component {
     return (
       <div className="CenterTable">
         <div className="CardHolderVerticalArea">
-        </div>
-        <div className="CardHolderVerticalArea">
           <CardHolder/>
           <CardHolder/>
           <CardHolder/>
@@ -49,8 +47,6 @@ export default class CenterTable extends React.Component {
           <CardHolder/>
           <CardHolder/>
           <CardHolder/>
-        </div>
-        <div className="CardHolderVerticalArea">
         </div>
       </div>
     )
