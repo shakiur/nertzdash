@@ -6,17 +6,59 @@ import Draggable from "react-draggable";
 
 export default class Card extends React.Component {
   state = {
-    clickedCard: false
+    x_pos: 0,
+    y_pos: 0,
+    highlightCard: false
+  }
+
+  handleHighlightWhileDragging = () => {
+    this.setState({highlightCard: true})
+  }
+
+  handleSnapPosition = () => {
+    if(
+      (this.state.x_pos > 35 && this.state.x_pos < 85) &&
+      (this.state.y_pos > 0 && this.state.y_pos < 35)
+    ) {
+      this.setState({x_pos: 60, y_pos: 0, highlightCard: true});
+    } else if(
+      (this.state.x_pos > 95 && this.state.x_pos < 145) &&
+      (this.state.y_pos > 0 && this.state.y_pos < 35)
+    ) {
+      this.setState({x_pos: 120, y_pos: 0, highlightCard: true});
+    } else if(
+      (this.state.x_pos > 155 && this.state.x_pos < 205) &&
+      (this.state.y_pos > 0 && this.state.y_pos < 35)
+    ) {
+      this.setState({x_pos: 180, y_pos: 0, highlightCard: true});
+    } else if (
+      (this.state.x_pos > 215 && this.state.x_pos < 265) &&
+      (this.state.y_pos > 0 && this.state.y_pos < 35)
+    ) {
+      this.setState({x_pos: 240, y_pos: 0, highlightCard: true});
+    } else {
+      this.setState({x_pos: 0, y_pos: 0, highlightCard: false});
+    }
+
+  }
+
+  updateXYPos = (event, ui) => {
+    this.setState({
+      x_pos: this.state.x_pos + ui.deltaX,
+      y_pos: this.state.y_pos + ui.deltaY
+    });
   }
 
   render() {
-    const color = this.state.clickedCard ? `HighlightColor` : `DefaultColor`
+    const color = this.state.highlightCard ? `HighlightColor` : `DefaultColor`
     const classes = `Card ${color}`
 
     return (
       <Draggable
-        onStart={() => this.setState({clickedCard: true})}
-        onStop={() => this.setState({clickedCard: false})}
+        onDrag={this.updateXYPos}
+        onStart={this.handleHighlightWhileDragging}
+        onStop={this.handleSnapPosition}
+        position={{x: this.state.x_pos, y: this.state.y_pos}}
       >
         <div className={classes}>
         </div>
