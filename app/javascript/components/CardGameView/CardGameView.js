@@ -1,5 +1,3 @@
-import "./CardGameView.scss";
-
 import React from "react";
 import PropTypes from "prop-types";
 import PlayerTable from "./components/PlayerTable/PlayerTable"
