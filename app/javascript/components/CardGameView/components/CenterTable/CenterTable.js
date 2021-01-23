@@ -1,5 +1,3 @@
-import './CenterTable.scss'
-
 import React from "react";
 import PropTypes from "prop-types";
 import CardHolder from "../../components/CardHolder/CardHolder"
