@@ -6,14 +6,6 @@ import PlayerTable from "./components/PlayerTable/PlayerTable"
 import CenterTable from "./components/CenterTable/CenterTable"
 
 class CardGameView extends React.Component {
-  state = {
-    showSelectPlayers: false
-  }
-
-  showSelectPlayers() {
-    this.setState({showSelectPlayers: true});
-  }
-
   render () {
     return (
       <section className="CardGameView">
