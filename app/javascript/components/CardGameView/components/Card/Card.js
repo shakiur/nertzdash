@@ -56,6 +56,17 @@ export default class Card extends React.Component {
       x_pos: this.state.x_pos + ui.deltaX,
       y_pos: this.state.y_pos + ui.deltaY
     });
+
+    let requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        x_pos: this.state.x_pos,
+        y_pos: this.state.y_pos
+      })
+    };
+
+    fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&x_pos='+this.state.x_pos+'&y_pos='+this.state.y_pos);
   }
 
   render() {
