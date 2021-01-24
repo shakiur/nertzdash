@@ -28,10 +28,13 @@ Rails.application.routes.draw do
   get '/experimental' => 'experimental#index', as: :experimental
 
   get '/card_game' => 'card_game#index', as: :card_game
+  get '/card_game/update_position' => 'card_game#update_position', as: :card_game_update_position
 
   namespace :api do
     namespace :v1 do
       resources :players
     end
   end
+
+  mount ActionCable.server => '/cable'
 end
