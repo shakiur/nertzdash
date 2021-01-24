@@ -67,3 +67,5 @@ gem "chartkick"
 gem 'webpacker'
 
 gem 'react-rails'
+
+gem 'redis', '~> 4.0'
