@@ -8,19 +8,19 @@ class CardGameView extends React.Component {
     return (
       <section className="CardGameView">
         <section className="TopRow">
-          <PlayerTable/>
-          <PlayerTable/>
+          <PlayerTable playerPos={1} />
+          <PlayerTable playerPos={2} />
         </section>
 
         <section className="MiddleRow">
-          <PlayerTable/>
+          <PlayerTable playerPos={3} />
           <CenterTable/>
-          <PlayerTable/>
+          <PlayerTable playerPos={4}/>
         </section>
 
         <section className="BottomRow">
-          <PlayerTable/>
-          <PlayerTable/>
+          <PlayerTable playerPos={5} />
+          <PlayerTable playerPos={6} />
         </section>
       </section>
     );

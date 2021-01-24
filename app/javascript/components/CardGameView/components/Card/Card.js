@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import Draggable from "react-draggable";
 
 export default class Card extends React.Component {
+  static propTypes = {
+    playerPos: PropTypes.number.isRequired
+  }
+
   state = {
     x_pos: 0,
     y_pos: 0,
