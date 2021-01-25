@@ -5,16 +5,20 @@ import CardHolder from "../../components/CardHolder/CardHolder"
 
 export default class PlayerTable extends React.Component {
   static propTypes = {
-    playerPos: PropTypes.number.isRequired
+    playerPos: PropTypes.number.isRequired,
+    playerUuid: PropTypes.string.isRequired
   }
 
   render() {
-    const { playerPos } = this.props;
+    const { playerPos, playerUuid } = this.props;
 
     return (
       <div className="PlayerTable">
         <div className="CardDeckArea">
-          <Card playerPos={playerPos} />
+          <Card
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+          />
         </div>
         <div className="SolitaireArea">
           <CardHolder/>
