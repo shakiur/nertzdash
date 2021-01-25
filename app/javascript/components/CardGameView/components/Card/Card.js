@@ -68,38 +68,14 @@ export default class Card extends React.Component {
 
     if(nearSolitaire1) {
       this.updateXYPosition(60, 0, 0);
-
-      /*
-      fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&player_uuid='+this.props.playerUuid+'&x_pos='+60+'&y_pos='+0);
-      */
-
     } else if(nearSolitaire2) {
       this.updateXYPosition(120, 0, 0);
-
-      /*
-      fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&player_uuid='+this.props.playerUuid+'&x_pos='+120+'&y_pos='+0);
-      */
-
     } else if(nearSolitaire3) {
       this.updateXYPosition(180, 0, 0);
-
-      /*
-      fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&player_uuid='+this.props.playerUuid+'&x_pos='+180+'&y_pos='+0);
-      */
-
     } else if (nearSolitaire4) {
       this.updateXYPosition(240, 0, 0);
-
-      /*
-      fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&player_uuid='+this.props.playerUuid+'&x_pos='+240+'&y_pos='+0);
-      */
-
     } else {
       this.updateXYPosition(0, 0, 0);
-
-      /*
-      fetch('/card_game/update_position?player_pos='+this.props.playerPos+'&player_uuid='+this.props.playerUuid+'&x_pos='+0+'&y_pos='+0);
-      */
     }
   }
 
@@ -108,10 +84,6 @@ export default class Card extends React.Component {
   }
 
   updateXYPosition = (new_x_pos, new_y_pos, delayTime) => {
-    /*
-    console.log(new_x_pos + ', ' + new_y_pos);
-    */
-
     const previousTime = this.state.time;
     const currentTime = new Date().getTime();
 
