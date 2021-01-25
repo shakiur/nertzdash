@@ -142,7 +142,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    redis (4.2.5)
+    redis (3.3.5)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -210,7 +210,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.7)
   react-rails
-  redis (~> 4.0)
+  redis (~> 3.0)
   sass-rails (~> 5.0)
   semantic-ui-sass
   spring

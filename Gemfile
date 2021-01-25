@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 # Use redis for action cable broadcast
-gem 'redis', '~> 4.0'
+gem 'redis', '~> 3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
