@@ -2,7 +2,7 @@ class CardGameController < ApplicationController
   def index
   end
 
-  def update_position
+  def broadcast_player_position
     ActionCable.server.broadcast 'card_game',
       player_pos: params[:player_pos],
       player_uuid: params[:player_uuid],

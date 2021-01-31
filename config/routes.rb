@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/experimental' => 'experimental#index', as: :experimental
 
   get '/card_game' => 'card_game#index', as: :card_game
-  get '/card_game/update_position' => 'card_game#update_position', as: :card_game_update_position
+  get '/card_game/broadcast_player_position' => 'card_game#broadcast_player_position', as: :card_game_broadcast_player_position
 
   namespace :api do
     namespace :v1 do
