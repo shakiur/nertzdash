@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
 
-const PlayerTable = ({ playerPos, playerUuid, xPos, yPos, setXPos, setYPos}) => {
+const PlayerTable = ({ playerPos, playerUuid, xPos, yPos, broadcastTime, updatePlayerXYPos, broadcastPlayerXYPos}) => {
   return (
     <div className="PlayerTable">
       <div className="CardDeckArea">
@@ -12,8 +12,9 @@ const PlayerTable = ({ playerPos, playerUuid, xPos, yPos, setXPos, setYPos}) => 
           playerUuid={playerUuid}
           xPos={xPos}
           yPos={yPos}
-          setXPos={setXPos}
-          setYPos={setYPos}
+          broadcastTime={broadcastTime}
+          updatePlayerXYPos={updatePlayerXYPos}
+          broadcastPlayerXYPos={broadcastPlayerXYPos}
         />
       </div>
       <div className="SolitaireArea">
