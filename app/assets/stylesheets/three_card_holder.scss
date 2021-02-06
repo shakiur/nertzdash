@@ -1,0 +1,74 @@
+.ThreeCardHolder {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 10px;
+
+  .topCardPreview {
+    width: 50px;
+    height: 20px;
+
+    border-top: 1px dashed grey;
+    border-left: 1px dashed grey;
+    border-right: 1px dashed grey;
+    border-radius: 10%;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .middleCardPreview {
+    width: 50px;
+    height: 20px;
+
+    border-top: 1px dashed grey;
+    border-left: 1px dashed grey;
+    border-right: 1px dashed grey;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .bottomCard {
+    width: 50px;
+    height: 70px;
+
+    border: 1px solid black;
+    border-radius: 10%;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    user-select: none;
+  }
+
+  .topNumSuit {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+  }
+
+  .middleSuit {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .bottomNumSuit {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 10px;
+  }
+
+  .red {
+    color: #B71C1C;
+  }
+
+  .black {
+    color: #000000;
+  }
+}

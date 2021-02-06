@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import actionCable from "actioncable";
 
 import PlayerTable from "./components/PlayerTable/PlayerTable"
+import PlayerTableNew from "./components/PlayerTable/PlayerTableNew"
 import CenterTable from "./components/CenterTable/CenterTable"
 
 const cableApp = {}
@@ -30,6 +31,10 @@ function CardGameView() {
 
   const [player6XPos, setPlayer6XPos] = useState(0);
   const [player6YPos, setPlayer6YPos] = useState(0);
+
+  const [player1CardDeck, setPlayer1CardDeck] = useState(generateCardDeck());
+  const [player1ThreeCards, setPlayer1ThreeCards] = useState([]);
+  const [player1LeftoverCards, setPlayer1LeftoverCards] = useState([]);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
     switch(playerPos) {
@@ -76,6 +81,65 @@ function CardGameView() {
     );
   }
 
+  function generateCardDeck() {
+    const cardValues = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+    const cardSuits = ['♥','♠','♦','♣']
+    const cardDeck = []
+    let cardId = 0
+
+    for (const cardValue of cardValues) {
+      for (const cardSuit of cardSuits) {
+        let card = []
+        let cardColor = cardSuit == '♥' || cardSuit == '♦' ? 'red' : 'black'
+
+        card.push(cardId)
+        card.push(cardValue)
+        card.push(cardSuit)
+        card.push(cardColor)
+
+        cardDeck.push(card)
+        cardId += 1
+      }
+    }
+
+    return shuffleCardDeck(cardDeck)
+  }
+
+  function shuffleCardDeck(cardDeck) {
+    for(let cardPos = cardDeck.length - 1; cardPos > 0; cardPos--){
+      const randomPos = Math.floor(Math.random() * cardPos)
+      const tempCard = cardDeck[cardPos]
+
+      cardDeck[cardPos] = cardDeck[randomPos]
+      cardDeck[randomPos] = tempCard
+    }
+
+    return cardDeck
+  }
+
+  function flipSolitaireCards(cardDeck, threeCardArea) {
+    const numThreeCards = threeCardArea.length
+
+    if(numThreeCards > 0) {
+      setPlayer1LeftoverCards(player1LeftoverCards => [...player1LeftoverCards, ...threeCardArea.reverse()])
+      setPlayer1ThreeCards([])
+    }
+
+    const numCardsToFlip = Math.min(cardDeck.length, 3)
+
+    for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
+      let cardFlipped = cardDeck.shift()
+
+      setPlayer1CardDeck(cardDeck.filter(card => cardFlipped[0] !== card[0]))
+      setPlayer1ThreeCards(threeCardArea => [cardFlipped, ...threeCardArea])
+    }
+
+    if(numThreeCards == 0 && numCardsToFlip == 0) {
+      setPlayer1CardDeck(player1LeftoverCards)
+      setPlayer1LeftoverCards([])
+    }
+  }
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
 
@@ -107,7 +171,7 @@ function CardGameView() {
   return (
     <section className="CardGameView">
       <section className="TopRow">
-        <PlayerTable
+        <PlayerTableNew
           playerPos={1}
           playerUuid={playerUuid}
           xPos={player1XPos}
@@ -115,6 +179,9 @@ function CardGameView() {
           broadcastTime={broadcastTime}
           updatePlayerXYPos={updatePlayerXYPos}
           broadcastPlayerXYPos={broadcastPlayerXYPos}
+          cardDeck={player1CardDeck}
+          threeCardArea={player1ThreeCards}
+          flipSolitaireCards={flipSolitaireCards}
         />
         <PlayerTable
           playerPos={2}

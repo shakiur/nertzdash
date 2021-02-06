@@ -1,0 +1,26 @@
+.PlayerTableNew {
+  display: flex;
+  justify-content: space-between;
+
+  height: 250px;
+  width: 310px;
+  border: 1px solid black;
+
+  padding: 10px;
+
+  .CardDeckArea {
+    display: flex;
+    flex-direction: column;
+
+    height: 230px;
+    width: 50px;
+  }
+
+  .SolitaireArea {
+    display: flex;
+    flex-direction: column;
+
+    height: 230px;
+    width: 50px;
+  }
+}
