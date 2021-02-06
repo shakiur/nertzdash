@@ -81,6 +81,10 @@ function CardGameView() {
     );
   }
 
+  function broadcastPlayerSolitaire(playerPos, playerUuid, solitareDeck, solitairePile, leftoverSolitairePile) {
+    const currentTime = new Date().getTime();
+  }
+
   function generateCardDeck() {
     const cardValues = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
     const cardSuits = ['♥','♠','♦','♣']
@@ -89,13 +93,14 @@ function CardGameView() {
 
     for (const cardValue of cardValues) {
       for (const cardSuit of cardSuits) {
-        let card = []
         let cardColor = cardSuit == '♥' || cardSuit == '♦' ? 'red' : 'black'
 
-        card.push(cardId)
-        card.push(cardValue)
-        card.push(cardSuit)
-        card.push(cardColor)
+        let card = {
+          id: cardId,
+          value: cardValue,
+          suit: cardSuit,
+          color: cardColor
+        }
 
         cardDeck.push(card)
         cardId += 1
@@ -118,11 +123,14 @@ function CardGameView() {
   }
 
   function flipSolitaireCards(solitaireDeck, solitairePile, leftoverSolitairePile) {
-    const numSolitairePile = solitairePile.length
-
-    if(numSolitairePile > 0) {
+    if(solitairePile.length > 0) {
       setPlayer1LeftoverSolitairePile(leftoverSolitairePile => [...leftoverSolitairePile, ...solitairePile.reverse()])
       setPlayer1SolitairePile([])
+    }
+
+    if(solitairePile.length == 0 && solitaireDeck.length == 0) {
+      setPlayer1SolitaireDeck(leftoverSolitairePile)
+      setPlayer1LeftoverSolitairePile([])
     }
 
     const numCardsToFlip = Math.min(solitaireDeck.length, 3)
@@ -130,13 +138,25 @@ function CardGameView() {
     for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
       let cardFlipped = solitaireDeck.shift()
 
-      setPlayer1SolitaireDeck(solitaireDeck.filter(card => cardFlipped[0] !== card[0]))
+      setPlayer1SolitaireDeck(solitaireDeck.filter(card => cardFlipped['id'] !== card['id']))
       setPlayer1SolitairePile(solitairePile => [cardFlipped, ...solitairePile])
     }
 
-    if(numSolitairePile == 0 && numCardsToFlip == 0) {
-      setPlayer1SolitaireDeck(leftoverSolitairePile)
-      setPlayer1LeftoverSolitairePile([])
+  }
+
+  function updatePlayerPositionFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"]);
+    const retrievedPlayerUuid = data["player_uuid"];
+    const retrievedXPos = parseInt(data["x_pos"]);
+    const retrievedYPos = parseInt(data["y_pos"]);
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime);
+      updatePlayerXYPos(retrievedPlayerPos, retrievedXPos, retrievedYPos);
     }
   }
 
@@ -148,19 +168,13 @@ function CardGameView() {
     }, {
       received: (data) => {
         console.log(data);
+        const data_type = data["data_type"]
 
-        const retrievedPlayerPos = parseInt(data["player_pos"]);
-        const retrievedPlayerUuid = data["player_uuid"];
-        const retrievedXPos = parseInt(data["x_pos"]);
-        const retrievedYPos = parseInt(data["y_pos"]);
-        const retrievedTime = parseInt(data["time"]);
-
-        const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
-        const retrievedAfterLastUpdate = retrievedTime > retrievalTime
-
-        if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
-          setRetrievalTime(retrievedTime);
-          updatePlayerXYPos(retrievedPlayerPos, retrievedXPos, retrievedYPos);
+        switch(data_type) {
+          case 'player_position':
+            updatePlayerPositionFromBroadcast(data);
+          default:
+            break;
         }
       }
     })
@@ -174,11 +188,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={1}
           playerUuid={playerUuid}
-          xPos={player1XPos}
-          yPos={player1YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
           leftoverSolitairePile={player1LeftoverSolitairePile}

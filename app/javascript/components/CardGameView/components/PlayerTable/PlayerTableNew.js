@@ -2,17 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
-import CardDeckHolder from "../../components/CardDeckHolder/CardDeckHolder"
-import ThreeCardHolder from "../../components/ThreeCardHolder/ThreeCardHolder"
+import SolitaireDeckArea from "../../components/SolitaireDeckArea/SolitaireDeckArea"
+import SolitairePileArea from "../../components/SolitairePileArea/SolitairePileArea"
 
 const PlayerTableNew = ({
   playerPos,
   playerUuid,
-  xPos,
-  yPos,
   broadcastTime,
-  updatePlayerXYPos,
-  broadcastPlayerXYPos,
   solitaireDeck,
   solitairePile,
   leftoverSolitairePile,
@@ -21,7 +17,7 @@ const PlayerTableNew = ({
   return (
     <div className="PlayerTableNew">
       <div className="CardDeckArea">
-        <CardDeckHolder
+        <SolitaireDeckArea
           playerPos={playerPos}
           playerUuid={playerUuid}
           solitaireDeck={solitaireDeck}
@@ -29,10 +25,9 @@ const PlayerTableNew = ({
           leftoverSolitairePile={leftoverSolitairePile}
           flipSolitaireCards={flipSolitaireCards}
         />
-        <ThreeCardHolder
+        <SolitairePileArea
           playerPos={playerPos}
           playerUuid={playerUuid}
-          solitaireDeck={solitaireDeck}
           solitairePile={solitairePile}
         />
       </div>

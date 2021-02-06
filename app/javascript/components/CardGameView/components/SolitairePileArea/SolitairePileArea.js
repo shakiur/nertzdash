@@ -1,38 +1,28 @@
-import React from "react";
+import React from "react"
 import Draggable from "react-draggable";
 
-const ThreeCardHolder = ({ playerPos, playerUuid, solitaireDeck, solitairePile }) => {
+const SolitairePileArea = ({ playerPos, playerUuid, solitairePile }) => {
   function displayNumSuit(card) {
     if(card) {
-      const cardNum = card[1]
-      const cardSuit = card[2]
-
-      return `${cardNum}${cardSuit}`
+      return `${card['value']}${card['suit']}`
     }
   }
 
   function displaySuit(card) {
     if(card) {
-      const cardSuit = card[2]
-
-      return cardSuit
+      return card['suit']
     }
   }
 
   function displaySuitNum(card) {
     if(card) {
-      const cardNum = card[1]
-      const cardSuit = card[2]
-
-      return `${cardSuit}${cardNum}`
+      return `${card['suit']}${card['value']}`
     }
   }
 
   function cardColor(card) {
     if(card) {
-      const cardColor = card[3]
-
-      return cardColor
+      return card['color']
     }
   }
 
@@ -66,4 +56,4 @@ const ThreeCardHolder = ({ playerPos, playerUuid, solitaireDeck, solitairePile }
   )
 }
 
-export default ThreeCardHolder
+export default SolitairePileArea
