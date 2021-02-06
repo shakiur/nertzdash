@@ -16,7 +16,7 @@ const PlayerTableNew = ({
 }) => {
   return (
     <div className="PlayerTableNew">
-      <div className="CardDeckArea">
+      <div className="SolitaireDeckArea">
         <SolitaireDeckArea
           playerPos={playerPos}
           playerUuid={playerUuid}
