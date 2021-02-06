@@ -32,9 +32,9 @@ function CardGameView() {
   const [player6XPos, setPlayer6XPos] = useState(0);
   const [player6YPos, setPlayer6YPos] = useState(0);
 
-  const [player1CardDeck, setPlayer1CardDeck] = useState(generateCardDeck());
-  const [player1ThreeCards, setPlayer1ThreeCards] = useState([]);
-  const [player1LeftoverCards, setPlayer1LeftoverCards] = useState([]);
+  const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
+  const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
+  const [player1LeftoverSolitairePile, setPlayer1LeftoverSolitairePile] = useState([]);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
     switch(playerPos) {
@@ -117,26 +117,26 @@ function CardGameView() {
     return cardDeck
   }
 
-  function flipSolitaireCards(cardDeck, threeCardArea) {
-    const numThreeCards = threeCardArea.length
+  function flipSolitaireCards(solitaireDeck, solitairePile, leftoverSolitairePile) {
+    const numSolitairePile = solitairePile.length
 
-    if(numThreeCards > 0) {
-      setPlayer1LeftoverCards(player1LeftoverCards => [...player1LeftoverCards, ...threeCardArea.reverse()])
-      setPlayer1ThreeCards([])
+    if(numSolitairePile > 0) {
+      setPlayer1LeftoverSolitairePile(leftoverSolitairePile => [...leftoverSolitairePile, ...solitairePile.reverse()])
+      setPlayer1SolitairePile([])
     }
 
-    const numCardsToFlip = Math.min(cardDeck.length, 3)
+    const numCardsToFlip = Math.min(solitaireDeck.length, 3)
 
     for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
-      let cardFlipped = cardDeck.shift()
+      let cardFlipped = solitaireDeck.shift()
 
-      setPlayer1CardDeck(cardDeck.filter(card => cardFlipped[0] !== card[0]))
-      setPlayer1ThreeCards(threeCardArea => [cardFlipped, ...threeCardArea])
+      setPlayer1SolitaireDeck(solitaireDeck.filter(card => cardFlipped[0] !== card[0]))
+      setPlayer1SolitairePile(solitairePile => [cardFlipped, ...solitairePile])
     }
 
-    if(numThreeCards == 0 && numCardsToFlip == 0) {
-      setPlayer1CardDeck(player1LeftoverCards)
-      setPlayer1LeftoverCards([])
+    if(numSolitairePile == 0 && numCardsToFlip == 0) {
+      setPlayer1SolitaireDeck(leftoverSolitairePile)
+      setPlayer1LeftoverSolitairePile([])
     }
   }
 
@@ -179,8 +179,9 @@ function CardGameView() {
           broadcastTime={broadcastTime}
           updatePlayerXYPos={updatePlayerXYPos}
           broadcastPlayerXYPos={broadcastPlayerXYPos}
-          cardDeck={player1CardDeck}
-          threeCardArea={player1ThreeCards}
+          solitaireDeck={player1SolitaireDeck}
+          solitairePile={player1SolitairePile}
+          leftoverSolitairePile={player1LeftoverSolitairePile}
           flipSolitaireCards={flipSolitaireCards}
         />
         <PlayerTable

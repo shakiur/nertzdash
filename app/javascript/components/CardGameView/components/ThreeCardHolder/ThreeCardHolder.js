@@ -1,7 +1,7 @@
 import React from "react";
 import Draggable from "react-draggable";
 
-const ThreeCardHolder = ({ playerPos, playerUuid, cardDeck, threeCardArea }) => {
+const ThreeCardHolder = ({ playerPos, playerUuid, solitaireDeck, solitairePile }) => {
   function displayNumSuit(card) {
     if(card) {
       const cardNum = card[1]
@@ -39,26 +39,26 @@ const ThreeCardHolder = ({ playerPos, playerUuid, cardDeck, threeCardArea }) => 
   return (
     <div className="ThreeCardHolder">
       <div className="topCardPreview">
-        <div className={`topNumSuit ${cardColor(threeCardArea[2])}`}>
-          {displayNumSuit(threeCardArea[2])}
+        <div className={`topNumSuit ${cardColor(solitairePile[2])}`}>
+          {displayNumSuit(solitairePile[2])}
         </div>
       </div>
       <div className="middleCardPreview">
-        <div className={`topNumSuit ${cardColor(threeCardArea[1])}`}>
-          {displayNumSuit(threeCardArea[1])}
+        <div className={`topNumSuit ${cardColor(solitairePile[1])}`}>
+          {displayNumSuit(solitairePile[1])}
         </div>
       </div>
       <Draggable
       >
         <div className="bottomCard">
-          <div className={`topNumSuit ${cardColor(threeCardArea[0])}`}>
-            {displayNumSuit(threeCardArea[0])}
+          <div className={`topNumSuit ${cardColor(solitairePile[0])}`}>
+            {displayNumSuit(solitairePile[0])}
           </div>
-          <div className={`middleSuit ${cardColor(threeCardArea[0])}`}>
-            {displaySuit(threeCardArea[0])}
+          <div className={`middleSuit ${cardColor(solitairePile[0])}`}>
+            {displaySuit(solitairePile[0])}
           </div>
-          <div className={`bottomNumSuit ${cardColor(threeCardArea[0])}`}>
-            {displaySuitNum(threeCardArea[0])}
+          <div className={`bottomNumSuit ${cardColor(solitairePile[0])}`}>
+            {displaySuitNum(solitairePile[0])}
           </div>
         </div>
       </Draggable>

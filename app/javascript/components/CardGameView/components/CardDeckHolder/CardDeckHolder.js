@@ -4,8 +4,9 @@ import Draggable from "react-draggable";
 const CardDeckHolder = ({
   playerPos,
   playerUuid,
-  cardDeck,
-  threeCardArea,
+  solitaireDeck,
+  solitairePile,
+  leftoverSolitairePile,
   flipSolitaireCards
 }) => {
   return (
@@ -13,7 +14,7 @@ const CardDeckHolder = ({
     >
       <div
         className="CardDeckHolder"
-        onClick={() => flipSolitaireCards(cardDeck, threeCardArea)}
+        onClick={() => flipSolitaireCards(solitaireDeck, solitairePile, leftoverSolitairePile)}
       >
       </div>
     </Draggable>

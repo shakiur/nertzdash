@@ -13,8 +13,9 @@ const PlayerTableNew = ({
   broadcastTime,
   updatePlayerXYPos,
   broadcastPlayerXYPos,
-  cardDeck,
-  threeCardArea,
+  solitaireDeck,
+  solitairePile,
+  leftoverSolitairePile,
   flipSolitaireCards
 }) => {
   return (
@@ -23,15 +24,16 @@ const PlayerTableNew = ({
         <CardDeckHolder
           playerPos={playerPos}
           playerUuid={playerUuid}
-          cardDeck={cardDeck}
-          threeCardArea={threeCardArea}
+          solitaireDeck={solitaireDeck}
+          solitairePile={solitairePile}
+          leftoverSolitairePile={leftoverSolitairePile}
           flipSolitaireCards={flipSolitaireCards}
         />
         <ThreeCardHolder
           playerPos={playerPos}
           playerUuid={playerUuid}
-          cardDeck={cardDeck}
-          threeCardArea={threeCardArea}
+          solitaireDeck={solitaireDeck}
+          solitairePile={solitairePile}
         />
       </div>
       <div className="SolitaireArea">
