@@ -4,7 +4,7 @@ class CardGameController < ApplicationController
 
   def broadcast_player_position
     ActionCable.server.broadcast 'card_game',
-      data_type: 'player_position',
+      data_type: params[:data_type],
       player_pos: params[:player_pos],
       player_uuid: params[:player_uuid],
       x_pos: params[:x_pos],

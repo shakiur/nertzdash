@@ -73,12 +73,18 @@ function CardGameView() {
     setBroadcastTime(currentTime);
 
     fetch('/card_game/broadcast_player_position?' +
-      'player_pos=' + playerPos +
+      'data_type=' + 'player_position' +
+      '&player_pos=' + playerPos +
       '&player_uuid=' + playerUuid +
       '&x_pos=' + xPos +
       '&y_pos=' + yPos +
       '&time=' + broadcastTime
     );
+  }
+
+  function broadcastPlayerSolitaireDeck(playerPos, playerUuid, solitaireDek, solitairePile, leftoverSolitairePile) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime);
   }
 
   function broadcastPlayerSolitaire(playerPos, playerUuid, solitareDeck, solitairePile, leftoverSolitairePile) {
