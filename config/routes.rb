@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   get '/card_game' => 'card_game#index', as: :card_game
   get '/card_game/broadcast_player_position' => 'card_game#broadcast_player_position', as: :card_game_broadcast_player_position
+  get '/card_game/broadcast_player_solitaire' => 'card_game#broadcast_player_solitaire', as: :card_game_broadcast_player_solitaire
 
   namespace :api do
     namespace :v1 do

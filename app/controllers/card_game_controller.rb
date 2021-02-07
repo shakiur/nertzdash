@@ -14,5 +14,14 @@ class CardGameController < ApplicationController
   end
 
   def broadcast_player_solitaire
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_pos: params[:player_pos],
+      player_uuid: params[:player_uuid],
+      solitaire_deck: params[:solitaire_deck],
+      solitaire_pile: params[:solitaire_pile],
+      leftover_solitaire_pile: params[:leftover_solitaire_pile],
+      time: params[:time]
+    head :ok
   end
 end

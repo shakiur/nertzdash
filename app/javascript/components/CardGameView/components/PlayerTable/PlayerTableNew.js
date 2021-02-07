@@ -12,7 +12,9 @@ const PlayerTableNew = ({
   solitaireDeck,
   solitairePile,
   leftoverSolitairePile,
-  flipSolitaireCards
+  flipSolitaireCards,
+  broadcastPlayerSolitaire,
+  setBroadcastPlayerUuid
 }) => {
   return (
     <div className="PlayerTableNew">
@@ -20,10 +22,14 @@ const PlayerTableNew = ({
         <SolitaireDeckArea
           playerPos={playerPos}
           playerUuid={playerUuid}
+          broadcastTime={broadcastTime}
           solitaireDeck={solitaireDeck}
           solitairePile={solitairePile}
           leftoverSolitairePile={leftoverSolitairePile}
           flipSolitaireCards={flipSolitaireCards}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+
         />
         <SolitairePileArea
           playerPos={playerPos}

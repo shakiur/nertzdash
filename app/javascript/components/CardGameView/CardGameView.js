@@ -35,6 +35,7 @@ function CardGameView() {
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
   const [player1LeftoverSolitairePile, setPlayer1LeftoverSolitairePile] = useState([]);
+  const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
     switch(playerPos) {
@@ -65,8 +66,21 @@ function CardGameView() {
       default:
         break;
     }
-
   }
+
+  function updatePlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, leftoverSolitairePile) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1SolitaireDeck(solitaireDeck)
+        setPlayer1SolitairePile(solitairePile)
+        setPlayer1LeftoverSolitairePile(leftoverSolitairePile)
+        break
+      default:
+        break
+    }
+  }
+
 
   function broadcastPlayerXYPos(playerPos, playerUuid, xPos, yPos) {
     const currentTime = new Date().getTime();
@@ -82,13 +96,19 @@ function CardGameView() {
     );
   }
 
-  function broadcastPlayerSolitaireDeck(playerPos, playerUuid, solitaireDek, solitairePile, leftoverSolitairePile) {
+  function broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, leftoverSolitairePile) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime);
-  }
 
-  function broadcastPlayerSolitaire(playerPos, playerUuid, solitareDeck, solitairePile, leftoverSolitairePile) {
-    const currentTime = new Date().getTime();
+    fetch('/card_game/broadcast_player_solitaire?' +
+      'data_type=' + 'player_solitaire' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
+      '&solitaire_pile=' + JSON.stringify(solitairePile) +
+      '&leftover_solitaire_pile=' + JSON.stringify(leftoverSolitairePile) +
+      '&time=' + broadcastTime
+    );
   }
 
   function generateCardDeck() {
@@ -166,6 +186,29 @@ function CardGameView() {
     }
   }
 
+  function updatePlayerSolitaireFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedSolitaireDeck = JSON.parse(data["solitaire_deck"])
+    const retrievedSolitairePile = JSON.parse(data["solitaire_pile"])
+    const retrievedLeftoverSolitairePile = JSON.parse(data["leftover_solitaire_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerSolitaire(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedSolitaireDeck,
+        retrievedSolitairePile,
+        retrievedLeftoverSolitairePile
+      )
+    }
+  }
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
 
@@ -179,14 +222,23 @@ function CardGameView() {
         switch(data_type) {
           case 'player_position':
             updatePlayerPositionFromBroadcast(data);
+            break;
+          case 'player_solitaire':
+            updatePlayerSolitaireFromBroadcast(data);
+            break;
           default:
             break;
         }
       }
     })
 
-    setSubscribed(true);
   }, [subscribed]);
+
+  useEffect(() => {
+    if(playerUuid == player1BroadcastPlayerUuid) {
+      broadcastPlayerSolitaire(1, playerUuid, player1SolitaireDeck, player1SolitairePile, player1LeftoverSolitairePile);
+    }
+  }, [player1SolitairePile])
 
   return (
     <section className="CardGameView">
@@ -199,6 +251,8 @@ function CardGameView() {
           solitairePile={player1SolitairePile}
           leftoverSolitairePile={player1LeftoverSolitairePile}
           flipSolitaireCards={flipSolitaireCards}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
         />
         <PlayerTable
           playerPos={2}
