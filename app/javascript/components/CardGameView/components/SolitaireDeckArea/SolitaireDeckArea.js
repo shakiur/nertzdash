@@ -7,13 +7,13 @@ const CardDeckHolder = ({
   broadcastTime,
   solitaireDeck,
   solitairePile,
-  leftoverSolitairePile,
+  solitaireLeftoverPile,
   flipSolitaireCards,
   broadcastPlayerSolitaire,
   setBroadcastPlayerUuid
 }) => {
   function handleSolitaireFlip() {
-    flipSolitaireCards(solitaireDeck, solitairePile, leftoverSolitairePile)
+    flipSolitaireCards(solitaireDeck, solitairePile, solitaireLeftoverPile)
     setBroadcastPlayerUuid(playerUuid)
 
     const delay = 25
@@ -22,7 +22,7 @@ const CardDeckHolder = ({
 
     /*
     if(meetsDelayThreshold) {
-      broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, leftoverSolitairePile);
+      broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile);
     }
     */
   }

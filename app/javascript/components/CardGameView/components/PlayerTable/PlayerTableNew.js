@@ -11,7 +11,7 @@ const PlayerTableNew = ({
   broadcastTime,
   solitaireDeck,
   solitairePile,
-  leftoverSolitairePile,
+  solitaireLeftoverPile,
   flipSolitaireCards,
   broadcastPlayerSolitaire,
   setBroadcastPlayerUuid
@@ -25,7 +25,7 @@ const PlayerTableNew = ({
           broadcastTime={broadcastTime}
           solitaireDeck={solitaireDeck}
           solitairePile={solitairePile}
-          leftoverSolitairePile={leftoverSolitairePile}
+          solitaireLeftoverPile={solitaireLeftoverPile}
           flipSolitaireCards={flipSolitaireCards}
           broadcastPlayerSolitaire={broadcastPlayerSolitaire}
           setBroadcastPlayerUuid={setBroadcastPlayerUuid}

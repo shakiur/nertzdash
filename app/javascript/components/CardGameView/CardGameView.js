@@ -34,7 +34,7 @@ function CardGameView() {
 
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
-  const [player1LeftoverSolitairePile, setPlayer1LeftoverSolitairePile] = useState([]);
+  const [player1SolitaireLeftoverPile, setPlayer1SolitaireLeftoverPile] = useState([]);
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
@@ -68,13 +68,13 @@ function CardGameView() {
     }
   }
 
-  function updatePlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, leftoverSolitairePile) {
+  function updatePlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     switch(playerPos) {
       case 1:
         setPlayer1BroadcastPlayerUuid(playerUuid)
         setPlayer1SolitaireDeck(solitaireDeck)
         setPlayer1SolitairePile(solitairePile)
-        setPlayer1LeftoverSolitairePile(leftoverSolitairePile)
+        setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
         break
       default:
         break
@@ -96,7 +96,7 @@ function CardGameView() {
     );
   }
 
-  function broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, leftoverSolitairePile) {
+  function broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime);
 
@@ -106,7 +106,7 @@ function CardGameView() {
       '&player_uuid=' + playerUuid +
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
-      '&leftover_solitaire_pile=' + JSON.stringify(leftoverSolitairePile) +
+      '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
       '&time=' + broadcastTime
     );
   }
@@ -148,15 +148,15 @@ function CardGameView() {
     return cardDeck
   }
 
-  function flipSolitaireCards(solitaireDeck, solitairePile, leftoverSolitairePile) {
+  function flipSolitaireCards(solitaireDeck, solitairePile, solitaireLeftoverPile) {
     if(solitairePile.length > 0) {
-      setPlayer1LeftoverSolitairePile(leftoverSolitairePile => [...leftoverSolitairePile, ...solitairePile.reverse()])
+      setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile => [...solitaireLeftoverPile, ...solitairePile.reverse()])
       setPlayer1SolitairePile([])
     }
 
     if(solitairePile.length == 0 && solitaireDeck.length == 0) {
-      setPlayer1SolitaireDeck(leftoverSolitairePile)
-      setPlayer1LeftoverSolitairePile([])
+      setPlayer1SolitaireDeck(solitaireLeftoverPile)
+      setPlayer1SolitaireLeftoverPile([])
     }
 
     const numCardsToFlip = Math.min(solitaireDeck.length, 3)
@@ -236,7 +236,7 @@ function CardGameView() {
 
   useEffect(() => {
     if(playerUuid == player1BroadcastPlayerUuid) {
-      broadcastPlayerSolitaire(1, playerUuid, player1SolitaireDeck, player1SolitairePile, player1LeftoverSolitairePile);
+      broadcastPlayerSolitaire(1, playerUuid, player1SolitaireDeck, player1SolitairePile, player1SolitaireLeftoverPile);
     }
   }, [player1SolitairePile])
 
@@ -249,7 +249,7 @@ function CardGameView() {
           broadcastTime={broadcastTime}
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
-          leftoverSolitairePile={player1LeftoverSolitairePile}
+          solitaireLeftoverPile={player1SolitaireLeftoverPile}
           flipSolitaireCards={flipSolitaireCards}
           broadcastPlayerSolitaire={broadcastPlayerSolitaire}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
