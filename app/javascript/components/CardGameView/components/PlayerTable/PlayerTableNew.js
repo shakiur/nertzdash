@@ -21,9 +21,42 @@ const PlayerTableNew = ({
   setSolitaireYPos,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
-  broadcastPlayerSolitaire,
-  broadcastPlayerSolitaireXYPos
+  setBroadcastTime
 }) => {
+  function broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_solitaire?' +
+      'data_type=' + 'player_solitaire' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
+      '&solitaire_pile=' + JSON.stringify(solitairePile) +
+      '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&time=' + broadcastTime
+    );
+  }
+
+  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
+    const delay = 25
+    const currentTime = new Date().getTime();
+    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+
+    if(meetsDelayThreshold) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
+        'data_type=' + 'player_solitaire_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&solitaire_x_pos=' + solitaireXPos +
+        '&solitaire_y_pos=' + solitaireYPos +
+        '&time=' + broadcastTime
+      );
+    }
+  }
+
   useEffect(() => {
     if(playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaire(
