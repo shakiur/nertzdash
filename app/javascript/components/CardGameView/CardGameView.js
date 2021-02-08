@@ -77,16 +77,6 @@ function CardGameView() {
     }
   }
 
-  function setBroadcastPlayerUuid(playerPos, playerUuid) {
-    switch(playerPos) {
-      case 1:
-        setPlayer1BroadcastPlayerUuid(playerUuid)
-        break;
-      default:
-        break;
-    }
-  }
-
   function updatePlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     switch(playerPos) {
       case 1:
@@ -94,6 +84,12 @@ function CardGameView() {
         setPlayer1SolitaireDeck(solitaireDeck)
         setPlayer1SolitairePile(solitairePile)
         setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2SolitaireDeck(solitaireDeck)
+        setPlayer2SolitairePile(solitairePile)
+        setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
         break
       default:
         break
@@ -106,6 +102,11 @@ function CardGameView() {
         setPlayer1BroadcastPlayerUuid(playerUuid)
         setPlayer1SolitaireXPos(solitaireXPos)
         setPlayer1SolitaireYPos(solitaireYPos)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2SolitaireXPos(solitaireXPos)
+        setPlayer2SolitaireYPos(solitaireYPos)
         break
       default:
         break
@@ -149,7 +150,6 @@ function CardGameView() {
 
     if(meetsDelayThreshold) {
     setBroadcastTime(currentTime)
-    setBroadcastPlayerUuid(playerPos, playerUuid)
 
       fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
         'data_type=' + 'player_solitaire_x_y_pos' +
@@ -284,19 +284,7 @@ function CardGameView() {
       }
     })
 
-  }, [subscribed]);
-
-  useEffect(() => {
-    if(playerUuid == player1BroadcastPlayerUuid) {
-      broadcastPlayerSolitaire(1, playerUuid, player1SolitaireDeck, player1SolitairePile, player1SolitaireLeftoverPile);
-    }
-  }, [player1SolitairePile])
-
-  useEffect(() => {
-    if(playerUuid == player1BroadcastPlayerUuid) {
-      broadcastPlayerSolitaireXYPos(1, playerUuid, player1SolitaireXPos, player1SolitaireYPos)
-    }
-  }, [player1SolitaireXPos, player1SolitaireYPos])
+  }, []);
 
 
   return (
@@ -316,16 +304,29 @@ function CardGameView() {
           solitaireYPos={player1SolitaireYPos}
           setSolitaireXPos={setPlayer1SolitaireXPos}
           setSolitaireYPos={setPlayer1SolitaireYPos}
+          broadcastPlayerUuid={player1BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
-        <PlayerTable
+        <PlayerTableNew
           playerPos={2}
           playerUuid={playerUuid}
-          xPos={player2XPos}
-          yPos={player2YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
+          solitaireDeck={player2SolitaireDeck}
+          solitairePile={player2SolitairePile}
+          solitaireLeftoverPile={player2SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer2SolitaireDeck}
+          setSolitairePile={setPlayer2SolitairePile}
+          setSolitaireLeftoverPile={setPlayer2SolitaireLeftoverPile}
+          solitaireXPos={player2SolitaireXPos}
+          solitaireYPos={player2SolitaireYPos}
+          setSolitaireXPos={setPlayer2SolitaireXPos}
+          setSolitaireYPos={setPlayer2SolitaireYPos}
+          broadcastPlayerUuid={player2BroadcastPlayerUuid}
+          setBroadcastPlayerUuid={setPlayer2BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
       </section>
 

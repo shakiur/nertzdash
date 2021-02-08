@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
@@ -19,8 +19,34 @@ const PlayerTableNew = ({
   solitaireYPos,
   setSolitaireXPos,
   setSolitaireYPos,
-  setBroadcastPlayerUuid
+  broadcastPlayerUuid,
+  setBroadcastPlayerUuid,
+  broadcastPlayerSolitaire,
+  broadcastPlayerSolitaireXYPos
 }) => {
+  useEffect(() => {
+    if(playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaire(
+        playerPos,
+        playerUuid,
+        solitaireDeck,
+        solitairePile,
+        solitaireLeftoverPile
+      );
+    }
+  }, [solitairePile])
+
+  useEffect(() => {
+    if(playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaireXYPos(
+        playerPos,
+        playerUuid,
+        solitaireXPos,
+        solitaireYPos
+      )
+    }
+  }, [solitaireXPos, solitaireYPos])
+
   return (
     <div className="PlayerTableNew">
       <div className="SolitaireDeckArea">
