@@ -37,8 +37,14 @@ function CardGameView() {
   const [player1SolitaireLeftoverPile, setPlayer1SolitaireLeftoverPile] = useState([]);
   const [player1SolitaireXPos, setPlayer1SolitaireXPos] = useState(0)
   const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
-
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
+
+  const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState(generateCardDeck());
+  const [player2SolitairePile, setPlayer2SolitairePile] = useState([]);
+  const [player2SolitaireLeftoverPile, setPlayer2SolitaireLeftoverPile] = useState([]);
+  const [player2SolitaireXPos, setPlayer2SolitaireXPos] = useState(0)
+  const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
+  const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
     switch(playerPos) {
@@ -193,28 +199,6 @@ function CardGameView() {
     return cardDeck
   }
 
-  function flipSolitaireCards(solitaireDeck, solitairePile, solitaireLeftoverPile) {
-    if(solitairePile.length > 0) {
-      setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile => [...solitaireLeftoverPile, ...solitairePile.reverse()])
-      setPlayer1SolitairePile([])
-    }
-
-    if(solitairePile.length == 0 && solitaireDeck.length == 0) {
-      setPlayer1SolitaireDeck(solitaireLeftoverPile)
-      setPlayer1SolitaireLeftoverPile([])
-    }
-
-    const numCardsToFlip = Math.min(solitaireDeck.length, 3)
-
-    for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
-      let cardFlipped = solitaireDeck.shift()
-
-      setPlayer1SolitaireDeck(solitaireDeck.filter(card => cardFlipped['id'] !== card['id']))
-      setPlayer1SolitairePile(solitairePile => [cardFlipped, ...solitairePile])
-    }
-
-  }
-
   function updatePlayerPositionFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"]);
     const retrievedPlayerUuid = data["player_uuid"];
@@ -325,12 +309,13 @@ function CardGameView() {
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
           solitaireLeftoverPile={player1SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer1SolitaireDeck}
+          setSolitairePile={setPlayer1SolitairePile}
+          setSolitaireLeftoverPile={setPlayer1SolitaireLeftoverPile}
           solitaireXPos={player1SolitaireXPos}
           solitaireYPos={player1SolitaireYPos}
           setSolitaireXPos={setPlayer1SolitaireXPos}
           setSolitaireYPos={setPlayer1SolitaireYPos}
-          flipSolitaireCards={flipSolitaireCards}
-          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
         />
         <PlayerTable

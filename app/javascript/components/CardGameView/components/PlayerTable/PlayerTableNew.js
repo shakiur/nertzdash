@@ -12,12 +12,13 @@ const PlayerTableNew = ({
   solitaireDeck,
   solitairePile,
   solitaireLeftoverPile,
+  setSolitaireDeck,
+  setSolitairePile,
+  setSolitaireLeftoverPile,
   solitaireXPos,
   solitaireYPos,
   setSolitaireXPos,
   setSolitaireYPos,
-  flipSolitaireCards,
-  broadcastPlayerSolitaire,
   setBroadcastPlayerUuid
 }) => {
   return (
@@ -30,8 +31,9 @@ const PlayerTableNew = ({
           solitaireDeck={solitaireDeck}
           solitairePile={solitairePile}
           solitaireLeftoverPile={solitaireLeftoverPile}
-          flipSolitaireCards={flipSolitaireCards}
-          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          setSolitaireDeck={setSolitaireDeck}
+          setSolitairePile={setSolitairePile}
+          setSolitaireLeftoverPile={setSolitaireLeftoverPile}
           setBroadcastPlayerUuid={setBroadcastPlayerUuid}
         />
         <SolitairePileArea
