@@ -46,6 +46,34 @@ function CardGameView() {
   const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState(generateCardDeck());
+  const [player3SolitairePile, setPlayer3SolitairePile] = useState([]);
+  const [player3SolitaireLeftoverPile, setPlayer3SolitaireLeftoverPile] = useState([]);
+  const [player3SolitaireXPos, setPlayer3SolitaireXPos] = useState(0)
+  const [player3SolitaireYPos, setPlayer3SolitaireYPos] = useState(0)
+  const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
+
+  const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState(generateCardDeck());
+  const [player4SolitairePile, setPlayer4SolitairePile] = useState([]);
+  const [player4SolitaireLeftoverPile, setPlayer4SolitaireLeftoverPile] = useState([]);
+  const [player4SolitaireXPos, setPlayer4SolitaireXPos] = useState(0)
+  const [player4SolitaireYPos, setPlayer4SolitaireYPos] = useState(0)
+  const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
+
+  const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState(generateCardDeck());
+  const [player5SolitairePile, setPlayer5SolitairePile] = useState([]);
+  const [player5SolitaireLeftoverPile, setPlayer5SolitaireLeftoverPile] = useState([]);
+  const [player5SolitaireXPos, setPlayer5SolitaireXPos] = useState(0)
+  const [player5SolitaireYPos, setPlayer5SolitaireYPos] = useState(0)
+  const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
+
+  const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState(generateCardDeck());
+  const [player6SolitairePile, setPlayer6SolitairePile] = useState([]);
+  const [player6SolitaireLeftoverPile, setPlayer6SolitaireLeftoverPile] = useState([]);
+  const [player6SolitaireXPos, setPlayer6SolitaireXPos] = useState(0)
+  const [player6SolitaireYPos, setPlayer6SolitaireYPos] = useState(0)
+  const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
+
   function updatePlayerXYPos(playerPos, xPos, yPos) {
     switch(playerPos) {
       case 1:
@@ -91,6 +119,30 @@ function CardGameView() {
         setPlayer2SolitairePile(solitairePile)
         setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
         break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3SolitaireDeck(solitaireDeck)
+        setPlayer3SolitairePile(solitairePile)
+        setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4SolitaireDeck(solitaireDeck)
+        setPlayer4SolitairePile(solitairePile)
+        setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5SolitaireDeck(solitaireDeck)
+        setPlayer5SolitairePile(solitairePile)
+        setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6SolitaireDeck(solitaireDeck)
+        setPlayer6SolitairePile(solitairePile)
+        setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
       default:
         break
     }
@@ -107,6 +159,26 @@ function CardGameView() {
         setPlayer2BroadcastPlayerUuid(playerUuid)
         setPlayer2SolitaireXPos(solitaireXPos)
         setPlayer2SolitaireYPos(solitaireYPos)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3SolitaireXPos(solitaireXPos)
+        setPlayer3SolitaireYPos(solitaireYPos)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4SolitaireXPos(solitaireXPos)
+        setPlayer4SolitaireYPos(solitaireYPos)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5SolitaireXPos(solitaireXPos)
+        setPlayer5SolitaireYPos(solitaireYPos)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6SolitaireXPos(solitaireXPos)
+        setPlayer6SolitaireYPos(solitaireYPos)
         break
       default:
         break
@@ -331,45 +403,85 @@ function CardGameView() {
       </section>
 
       <section className="MiddleRow">
-        <PlayerTable
+        <PlayerTableNew
           playerPos={3}
           playerUuid={playerUuid}
-          xPos={player3XPos}
-          yPos={player3YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
+          solitaireDeck={player3SolitaireDeck}
+          solitairePile={player3SolitairePile}
+          solitaireLeftoverPile={player3SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer3SolitaireDeck}
+          setSolitairePile={setPlayer3SolitairePile}
+          setSolitaireLeftoverPile={setPlayer3SolitaireLeftoverPile}
+          solitaireXPos={player3SolitaireXPos}
+          solitaireYPos={player3SolitaireYPos}
+          setSolitaireXPos={setPlayer3SolitaireXPos}
+          setSolitaireYPos={setPlayer3SolitaireYPos}
+          broadcastPlayerUuid={player3BroadcastPlayerUuid}
+          setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
         <CenterTable />
-        <PlayerTable
+        <PlayerTableNew
           playerPos={4}
           playerUuid={playerUuid}
-          xPos={player4XPos}
-          yPos={player4YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
+          solitaireDeck={player4SolitaireDeck}
+          solitairePile={player4SolitairePile}
+          solitaireLeftoverPile={player4SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer4SolitaireDeck}
+          setSolitairePile={setPlayer4SolitairePile}
+          setSolitaireLeftoverPile={setPlayer4SolitaireLeftoverPile}
+          solitaireXPos={player4SolitaireXPos}
+          solitaireYPos={player4SolitaireYPos}
+          setSolitaireXPos={setPlayer4SolitaireXPos}
+          setSolitaireYPos={setPlayer4SolitaireYPos}
+          broadcastPlayerUuid={player4BroadcastPlayerUuid}
+          setBroadcastPlayerUuid={setPlayer4BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
       </section>
 
       <section className="BottomRow">
-        <PlayerTable
+        <PlayerTableNew
           playerPos={5}
           playerUuid={playerUuid}
-          xPos={player5XPos}
-          yPos={player5YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
+          solitaireDeck={player5SolitaireDeck}
+          solitairePile={player5SolitairePile}
+          solitaireLeftoverPile={player5SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer5SolitaireDeck}
+          setSolitairePile={setPlayer5SolitairePile}
+          setSolitaireLeftoverPile={setPlayer5SolitaireLeftoverPile}
+          solitaireXPos={player5SolitaireXPos}
+          solitaireYPos={player5SolitaireYPos}
+          setSolitaireXPos={setPlayer5SolitaireXPos}
+          setSolitaireYPos={setPlayer5SolitaireYPos}
+          broadcastPlayerUuid={player5BroadcastPlayerUuid}
+          setBroadcastPlayerUuid={setPlayer5BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
-        <PlayerTable
+        <PlayerTableNew
           playerPos={6}
           playerUuid={playerUuid}
-          xPos={player6XPos}
-          yPos={player6YPos}
           broadcastTime={broadcastTime}
-          updatePlayerXYPos={updatePlayerXYPos}
-          broadcastPlayerXYPos={broadcastPlayerXYPos}
+          solitaireDeck={player6SolitaireDeck}
+          solitairePile={player6SolitairePile}
+          solitaireLeftoverPile={player6SolitaireLeftoverPile}
+          setSolitaireDeck={setPlayer6SolitaireDeck}
+          setSolitairePile={setPlayer6SolitairePile}
+          setSolitaireLeftoverPile={setPlayer6SolitaireLeftoverPile}
+          solitaireXPos={player6SolitaireXPos}
+          solitaireYPos={player6SolitaireYPos}
+          setSolitaireXPos={setPlayer6SolitaireXPos}
+          setSolitaireYPos={setPlayer6SolitaireYPos}
+          broadcastPlayerUuid={player6BroadcastPlayerUuid}
+          setBroadcastPlayerUuid={setPlayer6BroadcastPlayerUuid}
+          broadcastPlayerSolitaire={broadcastPlayerSolitaire}
+          broadcastPlayerSolitaireXYPos={broadcastPlayerSolitaireXYPos}
         />
       </section>
     </section>
