@@ -27,14 +27,11 @@ const CardDeckHolder = ({
     */
   }
   return (
-    <Draggable
+    <div
+      className="CardDeckHolder"
+      onClick={() => handleSolitaireFlip()}
     >
-      <div
-        className="CardDeckHolder"
-        onClick={() => handleSolitaireFlip()}
-      >
-      </div>
-    </Draggable>
+    </div>
   )
 }
 

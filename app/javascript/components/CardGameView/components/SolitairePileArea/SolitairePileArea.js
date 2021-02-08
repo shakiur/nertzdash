@@ -1,7 +1,16 @@
 import React from "react"
 import Draggable from "react-draggable";
 
-const SolitairePileArea = ({ playerPos, playerUuid, solitairePile }) => {
+const SolitairePileArea = ({
+  playerPos,
+  playerUuid,
+  solitairePile,
+  solitaireXPos,
+  solitaireYPos,
+  setSolitaireXPos,
+  setSolitaireYPos,
+  setBroadcastPlayerUuid
+}) => {
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`
@@ -26,6 +35,12 @@ const SolitairePileArea = ({ playerPos, playerUuid, solitairePile }) => {
     }
   }
 
+  function updateSolitaireXYPos(event, ui) {
+    setBroadcastPlayerUuid(playerUuid)
+    setSolitaireXPos(solitaireXPos + ui.deltaX)
+    setSolitaireYPos(solitaireYPos + ui.deltaY)
+  }
+
   return (
     <div className="ThreeCardHolder">
       <div className="topCardPreview">
@@ -39,6 +54,8 @@ const SolitairePileArea = ({ playerPos, playerUuid, solitairePile }) => {
         </div>
       </div>
       <Draggable
+        onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
+        position={{x: solitaireXPos, y: solitaireYPos}}
       >
         <div className="bottomCard">
           <div className={`topNumSuit ${cardColor(solitairePile[0])}`}>

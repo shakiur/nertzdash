@@ -35,6 +35,9 @@ function CardGameView() {
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
   const [player1SolitaireLeftoverPile, setPlayer1SolitaireLeftoverPile] = useState([]);
+  const [player1SolitaireXPos, setPlayer1SolitaireXPos] = useState(0)
+  const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
+
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
   function updatePlayerXYPos(playerPos, xPos, yPos) {
@@ -68,6 +71,16 @@ function CardGameView() {
     }
   }
 
+  function setBroadcastPlayerUuid(playerPos, playerUuid) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        break;
+      default:
+        break;
+    }
+  }
+
   function updatePlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     switch(playerPos) {
       case 1:
@@ -75,6 +88,18 @@ function CardGameView() {
         setPlayer1SolitaireDeck(solitaireDeck)
         setPlayer1SolitairePile(solitairePile)
         setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      default:
+        break
+    }
+  }
+
+  function updatePlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1SolitaireXPos(solitaireXPos)
+        setPlayer1SolitaireYPos(solitaireYPos)
         break
       default:
         break
@@ -109,6 +134,26 @@ function CardGameView() {
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
       '&time=' + broadcastTime
     );
+  }
+
+  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
+    const delay = 25
+    const currentTime = new Date().getTime();
+    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+
+    if(meetsDelayThreshold) {
+    setBroadcastTime(currentTime)
+    setBroadcastPlayerUuid(playerPos, playerUuid)
+
+      fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
+        'data_type=' + 'player_solitaire_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&solitaire_x_pos=' + solitaireXPos +
+        '&solitaire_y_pos=' + solitaireYPos +
+        '&time=' + broadcastTime
+      );
+    }
   }
 
   function generateCardDeck() {
@@ -209,6 +254,26 @@ function CardGameView() {
     }
   }
 
+  function updatePlayerSolitaireXYPosFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedSolitaireXPos = parseInt(data["solitaire_x_pos"])
+    const retrievedSolitaireYPos = parseInt(data["solitaire_y_pos"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      updatePlayerSolitaireXYPos(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedSolitaireXPos,
+        retrievedSolitaireYPos
+      )
+    }
+  }
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
 
@@ -226,6 +291,9 @@ function CardGameView() {
           case 'player_solitaire':
             updatePlayerSolitaireFromBroadcast(data);
             break;
+          case 'player_solitaire_x_y_pos':
+            updatePlayerSolitaireXYPosFromBroadcast(data)
+            break;
           default:
             break;
         }
@@ -240,6 +308,13 @@ function CardGameView() {
     }
   }, [player1SolitairePile])
 
+  useEffect(() => {
+    if(playerUuid == player1BroadcastPlayerUuid) {
+      broadcastPlayerSolitaireXYPos(1, playerUuid, player1SolitaireXPos, player1SolitaireYPos)
+    }
+  }, [player1SolitaireXPos, player1SolitaireYPos])
+
+
   return (
     <section className="CardGameView">
       <section className="TopRow">
@@ -250,6 +325,10 @@ function CardGameView() {
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
           solitaireLeftoverPile={player1SolitaireLeftoverPile}
+          solitaireXPos={player1SolitaireXPos}
+          solitaireYPos={player1SolitaireYPos}
+          setSolitaireXPos={setPlayer1SolitaireXPos}
+          setSolitaireYPos={setPlayer1SolitaireYPos}
           flipSolitaireCards={flipSolitaireCards}
           broadcastPlayerSolitaire={broadcastPlayerSolitaire}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
