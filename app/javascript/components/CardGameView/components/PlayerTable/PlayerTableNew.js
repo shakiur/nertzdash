@@ -9,6 +9,7 @@ import NertzPileArea from "../../components/NertzPileArea/NertzPileArea"
 const PlayerTableNew = ({
   playerPos,
   playerUuid,
+  allPlayers,
   broadcastTime,
   solitaireDeck,
   solitairePile,

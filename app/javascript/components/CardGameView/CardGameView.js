@@ -10,10 +10,12 @@ const playerUuid = Math.random().toString(36).substring(7);
 
 function CardGameView() {
   const [subscribed, setSubscribed] = useState(false);
+  const [allPlayers, setAllPlayers] = useState(fetchAllPlayers())
 
   const [retrievalTime, setRetrievalTime] = useState(new Date().getTime());
   const [broadcastTime, setBroadcastTime] = useState(new Date().getTime());
 
+  const [player1Active, setPlayer1Active] = useState(false)
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
   const [player1SolitaireLeftoverPile, setPlayer1SolitaireLeftoverPile] = useState([]);
@@ -21,6 +23,7 @@ function CardGameView() {
   const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player2Active, setPlayer2Active] = useState(false)
   const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState(generateCardDeck());
   const [player2SolitairePile, setPlayer2SolitairePile] = useState([]);
   const [player2SolitaireLeftoverPile, setPlayer2SolitaireLeftoverPile] = useState([]);
@@ -28,6 +31,7 @@ function CardGameView() {
   const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player3Active, setPlayer3Active] = useState(false)
   const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState(generateCardDeck());
   const [player3SolitairePile, setPlayer3SolitairePile] = useState([]);
   const [player3SolitaireLeftoverPile, setPlayer3SolitaireLeftoverPile] = useState([]);
@@ -35,6 +39,7 @@ function CardGameView() {
   const [player3SolitaireYPos, setPlayer3SolitaireYPos] = useState(0)
   const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player4Active, setPlayer4Active] = useState(false)
   const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState(generateCardDeck());
   const [player4SolitairePile, setPlayer4SolitairePile] = useState([]);
   const [player4SolitaireLeftoverPile, setPlayer4SolitaireLeftoverPile] = useState([]);
@@ -42,6 +47,7 @@ function CardGameView() {
   const [player4SolitaireYPos, setPlayer4SolitaireYPos] = useState(0)
   const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player5Active, setPlayer5Active] = useState(false)
   const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState(generateCardDeck());
   const [player5SolitairePile, setPlayer5SolitairePile] = useState([]);
   const [player5SolitaireLeftoverPile, setPlayer5SolitaireLeftoverPile] = useState([]);
@@ -49,6 +55,7 @@ function CardGameView() {
   const [player5SolitaireYPos, setPlayer5SolitaireYPos] = useState(0)
   const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player6Active, setPlayer6Active] = useState(false)
   const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState(generateCardDeck());
   const [player6SolitairePile, setPlayer6SolitairePile] = useState([]);
   const [player6SolitaireLeftoverPile, setPlayer6SolitaireLeftoverPile] = useState([]);
@@ -240,6 +247,14 @@ function CardGameView() {
     }
   }
 
+  function fetchAllPlayers() {
+    fetch('/api/v1/players.json')
+      .then((response) => { return response.json() })
+      .then((data) => {
+        setAllPlayers(data)
+      });
+  }
+
   return (
     <section className="CardGameView">
       <section className="TopRow">
@@ -247,6 +262,7 @@ function CardGameView() {
           playerPos={1}
           playerUuid={playerUuid}
           broadcastTime={broadcastTime}
+          allPlayers={allPlayers}
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
           solitaireLeftoverPile={player1SolitaireLeftoverPile}
@@ -264,6 +280,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={2}
           playerUuid={playerUuid}
+          allPlayers={allPlayers}
           broadcastTime={broadcastTime}
           solitaireDeck={player2SolitaireDeck}
           solitairePile={player2SolitairePile}
@@ -285,6 +302,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={3}
           playerUuid={playerUuid}
+          allPlayers={allPlayers}
           broadcastTime={broadcastTime}
           solitaireDeck={player3SolitaireDeck}
           solitairePile={player3SolitairePile}
@@ -304,6 +322,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={4}
           playerUuid={playerUuid}
+          allPlayers={allPlayers}
           broadcastTime={broadcastTime}
           solitaireDeck={player4SolitaireDeck}
           solitairePile={player4SolitairePile}
@@ -325,6 +344,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={5}
           playerUuid={playerUuid}
+          allPlayers={allPlayers}
           broadcastTime={broadcastTime}
           solitaireDeck={player5SolitaireDeck}
           solitairePile={player5SolitairePile}
@@ -343,6 +363,7 @@ function CardGameView() {
         <PlayerTableNew
           playerPos={6}
           playerUuid={playerUuid}
+          allPlayers={allPlayers}
           broadcastTime={broadcastTime}
           solitaireDeck={player6SolitaireDeck}
           solitairePile={player6SolitairePile}
