@@ -10,7 +10,7 @@ const playerUuid = Math.random().toString(36).substring(7);
 
 function CardGameView() {
   const [subscribed, setSubscribed] = useState(false);
-  const [allPlayers, setAllPlayers] = useState(fetchAllPlayers())
+  const [allPlayers, setAllPlayers] = useState([])
 
   const [retrievalTime, setRetrievalTime] = useState(new Date().getTime());
   const [broadcastTime, setBroadcastTime] = useState(new Date().getTime());
