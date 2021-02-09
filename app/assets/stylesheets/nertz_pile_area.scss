@@ -1,12 +1,10 @@
-.ThreeCardHolder {
+.NertzPile {
   display: flex;
   flex-direction: column;
 
-  margin-top: 10px;
-
-  .topCardPreview {
+  .cardPreviewSmall {
     width: 50px;
-    height: 15px;
+    height: 10px;
 
     border-top: 1px dashed grey;
     border-left: 1px dashed grey;
@@ -17,9 +15,9 @@
     padding-right: 2px;
   }
 
-  .middleCardPreview {
+  .cardPreviewLarge {
     width: 50px;
-    height: 15px;
+    height: 20px;
 
     border-top: 1px dashed grey;
     border-left: 1px dashed grey;
@@ -46,30 +44,5 @@
 
     user-select: none;
   }
-
-  .topNumSuit {
-    display: flex;
-    flex-direction: row;
-    font-size: 10px;
-  }
-
-  .middleSuit {
-    display: flex;
-    justify-content: center;
-    font-size: 25px;
-  }
-
-  .bottomNumSuit {
-    display: flex;
-    flex-direction: row-reverse;
-    font-size: 10px;
-  }
-
-  .red {
-    color: #B71C1C;
-  }
-
-  .black {
-    color: #000000;
-  }
 }
+

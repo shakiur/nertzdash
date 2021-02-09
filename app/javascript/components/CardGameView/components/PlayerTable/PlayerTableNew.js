@@ -4,6 +4,7 @@ import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
 import SolitaireDeckArea from "../../components/SolitaireDeckArea/SolitaireDeckArea"
 import SolitairePileArea from "../../components/SolitairePileArea/SolitairePileArea"
+import NertzPileArea from "../../components/NertzPileArea/NertzPileArea"
 
 const PlayerTableNew = ({
   playerPos,
@@ -83,7 +84,8 @@ const PlayerTableNew = ({
   return (
     <div className="PlayerTableNew">
       <div className="NertzPileArea">
-        <CardHolder/>
+        <NertzPileArea
+        />
       </div>
       <div className="SolitaireDeckArea">
         <SolitaireDeckArea
