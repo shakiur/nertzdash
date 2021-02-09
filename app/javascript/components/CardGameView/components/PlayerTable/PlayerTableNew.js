@@ -82,6 +82,9 @@ const PlayerTableNew = ({
 
   return (
     <div className="PlayerTableNew">
+      <div className="NertzPileArea">
+        <CardHolder/>
+      </div>
       <div className="SolitaireDeckArea">
         <SolitaireDeckArea
           playerPos={playerPos}

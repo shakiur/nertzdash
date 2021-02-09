@@ -3,10 +3,18 @@
   justify-content: space-between;
 
   height: 250px;
-  width: 310px;
+  width: 360px;
   border: 1px solid black;
 
   padding: 10px;
+
+  .NertzPileArea {
+    display: flex;
+    flex-direction: column;
+
+    height: 230px;
+    width: 50px;
+  }
 
   .SolitaireDeckArea {
     display: flex;
