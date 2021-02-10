@@ -35,4 +35,9 @@ class CardGameController < ApplicationController
       time: params[:time]
     head :ok
   end
+
+  def all_players
+    all_players_hash = Player.all.map{ |player| {:id => player.id, :name => player.name} }
+    render json: all_players_hash
+  end
 end

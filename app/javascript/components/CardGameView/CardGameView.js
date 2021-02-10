@@ -102,6 +102,7 @@ function CardGameView() {
 
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
+    fetchAllPlayers()
 
     cableApp.cable.subscriptions.create({
       channel: 'CardGameChannel'
@@ -248,11 +249,9 @@ function CardGameView() {
   }
 
   function fetchAllPlayers() {
-    fetch('/api/v1/players.json')
-      .then((response) => { return response.json() })
-      .then((data) => {
-        setAllPlayers(data)
-      });
+    fetch('/card_game/all_players.json')
+      .then((allPlayersHash) => { return allPlayersHash.json() })
+      .then((allPlayersJson) => { setAllPlayers(allPlayersJson) });
   }
 
   return (

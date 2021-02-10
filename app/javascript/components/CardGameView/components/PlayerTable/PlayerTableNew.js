@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
+import { Button } from 'semantic-ui-react';
 import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
 import SolitaireDeckArea from "../../components/SolitaireDeckArea/SolitaireDeckArea"
@@ -82,47 +83,71 @@ const PlayerTableNew = ({
     }
   }, [solitaireXPos, solitaireYPos])
 
+  const playersList = [
+    {
+      key: 1,
+      text: 'Shak',
+      value: 1
+    },
+    {
+      key: 2,
+      text: 'Sam',
+      value: 2
+    },
+  ]
+
   return (
     <div className="PlayerTableNew">
-      <div className="NertzPileArea">
-        <NertzPileArea
-        />
+      <div className="CardsArea">
+        <div className="NertzPileArea">
+          <NertzPileArea
+          />
+        </div>
+        <div className="SolitaireDeckArea">
+          <SolitaireDeckArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            broadcastTime={broadcastTime}
+            solitaireDeck={solitaireDeck}
+            solitairePile={solitairePile}
+            solitaireLeftoverPile={solitaireLeftoverPile}
+            setSolitaireDeck={setSolitaireDeck}
+            setSolitairePile={setSolitairePile}
+            setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+          />
+          <SolitairePileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            solitairePile={solitairePile}
+            solitaireXPos={solitaireXPos}
+            solitaireYPos={solitaireYPos}
+            setSolitaireXPos={setSolitaireXPos}
+            setSolitaireYPos={setSolitaireYPos}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+          />
+        </div>
+        <div className="SolitaireArea">
+          <CardHolder/>
+        </div>
+        <div className="SolitaireArea">
+          <CardHolder/>
+        </div>
+        <div className="SolitaireArea">
+          <CardHolder/>
+        </div>
+        <div className="SolitaireArea">
+          <CardHolder/>
+        </div>
       </div>
-      <div className="SolitaireDeckArea">
-        <SolitaireDeckArea
-          playerPos={playerPos}
-          playerUuid={playerUuid}
-          broadcastTime={broadcastTime}
-          solitaireDeck={solitaireDeck}
-          solitairePile={solitairePile}
-          solitaireLeftoverPile={solitaireLeftoverPile}
-          setSolitaireDeck={setSolitaireDeck}
-          setSolitairePile={setSolitairePile}
-          setSolitaireLeftoverPile={setSolitaireLeftoverPile}
-          setBroadcastPlayerUuid={setBroadcastPlayerUuid}
-        />
-        <SolitairePileArea
-          playerPos={playerPos}
-          playerUuid={playerUuid}
-          solitairePile={solitairePile}
-          solitaireXPos={solitaireXPos}
-          solitaireYPos={solitaireYPos}
-          setSolitaireXPos={setSolitaireXPos}
-          setSolitaireYPos={setSolitaireYPos}
-          setBroadcastPlayerUuid={setBroadcastPlayerUuid}
-        />
-      </div>
-      <div className="SolitaireArea">
-        <CardHolder/>
-      </div>
-      <div className="SolitaireArea">
-        <CardHolder/>
-      </div>
-      <div className="SolitaireArea">
-        <CardHolder/>
-      </div>
-      <div className="SolitaireArea">
-        <CardHolder/>
+      <div className="PlayerGameArea">
+        <select>
+          <option value="1">Shak</option>
+          <option value="2">Sam</option>
+        </select>
+        <button>
+          Sit
+        </button>
       </div>
     </div>
   )

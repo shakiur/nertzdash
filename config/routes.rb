@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/experimental' => 'experimental#index', as: :experimental
 
   get '/card_game' => 'card_game#index', as: :card_game
+  get '/card_game/all_players' => 'card_game#all_players', as: :card_game_all_players
   get '/card_game/broadcast_player_position' => 'card_game#broadcast_player_position', as: :card_game_broadcast_player_position
   get '/card_game/broadcast_player_solitaire' => 'card_game#broadcast_player_solitaire', as: :card_game_broadcast_player_solitaire
   get '/card_game/broadcast_player_solitaire_x_y_pos' => 'card_game#broadcast_player_solitaire_x_y_pos', as: :card_game_broadcast_player_solitaire_x_y_pos
