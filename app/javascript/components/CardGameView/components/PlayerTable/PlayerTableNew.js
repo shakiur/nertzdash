@@ -83,18 +83,21 @@ const PlayerTableNew = ({
     }
   }, [solitaireXPos, solitaireYPos])
 
-  const playersList = [
-    {
-      key: 1,
-      text: 'Shak',
-      value: 1
-    },
-    {
-      key: 2,
-      text: 'Sam',
-      value: 2
-    },
-  ]
+
+  function PlayersDropdown() {
+    const playerOptions = allPlayers.map((player) =>
+      <option key={playerPos+player.id} value={player.id} >
+        {player.name}
+      </option>
+    );
+
+    return (
+      <select>
+        <option key={0} value={0}></option>
+        {playerOptions}
+      </select>
+    )
+  }
 
   return (
     <div className="PlayerTableNew">
@@ -141,12 +144,9 @@ const PlayerTableNew = ({
         </div>
       </div>
       <div className="PlayerGameArea">
-        <select>
-          <option value="1">Shak</option>
-          <option value="2">Sam</option>
-        </select>
+        <PlayersDropdown />
         <button>
-          Sit
+          Set Player
         </button>
       </div>
     </div>
