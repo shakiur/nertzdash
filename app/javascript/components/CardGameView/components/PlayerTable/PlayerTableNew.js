@@ -113,6 +113,7 @@ const PlayerTableNew = ({
           <SolitaireDeckArea
             playerPos={playerPos}
             playerUuid={playerUuid}
+            playerActive={playerActive}
             broadcastTime={broadcastTime}
             solitaireDeck={solitaireDeck}
             solitairePile={solitairePile}

@@ -4,6 +4,7 @@ import Draggable from "react-draggable";
 const CardDeckHolder = ({
   playerPos,
   playerUuid,
+  playerActive,
   broadcastTime,
   solitaireDeck,
   solitairePile,
@@ -50,9 +51,21 @@ const CardDeckHolder = ({
     }
   }
 
+  function cardDeckClassNames() {
+    let classNames = "CardDeckHolder"
+
+    if(playerActive) {
+      classNames += ' solidLine'
+    } else {
+      classNames += ' dashedLine'
+    }
+
+    return classNames
+  }
+
   return (
     <div
-      className="CardDeckHolder"
+      className={cardDeckClassNames()}
       onClick={() => handleSolitaireFlip()}
     >
     </div>
