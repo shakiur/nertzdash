@@ -11,6 +11,12 @@ const PlayerTableNew = ({
   playerPos,
   playerUuid,
   allPlayers,
+  playerName,
+  playerDbId,
+  playerActive,
+  setPlayerName,
+  setPlayerDbId,
+  setPlayerActive,
   broadcastTime,
   solitaireDeck,
   solitairePile,
@@ -83,6 +89,19 @@ const PlayerTableNew = ({
     }
   }, [solitaireXPos, solitaireYPos])
 
+  function handlePlayerSelectChange(event) {
+    const selectedName = event.target.value
+    setPlayerName(selectedName)
+  }
+
+  function handleSetPlayer() {
+    if(playerName == "") {
+      setPlayerActive(false)
+    } else {
+      setPlayerActive(true)
+    }
+  }
+
   return (
     <div className="PlayerTableNew">
       <div className="CardsArea">
@@ -128,17 +147,24 @@ const PlayerTableNew = ({
         </div>
       </div>
       <div className="PlayerGameArea">
-        <select className="PlayerSelect">
-          <option key={0} value={0}></option>
+        <select
+          value={playerName}
+          onChange={(event) => handlePlayerSelectChange(event)}
+          className="PlayerSelect"
+        >
+          <option key={0} value=''></option>
           {
             allPlayers.map((player) =>
-              <option key={playerPos+player.id} value={player.id}>
+              <option key={playerPos+player.id} value={player.name}>
                 {player.name}
               </option>
             )
           }
         </select>
-        <button className="SetPlayerButton">
+        <button
+          onClick={() => handleSetPlayer()}
+          className="SetPlayerButton"
+        >
           Set Player
         </button>
       </div>
