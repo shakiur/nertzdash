@@ -15,6 +15,8 @@ function CardGameView() {
   const [retrievalTime, setRetrievalTime] = useState(new Date().getTime());
   const [broadcastTime, setBroadcastTime] = useState(new Date().getTime());
 
+  const [player1Name, setPlayer1Name] = useState("")
+  const [player1DbId, setPlayer1DbId] = useState(0)
   const [player1Active, setPlayer1Active] = useState(false)
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
@@ -23,6 +25,8 @@ function CardGameView() {
   const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player2Name, setPlayer2Name] = useState("")
+  const [player2DbId, setPlayer2DbId] = useState(0)
   const [player2Active, setPlayer2Active] = useState(false)
   const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState(generateCardDeck());
   const [player2SolitairePile, setPlayer2SolitairePile] = useState([]);
@@ -31,6 +35,8 @@ function CardGameView() {
   const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player3Name, setPlayer3Name] = useState("")
+  const [player3DbId, setPlayer3DbId] = useState(0)
   const [player3Active, setPlayer3Active] = useState(false)
   const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState(generateCardDeck());
   const [player3SolitairePile, setPlayer3SolitairePile] = useState([]);
@@ -39,6 +45,8 @@ function CardGameView() {
   const [player3SolitaireYPos, setPlayer3SolitaireYPos] = useState(0)
   const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player4Name, setPlayer4Name] = useState("")
+  const [player4DbId, setPlayer4DbId] = useState(0)
   const [player4Active, setPlayer4Active] = useState(false)
   const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState(generateCardDeck());
   const [player4SolitairePile, setPlayer4SolitairePile] = useState([]);
@@ -47,6 +55,8 @@ function CardGameView() {
   const [player4SolitaireYPos, setPlayer4SolitaireYPos] = useState(0)
   const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player5Name, setPlayer5Name] = useState("")
+  const [player5DbId, setPlayer5DbId] = useState(0)
   const [player5Active, setPlayer5Active] = useState(false)
   const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState(generateCardDeck());
   const [player5SolitairePile, setPlayer5SolitairePile] = useState([]);
@@ -55,6 +65,8 @@ function CardGameView() {
   const [player5SolitaireYPos, setPlayer5SolitaireYPos] = useState(0)
   const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [player6Name, setPlayer6Name] = useState("")
+  const [player6DbId, setPlayer6DbId] = useState(0)
   const [player6Active, setPlayer6Active] = useState(false)
   const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState(generateCardDeck());
   const [player6SolitairePile, setPlayer6SolitairePile] = useState([]);
@@ -262,6 +274,12 @@ function CardGameView() {
           playerUuid={playerUuid}
           broadcastTime={broadcastTime}
           allPlayers={allPlayers}
+          playerName={player1Name}
+          playerDbId={player1DbId}
+          playerActive={player1Active}
+          setPlayerName={setPlayer1Name}
+          setPlayerDbId={setPlayer1DbId}
+          setPlayerActive={setPlayer1Active}
           solitaireDeck={player1SolitaireDeck}
           solitairePile={player1SolitairePile}
           solitaireLeftoverPile={player1SolitaireLeftoverPile}
@@ -280,6 +298,12 @@ function CardGameView() {
           playerPos={2}
           playerUuid={playerUuid}
           allPlayers={allPlayers}
+          playerName={player2Name}
+          playerDbId={player2DbId}
+          playerActive={player2Active}
+          setPlayerName={setPlayer2Name}
+          setPlayerDbId={setPlayer2DbId}
+          setPlayerActive={setPlayer2Active}
           broadcastTime={broadcastTime}
           solitaireDeck={player2SolitaireDeck}
           solitairePile={player2SolitairePile}
@@ -302,6 +326,12 @@ function CardGameView() {
           playerPos={3}
           playerUuid={playerUuid}
           allPlayers={allPlayers}
+          playerName={player3Name}
+          playerDbId={player3DbId}
+          playerActive={player3Active}
+          setPlayerName={setPlayer3Name}
+          setPlayerDbId={setPlayer3DbId}
+          setPlayerActive={setPlayer3Active}
           broadcastTime={broadcastTime}
           solitaireDeck={player3SolitaireDeck}
           solitairePile={player3SolitairePile}
@@ -322,6 +352,12 @@ function CardGameView() {
           playerPos={4}
           playerUuid={playerUuid}
           allPlayers={allPlayers}
+          playerName={player4Name}
+          playerDbId={player4DbId}
+          playerActive={player4Active}
+          setPlayerName={setPlayer4Name}
+          setPlayerDbId={setPlayer4DbId}
+          setPlayerActive={setPlayer4Active}
           broadcastTime={broadcastTime}
           solitaireDeck={player4SolitaireDeck}
           solitairePile={player4SolitairePile}
@@ -344,6 +380,12 @@ function CardGameView() {
           playerPos={5}
           playerUuid={playerUuid}
           allPlayers={allPlayers}
+          playerName={player5Name}
+          playerDbId={player5DbId}
+          playerActive={player5Active}
+          setPlayerName={setPlayer5Name}
+          setPlayerDbId={setPlayer5DbId}
+          setPlayerActive={setPlayer5Active}
           broadcastTime={broadcastTime}
           solitaireDeck={player5SolitaireDeck}
           solitairePile={player5SolitairePile}
@@ -363,6 +405,12 @@ function CardGameView() {
           playerPos={6}
           playerUuid={playerUuid}
           allPlayers={allPlayers}
+          playerName={player6Name}
+          playerDbId={player6DbId}
+          playerActive={player6Active}
+          setPlayerName={setPlayer6Name}
+          setPlayerDbId={setPlayer6DbId}
+          setPlayerActive={setPlayer6Active}
           broadcastTime={broadcastTime}
           solitaireDeck={player6SolitaireDeck}
           solitairePile={player6SolitairePile}
