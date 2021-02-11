@@ -42,11 +42,22 @@
 
   .PlayerGameArea{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     height: 50px;
     width: 340px;
+
+    .PlayerSelect {
+      width: 90px;
+      margin-right: 5px;
+    }
+
+    .SetPlayerButton {
+      width: 90px;
+      margin-left: 5px;
+    }
   }
 }
