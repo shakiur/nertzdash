@@ -1,0 +1,24 @@
+.PlayerGameArea{
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  height: 50px;
+  width: 340px;
+
+  .PlayerSelect {
+    width: 90px;
+    height: 25px;
+    margin-right: 5px;
+  }
+
+  .SetPlayerButton {
+    width: 90px;
+    height: 25px;
+    margin-left: 5px;
+    border: 1px solid black;
+    font-size: 14px;
+  }
+}
