@@ -18,6 +18,8 @@ class CardGameController < ApplicationController
       data_type: params[:data_type],
       player_pos: params[:player_pos],
       player_uuid: params[:player_uuid],
+      player_active: params[:player_active],
+      player_name: params[:player_name],
       solitaire_deck: params[:solitaire_deck],
       solitaire_pile: params[:solitaire_pile],
       leftover_solitaire_pile: params[:leftover_solitaire_pile],

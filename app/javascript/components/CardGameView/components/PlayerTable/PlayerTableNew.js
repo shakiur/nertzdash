@@ -33,7 +33,33 @@ const PlayerTableNew = ({
   setBroadcastPlayerUuid,
   setBroadcastTime
 }) => {
-  function broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+
+  useEffect(() => {
+    if(playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaire(
+        playerPos,
+        playerUuid,
+        playerActive,
+        playerName,
+        solitaireDeck,
+        solitairePile,
+        solitaireLeftoverPile
+      );
+    }
+  }, [solitairePile])
+
+  useEffect(() => {
+    if(playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaireXYPos(
+        playerPos,
+        playerUuid,
+        solitaireXPos,
+        solitaireYPos
+      )
+    }
+  }, [solitaireXPos, solitaireYPos])
+
+  function broadcastPlayerSolitaire(playerPos, playerUuid, playerActive, playerName, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime)
 
@@ -41,6 +67,8 @@ const PlayerTableNew = ({
       'data_type=' + 'player_solitaire' +
       '&player_pos=' + playerPos +
       '&player_uuid=' + playerUuid +
+      '&player_active=' + playerActive +
+      '&player_name=' + playerName +
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
@@ -66,29 +94,6 @@ const PlayerTableNew = ({
       );
     }
   }
-
-  useEffect(() => {
-    if(playerUuid == broadcastPlayerUuid) {
-      broadcastPlayerSolitaire(
-        playerPos,
-        playerUuid,
-        solitaireDeck,
-        solitairePile,
-        solitaireLeftoverPile
-      );
-    }
-  }, [solitairePile])
-
-  useEffect(() => {
-    if(playerUuid == broadcastPlayerUuid) {
-      broadcastPlayerSolitaireXYPos(
-        playerPos,
-        playerUuid,
-        solitaireXPos,
-        solitaireYPos
-      )
-    }
-  }, [solitaireXPos, solitaireYPos])
 
   return (
     <div className="PlayerTableNew">
