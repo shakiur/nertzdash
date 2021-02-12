@@ -6,6 +6,7 @@ import CardHolder from "../../components/CardHolder/CardHolder"
 import SolitaireDeckArea from "../../components/SolitaireDeckArea/SolitaireDeckArea"
 import SolitairePileArea from "../../components/SolitairePileArea/SolitairePileArea"
 import NertzPileArea from "../../components/NertzPileArea/NertzPileArea"
+import PlayerGameArea from "../../components/PlayerGameArea/PlayerGameArea"
 
 const PlayerTableNew = ({
   playerPos,
@@ -89,19 +90,6 @@ const PlayerTableNew = ({
     }
   }, [solitaireXPos, solitaireYPos])
 
-  function handlePlayerSelectChange(event) {
-    const selectedName = event.target.value
-    setPlayerName(selectedName)
-  }
-
-  function handleSetPlayer() {
-    if(playerName == "") {
-      setPlayerActive(false)
-    } else {
-      setPlayerActive(true)
-    }
-  }
-
   return (
     <div className="PlayerTableNew">
       <div className="CardsArea">
@@ -147,28 +135,15 @@ const PlayerTableNew = ({
           <CardHolder/>
         </div>
       </div>
-      <div className="PlayerGameArea">
-        <select
-          value={playerName}
-          onChange={(event) => handlePlayerSelectChange(event)}
-          className="PlayerSelect"
-        >
-          <option key={0} value=''></option>
-          {
-            allPlayers.map((player) =>
-              <option key={playerPos+player.id} value={player.name}>
-                {player.name}
-              </option>
-            )
-          }
-        </select>
-        <button
-          onClick={() => handleSetPlayer()}
-          className="SetPlayerButton"
-        >
-          Set Player
-        </button>
-      </div>
+      <PlayerGameArea
+        playerPos={playerPos}
+        playerUuid={playerUuid}
+        playerActive={playerActive}
+        playerName={playerName}
+        setPlayerName={setPlayerName}
+        setPlayerActive={setPlayerActive}
+        allPlayers={allPlayers}
+      />
     </div>
   )
 }
