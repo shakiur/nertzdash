@@ -12,16 +12,31 @@ const PlayerGameArea = ({
   function PlayerGameDisplay() {
     if(playerActive) {
       return (
-        <span>{playerName}</span>
+        <ActivePlayerDisplay />
       )
     } else {
       return (
-        <div>
-          <PlayerSelectDropDown />
-          <SetPlayerButton />
-        </div>
+        <SelectPlayerDisplay />
       )
     }
+  }
+
+  function ActivePlayerDisplay() {
+    return (
+      <div className="ActivePlayerName">
+        <div className="PlayerLabel"><strong>Player:</strong></div>
+        <div className="PlayerName">{playerName}</div>
+      </div>
+    )
+  }
+
+  function SelectPlayerDisplay() {
+    return (
+      <div className="SelectPlayerDisplay">
+        <PlayerSelectDropDown />
+        <SetPlayerButton />
+      </div>
+    )
   }
 
   function PlayerSelectDropDown() {
