@@ -30,7 +30,7 @@
   .ActivePlayerName {
     display: flex;
     justify-content: flex-end;
-    font-size: 24px;
+    font-size: 20px;
 
     .PlayerLabel {
       margin-right: 5px;
@@ -38,6 +38,7 @@
 
     .PlayerName {
       margin-left: 5px;
+      margin-right: 10px;
     }
   }
 }
