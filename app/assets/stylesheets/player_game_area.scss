@@ -8,6 +8,13 @@
   height: 50px;
   width: 340px;
 
+  .DealCardsButton {
+    width: 110px;
+    height: 30px;
+    margin-left: 5px;
+    border: 1px solid black;
+  }
+
   .SelectPlayerDisplay {
     display: flex;
     justify-content: flex-end;

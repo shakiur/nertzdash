@@ -18,7 +18,7 @@ function CardGameView() {
   const [player1Name, setPlayer1Name] = useState("")
   const [player1DbId, setPlayer1DbId] = useState(0)
   const [player1Active, setPlayer1Active] = useState(false)
-  const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState(generateCardDeck());
+  const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState([]);
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
   const [player1SolitaireLeftoverPile, setPlayer1SolitaireLeftoverPile] = useState([]);
   const [player1SolitaireXPos, setPlayer1SolitaireXPos] = useState(0)
@@ -28,7 +28,7 @@ function CardGameView() {
   const [player2Name, setPlayer2Name] = useState("")
   const [player2DbId, setPlayer2DbId] = useState(0)
   const [player2Active, setPlayer2Active] = useState(false)
-  const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState(generateCardDeck());
+  const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState([]);
   const [player2SolitairePile, setPlayer2SolitairePile] = useState([]);
   const [player2SolitaireLeftoverPile, setPlayer2SolitaireLeftoverPile] = useState([]);
   const [player2SolitaireXPos, setPlayer2SolitaireXPos] = useState(0)
@@ -38,7 +38,7 @@ function CardGameView() {
   const [player3Name, setPlayer3Name] = useState("")
   const [player3DbId, setPlayer3DbId] = useState(0)
   const [player3Active, setPlayer3Active] = useState(false)
-  const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState(generateCardDeck());
+  const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState([]);
   const [player3SolitairePile, setPlayer3SolitairePile] = useState([]);
   const [player3SolitaireLeftoverPile, setPlayer3SolitaireLeftoverPile] = useState([]);
   const [player3SolitaireXPos, setPlayer3SolitaireXPos] = useState(0)
@@ -48,7 +48,7 @@ function CardGameView() {
   const [player4Name, setPlayer4Name] = useState("")
   const [player4DbId, setPlayer4DbId] = useState(0)
   const [player4Active, setPlayer4Active] = useState(false)
-  const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState(generateCardDeck());
+  const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState([]);
   const [player4SolitairePile, setPlayer4SolitairePile] = useState([]);
   const [player4SolitaireLeftoverPile, setPlayer4SolitaireLeftoverPile] = useState([]);
   const [player4SolitaireXPos, setPlayer4SolitaireXPos] = useState(0)
@@ -58,7 +58,7 @@ function CardGameView() {
   const [player5Name, setPlayer5Name] = useState("")
   const [player5DbId, setPlayer5DbId] = useState(0)
   const [player5Active, setPlayer5Active] = useState(false)
-  const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState(generateCardDeck());
+  const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState([]);
   const [player5SolitairePile, setPlayer5SolitairePile] = useState([]);
   const [player5SolitaireLeftoverPile, setPlayer5SolitaireLeftoverPile] = useState([]);
   const [player5SolitaireXPos, setPlayer5SolitaireXPos] = useState(0)
@@ -68,7 +68,7 @@ function CardGameView() {
   const [player6Name, setPlayer6Name] = useState("")
   const [player6DbId, setPlayer6DbId] = useState(0)
   const [player6Active, setPlayer6Active] = useState(false)
-  const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState(generateCardDeck());
+  const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState([]);
   const [player6SolitairePile, setPlayer6SolitairePile] = useState([]);
   const [player6SolitaireLeftoverPile, setPlayer6SolitaireLeftoverPile] = useState([]);
   const [player6SolitaireXPos, setPlayer6SolitaireXPos] = useState(0)

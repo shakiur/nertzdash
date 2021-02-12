@@ -7,18 +7,24 @@ const PlayerGameArea = ({
   playerName,
   setPlayerName,
   setPlayerActive,
-  allPlayers
+  allPlayers,
+  dealCards
 }) => {
   function PlayerGameDisplay() {
-    if(playerActive) {
-      return (
-        <ActivePlayerDisplay />
-      )
-    } else {
-      return (
-        <SelectPlayerDisplay />
-      )
-    }
+    return (
+      <DealCardsButton />
+    )
+  }
+
+  function DealCardsButton() {
+    return (
+      <button
+        onClick={() => dealCards()}
+        className="DealCardsButton"
+      >
+        Deal Cards
+      </button>
+    )
   }
 
   function ActivePlayerDisplay() {
@@ -58,16 +64,6 @@ const PlayerGameArea = ({
     )
   }
 
-  function SetPlayerButton() {
-    return (
-      <button
-        onClick={() => handleSetPlayer()}
-        className="SetPlayerButton"
-      >
-        Set Player
-      </button>
-    )
-  }
 
   function handlePlayerSelectChange(event) {
     const selectedName = event.target.value
