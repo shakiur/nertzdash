@@ -9,6 +9,8 @@ const CardDeckHolder = ({
   setPlayerActive,
   broadcastTime,
   setBroadcastTime,
+  nertzPile,
+  setNertzPile,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   solitaireDeck,
@@ -105,6 +107,7 @@ const CardDeckHolder = ({
     let solitairePile = shuffledCardDeck.slice(17,20)
     let solitaireDeck = shuffledCardDeck.slice(20,52)
 
+    setNertzPile(nertzPile)
     setSolitaireDeck(solitaireDeck)
     setSolitairePile(solitairePile)
 

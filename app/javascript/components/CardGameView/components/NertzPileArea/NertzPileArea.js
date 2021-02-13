@@ -4,27 +4,44 @@ import Draggable from "react-draggable";
 const NertzPileArea = ({
   playerPos,
   playerUuid,
+  playerName,
+  playerActive,
+  nertzPile,
+  setNertzPile
 }) => {
+  function NertzPile() {
+    if(playerActive) {
+      return emptyNertzPile()
+    } else {
+      return emptyNertzPile()
+    }
+  }
+
+  function emptyNertzPile() {
+    return (
+      <div className="NertzPile">
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="cardPreview"></div>
+        <div className="bottomCard"></div>
+      </div>
+    )
+  }
+
+  function displayNertzPile() {
+  }
+
   return (
-    <div className="NertzPile">
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewSmall"></div>
-      <div className="cardPreviewLarge"></div>
-      <Draggable
-      >
-        <div className="bottomCard">
-        </div>
-      </Draggable>
-    </div>
+    <NertzPile />
   )
 }
 

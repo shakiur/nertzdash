@@ -19,6 +19,8 @@ const PlayerTableNew = ({
   setPlayerDbId,
   setPlayerActive,
   broadcastTime,
+  nertzPile,
+  setNertzPile,
   solitaireDeck,
   solitairePile,
   solitaireLeftoverPile,
@@ -39,6 +41,12 @@ const PlayerTableNew = ({
       <div className="CardsArea">
         <div className="NertzPileArea">
           <NertzPileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            playerName={playerName}
+            playerActive={playerActive}
+            nertzPile={nertzPile}
+            setNertzPile={setNertzPile}
           />
         </div>
         <div className="SolitaireDeckArea">
@@ -52,6 +60,8 @@ const PlayerTableNew = ({
             setBroadcastTime={setBroadcastTime}
             broadcastPlayerUuid={broadcastPlayerUuid}
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            nertzPile={nertzPile}
+            setNertzPile={setNertzPile}
             solitaireDeck={solitaireDeck}
             solitairePile={solitairePile}
             solitaireLeftoverPile={solitaireLeftoverPile}
