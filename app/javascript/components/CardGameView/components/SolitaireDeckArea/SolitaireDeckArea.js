@@ -5,7 +5,9 @@ const CardDeckHolder = ({
   playerPos,
   playerUuid,
   playerActive,
+  setPlayerActive,
   broadcastTime,
+  dealCards,
   solitaireDeck,
   solitairePile,
   solitaireLeftoverPile,
@@ -15,32 +17,37 @@ const CardDeckHolder = ({
   setBroadcastPlayerUuid
 }) => {
   function handleSolitaireFlip() {
-    /*flipSolitaireCards(solitaireDeck, solitairePile, solitaireLeftoverPile)*/
-    flipSolitaireCards2()
-    setBroadcastPlayerUuid(playerUuid)
-
-    const delay = 25
-    const currentTime = new Date().getTime();
-    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
-
-    /*
-    if(meetsDelayThreshold) {
-      broadcastPlayerSolitaire(playerPos, playerUuid, solitaireDeck, solitairePile, solitaireLeftoverPile);
+    if(playerActive) {
+      flipSolitaireCards()
+      setBroadcastPlayerUuid(playerUuid)
+    } else {
+      dealCards()
+      setPlayerActive(true)
+      setBroadcastPlayerUuid(playerUuid)
     }
-    */
   }
 
-  function flipSolitaireCards2() {
+  function flipSolitaireCards() {
+    moveSolitairePileToLeftover()
+    resetSolitaireIfEmpty()
+    flipCardsToSolitairePile()
+  }
+
+  function moveSolitairePileToLeftover() {
     if(solitairePile.length > 0) {
       setSolitaireLeftoverPile(solitaireLeftoverPile => [...solitaireLeftoverPile, ...solitairePile.reverse()])
       setSolitairePile([])
     }
+  }
 
+  function resetSolitaireIfEmpty() {
     if(solitairePile.length == 0 && solitaireDeck.length == 0) {
       setSolitaireDeck(solitaireLeftoverPile)
       setSolitaireLeftoverPile([])
     }
+  }
 
+  function flipCardsToSolitairePile() {
     const numCardsToFlip = Math.min(solitaireDeck.length, 3)
 
     for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
@@ -54,7 +61,7 @@ const CardDeckHolder = ({
   function cardDeckClassNames() {
     let classNames = "CardDeckHolder"
 
-    if(playerActive) {
+    if(solitaireDeck.length > 0) {
       classNames += ' solidLine'
     } else {
       classNames += ' dashedLine'

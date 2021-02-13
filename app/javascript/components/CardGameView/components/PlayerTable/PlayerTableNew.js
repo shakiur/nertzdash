@@ -35,7 +35,7 @@ const PlayerTableNew = ({
 }) => {
 
   useEffect(() => {
-    if(playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaire(
         playerPos,
         playerUuid,
@@ -49,7 +49,7 @@ const PlayerTableNew = ({
   }, [solitairePile])
 
   useEffect(() => {
-    if(playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaireXYPos(
         playerPos,
         playerUuid,
@@ -137,6 +137,7 @@ const PlayerTableNew = ({
 
     return cardDeck
   }
+
   function broadcastPlayerSolitaire(playerPos, playerUuid, playerActive, playerName, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime)
@@ -185,7 +186,9 @@ const PlayerTableNew = ({
             playerPos={playerPos}
             playerUuid={playerUuid}
             playerActive={playerActive}
+            setPlayerActive={setPlayerActive}
             broadcastTime={broadcastTime}
+            dealCards={dealCards}
             solitaireDeck={solitaireDeck}
             solitairePile={solitairePile}
             solitaireLeftoverPile={solitaireLeftoverPile}
@@ -227,6 +230,13 @@ const PlayerTableNew = ({
         setPlayerActive={setPlayerActive}
         allPlayers={allPlayers}
         dealCards={dealCards}
+        solitaireDeck={solitaireDeck}
+        solitairePile={solitairePile}
+        solitaireLeftoverPile={solitaireLeftoverPile}
+        setSolitaireDeck={setSolitaireDeck}
+        setSolitairePile={setSolitairePile}
+        setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+        setBroadcastPlayerUuid={setBroadcastPlayerUuid}
       />
     </div>
   )

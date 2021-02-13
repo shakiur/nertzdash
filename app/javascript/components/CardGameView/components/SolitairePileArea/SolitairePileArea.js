@@ -41,14 +41,30 @@ const SolitairePileArea = ({
     setSolitaireYPos(solitaireYPos + ui.deltaY)
   }
 
+  function previewBorderStyle(card) {
+    if(card) {
+      return 'solidLinePreview'
+    } else {
+      return 'dashedLinePreview'
+    }
+  }
+
+  function cardBorderStyle(card) {
+    if(card) {
+      return 'solidLineCard'
+    } else {
+      return 'dashedLineCard'
+    }
+  }
+
   return (
     <div className="ThreeCardHolder">
-      <div className="topCardPreview">
+      <div className={`solitairePilePreview ${previewBorderStyle(solitairePile[2])}`}>
         <div className={`topNumSuit ${cardColor(solitairePile[2])}`}>
           {displayNumSuit(solitairePile[2])}
         </div>
       </div>
-      <div className="middleCardPreview">
+      <div className={`solitairePilePreview ${previewBorderStyle(solitairePile[1])}`}>
         <div className={`topNumSuit ${cardColor(solitairePile[1])}`}>
           {displayNumSuit(solitairePile[1])}
         </div>
@@ -57,7 +73,7 @@ const SolitairePileArea = ({
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}
       >
-        <div className="bottomCard">
+        <div className={`bottomCard ${cardBorderStyle(solitairePile[0])}`}>
           <div className={`topNumSuit ${cardColor(solitairePile[0])}`}>
             {displayNumSuit(solitairePile[0])}
           </div>

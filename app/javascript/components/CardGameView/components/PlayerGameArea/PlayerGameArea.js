@@ -8,79 +8,60 @@ const PlayerGameArea = ({
   setPlayerName,
   setPlayerActive,
   allPlayers,
-  dealCards
+  dealCards,
+  solitaireDeck,
+  solitairePile,
+  solitaireLeftoverPile,
+  setSolitaireDeck,
+  setSolitairePile,
+  setSolitaireLeftoverPile,
+  setBroadcastPlayerUuid
 }) => {
-  function PlayerGameDisplay() {
-    return (
-      <DealCardsButton />
-    )
-  }
 
-  function DealCardsButton() {
-    return (
-      <button
-        onClick={() => dealCards()}
-        className="DealCardsButton"
-      >
-        Deal Cards
-      </button>
-    )
-  }
-
-  function ActivePlayerDisplay() {
-    return (
-      <div className="ActivePlayerName">
-        <div className="PlayerLabel"><strong>Player:</strong></div>
-        <div className="PlayerName">{playerName}</div>
-      </div>
-    )
-  }
-
-  function SelectPlayerDisplay() {
-    return (
-      <div className="SelectPlayerDisplay">
-        <PlayerSelectDropDown />
-        <SetPlayerButton />
-      </div>
-    )
-  }
-
-  function PlayerSelectDropDown() {
-    return (
-      <select
-        value={playerName}
-        onChange={(event) => handlePlayerSelectChange(event)}
-        className="PlayerSelect"
-      >
-        <option key={0} value=''></option>
-        {
-          allPlayers.map((player) =>
-            <option key={playerPos+player.id} value={player.name}>
-              {player.name}
-            </option>
-          )
-        }
-      </select>
-    )
-  }
-
-
-  function handlePlayerSelectChange(event) {
-    const selectedName = event.target.value
-    setPlayerName(selectedName)
-  }
-
-  function handleSetPlayer() {
-    if(playerName == "") {
-      setPlayerActive(false)
+  function handleCardDeal() {
+    if(playerActive) {
+      flipThreeSolitaireCards()
     } else {
       setPlayerActive(true)
+      dealCards()
+    }
+
+    setBroadcastPlayerUuid(playerUuid)
+  }
+
+  function flipThreeSolitaireCards() {
+    moveSolitairePileToLeftoverPile()
+    resetSolitaireDeckIfEmpty()
+    flipThreeCardsFromSolitaireDeck()
+  }
+
+  function moveSolitairePileToLeftoverPile() {
+    if(solitairePile.length > 0) {
+      setSolitaireLeftoverPile(solitaireLeftoverPile => [...solitaireLeftoverPile, ...solitairePile.reverse()])
+      setSolitairePile([])
+    }
+  }
+
+  function resetSolitaireDeckIfEmpty() {
+    if(solitairePile.length == 0 && solitaireDeck.length == 0) {
+      setSolitaireDeck(solitaireLeftoverPile)
+      setSolitaireLeftoverPile([])
+    }
+  }
+
+  function flipThreeCardsFromSolitaireDeck() {
+    const numCardsToFlip = Math.min(solitaireDeck.length, 3)
+
+    for(let flipCount = 0; flipCount < numCardsToFlip; flipCount++) {
+      let cardFlipped = solitaireDeck.shift()
+
+      setSolitaireDeck(solitaireDeck.filter(card => cardFlipped['id'] !== card['id']))
+      setSolitairePile(solitairePile => [cardFlipped, ...solitairePile])
     }
   }
 
   return (
     <div className="PlayerGameArea">
-      <PlayerGameDisplay />
     </div>
   )
 }
