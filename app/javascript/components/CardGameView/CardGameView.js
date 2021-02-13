@@ -147,6 +147,7 @@ function CardGameView() {
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
     if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime)
       updatePlayerSolitaireXYPos(
         retrievedPlayerPos,
         retrievedPlayerUuid,

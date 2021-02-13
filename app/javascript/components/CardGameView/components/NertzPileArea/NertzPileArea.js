@@ -9,39 +9,22 @@ const NertzPileArea = ({
   nertzPile,
   setNertzPile
 }) => {
-  function NertzPile() {
-    if(playerActive) {
-      return emptyNertzPile()
-    } else {
-      return emptyNertzPile()
-    }
-  }
-
-  function emptyNertzPile() {
-    return (
-      <div className="NertzPile">
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="cardPreview"></div>
-        <div className="bottomCard"></div>
-      </div>
-    )
-  }
-
-  function displayNertzPile() {
-  }
-
   return (
-    <NertzPile />
+    <div className="NertzPile">
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="cardPreview"></div>
+      <div className="bottomCard"></div>
+    </div>
   )
 }
 
