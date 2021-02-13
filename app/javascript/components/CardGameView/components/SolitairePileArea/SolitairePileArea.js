@@ -1,16 +1,50 @@
-import React from "react"
+import React, { useEffect } from "react";
 import Draggable from "react-draggable";
 
 const SolitairePileArea = ({
   playerPos,
   playerUuid,
+  playerActive,
+  broadcastPlayerUuid,
+  setBroadcastPlayerUuid,
+  broadcastTime,
+  setBroadcastTime,
   solitairePile,
   solitaireXPos,
   solitaireYPos,
   setSolitaireXPos,
-  setSolitaireYPos,
-  setBroadcastPlayerUuid
+  setSolitaireYPos
 }) => {
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaireXYPos(
+        playerPos,
+        playerUuid,
+        solitaireXPos,
+        solitaireYPos
+      )
+    }
+  }, [solitaireXPos, solitaireYPos])
+
+  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
+    const delay = 25
+    const currentTime = new Date().getTime();
+    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+
+    if(meetsDelayThreshold) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
+        'data_type=' + 'player_solitaire_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&solitaire_x_pos=' + solitaireXPos +
+        '&solitaire_y_pos=' + solitaireYPos +
+        '&time=' + broadcastTime
+      );
+    }
+  }
+
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`

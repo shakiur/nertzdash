@@ -34,38 +34,6 @@ const PlayerTableNew = ({
   setBroadcastTime
 }) => {
 
-  useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
-      broadcastPlayerSolitaireXYPos(
-        playerPos,
-        playerUuid,
-        solitaireXPos,
-        solitaireYPos
-      )
-    }
-  }, [solitaireXPos, solitaireYPos])
-
-
-
-  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
-    const delay = 25
-    const currentTime = new Date().getTime();
-    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
-
-    if(meetsDelayThreshold) {
-      setBroadcastTime(currentTime)
-
-      fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
-        'data_type=' + 'player_solitaire_x_y_pos' +
-        '&player_pos=' + playerPos +
-        '&player_uuid=' + playerUuid +
-        '&solitaire_x_pos=' + solitaireXPos +
-        '&solitaire_y_pos=' + solitaireYPos +
-        '&time=' + broadcastTime
-      );
-    }
-  }
-
   return (
     <div className="PlayerTableNew">
       <div className="CardsArea">
@@ -94,12 +62,16 @@ const PlayerTableNew = ({
           <SolitairePileArea
             playerPos={playerPos}
             playerUuid={playerUuid}
+            playerActive={playerActive}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
             solitairePile={solitairePile}
             solitaireXPos={solitaireXPos}
             solitaireYPos={solitaireYPos}
             setSolitaireXPos={setSolitaireXPos}
             setSolitaireYPos={setSolitaireYPos}
-            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
           />
         </div>
         <div className="SolitaireArea">
