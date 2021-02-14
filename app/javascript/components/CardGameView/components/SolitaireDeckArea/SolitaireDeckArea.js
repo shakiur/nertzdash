@@ -20,36 +20,6 @@ const CardDeckHolder = ({
   setSolitairePile,
   setSolitaireLeftoverPile,
 }) => {
-  useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
-      broadcastPlayerSolitaire(
-        playerPos,
-        playerUuid,
-        playerActive,
-        playerName,
-        solitaireDeck,
-        solitairePile,
-        solitaireLeftoverPile
-      );
-    }
-  }, [solitairePile])
-
-  function broadcastPlayerSolitaire(playerPos, playerUuid, playerActive, playerName, solitaireDeck, solitairePile, solitaireLeftoverPile) {
-    const currentTime = new Date().getTime();
-    setBroadcastTime(currentTime)
-
-    fetch('/card_game/broadcast_player_solitaire?' +
-      'data_type=' + 'player_solitaire' +
-      '&player_pos=' + playerPos +
-      '&player_uuid=' + playerUuid +
-      '&player_active=' + playerActive +
-      '&player_name=' + playerName +
-      '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
-      '&solitaire_pile=' + JSON.stringify(solitairePile) +
-      '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
-      '&time=' + broadcastTime
-    );
-  }
 
   function handleSolitaireFlip() {
     if(playerActive) {

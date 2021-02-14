@@ -114,6 +114,7 @@ function CardGameView() {
     const retrievedPlayerUuid = data["player_uuid"]
     const retrievedPlayerActive = data["player_active"] === "true"
     const retrievedPlayerName = data["player_name"]
+    const retrievedNertzPile = JSON.parse(data["nertz_pile"])
     const retrievedSolitaireDeck = JSON.parse(data["solitaire_deck"])
     const retrievedSolitairePile = JSON.parse(data["solitaire_pile"])
     const retrievedLeftoverSolitairePile = JSON.parse(data["leftover_solitaire_pile"])
@@ -129,6 +130,7 @@ function CardGameView() {
         retrievedPlayerUuid,
         retrievedPlayerActive,
         retrievedPlayerName,
+        retrievedNertzPile,
         retrievedSolitaireDeck,
         retrievedSolitairePile,
         retrievedLeftoverSolitairePile
@@ -157,12 +159,13 @@ function CardGameView() {
     }
   }
 
-  function updatePlayerSolitaire(playerPos, playerUuid, playerActive, playerName, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+  function updatePlayerSolitaire(playerPos, playerUuid, playerActive, playerName, nertzPile, solitaireDeck, solitairePile, solitaireLeftoverPile) {
     switch(playerPos) {
       case 1:
         setPlayer1Active(playerActive)
         setPlayer1Name(playerName)
         setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1NertzPile(nertzPile)
         setPlayer1SolitaireDeck(solitaireDeck)
         setPlayer1SolitairePile(solitairePile)
         setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
@@ -171,6 +174,7 @@ function CardGameView() {
         setPlayer2Active(playerActive)
         setPlayer2Name(playerName)
         setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2NertzPile(nertzPile)
         setPlayer2SolitaireDeck(solitaireDeck)
         setPlayer2SolitairePile(solitairePile)
         setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
@@ -179,6 +183,7 @@ function CardGameView() {
         setPlayer3Active(playerActive)
         setPlayer3Name(playerName)
         setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3NertzPile(nertzPile)
         setPlayer3SolitaireDeck(solitaireDeck)
         setPlayer3SolitairePile(solitairePile)
         setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
@@ -187,6 +192,7 @@ function CardGameView() {
         setPlayer4Active(playerActive)
         setPlayer4Name(playerName)
         setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4NertzPile(nertzPile)
         setPlayer4SolitaireDeck(solitaireDeck)
         setPlayer4SolitairePile(solitairePile)
         setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
@@ -195,6 +201,7 @@ function CardGameView() {
         setPlayer5Active(playerActive)
         setPlayer5Name(playerName)
         setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5NertzPile(nertzPile)
         setPlayer5SolitaireDeck(solitaireDeck)
         setPlayer5SolitairePile(solitairePile)
         setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
@@ -203,6 +210,7 @@ function CardGameView() {
         setPlayer6Active(playerActive)
         setPlayer6Name(playerName)
         setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6NertzPile(nertzPile)
         setPlayer6SolitaireDeck(solitaireDeck)
         setPlayer6SolitairePile(solitairePile)
         setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)

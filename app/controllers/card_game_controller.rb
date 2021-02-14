@@ -20,6 +20,7 @@ class CardGameController < ApplicationController
       player_uuid: params[:player_uuid],
       player_active: params[:player_active],
       player_name: params[:player_name],
+      nertz_pile: params[:nertz_pile],
       solitaire_deck: params[:solitaire_deck],
       solitaire_pile: params[:solitaire_pile],
       leftover_solitaire_pile: params[:leftover_solitaire_pile],

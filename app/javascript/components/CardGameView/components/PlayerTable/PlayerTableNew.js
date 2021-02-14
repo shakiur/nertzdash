@@ -35,6 +35,38 @@ const PlayerTableNew = ({
   setBroadcastPlayerUuid,
   setBroadcastTime
 }) => {
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaire(
+        playerPos,
+        playerUuid,
+        playerActive,
+        playerName,
+        nertzPile,
+        solitaireDeck,
+        solitairePile,
+        solitaireLeftoverPile
+      );
+    }
+  }, [solitairePile, nertzPile])
+
+  function broadcastPlayerSolitaire(playerPos, playerUuid, playerActive, playerName, nertzPile, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_solitaire?' +
+      'data_type=' + 'player_solitaire' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_active=' + playerActive +
+      '&player_name=' + playerName +
+      '&nertz_pile=' + JSON.stringify(nertzPile) +
+      '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
+      '&solitaire_pile=' + JSON.stringify(solitairePile) +
+      '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&time=' + broadcastTime
+    );
+  }
 
   return (
     <div className="PlayerTableNew">
