@@ -17,8 +17,28 @@ const SolitairePileArea = ({
   setSolitaireYPos,
   solitaireWork1Pile,
   setSolitaireWork1Pile,
+  solitaireWork2Pile,
+  setSolitaireWork2Pile,
+  solitaireWork3Pile,
+  setSolitaireWork3Pile,
+  solitaireWork4Pile,
+  setSolitaireWork4Pile,
   workPile1XPos,
-  workPile1YPos
+  workPile1YPos,
+  setWorkPile1XPos,
+  setWorkPile1YPos,
+  workPile2XPos,
+  workPile2YPos,
+  setWorkPile2XPos,
+  setWorkPile2YPos,
+  workPile3XPos,
+  workPile3YPos,
+  setWorkPile3XPos,
+  setWorkPile3YPos,
+  workPile4XPos,
+  workPile4YPos,
+  setWorkPile4XPos,
+  setWorkPile4YPos
 }) => {
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
@@ -82,26 +102,56 @@ const SolitairePileArea = ({
   }
 
   function checkNearWorkPile(event, ui) {
-    const nearWorkPile1XPos = solitaireXPos >= (workPile1XPos - 10) && solitaireXPos <= (workPile1XPos + 50 + 10)
-    const nearWorkPile1YPos = solitaireYPos >= (workPile1YPos - 10) && solitaireYPos <= (workPile1YPos + 70 + 10)
+    const nearWorkPile1XPos = solitaireXPos >= (workPile1XPos - 10) && solitaireXPos <= (workPile1XPos + 10)
+    const nearWorkPile1YPos = solitaireYPos >= workPile1YPos && solitaireYPos <= (workPile1YPos + 20)
+
+    /*
+    console.log('Solitaire X Pos: ' + solitaireXPos)
+    console.log('Solitaire Y Pos: ' + solitaireYPos)
+    console.log('Work Pile X Pos: ' + (workPile1XPos - 10) + ', ' + (workPile1XPos + 10))
+    console.log('Work Pile Y Pos: ' + (workPile1YPos) + ', ' + (workPile1YPos + 20))
+    */
 
     if(nearWorkPile1XPos && nearWorkPile1YPos) {
-      console.log('Near Work Pile 1')
       let movedCard = solitairePile.shift()
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+      setWorkPile1YPos(workPile1YPos + 15)
+    }
+
+    const nearWorkPile2XPos = solitaireXPos >= (workPile2XPos - 10) && solitaireXPos <= (workPile2XPos + 10)
+    const nearWorkPile2YPos = solitaireYPos >= workPile2YPos && solitaireYPos <= (workPile2YPos + 20)
+
+    if(nearWorkPile2XPos && nearWorkPile2YPos) {
+      let movedCard = solitairePile.shift()
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
+      setWorkPile2YPos(workPile2YPos + 15)
+    }
+
+    const nearWorkPile3XPos = solitaireXPos >= (workPile3XPos - 10) && solitaireXPos <= (workPile3XPos + 10)
+    const nearWorkPile3YPos = solitaireYPos >= workPile3YPos && solitaireYPos <= (workPile3YPos + 20)
+
+    if(nearWorkPile3XPos && nearWorkPile3YPos) {
+      let movedCard = solitairePile.shift()
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
+      setWorkPile3YPos(workPile3YPos + 15)
+    }
+
+    const nearWorkPile4XPos = solitaireXPos >= (workPile4XPos - 10) && solitaireXPos <= (workPile4XPos + 10)
+    const nearWorkPile4YPos = solitaireYPos >= workPile4YPos && solitaireYPos <= (workPile4YPos + 20)
+
+    if(nearWorkPile4XPos && nearWorkPile4YPos) {
+      let movedCard = solitairePile.shift()
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
+      setWorkPile4YPos(workPile4YPos + 15)
     }
 
     setBroadcastPlayerUuid(playerUuid)
     setSolitaireXPos(0)
     setSolitaireYPos(0)
-    /*
-    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
-    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
-    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
-    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
-    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
-    */
   }
 
   function previewBorderStyle(card) {
