@@ -53,7 +53,7 @@ const SolitaireWorkPileArea = ({
   }
 
   function PreviewCards() {
-    return solitaireWorkPile.slice(1, solitaireWorkPile.length).map((card, index) =>
+    return solitaireWorkPile.slice(1, solitaireWorkPile.length).reverse().map((card, index) =>
       <div
         key={parseInt(card['id'])}
         className={`solitaireWorkPreviewCard ${previewBorderStyle(card)}`}

@@ -64,7 +64,7 @@ const PlayerTableNew = ({
         solitaireWork4Pile
       );
     }
-  }, [solitairePile, nertzPile])
+  }, [solitairePile, nertzPile, solitaireWork1Pile, solitaireWork2Pile, solitaireWork3Pile, solitaireWork4Pile])
 
   function broadcastPlayerSolitaire(
     playerPos,
