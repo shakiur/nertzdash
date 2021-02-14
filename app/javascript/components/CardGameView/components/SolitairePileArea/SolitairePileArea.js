@@ -10,10 +10,15 @@ const SolitairePileArea = ({
   broadcastTime,
   setBroadcastTime,
   solitairePile,
+  setSolitairePile,
   solitaireXPos,
   solitaireYPos,
   setSolitaireXPos,
-  setSolitaireYPos
+  setSolitaireYPos,
+  solitaireWork1Pile,
+  setSolitaireWork1Pile,
+  workPile1XPos,
+  workPile1YPos
 }) => {
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
@@ -21,13 +26,13 @@ const SolitairePileArea = ({
         playerPos,
         playerUuid,
         solitaireXPos,
-        solitaireYPos
+        solitaireYPos,
+        25
       )
     }
   }, [solitaireXPos, solitaireYPos])
 
-  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
-    const delay = 25
+  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos, delay) {
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
 
@@ -75,6 +80,27 @@ const SolitairePileArea = ({
     setSolitaireYPos(solitaireYPos + ui.deltaY)
   }
 
+  function checkNearWorkPile(event, ui) {
+    const nearWorkPile1XPos = solitaireXPos >= (workPile1XPos - 10) && solitaireXPos <= (workPile1XPos + 50 + 10)
+    const nearWorkPile1YPos = solitaireYPos >= (workPile1YPos - 10) && solitaireYPos <= (workPile1YPos + 70 + 10)
+
+    if(nearWorkPile1XPos && nearWorkPile1YPos) {
+      console.log('Near Work Pile 1')
+      let movedCard = solitairePile.shift()
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+    }
+
+    setBroadcastPlayerUuid(playerUuid)
+    setSolitaireXPos(0)
+    setSolitaireYPos(0)
+    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+    broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+  }
+
   function previewBorderStyle(card) {
     if(card) {
       return 'solidLinePreview'
@@ -105,6 +131,7 @@ const SolitairePileArea = ({
       </div>
       <Draggable
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
+        onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}
       >
         <div className={`bottomCard ${cardBorderStyle(solitairePile[0])}`}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button } from 'semantic-ui-react';
 import Card from "../../components/Card/Card"
@@ -44,6 +44,9 @@ const PlayerTableNew = ({
   setBroadcastPlayerUuid,
   setBroadcastTime
 }) => {
+  const [workPile1XPos, setWorkPileXPos] = useState(60)
+  const [workPile1YPos, setWorkPileYPos] = useState(-120)
+
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaire(
@@ -144,10 +147,15 @@ const PlayerTableNew = ({
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             solitairePile={solitairePile}
+            setSolitairePile={setSolitairePile}
             solitaireXPos={solitaireXPos}
             solitaireYPos={solitaireYPos}
             setSolitaireXPos={setSolitaireXPos}
             setSolitaireYPos={setSolitaireYPos}
+            solitaireWork1Pile={solitaireWork1Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            workPile1XPos={workPile1XPos}
+            workPile1YPos={workPile1YPos}
           />
         </div>
         <div className="SolitaireWorkArea">

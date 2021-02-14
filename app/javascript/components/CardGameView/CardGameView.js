@@ -28,6 +28,8 @@ function CardGameView() {
   const [player1SolitaireWork4Pile, setPlayer1SolitaireWork4Pile] = useState([]);
   const [player1SolitaireXPos, setPlayer1SolitaireXPos] = useState(0)
   const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
+  const [player1WorkPile1XPos, setPlayer1WorkPile1XPos] = useState(0)
+  const [player1WorkPile1YPos, setPlayer1WorkPile1YPos] = useState(0)
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player2Name, setPlayer2Name] = useState("")
@@ -43,6 +45,8 @@ function CardGameView() {
   const [player2SolitaireWork4Pile, setPlayer2SolitaireWork4Pile] = useState([]);
   const [player2SolitaireXPos, setPlayer2SolitaireXPos] = useState(0)
   const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
+  const [player2WorkPile1XPos, setPlayer2WorkPile1XPos] = useState(0)
+  const [player2WorkPile1YPos, setPlayer2WorkPile1YPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player3Name, setPlayer3Name] = useState("")
@@ -58,6 +62,8 @@ function CardGameView() {
   const [player3SolitaireWork4Pile, setPlayer3SolitaireWork4Pile] = useState([]);
   const [player3SolitaireXPos, setPlayer3SolitaireXPos] = useState(0)
   const [player3SolitaireYPos, setPlayer3SolitaireYPos] = useState(0)
+  const [player3WorkPile1XPos, setPlayer3WorkPile1XPos] = useState(0)
+  const [player3WorkPile1YPos, setPlayer3WorkPile1YPos] = useState(0)
   const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player4Name, setPlayer4Name] = useState("")
@@ -73,6 +79,8 @@ function CardGameView() {
   const [player4SolitaireWork4Pile, setPlayer4SolitaireWork4Pile] = useState([]);
   const [player4SolitaireXPos, setPlayer4SolitaireXPos] = useState(0)
   const [player4SolitaireYPos, setPlayer4SolitaireYPos] = useState(0)
+  const [player4WorkPile1XPos, setPlayer4WorkPile1XPos] = useState(0)
+  const [player4WorkPile1YPos, setPlayer4WorkPile1YPos] = useState(0)
   const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player5Name, setPlayer5Name] = useState("")
@@ -88,6 +96,8 @@ function CardGameView() {
   const [player5SolitaireWork4Pile, setPlayer5SolitaireWork4Pile] = useState([]);
   const [player5SolitaireXPos, setPlayer5SolitaireXPos] = useState(0)
   const [player5SolitaireYPos, setPlayer5SolitaireYPos] = useState(0)
+  const [player5WorkPile1XPos, setPlayer5WorkPile1XPos] = useState(0)
+  const [player5WorkPile1YPos, setPlayer5WorkPile1YPos] = useState(0)
   const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player6Name, setPlayer6Name] = useState("")
@@ -103,6 +113,8 @@ function CardGameView() {
   const [player6SolitaireWork4Pile, setPlayer6SolitaireWork4Pile] = useState([]);
   const [player6SolitaireXPos, setPlayer6SolitaireXPos] = useState(0)
   const [player6SolitaireYPos, setPlayer6SolitaireYPos] = useState(0)
+  const [player6WorkPile1XPos, setPlayer6WorkPile1XPos] = useState(0)
+  const [player6WorkPile1YPos, setPlayer6WorkPile1YPos] = useState(0)
   const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
 
   useEffect(() => {
