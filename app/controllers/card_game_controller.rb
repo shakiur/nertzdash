@@ -24,6 +24,10 @@ class CardGameController < ApplicationController
       solitaire_deck: params[:solitaire_deck],
       solitaire_pile: params[:solitaire_pile],
       leftover_solitaire_pile: params[:leftover_solitaire_pile],
+      solitaire_work_1_pile: params[:solitaire_work_1_pile],
+      solitaire_work_2_pile: params[:solitaire_work_2_pile],
+      solitaire_work_3_pile: params[:solitaire_work_3_pile],
+      solitaire_work_4_pile: params[:solitaire_work_4_pile],
       time: params[:time]
     head :ok
   end

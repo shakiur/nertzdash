@@ -54,12 +54,29 @@ const PlayerTableNew = ({
         nertzPile,
         solitaireDeck,
         solitairePile,
-        solitaireLeftoverPile
+        solitaireLeftoverPile,
+        solitaireWork1Pile,
+        solitaireWork2Pile,
+        solitaireWork3Pile,
+        solitaireWork4Pile
       );
     }
   }, [solitairePile, nertzPile])
 
-  function broadcastPlayerSolitaire(playerPos, playerUuid, playerActive, playerName, nertzPile, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+  function broadcastPlayerSolitaire(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName,
+    nertzPile,
+    solitaireDeck,
+    solitairePile,
+    solitaireLeftoverPile,
+    solitaireWork1Pile,
+    solitaireWork2Pile,
+    solitaireWork3Pile,
+    solitaireWork4Pile
+  ) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime)
 
@@ -73,6 +90,10 @@ const PlayerTableNew = ({
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&solitaire_work_1_pile=' + JSON.stringify(solitaireWork1Pile) +
+      '&solitaire_work_2_pile=' + JSON.stringify(solitaireWork2Pile) +
+      '&solitaire_work_3_pile=' + JSON.stringify(solitaireWork3Pile) +
+      '&solitaire_work_4_pile=' + JSON.stringify(solitaireWork4Pile) +
       '&time=' + broadcastTime
     );
   }

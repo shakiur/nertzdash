@@ -142,6 +142,10 @@ function CardGameView() {
     const retrievedSolitaireDeck = JSON.parse(data["solitaire_deck"])
     const retrievedSolitairePile = JSON.parse(data["solitaire_pile"])
     const retrievedLeftoverSolitairePile = JSON.parse(data["leftover_solitaire_pile"])
+    const retrievedSolitaireWork1Pile = JSON.parse(data["solitaire_work_1_pile"])
+    const retrievedSolitaireWork2Pile = JSON.parse(data["solitaire_work_2_pile"])
+    const retrievedSolitaireWork3Pile = JSON.parse(data["solitaire_work_3_pile"])
+    const retrievedSolitaireWork4Pile = JSON.parse(data["solitaire_work_4_pile"])
     const retrievedTime = parseInt(data["time"]);
 
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
@@ -157,7 +161,11 @@ function CardGameView() {
         retrievedNertzPile,
         retrievedSolitaireDeck,
         retrievedSolitairePile,
-        retrievedLeftoverSolitairePile
+        retrievedLeftoverSolitairePile,
+        retrievedSolitaireWork1Pile,
+        retrievedSolitaireWork2Pile,
+        retrievedSolitaireWork3Pile,
+        retrievedSolitaireWork4Pile
       )
     }
   }
@@ -183,7 +191,20 @@ function CardGameView() {
     }
   }
 
-  function updatePlayerSolitaire(playerPos, playerUuid, playerActive, playerName, nertzPile, solitaireDeck, solitairePile, solitaireLeftoverPile) {
+  function updatePlayerSolitaire(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName,
+    nertzPile,
+    solitaireDeck,
+    solitairePile,
+    solitaireLeftoverPile,
+    solitaireWork1Pile,
+    solitaireWork2Pile,
+    solitaireWork3Pile,
+    solitaireWork4Pile
+  ) {
     switch(playerPos) {
       case 1:
         setPlayer1Active(playerActive)
@@ -193,6 +214,10 @@ function CardGameView() {
         setPlayer1SolitaireDeck(solitaireDeck)
         setPlayer1SolitairePile(solitairePile)
         setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer1SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer1SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer1SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer1SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 2:
         setPlayer2Active(playerActive)
@@ -202,6 +227,10 @@ function CardGameView() {
         setPlayer2SolitaireDeck(solitaireDeck)
         setPlayer2SolitairePile(solitairePile)
         setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer2SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer2SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer2SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer2SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 3:
         setPlayer3Active(playerActive)
@@ -211,6 +240,10 @@ function CardGameView() {
         setPlayer3SolitaireDeck(solitaireDeck)
         setPlayer3SolitairePile(solitairePile)
         setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer3SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer3SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer3SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer3SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 4:
         setPlayer4Active(playerActive)
@@ -220,6 +253,10 @@ function CardGameView() {
         setPlayer4SolitaireDeck(solitaireDeck)
         setPlayer4SolitairePile(solitairePile)
         setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer4SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer4SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer4SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer4SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 5:
         setPlayer5Active(playerActive)
@@ -229,6 +266,10 @@ function CardGameView() {
         setPlayer5SolitaireDeck(solitaireDeck)
         setPlayer5SolitairePile(solitairePile)
         setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer5SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer5SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer5SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer5SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 6:
         setPlayer6Active(playerActive)
@@ -238,6 +279,10 @@ function CardGameView() {
         setPlayer6SolitaireDeck(solitaireDeck)
         setPlayer6SolitairePile(solitairePile)
         setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer6SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer6SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer6SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer6SolitaireWork4Pile(solitaireWork4Pile)
         break
       default:
         break
