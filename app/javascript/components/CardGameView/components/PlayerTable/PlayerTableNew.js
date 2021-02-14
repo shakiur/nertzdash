@@ -5,6 +5,7 @@ import Card from "../../components/Card/Card"
 import CardHolder from "../../components/CardHolder/CardHolder"
 import SolitaireDeckArea from "../../components/SolitaireDeckArea/SolitaireDeckArea"
 import SolitairePileArea from "../../components/SolitairePileArea/SolitairePileArea"
+import SolitaireWorkPileArea from "../../components/SolitaireWorkPileArea/SolitaireWorkPileArea"
 import NertzPileArea from "../../components/NertzPileArea/NertzPileArea"
 import PlayerGameArea from "../../components/PlayerGameArea/PlayerGameArea"
 
@@ -116,16 +117,24 @@ const PlayerTableNew = ({
             setSolitaireYPos={setSolitaireYPos}
           />
         </div>
-        <div className="SolitaireArea">
+        <div className="SolitaireWorkArea">
+          <SolitaireWorkPileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            playerActive={playerActive}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
+          />
+        </div>
+        <div className="SolitaireWorkArea">
           <CardHolder/>
         </div>
-        <div className="SolitaireArea">
+        <div className="SolitaireWorkArea">
           <CardHolder/>
         </div>
-        <div className="SolitaireArea">
-          <CardHolder/>
-        </div>
-        <div className="SolitaireArea">
+        <div className="SolitaireWorkArea">
           <CardHolder/>
         </div>
       </div>

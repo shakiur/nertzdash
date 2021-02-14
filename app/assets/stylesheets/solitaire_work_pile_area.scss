@@ -1,0 +1,21 @@
+.SolitaireWorkPile {
+  display: flex;
+  flex-direction: column;
+
+  .solitaireWorkCard {
+    width: 50px;
+    height: 70px;
+
+    border: 1px solid black;
+    border-radius: 10%;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    user-select: none;
+  }
+}
