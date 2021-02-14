@@ -28,6 +28,14 @@ const PlayerTableNew = ({
   setSolitaireDeck,
   setSolitairePile,
   setSolitaireLeftoverPile,
+  solitaireWork1Pile,
+  solitaireWork2Pile,
+  solitaireWork3Pile,
+  solitaireWork4Pile,
+  setSolitaireWork1Pile,
+  setSolitaireWork2Pile,
+  setSolitaireWork3Pile,
+  setSolitaireWork4Pile,
   solitaireXPos,
   solitaireYPos,
   setSolitaireXPos,
@@ -101,6 +109,10 @@ const PlayerTableNew = ({
             setSolitaireDeck={setSolitaireDeck}
             setSolitairePile={setSolitairePile}
             setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
           />
           <SolitairePileArea
             playerPos={playerPos}
@@ -126,16 +138,48 @@ const PlayerTableNew = ({
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
+            solitaireWorkPile={solitaireWork1Pile}
+            setSolitaireWorkPile={setSolitaireWork1Pile}
           />
         </div>
         <div className="SolitaireWorkArea">
-          <CardHolder/>
+          <SolitaireWorkPileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            playerActive={playerActive}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
+            solitaireWorkPile={solitaireWork2Pile}
+            setSolitaireWorkPile={setSolitaireWork2Pile}
+          />
         </div>
         <div className="SolitaireWorkArea">
-          <CardHolder/>
+          <SolitaireWorkPileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            playerActive={playerActive}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
+            solitaireWorkPile={solitaireWork3Pile}
+            setSolitaireWorkPile={setSolitaireWork3Pile}
+          />
         </div>
         <div className="SolitaireWorkArea">
-          <CardHolder/>
+          <SolitaireWorkPileArea
+            playerPos={playerPos}
+            playerUuid={playerUuid}
+            playerActive={playerActive}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
+            solitaireWorkPile={solitaireWork4Pile}
+            setSolitaireWorkPile={setSolitaireWork4Pile}
+          />
         </div>
       </div>
       <PlayerGameArea

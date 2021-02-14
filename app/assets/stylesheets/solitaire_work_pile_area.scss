@@ -18,4 +18,38 @@
 
     user-select: none;
   }
+
+  .solidLineCard {
+    border: 1px solid black;
+  }
+
+  .dashedLineCard {
+    border: 1px dashed grey;
+  }
+
+  .topNumSuit {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+  }
+
+  .middleSuit {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .bottomNumSuit {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 10px;
+  }
+
+  .red {
+    color: #B71C1C;
+  }
+
+  .black {
+    color: #000000;
+  }
 }

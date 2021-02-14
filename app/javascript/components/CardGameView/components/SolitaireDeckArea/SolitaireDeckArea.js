@@ -19,6 +19,10 @@ const CardDeckHolder = ({
   setSolitaireDeck,
   setSolitairePile,
   setSolitaireLeftoverPile,
+  setSolitaireWork1Pile,
+  setSolitaireWork2Pile,
+  setSolitaireWork3Pile,
+  setSolitaireWork4Pile
 }) => {
 
   function handleSolitaireFlip() {
@@ -80,6 +84,11 @@ const CardDeckHolder = ({
     setNertzPile(nertzPile)
     setSolitaireDeck(solitaireDeck)
     setSolitairePile(solitairePile)
+
+    setSolitaireWork1Pile(solitaireWorkPile1)
+    setSolitaireWork2Pile(solitaireWorkPile2)
+    setSolitaireWork3Pile(solitaireWorkPile3)
+    setSolitaireWork4Pile(solitaireWorkPile4)
 
     /*
     console.log(shuffledCardDeck)
