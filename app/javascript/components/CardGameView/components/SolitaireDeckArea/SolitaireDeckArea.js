@@ -126,10 +126,12 @@ const CardDeckHolder = ({
     for (const cardValue of cardValues) {
       for (const cardSuit of cardSuits) {
         let cardColor = cardSuit == '♥' || cardSuit == '♦' ? 'red' : 'black'
+        let cardNumber = determineCardNumber(cardValue)
 
         let card = {
           id: cardId,
           value: cardValue,
+          number: cardNumber,
           suit: cardSuit,
           color: cardColor
         }
@@ -152,6 +154,21 @@ const CardDeckHolder = ({
     }
 
     return cardDeck
+  }
+
+  function determineCardNumber(cardValue) {
+    switch (cardValue) {
+      case 'A':
+        return 1
+      case 'J':
+        return 11
+      case 'Q':
+        return 12
+      case 'K':
+        return 13
+      default:
+        return parseInt(cardValue)
+    }
   }
 
   function cardDeckClassNames() {

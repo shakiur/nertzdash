@@ -102,6 +102,11 @@ const SolitairePileArea = ({
   }
 
   function checkNearWorkPile(event, ui) {
+    const movedCard = solitairePile[0]
+
+    const workPile1Card = solitaireWork1Pile[0]
+    const work1solitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
+
     const nearWorkPile1XPos = solitaireXPos >= (workPile1XPos - 10) && solitaireXPos <= (workPile1XPos + 10)
     const nearWorkPile1YPos = solitaireYPos >= workPile1YPos && solitaireYPos <= (workPile1YPos + 20)
 
@@ -113,37 +118,42 @@ const SolitairePileArea = ({
     */
 
     if(nearWorkPile1XPos && nearWorkPile1YPos) {
-      let movedCard = solitairePile.shift()
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
       setWorkPile1YPos(workPile1YPos + 15)
     }
 
+    const workPile2Card = solitaireWork2Pile[0]
+    const work2solitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
+
     const nearWorkPile2XPos = solitaireXPos >= (workPile2XPos - 10) && solitaireXPos <= (workPile2XPos + 10)
     const nearWorkPile2YPos = solitaireYPos >= workPile2YPos && solitaireYPos <= (workPile2YPos + 20)
 
     if(nearWorkPile2XPos && nearWorkPile2YPos) {
-      let movedCard = solitairePile.shift()
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
       setWorkPile2YPos(workPile2YPos + 15)
     }
 
+    const workPile3Card = solitaireWork3Pile[0]
+    const work3solitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
+
     const nearWorkPile3XPos = solitaireXPos >= (workPile3XPos - 10) && solitaireXPos <= (workPile3XPos + 10)
     const nearWorkPile3YPos = solitaireYPos >= workPile3YPos && solitaireYPos <= (workPile3YPos + 20)
 
     if(nearWorkPile3XPos && nearWorkPile3YPos) {
-      let movedCard = solitairePile.shift()
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
       setWorkPile3YPos(workPile3YPos + 15)
     }
 
+    const workPile4Card = solitaireWork4Pile[0]
+    const work4solitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
+
     const nearWorkPile4XPos = solitaireXPos >= (workPile4XPos - 10) && solitaireXPos <= (workPile4XPos + 10)
     const nearWorkPile4YPos = solitaireYPos >= workPile4YPos && solitaireYPos <= (workPile4YPos + 20)
 
     if(nearWorkPile4XPos && nearWorkPile4YPos) {
-      let movedCard = solitairePile.shift()
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
       setWorkPile4YPos(workPile4YPos + 15)
@@ -152,6 +162,14 @@ const SolitairePileArea = ({
     setBroadcastPlayerUuid(playerUuid)
     setSolitaireXPos(0)
     setSolitaireYPos(0)
+  }
+
+  function solitaireCriteria(movedCard, workPileCard) {
+    const movedCardNumber = parseInt(movedCard['number'])
+    const workPileCardNumber = parseInt(workPileCard['number'])
+    const oppositeColor = movedCard['color'] !== workPileCard['color']
+
+    return oppositeColor && movedCardNumber == (workPileCardNumber - 1)
   }
 
   function previewBorderStyle(card) {
