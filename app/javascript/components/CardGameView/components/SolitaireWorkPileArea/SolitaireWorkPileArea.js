@@ -44,8 +44,30 @@ const SolitaireWorkPileArea = ({
     }
   }
 
+  function previewBorderStyle(card) {
+    if(card) {
+      return 'solidLinePreview'
+    } else {
+      return 'dashedLinePreview'
+    }
+  }
+
+  function PreviewCards() {
+    return solitaireWorkPile.slice(1, solitaireWorkPile.length).map((card, index) =>
+      <div
+        key={parseInt(card['id'])}
+        className={`solitaireWorkPreviewCard ${previewBorderStyle(card)}`}
+      >
+        <div className={`topNumSuit ${cardColor(card)}`}>
+          {displayNumSuit(card)}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="SolitaireWorkPile">
+      <PreviewCards />
       <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>
         <div className={`topNumSuit ${cardColor(solitaireWorkPile[0])}`}>
           {displayNumSuit(solitaireWorkPile[0])}

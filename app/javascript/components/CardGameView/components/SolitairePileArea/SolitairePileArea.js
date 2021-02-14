@@ -26,17 +26,18 @@ const SolitairePileArea = ({
         playerPos,
         playerUuid,
         solitaireXPos,
-        solitaireYPos,
-        25
+        solitaireYPos
       )
     }
   }, [solitaireXPos, solitaireYPos])
 
-  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos, delay) {
+  function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
+    const delay = 25
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+    const resetXYPos = solitaireXPos == 0 && solitaireYPos == 0
 
-    if(meetsDelayThreshold) {
+    if(meetsDelayThreshold || resetXYPos) {
       setBroadcastTime(currentTime)
 
       fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
@@ -94,11 +95,13 @@ const SolitairePileArea = ({
     setBroadcastPlayerUuid(playerUuid)
     setSolitaireXPos(0)
     setSolitaireYPos(0)
+    /*
     broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
     broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
     broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
     broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
     broadcastPlayerSolitaireXYPos(playerPos, playerUuid, 0, 0, 0)
+    */
   }
 
   function previewBorderStyle(card) {

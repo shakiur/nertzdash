@@ -28,6 +28,28 @@
     border: 1px dashed grey;
   }
 
+  .solitaireWorkPreviewCard {
+    width: 50px;
+    height: 15px;
+
+    border-radius: 5px 5px 0px 0px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .dashedLinePreview {
+    border-top: 1px dashed grey;
+    border-left: 1px dashed grey;
+    border-right: 1px dashed grey;
+  }
+
+  .solidLinePreview {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+
   .topNumSuit {
     display: flex;
     flex-direction: row;
