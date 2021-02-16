@@ -63,31 +63,21 @@ const PlayerTableNew = ({
         playerUuid,
         playerActive,
         playerName,
-        nertzPile,
         solitaireDeck,
         solitairePile,
-        solitaireLeftoverPile,
-        solitaireWork1Pile,
-        solitaireWork2Pile,
-        solitaireWork3Pile,
-        solitaireWork4Pile
+        solitaireLeftoverPile
       );
     }
-  }, [solitairePile, nertzPile, solitaireWork1Pile, solitaireWork2Pile, solitaireWork3Pile, solitaireWork4Pile])
+  }, [solitairePile])
 
   function broadcastPlayerSolitaire(
     playerPos,
     playerUuid,
     playerActive,
     playerName,
-    nertzPile,
     solitaireDeck,
     solitairePile,
-    solitaireLeftoverPile,
-    solitaireWork1Pile,
-    solitaireWork2Pile,
-    solitaireWork3Pile,
-    solitaireWork4Pile
+    solitaireLeftoverPile
   ) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime)
@@ -98,14 +88,71 @@ const PlayerTableNew = ({
       '&player_uuid=' + playerUuid +
       '&player_active=' + playerActive +
       '&player_name=' + playerName +
-      '&nertz_pile=' + JSON.stringify(nertzPile) +
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&time=' + broadcastTime
+    );
+  }
+
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaireWorkPiles(
+        playerPos,
+        playerUuid,
+        solitaireWork1Pile,
+        solitaireWork2Pile,
+        solitaireWork3Pile,
+        solitaireWork4Pile
+      );
+    }
+  }, [solitaireWork1Pile, solitaireWork2Pile, solitaireWork3Pile, solitaireWork4Pile])
+
+  function broadcastPlayerSolitaireWorkPiles(
+    playerPos,
+    playerUuid,
+    solitaireWork1Pile,
+    solitaireWork2Pile,
+    solitaireWork3Pile,
+    solitaireWork4Pile
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_solitaire_work_piles?' +
+      'data_type=' + 'player_solitaire_work_piles' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
       '&solitaire_work_1_pile=' + JSON.stringify(solitaireWork1Pile) +
       '&solitaire_work_2_pile=' + JSON.stringify(solitaireWork2Pile) +
       '&solitaire_work_3_pile=' + JSON.stringify(solitaireWork3Pile) +
       '&solitaire_work_4_pile=' + JSON.stringify(solitaireWork4Pile) +
+      '&time=' + broadcastTime
+    );
+  }
+
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerNertzPile(
+        playerPos,
+        playerUuid,
+        nertzPile);
+    }
+  }, [nertzPile])
+
+  function broadcastPlayerNertzPile(
+    playerPos,
+    playerUuid,
+    nertzPile
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_nertz_pile?' +
+      'data_type=' + 'player_nertz_pile' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&nertz_pile=' + JSON.stringify(nertzPile) +
       '&time=' + broadcastTime
     );
   }

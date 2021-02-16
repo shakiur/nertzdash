@@ -135,8 +135,14 @@ function CardGameView() {
           case 'player_solitaire':
             updatePlayerSolitaireFromBroadcast(data);
             break;
+          case 'player_solitaire_work_piles':
+            updatePlayerSolitaireWorkPilesFromBroadcast(data);
+            break;
           case 'player_solitaire_x_y_pos':
             updatePlayerSolitaireXYPosFromBroadcast(data)
+            break;
+          case 'player_nertz_pile':
+            updatePlayerNertzPileFromBroadcast(data)
             break;
           default:
             break;
@@ -150,10 +156,31 @@ function CardGameView() {
     const retrievedPlayerUuid = data["player_uuid"]
     const retrievedPlayerActive = data["player_active"] === "true"
     const retrievedPlayerName = data["player_name"]
-    const retrievedNertzPile = JSON.parse(data["nertz_pile"])
     const retrievedSolitaireDeck = JSON.parse(data["solitaire_deck"])
     const retrievedSolitairePile = JSON.parse(data["solitaire_pile"])
     const retrievedLeftoverSolitairePile = JSON.parse(data["leftover_solitaire_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerSolitaire(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedPlayerActive,
+        retrievedPlayerName,
+        retrievedSolitaireDeck,
+        retrievedSolitairePile,
+        retrievedLeftoverSolitairePile
+      )
+    }
+  }
+
+  function updatePlayerSolitaireWorkPilesFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
     const retrievedSolitaireWork1Pile = JSON.parse(data["solitaire_work_1_pile"])
     const retrievedSolitaireWork2Pile = JSON.parse(data["solitaire_work_2_pile"])
     const retrievedSolitaireWork3Pile = JSON.parse(data["solitaire_work_3_pile"])
@@ -163,21 +190,34 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+    if(retrievedFromDiffPlayer) {
       setRetrievalTime(retrievedTime)
-      updatePlayerSolitaire(
+      updatePlayerSolitaireWorkPiles(
         retrievedPlayerPos,
         retrievedPlayerUuid,
-        retrievedPlayerActive,
-        retrievedPlayerName,
-        retrievedNertzPile,
-        retrievedSolitaireDeck,
-        retrievedSolitairePile,
-        retrievedLeftoverSolitairePile,
         retrievedSolitaireWork1Pile,
         retrievedSolitaireWork2Pile,
         retrievedSolitaireWork3Pile,
         retrievedSolitaireWork4Pile
+      )
+    }
+  }
+
+  function updatePlayerNertzPileFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedNertzPile = JSON.parse(data["nertz_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerNertzPile(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedNertzPile
       )
     }
   }
@@ -208,10 +248,71 @@ function CardGameView() {
     playerUuid,
     playerActive,
     playerName,
-    nertzPile,
     solitaireDeck,
     solitairePile,
-    solitaireLeftoverPile,
+    solitaireLeftoverPile
+  ) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1Active(playerActive)
+        setPlayer1Name(playerName)
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1SolitaireDeck(solitaireDeck)
+        setPlayer1SolitairePile(solitairePile)
+        setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 2:
+        setPlayer2Active(playerActive)
+        setPlayer2Name(playerName)
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2SolitaireDeck(solitaireDeck)
+        setPlayer2SolitairePile(solitairePile)
+        setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 3:
+        setPlayer3Active(playerActive)
+        setPlayer3Name(playerName)
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3SolitaireDeck(solitaireDeck)
+        setPlayer3SolitairePile(solitairePile)
+        setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 4:
+        setPlayer4Active(playerActive)
+        setPlayer4Name(playerName)
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4SolitaireDeck(solitaireDeck)
+        setPlayer4SolitairePile(solitairePile)
+        setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 5:
+        setPlayer5Active(playerActive)
+        setPlayer5Name(playerName)
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5SolitaireDeck(solitaireDeck)
+        setPlayer5SolitairePile(solitairePile)
+        setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
+        break
+      case 6:
+        setPlayer6Active(playerActive)
+        setPlayer6Name(playerName)
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6SolitaireDeck(solitaireDeck)
+        setPlayer6SolitairePile(solitairePile)
+        setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer6SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer6SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer6SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer6SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      default:
+        break
+    }
+  }
+
+  function updatePlayerSolitaireWorkPiles(
+    playerPos,
+    playerUuid,
     solitaireWork1Pile,
     solitaireWork2Pile,
     solitaireWork3Pile,
@@ -219,78 +320,42 @@ function CardGameView() {
   ) {
     switch(playerPos) {
       case 1:
-        setPlayer1Active(playerActive)
-        setPlayer1Name(playerName)
         setPlayer1BroadcastPlayerUuid(playerUuid)
-        setPlayer1NertzPile(nertzPile)
-        setPlayer1SolitaireDeck(solitaireDeck)
-        setPlayer1SolitairePile(solitairePile)
-        setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer1SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer1SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer1SolitaireWork3Pile(solitaireWork3Pile)
         setPlayer1SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 2:
-        setPlayer2Active(playerActive)
-        setPlayer2Name(playerName)
         setPlayer2BroadcastPlayerUuid(playerUuid)
-        setPlayer2NertzPile(nertzPile)
-        setPlayer2SolitaireDeck(solitaireDeck)
-        setPlayer2SolitairePile(solitairePile)
-        setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer2SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer2SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer2SolitaireWork3Pile(solitaireWork3Pile)
         setPlayer2SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 3:
-        setPlayer3Active(playerActive)
-        setPlayer3Name(playerName)
         setPlayer3BroadcastPlayerUuid(playerUuid)
-        setPlayer3NertzPile(nertzPile)
-        setPlayer3SolitaireDeck(solitaireDeck)
-        setPlayer3SolitairePile(solitairePile)
-        setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer3SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer3SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer3SolitaireWork3Pile(solitaireWork3Pile)
         setPlayer3SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 4:
-        setPlayer4Active(playerActive)
-        setPlayer4Name(playerName)
         setPlayer4BroadcastPlayerUuid(playerUuid)
-        setPlayer4NertzPile(nertzPile)
-        setPlayer4SolitaireDeck(solitaireDeck)
-        setPlayer4SolitairePile(solitairePile)
-        setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer4SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer4SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer4SolitaireWork3Pile(solitaireWork3Pile)
         setPlayer4SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 5:
-        setPlayer5Active(playerActive)
-        setPlayer5Name(playerName)
         setPlayer5BroadcastPlayerUuid(playerUuid)
-        setPlayer5NertzPile(nertzPile)
-        setPlayer5SolitaireDeck(solitaireDeck)
-        setPlayer5SolitairePile(solitairePile)
-        setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer5SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer5SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer5SolitaireWork3Pile(solitaireWork3Pile)
         setPlayer5SolitaireWork4Pile(solitaireWork4Pile)
         break
       case 6:
-        setPlayer6Active(playerActive)
-        setPlayer6Name(playerName)
         setPlayer6BroadcastPlayerUuid(playerUuid)
-        setPlayer6NertzPile(nertzPile)
-        setPlayer6SolitaireDeck(solitaireDeck)
-        setPlayer6SolitairePile(solitairePile)
-        setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)
         setPlayer6SolitaireWork1Pile(solitaireWork1Pile)
         setPlayer6SolitaireWork2Pile(solitaireWork2Pile)
         setPlayer6SolitaireWork3Pile(solitaireWork3Pile)
@@ -332,6 +397,38 @@ function CardGameView() {
         setPlayer6BroadcastPlayerUuid(playerUuid)
         setPlayer6SolitaireXPos(solitaireXPos)
         setPlayer6SolitaireYPos(solitaireYPos)
+        break
+      default:
+        break
+    }
+  }
+
+
+  function updatePlayerNertzPile(playerPos, playerUuid, nertzPile) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1NertzPile(nertzPile)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2NertzPile(nertzPile)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3NertzPile(nertzPile)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4NertzPile(nertzPile)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5NertzPile(nertzPile)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6NertzPile(nertzPile)
         break
       default:
         break
