@@ -28,6 +28,8 @@ function CardGameView() {
   const [player1SolitaireWork4Pile, setPlayer1SolitaireWork4Pile] = useState([]);
   const [player1SolitaireXPos, setPlayer1SolitaireXPos] = useState(0)
   const [player1SolitaireYPos, setPlayer1SolitaireYPos] = useState(0)
+  const [player1NertzPileXPos, setPlayer1NertzPileXPos] = useState(0)
+  const [player1NertzPileYPos, setPlayer1NertzPileYPos] = useState(0)
   const [player1WorkPile1XPos, setPlayer1WorkPile1XPos] = useState(0)
   const [player1WorkPile1YPos, setPlayer1WorkPile1YPos] = useState(0)
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
@@ -45,6 +47,8 @@ function CardGameView() {
   const [player2SolitaireWork4Pile, setPlayer2SolitaireWork4Pile] = useState([]);
   const [player2SolitaireXPos, setPlayer2SolitaireXPos] = useState(0)
   const [player2SolitaireYPos, setPlayer2SolitaireYPos] = useState(0)
+  const [player2NertzPileXPos, setPlayer2NertzPileXPos] = useState(0)
+  const [player2NertzPileYPos, setPlayer2NertzPileYPos] = useState(0)
   const [player2WorkPile1XPos, setPlayer2WorkPile1XPos] = useState(0)
   const [player2WorkPile1YPos, setPlayer2WorkPile1YPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
@@ -62,6 +66,8 @@ function CardGameView() {
   const [player3SolitaireWork4Pile, setPlayer3SolitaireWork4Pile] = useState([]);
   const [player3SolitaireXPos, setPlayer3SolitaireXPos] = useState(0)
   const [player3SolitaireYPos, setPlayer3SolitaireYPos] = useState(0)
+  const [player3NertzPileXPos, setPlayer3NertzPileXPos] = useState(0)
+  const [player3NertzPileYPos, setPlayer3NertzPileYPos] = useState(0)
   const [player3WorkPile1XPos, setPlayer3WorkPile1XPos] = useState(0)
   const [player3WorkPile1YPos, setPlayer3WorkPile1YPos] = useState(0)
   const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
@@ -79,6 +85,8 @@ function CardGameView() {
   const [player4SolitaireWork4Pile, setPlayer4SolitaireWork4Pile] = useState([]);
   const [player4SolitaireXPos, setPlayer4SolitaireXPos] = useState(0)
   const [player4SolitaireYPos, setPlayer4SolitaireYPos] = useState(0)
+  const [player4NertzPileXPos, setPlayer4NertzPileXPos] = useState(0)
+  const [player4NertzPileYPos, setPlayer4NertzPileYPos] = useState(0)
   const [player4WorkPile1XPos, setPlayer4WorkPile1XPos] = useState(0)
   const [player4WorkPile1YPos, setPlayer4WorkPile1YPos] = useState(0)
   const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
@@ -96,6 +104,8 @@ function CardGameView() {
   const [player5SolitaireWork4Pile, setPlayer5SolitaireWork4Pile] = useState([]);
   const [player5SolitaireXPos, setPlayer5SolitaireXPos] = useState(0)
   const [player5SolitaireYPos, setPlayer5SolitaireYPos] = useState(0)
+  const [player5NertzPileXPos, setPlayer5NertzPileXPos] = useState(0)
+  const [player5NertzPileYPos, setPlayer5NertzPileYPos] = useState(0)
   const [player5WorkPile1XPos, setPlayer5WorkPile1XPos] = useState(0)
   const [player5WorkPile1YPos, setPlayer5WorkPile1YPos] = useState(0)
   const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
@@ -113,6 +123,8 @@ function CardGameView() {
   const [player6SolitaireWork4Pile, setPlayer6SolitaireWork4Pile] = useState([]);
   const [player6SolitaireXPos, setPlayer6SolitaireXPos] = useState(0)
   const [player6SolitaireYPos, setPlayer6SolitaireYPos] = useState(0)
+  const [player6NertzPileXPos, setPlayer6NertzPileXPos] = useState(0)
+  const [player6NertzPileYPos, setPlayer6NertzPileYPos] = useState(0)
   const [player6WorkPile1XPos, setPlayer6WorkPile1XPos] = useState(0)
   const [player6WorkPile1YPos, setPlayer6WorkPile1YPos] = useState(0)
   const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
@@ -475,6 +487,10 @@ function CardGameView() {
           solitaireYPos={player1SolitaireYPos}
           setSolitaireXPos={setPlayer1SolitaireXPos}
           setSolitaireYPos={setPlayer1SolitaireYPos}
+          nertzPileXPos={player1NertzPileXPos}
+          nertzPileYPos={player1NertzPileYPos}
+          setNertzPileXPos={setPlayer1NertzPileXPos}
+          setNertzPileYPos={setPlayer1NertzPileYPos}
           broadcastPlayerUuid={player1BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -510,6 +526,10 @@ function CardGameView() {
           solitaireYPos={player2SolitaireYPos}
           setSolitaireXPos={setPlayer2SolitaireXPos}
           setSolitaireYPos={setPlayer2SolitaireYPos}
+          nertzPileXPos={player2NertzPileXPos}
+          nertzPileYPos={player2NertzPileYPos}
+          setNertzPileXPos={setPlayer2NertzPileXPos}
+          setNertzPileYPos={setPlayer2NertzPileYPos}
           broadcastPlayerUuid={player2BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer2BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -548,6 +568,10 @@ function CardGameView() {
           solitaireYPos={player3SolitaireYPos}
           setSolitaireXPos={setPlayer3SolitaireXPos}
           setSolitaireYPos={setPlayer3SolitaireYPos}
+          nertzPileXPos={player3NertzPileXPos}
+          nertzPileYPos={player3NertzPileYPos}
+          setNertzPileXPos={setPlayer3NertzPileXPos}
+          setNertzPileYPos={setPlayer3NertzPileYPos}
           broadcastPlayerUuid={player3BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -584,6 +608,10 @@ function CardGameView() {
           solitaireYPos={player4SolitaireYPos}
           setSolitaireXPos={setPlayer4SolitaireXPos}
           setSolitaireYPos={setPlayer4SolitaireYPos}
+          nertzPileXPos={player4NertzPileXPos}
+          nertzPileYPos={player4NertzPileYPos}
+          setNertzPileXPos={setPlayer4NertzPileXPos}
+          setNertzPileYPos={setPlayer4NertzPileYPos}
           broadcastPlayerUuid={player4BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer4BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -622,6 +650,10 @@ function CardGameView() {
           solitaireYPos={player5SolitaireYPos}
           setSolitaireXPos={setPlayer5SolitaireXPos}
           setSolitaireYPos={setPlayer5SolitaireYPos}
+          nertzPileXPos={player5NertzPileXPos}
+          nertzPileYPos={player5NertzPileYPos}
+          setNertzPileXPos={setPlayer5NertzPileXPos}
+          setNertzPileYPos={setPlayer5NertzPileYPos}
           broadcastPlayerUuid={player5BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer5BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -657,6 +689,10 @@ function CardGameView() {
           solitaireYPos={player6SolitaireYPos}
           setSolitaireXPos={setPlayer6SolitaireXPos}
           setSolitaireYPos={setPlayer6SolitaireYPos}
+          nertzPileXPos={player6NertzPileXPos}
+          nertzPileYPos={player6NertzPileYPos}
+          setNertzPileXPos={setPlayer6NertzPileXPos}
+          setNertzPileYPos={setPlayer6NertzPileYPos}
           broadcastPlayerUuid={player6BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer6BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
