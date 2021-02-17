@@ -153,6 +153,9 @@ function CardGameView() {
           case 'player_solitaire_x_y_pos':
             updatePlayerSolitaireXYPosFromBroadcast(data)
             break;
+          case 'player_nertz_pile_x_y_pos':
+            updatePlayerNertzPileXYPosFromBroadcast(data)
+            break;
           case 'player_nertz_pile':
             updatePlayerNertzPileFromBroadcast(data)
             break;
@@ -251,6 +254,27 @@ function CardGameView() {
         retrievedPlayerUuid,
         retrievedSolitaireXPos,
         retrievedSolitaireYPos
+      )
+    }
+  }
+
+  function updatePlayerNertzPileXYPosFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedNertzPileXPos = parseInt(data["nertz_pile_x_pos"])
+    const retrievedNertzPileYPos = parseInt(data["nertz_pile_y_pos"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerNertzPileXYPos(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedNertzPileXPos,
+        retrievedNertzPileYPos
       )
     }
   }
@@ -415,6 +439,42 @@ function CardGameView() {
     }
   }
 
+  function updatePlayerNertzPileXYPos(playerPos, playerUuid, nertzPileXPos, nertzPileYPos) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1NertzPileXPos(nertzPileXPos)
+        setPlayer1NertzPileYPos(nertzPileYPos)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2NertzPileXPos(nertzPileXPos)
+        setPlayer2NertzPileYPos(nertzPileYPos)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3NertzPileXPos(nertzPileXPos)
+        setPlayer3NertzPileYPos(nertzPileYPos)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4NertzPileXPos(nertzPileXPos)
+        setPlayer4NertzPileYPos(nertzPileYPos)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5NertzPileXPos(nertzPileXPos)
+        setPlayer5NertzPileYPos(nertzPileYPos)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6NertzPileXPos(nertzPileXPos)
+        setPlayer6NertzPileYPos(nertzPileYPos)
+        break
+      default:
+        break
+    }
+  }
 
   function updatePlayerNertzPile(playerPos, playerUuid, nertzPile) {
     switch(playerPos) {

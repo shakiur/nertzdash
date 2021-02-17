@@ -42,6 +42,17 @@ class CardGameController < ApplicationController
     head :ok
   end
 
+  def broadcast_player_nertz_pile_x_y_pos
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_pos: params[:player_pos],
+      player_uuid: params[:player_uuid],
+      nertz_pile_x_pos: params[:nertz_pile_x_pos],
+      nertz_pile_y_pos: params[:nertz_pile_y_pos],
+      time: params[:time]
+    head :ok
+  end
+
   def broadcast_player_nertz_pile
     ActionCable.server.broadcast 'card_game',
       data_type: params[:data_type],

@@ -42,7 +42,11 @@ const PlayerTableNew = ({
   setSolitaireYPos,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
-  setBroadcastTime
+  setBroadcastTime,
+  nertzPileXPos,
+  nertzPileYPos,
+  setNertzPileXPos,
+  setNertzPileYPos
 }) => {
   const [workPile1XPos, setWorkPile1XPos] = useState(60)
   const [workPile1YPos, setWorkPile1YPos] = useState(-120)
@@ -166,8 +170,16 @@ const PlayerTableNew = ({
             playerUuid={playerUuid}
             playerName={playerName}
             playerActive={playerActive}
+            broadcastTime={broadcastTime}
+            setBroadcastTime={setBroadcastTime}
+            broadcastPlayerUuid={broadcastPlayerUuid}
+            setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             nertzPile={nertzPile}
             setNertzPile={setNertzPile}
+            nertzPileXPos={nertzPileXPos}
+            nertzPileYPos={nertzPileYPos}
+            setNertzPileXPos={setNertzPileXPos}
+            setNertzPileYPos={setNertzPileYPos}
           />
         </div>
         <div className="SolitaireDeckArea">
