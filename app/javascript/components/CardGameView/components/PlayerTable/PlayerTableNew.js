@@ -256,6 +256,7 @@ const PlayerTableNew = ({
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
+            workPilePos={1}
             solitaireWorkPile={solitaireWork1Pile}
             setSolitaireWorkPile={setSolitaireWork1Pile}
           />
@@ -269,6 +270,7 @@ const PlayerTableNew = ({
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
+            workPilePos={2}
             solitaireWorkPile={solitaireWork2Pile}
             setSolitaireWorkPile={setSolitaireWork2Pile}
           />
@@ -282,6 +284,7 @@ const PlayerTableNew = ({
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
+            workPilePos={3}
             solitaireWorkPile={solitaireWork3Pile}
             setSolitaireWorkPile={setSolitaireWork3Pile}
           />
@@ -295,6 +298,7 @@ const PlayerTableNew = ({
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
+            workPilePos={4}
             solitaireWorkPile={solitaireWork4Pile}
             setSolitaireWorkPile={setSolitaireWork4Pile}
           />

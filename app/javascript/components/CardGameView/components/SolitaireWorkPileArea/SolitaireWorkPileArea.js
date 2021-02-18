@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Draggable from "react-draggable";
 
 const SolitaireWorkPileArea = ({
@@ -9,9 +9,18 @@ const SolitaireWorkPileArea = ({
   setBroadcastPlayerUuid,
   broadcastTime,
   setBroadcastTime,
+  workPilePos,
   solitaireWorkPile,
   setSolitaireWorkPile
 }) => {
+  const [left3WorkPileXPos, setLeft3WorkPileXPos] = useState(-180)
+  const [left2WorkPileXPos, setLeft2WorkPileXPos] = useState(-120)
+  const [left1WorkPileXPos, setLeft1WorkPileXPos] = useState(-60)
+
+  const [right1WorkPileXPos, setRight1WorkPileXPos] = useState(60)
+  const [right2WorkPileXPos, setRight2WorkPileXPos] = useState(120)
+  const [right3WorkPileXPos, setRight3WorkPileXPos] = useState(180)
+
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`
