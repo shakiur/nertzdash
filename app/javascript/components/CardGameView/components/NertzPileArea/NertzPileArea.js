@@ -200,6 +200,7 @@ const NertzPileArea = ({
       <div className={`nertzPilePreviewCard ${previewCardBorderStyle(nertzPile[2])}`}></div>
       <div className={`nertzPilePreviewCard ${previewCardBorderStyle(nertzPile[1])}`}></div>
       <Draggable
+        disabled={!nertzPile[0]}
         onDrag={(event, ui) => updateNertzPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: nertzPileXPos, y: nertzPileYPos}}

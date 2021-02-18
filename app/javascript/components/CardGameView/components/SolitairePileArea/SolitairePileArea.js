@@ -198,6 +198,7 @@ const SolitairePileArea = ({
         </div>
       </div>
       <Draggable
+        disabled={!solitairePile[0]}
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}
