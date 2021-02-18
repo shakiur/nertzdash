@@ -48,16 +48,9 @@ const PlayerTableNew = ({
   setNertzPileXPos,
   setNertzPileYPos
 }) => {
-  const [workPile1XPos, setWorkPile1XPos] = useState(60)
   const [workPile1YPos, setWorkPile1YPos] = useState(-120)
-
-  const [workPile2XPos, setWorkPile2XPos] = useState(120)
   const [workPile2YPos, setWorkPile2YPos] = useState(-120)
-
-  const [workPile3XPos, setWorkPile3XPos] = useState(180)
   const [workPile3YPos, setWorkPile3YPos] = useState(-120)
-
-  const [workPile4XPos, setWorkPile4XPos] = useState(240)
   const [workPile4YPos, setWorkPile4YPos] = useState(-120)
 
   useEffect(() => {
@@ -180,6 +173,22 @@ const PlayerTableNew = ({
             nertzPileYPos={nertzPileYPos}
             setNertzPileXPos={setNertzPileXPos}
             setNertzPileYPos={setNertzPileYPos}
+            solitaireWork1Pile={solitaireWork1Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            solitaireWork2Pile={solitaireWork2Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            solitaireWork3Pile={solitaireWork3Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            solitaireWork4Pile={solitaireWork4Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
+            workPile1YPos={workPile1YPos}
+            workPile2YPos={workPile2YPos}
+            workPile3YPos={workPile3YPos}
+            workPile4YPos={workPile4YPos}
+            setWorkPile1YPos={setWorkPile1YPos}
+            setWorkPile2YPos={setWorkPile2YPos}
+            setWorkPile3YPos={setWorkPile3YPos}
+            setWorkPile4YPos={setWorkPile4YPos}
           />
         </div>
         <div className="SolitaireDeckArea">
@@ -228,21 +237,13 @@ const PlayerTableNew = ({
             setSolitaireWork3Pile={setSolitaireWork3Pile}
             solitaireWork4Pile={solitaireWork4Pile}
             setSolitaireWork4Pile={setSolitaireWork4Pile}
-            workPile1XPos={workPile1XPos}
             workPile1YPos={workPile1YPos}
-            setWorkPile1XPos={setWorkPile1XPos}
-            setWorkPile1YPos={setWorkPile1YPos}
-            workPile2XPos={workPile2XPos}
             workPile2YPos={workPile2YPos}
-            setWorkPile2XPos={setWorkPile2XPos}
-            setWorkPile2YPos={setWorkPile2YPos}
-            workPile3XPos={workPile3XPos}
             workPile3YPos={workPile3YPos}
-            setWorkPile3XPos={setWorkPile3XPos}
-            setWorkPile3YPos={setWorkPile3YPos}
-            workPile4XPos={workPile4XPos}
             workPile4YPos={workPile4YPos}
-            setWorkPile4XPos={setWorkPile4XPos}
+            setWorkPile1YPos={setWorkPile1YPos}
+            setWorkPile2YPos={setWorkPile2YPos}
+            setWorkPile3YPos={setWorkPile3YPos}
             setWorkPile4YPos={setWorkPile4YPos}
           />
         </div>

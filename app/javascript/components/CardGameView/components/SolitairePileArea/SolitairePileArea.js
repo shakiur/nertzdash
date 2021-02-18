@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Draggable from "react-draggable";
 
 const SolitairePileArea = ({
@@ -23,23 +23,20 @@ const SolitairePileArea = ({
   setSolitaireWork3Pile,
   solitaireWork4Pile,
   setSolitaireWork4Pile,
-  workPile1XPos,
   workPile1YPos,
-  setWorkPile1XPos,
-  setWorkPile1YPos,
-  workPile2XPos,
   workPile2YPos,
-  setWorkPile2XPos,
-  setWorkPile2YPos,
-  workPile3XPos,
   workPile3YPos,
-  setWorkPile3XPos,
-  setWorkPile3YPos,
-  workPile4XPos,
   workPile4YPos,
-  setWorkPile4XPos,
+  setWorkPile1YPos,
+  setWorkPile2YPos,
+  setWorkPile3YPos,
   setWorkPile4YPos
 }) => {
+  const [workPile1XPos, setWorkPile1XPos] = useState(60)
+  const [workPile2XPos, setWorkPile2XPos] = useState(120)
+  const [workPile3XPos, setWorkPile3XPos] = useState(180)
+  const [workPile4XPos, setWorkPile4XPos] = useState(240)
+
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaireXYPos(
