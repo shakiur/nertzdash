@@ -131,6 +131,7 @@ const SolitaireWorkPileArea = ({
         onDrag={(event, ui) => updateWorkPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: workPileXPos, y: workPileYPos}}
+        defaultClassNameDragging="zIndexTop"
       >
         <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>
           <div className={`topNumSuit ${cardColor(solitaireWorkPile[0])}`}>

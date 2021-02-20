@@ -18,6 +18,7 @@
     justify-content: space-between;
 
     user-select: none;
+    z-index: 0;
   }
 
   .solidLineCard {
@@ -76,5 +77,9 @@
 
   .black {
     color: #000000;
+  }
+
+  .zIndexTop {
+    z-index: 1;
   }
 }

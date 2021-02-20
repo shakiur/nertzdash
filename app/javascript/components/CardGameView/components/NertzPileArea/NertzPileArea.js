@@ -197,6 +197,7 @@ const NertzPileArea = ({
         onDrag={(event, ui) => updateNertzPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: nertzPileXPos, y: nertzPileYPos}}
+        defaultClassNameDragging="zIndexTop"
       >
         <div className={`nertzPileBottomCard ${cardBorderStyle(nertzPile[0])}`}>
           <div className={`topNumSuit ${cardColor(nertzPile[0])}`}>
