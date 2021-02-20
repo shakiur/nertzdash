@@ -10,6 +10,10 @@ const SolitaireWorkPileArea = ({
   broadcastTime,
   setBroadcastTime,
   workPilePos,
+  workPileXPos,
+  workPileYPos,
+  setWorkPileXPos,
+  setWorkPileYPos,
   solitaireWorkPile,
   setSolitaireWorkPile
 }) => {

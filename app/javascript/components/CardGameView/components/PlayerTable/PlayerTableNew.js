@@ -278,6 +278,10 @@ const PlayerTableNew = ({
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             workPilePos={1}
+            workPileXPos={workPile1XPos}
+            workPileYPos={workPile1YPos}
+            setWorkPileXPos={setWorkPile1XPos}
+            setWorkPileYPos={setWorkPile1YPos}
             solitaireWorkPile={solitaireWork1Pile}
             setSolitaireWorkPile={setSolitaireWork1Pile}
           />
@@ -292,6 +296,10 @@ const PlayerTableNew = ({
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             workPilePos={2}
+            workPileXPos={workPile2XPos}
+            workPileYPos={workPile2YPos}
+            setWorkPileXPos={setWorkPile2XPos}
+            setWorkPileYPos={setWorkPile2YPos}
             solitaireWorkPile={solitaireWork2Pile}
             setSolitaireWorkPile={setSolitaireWork2Pile}
           />
@@ -306,6 +314,10 @@ const PlayerTableNew = ({
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             workPilePos={3}
+            workPileXPos={workPile3XPos}
+            workPileYPos={workPile3YPos}
+            setWorkPileXPos={setWorkPile3XPos}
+            setWorkPileYPos={setWorkPile3YPos}
             solitaireWorkPile={solitaireWork3Pile}
             setSolitaireWorkPile={setSolitaireWork3Pile}
           />
@@ -320,6 +332,10 @@ const PlayerTableNew = ({
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             workPilePos={4}
+            workPileXPos={workPile4XPos}
+            workPileYPos={workPile4YPos}
+            setWorkPileXPos={setWorkPile4XPos}
+            setWorkPileYPos={setWorkPile4YPos}
             solitaireWorkPile={solitaireWork4Pile}
             setSolitaireWorkPile={setSolitaireWork4Pile}
           />
