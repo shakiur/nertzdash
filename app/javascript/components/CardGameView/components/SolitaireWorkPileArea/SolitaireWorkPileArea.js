@@ -25,6 +25,39 @@ const SolitaireWorkPileArea = ({
   const [right2WorkPileXPos, setRight2WorkPileXPos] = useState(120)
   const [right3WorkPileXPos, setRight3WorkPileXPos] = useState(180)
 
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerWorkPileXYPos(
+        playerPos,
+        playerUuid,
+        workPilePos,
+        workPileXPos,
+        workPileYPos
+      )
+    }
+  }, [workPileXPos, workPileYPos])
+
+  function broadcastPlayerWorkPileXYPos(playerPos, playerUuid, workPilePos, workPileXPos, workPileYPos) {
+    const delay = 25
+    const currentTime = new Date().getTime();
+    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+    const resetXYPos = workPileXPos == 0 && workPileYPos == 0
+
+    if(meetsDelayThreshold || resetXYPos) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_work_pile_x_y_pos?' +
+        'data_type=' + 'player_work_pile_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&work_pile_pos=' + workPilePos +
+        '&work_pile_x_pos=' + workPileXPos +
+        '&work_pile_y_pos=' + workPileYPos +
+        '&time=' + broadcastTime
+      );
+    }
+  }
+
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`
@@ -78,20 +111,31 @@ const SolitaireWorkPileArea = ({
     )
   }
 
+  function updateWorkPileXYPos(event, ui) {
+    setBroadcastPlayerUuid(playerUuid)
+    setWorkPileXPos(workPileXPos + ui.deltaX)
+    setWorkPileYPos(workPileYPos + ui.deltaY)
+  }
+
   return (
     <div className="SolitaireWorkPile">
       <PreviewCards />
-      <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>
-        <div className={`topNumSuit ${cardColor(solitaireWorkPile[0])}`}>
-          {displayNumSuit(solitaireWorkPile[0])}
+      <Draggable
+        onDrag={(event, ui) => updateWorkPileXYPos(event, ui)}
+        position={{x: workPileXPos, y: workPileYPos}}
+      >
+        <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>
+          <div className={`topNumSuit ${cardColor(solitaireWorkPile[0])}`}>
+            {displayNumSuit(solitaireWorkPile[0])}
+          </div>
+          <div className={`middleSuit ${cardColor(solitaireWorkPile[0])}`}>
+            {displaySuit(solitaireWorkPile[0])}
+          </div>
+          <div className={`bottomNumSuit ${cardColor(solitaireWorkPile[0])}`}>
+            {displaySuitNum(solitaireWorkPile[0])}
+          </div>
         </div>
-        <div className={`middleSuit ${cardColor(solitaireWorkPile[0])}`}>
-          {displaySuit(solitaireWorkPile[0])}
-        </div>
-        <div className={`bottomNumSuit ${cardColor(solitaireWorkPile[0])}`}>
-          {displaySuitNum(solitaireWorkPile[0])}
-        </div>
-      </div>
+      </Draggable>
     </div>
   )
 }
