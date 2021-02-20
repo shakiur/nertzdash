@@ -117,11 +117,19 @@ const SolitaireWorkPileArea = ({
     setWorkPileYPos(workPileYPos + ui.deltaY)
   }
 
+  function checkNearWorkPile(event, ui) {
+    setBroadcastPlayerUuid(playerUuid)
+    setWorkPileXPos(0)
+    setWorkPileYPos(0)
+  }
+
   return (
     <div className="SolitaireWorkPile">
       <PreviewCards />
       <Draggable
+        disabled={!solitaireWorkPile[0]}
         onDrag={(event, ui) => updateWorkPileXYPos(event, ui)}
+        onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: workPileXPos, y: workPileYPos}}
       >
         <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>

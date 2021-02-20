@@ -192,6 +192,9 @@ function CardGameView() {
           case 'player_nertz_pile_x_y_pos':
             updatePlayerNertzPileXYPosFromBroadcast(data)
             break;
+          case 'player_work_pile_x_y_pos':
+            updatePlayerWorkPileXYPosFromBroadcast(data)
+            break;
           case 'player_nertz_pile':
             updatePlayerNertzPileFromBroadcast(data)
             break;
@@ -311,6 +314,29 @@ function CardGameView() {
         retrievedPlayerUuid,
         retrievedNertzPileXPos,
         retrievedNertzPileYPos
+      )
+    }
+  }
+
+  function updatePlayerWorkPileXYPosFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedWorkPilePos = parseInt(data["work_pile_pos"])
+    const retrievedWorkPileXPos = parseInt(data["work_pile_x_pos"])
+    const retrievedWorkPileYPos = parseInt(data["work_pile_y_pos"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerWorkPileXYPos(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedWorkPilePos,
+        retrievedWorkPileXPos,
+        retrievedWorkPileYPos
       )
     }
   }
@@ -506,6 +532,151 @@ function CardGameView() {
         setPlayer6BroadcastPlayerUuid(playerUuid)
         setPlayer6NertzPileXPos(nertzPileXPos)
         setPlayer6NertzPileYPos(nertzPileYPos)
+        break
+      default:
+        break
+    }
+  }
+
+  function updatePlayerWorkPileXYPos(playerPos, playerUuid, workPilePos, workPileXPos, workPileYPos) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer1WorkPile1XPos(workPileXPos)
+            setPlayer1WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer1WorkPile2XPos(workPileXPos)
+            setPlayer1WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer1WorkPile3XPos(workPileXPos)
+            setPlayer1WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer1WorkPile4XPos(workPileXPos)
+            setPlayer1WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer2WorkPile1XPos(workPileXPos)
+            setPlayer2WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer2WorkPile2XPos(workPileXPos)
+            setPlayer2WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer2WorkPile3XPos(workPileXPos)
+            setPlayer2WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer2WorkPile4XPos(workPileXPos)
+            setPlayer2WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer3WorkPile1XPos(workPileXPos)
+            setPlayer3WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer3WorkPile2XPos(workPileXPos)
+            setPlayer3WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer3WorkPile3XPos(workPileXPos)
+            setPlayer3WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer3WorkPile4XPos(workPileXPos)
+            setPlayer3WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer4WorkPile1XPos(workPileXPos)
+            setPlayer4WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer4WorkPile2XPos(workPileXPos)
+            setPlayer4WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer4WorkPile3XPos(workPileXPos)
+            setPlayer4WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer4WorkPile4XPos(workPileXPos)
+            setPlayer4WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer5WorkPile1XPos(workPileXPos)
+            setPlayer5WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer5WorkPile2XPos(workPileXPos)
+            setPlayer5WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer5WorkPile3XPos(workPileXPos)
+            setPlayer5WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer5WorkPile4XPos(workPileXPos)
+            setPlayer5WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        switch(workPilePos) {
+          case 1:
+            setPlayer6WorkPile1XPos(workPileXPos)
+            setPlayer6WorkPile1YPos(workPileYPos)
+            break;
+          case 2:
+            setPlayer6WorkPile2XPos(workPileXPos)
+            setPlayer6WorkPile2YPos(workPileYPos)
+            break;
+          case 3:
+            setPlayer6WorkPile3XPos(workPileXPos)
+            setPlayer6WorkPile3YPos(workPileYPos)
+            break;
+          case 4:
+            setPlayer6WorkPile4XPos(workPileXPos)
+            setPlayer6WorkPile4YPos(workPileYPos)
+            break;
+          default:
+            break;
+        }
         break
       default:
         break
