@@ -40,18 +40,39 @@ const PlayerTableNew = ({
   solitaireYPos,
   setSolitaireXPos,
   setSolitaireYPos,
-  broadcastPlayerUuid,
-  setBroadcastPlayerUuid,
-  setBroadcastTime,
   nertzPileXPos,
   nertzPileYPos,
   setNertzPileXPos,
-  setNertzPileYPos
+  setNertzPileYPos,
+  workPile1XPos,
+  workPile1YPos,
+  workPile2XPos,
+  workPile2YPos,
+  workPile3XPos,
+  workPile3YPos,
+  workPile4XPos,
+  workPile4YPos,
+  setWorkPile1XPos,
+  setWorkPile1YPos,
+  setWorkPile2XPos,
+  setWorkPile2YPos,
+  setWorkPile3XPos,
+  setWorkPile3YPos,
+  setWorkPile4XPos,
+  setWorkPile4YPos,
+  broadcastPlayerUuid,
+  setBroadcastPlayerUuid,
+  setBroadcastTime
 }) => {
-  const [workPile1YPos, setWorkPile1YPos] = useState(-120)
-  const [workPile2YPos, setWorkPile2YPos] = useState(-120)
-  const [workPile3YPos, setWorkPile3YPos] = useState(-120)
-  const [workPile4YPos, setWorkPile4YPos] = useState(-120)
+  const [nertzSoliWorkPile1YPos, setNertzSoliWorkPile1YPos] = useState(-120)
+  const [nertzSoliWorkPile2YPos, setNertzSoliWorkPile2YPos] = useState(-120)
+  const [nertzSoliWorkPile3YPos, setNertzSoliWorkPile3YPos] = useState(-120)
+  const [nertzSoliWorkPile4YPos, setNertzSoliWorkPile4YPos] = useState(-120)
+
+  const [absoluteWorkPile1YPos, setAbsoluteWorkPile1YPos] = useState(0)
+  const [absoluteWorkPile2YPos, setAbsoluteWorkPile2YPos] = useState(0)
+  const [absoluteWorkPile3YPos, setAbsoluteWorkPile3YPos] = useState(0)
+  const [absoluteWorkPile4YPos, setAbsoluteWorkPile4YPos] = useState(0)
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
@@ -181,14 +202,14 @@ const PlayerTableNew = ({
             setSolitaireWork2Pile={setSolitaireWork2Pile}
             setSolitaireWork3Pile={setSolitaireWork3Pile}
             setSolitaireWork4Pile={setSolitaireWork4Pile}
-            workPile1YPos={workPile1YPos}
-            workPile2YPos={workPile2YPos}
-            workPile3YPos={workPile3YPos}
-            workPile4YPos={workPile4YPos}
-            setWorkPile1YPos={setWorkPile1YPos}
-            setWorkPile2YPos={setWorkPile2YPos}
-            setWorkPile3YPos={setWorkPile3YPos}
-            setWorkPile4YPos={setWorkPile4YPos}
+            nertzSoliWorkPile1YPos={nertzSoliWorkPile1YPos}
+            nertzSoliWorkPile2YPos={nertzSoliWorkPile2YPos}
+            nertzSoliWorkPile3YPos={nertzSoliWorkPile3YPos}
+            nertzSoliWorkPile4YPos={nertzSoliWorkPile4YPos}
+            setNertzSoliWorkPile1YPos={setNertzSoliWorkPile1YPos}
+            setNertzSoliWorkPile2YPos={setNertzSoliWorkPile2YPos}
+            setNertzSoliWorkPile3YPos={setNertzSoliWorkPile3YPos}
+            setNertzSoliWorkPile4YPos={setNertzSoliWorkPile4YPos}
           />
         </div>
         <div className="SolitaireDeckArea">
@@ -237,14 +258,14 @@ const PlayerTableNew = ({
             setSolitaireWork2Pile={setSolitaireWork2Pile}
             setSolitaireWork3Pile={setSolitaireWork3Pile}
             setSolitaireWork4Pile={setSolitaireWork4Pile}
-            workPile1YPos={workPile1YPos}
-            workPile2YPos={workPile2YPos}
-            workPile3YPos={workPile3YPos}
-            workPile4YPos={workPile4YPos}
-            setWorkPile1YPos={setWorkPile1YPos}
-            setWorkPile2YPos={setWorkPile2YPos}
-            setWorkPile3YPos={setWorkPile3YPos}
-            setWorkPile4YPos={setWorkPile4YPos}
+            nertzSoliWorkPile1YPos={nertzSoliWorkPile1YPos}
+            nertzSoliWorkPile2YPos={nertzSoliWorkPile2YPos}
+            nertzSoliWorkPile3YPos={nertzSoliWorkPile3YPos}
+            nertzSoliWorkPile4YPos={nertzSoliWorkPile4YPos}
+            setNertzSoliWorkPile1YPos={setNertzSoliWorkPile1YPos}
+            setNertzSoliWorkPile2YPos={setNertzSoliWorkPile2YPos}
+            setNertzSoliWorkPile3YPos={setNertzSoliWorkPile3YPos}
+            setNertzSoliWorkPile4YPos={setNertzSoliWorkPile4YPos}
           />
         </div>
         <div className="SolitaireWorkArea">
