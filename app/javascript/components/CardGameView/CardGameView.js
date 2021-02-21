@@ -38,6 +38,14 @@ function CardGameView() {
   const [player1WorkPile3YPos, setPlayer1WorkPile3YPos] = useState(0)
   const [player1WorkPile4XPos, setPlayer1WorkPile4XPos] = useState(0)
   const [player1WorkPile4YPos, setPlayer1WorkPile4YPos] = useState(0)
+  const [player1WorkPile1PreviewXPos, setPlayer1WorkPile1PreviewXPos] = useState(0)
+  const [player1WorkPile1PreviewYPos, setPlayer1WorkPile1PreviewYPos] = useState(0)
+  const [player1WorkPile2PreviewXPos, setPlayer1WorkPile2PreviewXPos] = useState(0)
+  const [player1WorkPile2PreviewYPos, setPlayer1WorkPile2PreviewYPos] = useState(0)
+  const [player1WorkPile3PreviewXPos, setPlayer1WorkPile3PreviewXPos] = useState(0)
+  const [player1WorkPile3PreviewYPos, setPlayer1WorkPile3PreviewYPos] = useState(0)
+  const [player1WorkPile4PreviewXPos, setPlayer1WorkPile4PreviewXPos] = useState(0)
+  const [player1WorkPile4PreviewYPos, setPlayer1WorkPile4PreviewYPos] = useState(0)
   const [player1BroadcastPlayerUuid, setPlayer1BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player2Name, setPlayer2Name] = useState("")
@@ -63,6 +71,14 @@ function CardGameView() {
   const [player2WorkPile3YPos, setPlayer2WorkPile3YPos] = useState(0)
   const [player2WorkPile4XPos, setPlayer2WorkPile4XPos] = useState(0)
   const [player2WorkPile4YPos, setPlayer2WorkPile4YPos] = useState(0)
+  const [player2WorkPile1PreviewXPos, setPlayer2WorkPile1PreviewXPos] = useState(0)
+  const [player2WorkPile1PreviewYPos, setPlayer2WorkPile1PreviewYPos] = useState(0)
+  const [player2WorkPile2PreviewXPos, setPlayer2WorkPile2PreviewXPos] = useState(0)
+  const [player2WorkPile2PreviewYPos, setPlayer2WorkPile2PreviewYPos] = useState(0)
+  const [player2WorkPile3PreviewXPos, setPlayer2WorkPile3PreviewXPos] = useState(0)
+  const [player2WorkPile3PreviewYPos, setPlayer2WorkPile3PreviewYPos] = useState(0)
+  const [player2WorkPile4PreviewXPos, setPlayer2WorkPile4PreviewXPos] = useState(0)
+  const [player2WorkPile4PreviewYPos, setPlayer2WorkPile4PreviewYPos] = useState(0)
   const [player2BroadcastPlayerUuid, setPlayer2BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player3Name, setPlayer3Name] = useState("")
@@ -88,6 +104,14 @@ function CardGameView() {
   const [player3WorkPile3YPos, setPlayer3WorkPile3YPos] = useState(0)
   const [player3WorkPile4XPos, setPlayer3WorkPile4XPos] = useState(0)
   const [player3WorkPile4YPos, setPlayer3WorkPile4YPos] = useState(0)
+  const [player3WorkPile1PreviewXPos, setPlayer3WorkPile1PreviewXPos] = useState(0)
+  const [player3WorkPile1PreviewYPos, setPlayer3WorkPile1PreviewYPos] = useState(0)
+  const [player3WorkPile2PreviewXPos, setPlayer3WorkPile2PreviewXPos] = useState(0)
+  const [player3WorkPile2PreviewYPos, setPlayer3WorkPile2PreviewYPos] = useState(0)
+  const [player3WorkPile3PreviewXPos, setPlayer3WorkPile3PreviewXPos] = useState(0)
+  const [player3WorkPile3PreviewYPos, setPlayer3WorkPile3PreviewYPos] = useState(0)
+  const [player3WorkPile4PreviewXPos, setPlayer3WorkPile4PreviewXPos] = useState(0)
+  const [player3WorkPile4PreviewYPos, setPlayer3WorkPile4PreviewYPos] = useState(0)
   const [player3BroadcastPlayerUuid, setPlayer3BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player4Name, setPlayer4Name] = useState("")
@@ -113,6 +137,14 @@ function CardGameView() {
   const [player4WorkPile3YPos, setPlayer4WorkPile3YPos] = useState(0)
   const [player4WorkPile4XPos, setPlayer4WorkPile4XPos] = useState(0)
   const [player4WorkPile4YPos, setPlayer4WorkPile4YPos] = useState(0)
+  const [player4WorkPile1PreviewXPos, setPlayer4WorkPile1PreviewXPos] = useState(0)
+  const [player4WorkPile1PreviewYPos, setPlayer4WorkPile1PreviewYPos] = useState(0)
+  const [player4WorkPile2PreviewXPos, setPlayer4WorkPile2PreviewXPos] = useState(0)
+  const [player4WorkPile2PreviewYPos, setPlayer4WorkPile2PreviewYPos] = useState(0)
+  const [player4WorkPile3PreviewXPos, setPlayer4WorkPile3PreviewXPos] = useState(0)
+  const [player4WorkPile3PreviewYPos, setPlayer4WorkPile3PreviewYPos] = useState(0)
+  const [player4WorkPile4PreviewXPos, setPlayer4WorkPile4PreviewXPos] = useState(0)
+  const [player4WorkPile4PreviewYPos, setPlayer4WorkPile4PreviewYPos] = useState(0)
   const [player4BroadcastPlayerUuid, setPlayer4BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player5Name, setPlayer5Name] = useState("")
@@ -138,6 +170,14 @@ function CardGameView() {
   const [player5WorkPile3YPos, setPlayer5WorkPile3YPos] = useState(0)
   const [player5WorkPile4XPos, setPlayer5WorkPile4XPos] = useState(0)
   const [player5WorkPile4YPos, setPlayer5WorkPile4YPos] = useState(0)
+  const [player5WorkPile1PreviewXPos, setPlayer5WorkPile1PreviewXPos] = useState(0)
+  const [player5WorkPile1PreviewYPos, setPlayer5WorkPile1PreviewYPos] = useState(0)
+  const [player5WorkPile2PreviewXPos, setPlayer5WorkPile2PreviewXPos] = useState(0)
+  const [player5WorkPile2PreviewYPos, setPlayer5WorkPile2PreviewYPos] = useState(0)
+  const [player5WorkPile3PreviewXPos, setPlayer5WorkPile3PreviewXPos] = useState(0)
+  const [player5WorkPile3PreviewYPos, setPlayer5WorkPile3PreviewYPos] = useState(0)
+  const [player5WorkPile4PreviewXPos, setPlayer5WorkPile4PreviewXPos] = useState(0)
+  const [player5WorkPile4PreviewYPos, setPlayer5WorkPile4PreviewYPos] = useState(0)
   const [player5BroadcastPlayerUuid, setPlayer5BroadcastPlayerUuid] = useState(playerUuid);
 
   const [player6Name, setPlayer6Name] = useState("")
@@ -163,6 +203,14 @@ function CardGameView() {
   const [player6WorkPile3YPos, setPlayer6WorkPile3YPos] = useState(0)
   const [player6WorkPile4XPos, setPlayer6WorkPile4XPos] = useState(0)
   const [player6WorkPile4YPos, setPlayer6WorkPile4YPos] = useState(0)
+  const [player6WorkPile1PreviewXPos, setPlayer6WorkPile1PreviewXPos] = useState(0)
+  const [player6WorkPile1PreviewYPos, setPlayer6WorkPile1PreviewYPos] = useState(0)
+  const [player6WorkPile2PreviewXPos, setPlayer6WorkPile2PreviewXPos] = useState(0)
+  const [player6WorkPile2PreviewYPos, setPlayer6WorkPile2PreviewYPos] = useState(0)
+  const [player6WorkPile3PreviewXPos, setPlayer6WorkPile3PreviewXPos] = useState(0)
+  const [player6WorkPile3PreviewYPos, setPlayer6WorkPile3PreviewYPos] = useState(0)
+  const [player6WorkPile4PreviewXPos, setPlayer6WorkPile4PreviewXPos] = useState(0)
+  const [player6WorkPile4PreviewYPos, setPlayer6WorkPile4PreviewYPos] = useState(0)
   const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
 
   useEffect(() => {
