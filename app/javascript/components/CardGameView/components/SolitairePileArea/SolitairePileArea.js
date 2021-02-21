@@ -26,11 +26,7 @@ const SolitairePileArea = ({
   nertzSoliWorkPile1YPos,
   nertzSoliWorkPile2YPos,
   nertzSoliWorkPile3YPos,
-  nertzSoliWorkPile4YPos,
-  setNertzSoliWorkPile1YPos,
-  setNertzSoliWorkPile2YPos,
-  setNertzSoliWorkPile3YPos,
-  setNertzSoliWorkPile4YPos
+  nertzSoliWorkPile4YPos
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(60)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(120)
@@ -107,17 +103,9 @@ const SolitairePileArea = ({
     const nearWorkPile1XPos = solitaireXPos >= (nertzSoliWorkPile1XPos - 10) && solitaireXPos <= (nertzSoliWorkPile1XPos + 10)
     const nearWorkPile1YPos = solitaireYPos >= nertzSoliWorkPile1YPos && solitaireYPos <= (nertzSoliWorkPile1YPos + 20)
 
-    /*
-    console.log('Solitaire X Pos: ' + solitaireXPos)
-    console.log('Solitaire Y Pos: ' + solitaireYPos)
-    console.log('Work Pile X Pos: ' + (workPile1XPos - 10) + ', ' + (workPile1XPos + 10))
-    console.log('Work Pile Y Pos: ' + (workPile1YPos) + ', ' + (workPile1YPos + 20))
-    */
-
     if(nearWorkPile1XPos && nearWorkPile1YPos) {
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
-      setNertzSoliWorkPile1YPos(nertzSoliWorkPile1YPos + 15)
     }
 
     const workPile2Card = solitaireWork2Pile[0]
@@ -129,7 +117,6 @@ const SolitairePileArea = ({
     if(nearWorkPile2XPos && nearWorkPile2YPos) {
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
-      setNertzSoliWorkPile2YPos(nertzSoliWorkPile2YPos + 15)
     }
 
     const workPile3Card = solitaireWork3Pile[0]
@@ -141,7 +128,6 @@ const SolitairePileArea = ({
     if(nearWorkPile3XPos && nearWorkPile3YPos) {
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
-      setNertzSoliWorkPile3YPos(nertzSoliWorkPile3YPos + 15)
     }
 
     const workPile4Card = solitaireWork4Pile[0]
@@ -153,7 +139,6 @@ const SolitairePileArea = ({
     if(nearWorkPile4XPos && nearWorkPile4YPos) {
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
-      setNertzSoliWorkPile4YPos(nertzSoliWorkPile4YPos + 15)
     }
 
     setBroadcastPlayerUuid(playerUuid)
@@ -162,6 +147,10 @@ const SolitairePileArea = ({
   }
 
   function solitaireCriteria(movedCard, workPileCard) {
+    if(!workPileCard) {
+      return true
+    }
+
     const movedCardNumber = parseInt(movedCard['number'])
     const workPileCardNumber = parseInt(workPileCard['number'])
     const oppositeColor = movedCard['color'] !== workPileCard['color']

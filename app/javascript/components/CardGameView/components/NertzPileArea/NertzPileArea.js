@@ -27,11 +27,7 @@ const NertzPileArea = ({
   nertzSoliWorkPile1YPos,
   nertzSoliWorkPile2YPos,
   nertzSoliWorkPile3YPos,
-  nertzSoliWorkPile4YPos,
-  setNertzSoliWorkPile1YPos,
-  setNertzSoliWorkPile2YPos,
-  setNertzSoliWorkPile3YPos,
-  setNertzSoliWorkPile4YPos
+  nertzSoliWorkPile4YPos
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(120)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(180)
@@ -126,7 +122,6 @@ const NertzPileArea = ({
     if(nearWorkPile1XPos && nearWorkPile1YPos) {
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
-      setNertzSoliWorkPile1YPos(nertzSoliWorkPile1YPos + 15)
     }
 
     const workPile2Card = solitaireWork2Pile[0]
@@ -138,7 +133,6 @@ const NertzPileArea = ({
     if(nearWorkPile2XPos && nearWorkPile2YPos) {
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
-      setNertzSoliWorkPile2YPos(nertzSoliWorkPile2YPos + 15)
     }
 
     const workPile3Card = solitaireWork3Pile[0]
@@ -150,7 +144,6 @@ const NertzPileArea = ({
     if(nearWorkPile3XPos && nearWorkPile3YPos) {
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
-      setNertzSoliWorkPile3YPos(nertzSoliWorkPile3YPos + 15)
     }
 
     const workPile4Card = solitaireWork4Pile[0]
@@ -162,7 +155,6 @@ const NertzPileArea = ({
     if(nearWorkPile4XPos && nearWorkPile4YPos) {
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
-      setNertzSoliWorkPile4YPos(nertzSoliWorkPile4YPos + 15)
     }
 
     setBroadcastPlayerUuid(playerUuid)
@@ -171,6 +163,10 @@ const NertzPileArea = ({
   }
 
   function solitaireCriteria(movedCard, workPileCard) {
+    if(!workPileCard) {
+      return true
+    }
+
     const movedCardNumber = parseInt(movedCard['number'])
     const workPileCardNumber = parseInt(workPileCard['number'])
     const oppositeColor = movedCard['color'] !== workPileCard['color']

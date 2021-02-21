@@ -175,6 +175,50 @@ const PlayerTableNew = ({
     );
   }
 
+  useEffect(() => {
+    if(solitaireWork1Pile.length == 0 || solitaireWork1Pile.length == 1) {
+      setAbsoluteWorkPile1YPos(0)
+      setNertzSoliWorkPile1YPos(-120)
+    } else {
+      const extraCardsCount = solitaireWork1Pile.length - 1
+      setAbsoluteWorkPile1YPos(extraCardsCount * 15)
+      setNertzSoliWorkPile1YPos((extraCardsCount * 15) - 120)
+    }
+  }, [solitaireWork1Pile])
+
+  useEffect(() => {
+    if(solitaireWork2Pile.length == 0 || solitaireWork2Pile.length == 1) {
+      setAbsoluteWorkPile2YPos(0)
+      setNertzSoliWorkPile2YPos(-120)
+    } else {
+      const extraCardsCount = solitaireWork2Pile.length - 1
+      setAbsoluteWorkPile2YPos(extraCardsCount * 15)
+      setNertzSoliWorkPile2YPos((extraCardsCount * 15) - 120)
+    }
+  }, [solitaireWork2Pile])
+
+  useEffect(() => {
+    if(solitaireWork3Pile.length == 0 || solitaireWork3Pile.length == 1) {
+      setAbsoluteWorkPile3YPos(0)
+      setNertzSoliWorkPile3YPos(-120)
+    } else {
+      const extraCardsCount = solitaireWork3Pile.length - 1
+      setAbsoluteWorkPile3YPos(extraCardsCount * 15)
+      setNertzSoliWorkPile3YPos((extraCardsCount * 15) - 120)
+    }
+  }, [solitaireWork3Pile])
+
+  useEffect(() => {
+    if(solitaireWork4Pile.length == 0 || solitaireWork4Pile.length == 1) {
+      setAbsoluteWorkPile4YPos(0)
+      setNertzSoliWorkPile4YPos(-120)
+    } else {
+      const extraCardsCount = solitaireWork4Pile.length - 1
+      setAbsoluteWorkPile4YPos(extraCardsCount * 15)
+      setNertzSoliWorkPile4YPos((extraCardsCount * 15) - 120)
+    }
+  }, [solitaireWork4Pile])
+
   return (
     <div className="PlayerTableNew">
       <div className="CardsArea">
@@ -206,10 +250,6 @@ const PlayerTableNew = ({
             nertzSoliWorkPile2YPos={nertzSoliWorkPile2YPos}
             nertzSoliWorkPile3YPos={nertzSoliWorkPile3YPos}
             nertzSoliWorkPile4YPos={nertzSoliWorkPile4YPos}
-            setNertzSoliWorkPile1YPos={setNertzSoliWorkPile1YPos}
-            setNertzSoliWorkPile2YPos={setNertzSoliWorkPile2YPos}
-            setNertzSoliWorkPile3YPos={setNertzSoliWorkPile3YPos}
-            setNertzSoliWorkPile4YPos={setNertzSoliWorkPile4YPos}
           />
         </div>
         <div className="SolitaireDeckArea">
@@ -262,10 +302,6 @@ const PlayerTableNew = ({
             nertzSoliWorkPile2YPos={nertzSoliWorkPile2YPos}
             nertzSoliWorkPile3YPos={nertzSoliWorkPile3YPos}
             nertzSoliWorkPile4YPos={nertzSoliWorkPile4YPos}
-            setNertzSoliWorkPile1YPos={setNertzSoliWorkPile1YPos}
-            setNertzSoliWorkPile2YPos={setNertzSoliWorkPile2YPos}
-            setNertzSoliWorkPile3YPos={setNertzSoliWorkPile3YPos}
-            setNertzSoliWorkPile4YPos={setNertzSoliWorkPile4YPos}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -284,6 +320,18 @@ const PlayerTableNew = ({
             setWorkPileYPos={setWorkPile1YPos}
             solitaireWorkPile={solitaireWork1Pile}
             setSolitaireWorkPile={setSolitaireWork1Pile}
+            solitaireWork1Pile={solitaireWork1Pile}
+            solitaireWork2Pile={solitaireWork2Pile}
+            solitaireWork3Pile={solitaireWork3Pile}
+            solitaireWork4Pile={solitaireWork4Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
+            absoluteWorkPile1YPos={absoluteWorkPile1YPos}
+            absoluteWorkPile2YPos={absoluteWorkPile2YPos}
+            absoluteWorkPile3YPos={absoluteWorkPile3YPos}
+            absoluteWorkPile4YPos={absoluteWorkPile4YPos}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -302,6 +350,18 @@ const PlayerTableNew = ({
             setWorkPileYPos={setWorkPile2YPos}
             solitaireWorkPile={solitaireWork2Pile}
             setSolitaireWorkPile={setSolitaireWork2Pile}
+            solitaireWork1Pile={solitaireWork1Pile}
+            solitaireWork2Pile={solitaireWork2Pile}
+            solitaireWork3Pile={solitaireWork3Pile}
+            solitaireWork4Pile={solitaireWork4Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
+            absoluteWorkPile1YPos={absoluteWorkPile1YPos}
+            absoluteWorkPile2YPos={absoluteWorkPile2YPos}
+            absoluteWorkPile3YPos={absoluteWorkPile3YPos}
+            absoluteWorkPile4YPos={absoluteWorkPile4YPos}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -320,6 +380,18 @@ const PlayerTableNew = ({
             setWorkPileYPos={setWorkPile3YPos}
             solitaireWorkPile={solitaireWork3Pile}
             setSolitaireWorkPile={setSolitaireWork3Pile}
+            solitaireWork1Pile={solitaireWork1Pile}
+            solitaireWork2Pile={solitaireWork2Pile}
+            solitaireWork3Pile={solitaireWork3Pile}
+            solitaireWork4Pile={solitaireWork4Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
+            absoluteWorkPile1YPos={absoluteWorkPile1YPos}
+            absoluteWorkPile2YPos={absoluteWorkPile2YPos}
+            absoluteWorkPile3YPos={absoluteWorkPile3YPos}
+            absoluteWorkPile4YPos={absoluteWorkPile4YPos}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -338,6 +410,18 @@ const PlayerTableNew = ({
             setWorkPileYPos={setWorkPile4YPos}
             solitaireWorkPile={solitaireWork4Pile}
             setSolitaireWorkPile={setSolitaireWork4Pile}
+            solitaireWork1Pile={solitaireWork1Pile}
+            solitaireWork2Pile={solitaireWork2Pile}
+            solitaireWork3Pile={solitaireWork3Pile}
+            solitaireWork4Pile={solitaireWork4Pile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
+            absoluteWorkPile1YPos={absoluteWorkPile1YPos}
+            absoluteWorkPile2YPos={absoluteWorkPile2YPos}
+            absoluteWorkPile3YPos={absoluteWorkPile3YPos}
+            absoluteWorkPile4YPos={absoluteWorkPile4YPos}
           />
         </div>
       </div>

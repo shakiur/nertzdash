@@ -15,7 +15,19 @@ const SolitaireWorkPileArea = ({
   setWorkPileXPos,
   setWorkPileYPos,
   solitaireWorkPile,
-  setSolitaireWorkPile
+  setSolitaireWorkPile,
+  solitaireWork1Pile,
+  solitaireWork2Pile,
+  solitaireWork3Pile,
+  solitaireWork4Pile,
+  setSolitaireWork1Pile,
+  setSolitaireWork2Pile,
+  setSolitaireWork3Pile,
+  setSolitaireWork4Pile,
+  absoluteWorkPile1YPos,
+  absoluteWorkPile2YPos,
+  absoluteWorkPile3YPos,
+  absoluteWorkPile4YPos
 }) => {
   const [left3WorkPileXPos, setLeft3WorkPileXPos] = useState(-180)
   const [left2WorkPileXPos, setLeft2WorkPileXPos] = useState(-120)
@@ -118,9 +130,185 @@ const SolitaireWorkPileArea = ({
   }
 
   function checkNearWorkPile(event, ui) {
+    switch(workPilePos) {
+      case 1:
+        checkNearWork1Piles()
+        break;
+      case 2:
+        checkNearWork2Piles()
+        break;
+      case 3:
+        checkNearWork3Piles()
+        break;
+      case 4:
+        checkNearWork4Piles()
+        break;
+      default:
+        break;
+    }
+
     setBroadcastPlayerUuid(playerUuid)
     setWorkPileXPos(0)
     setWorkPileYPos(0)
+  }
+
+  function checkNearWork1Piles() {
+    const movedCard = solitaireWorkPile[0]
+
+    const workPile2Card = solitaireWork2Pile[0]
+    const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
+
+    const nearWorkPile2XPos = workPileXPos >= (right1WorkPileXPos - 10) && workPileXPos <= (right1WorkPileXPos + 10)
+    const nearWorkPile2YPos = (workPileYPos + absoluteWorkPile1YPos) >= absoluteWorkPile2YPos && (workPileYPos + absoluteWorkPile1YPos) <= (absoluteWorkPile2YPos + 20)
+
+    if(nearWorkPile2XPos && nearWorkPile2YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
+    }
+
+    const workPile3Card = solitaireWork3Pile[0]
+    const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
+
+    const nearWorkPile3XPos = workPileXPos >= (right2WorkPileXPos - 10) && workPileXPos <= (right2WorkPileXPos + 10)
+    const nearWorkPile3YPos = (workPileYPos + absoluteWorkPile1YPos) >= absoluteWorkPile3YPos && (workPileYPos + absoluteWorkPile1YPos) <= (absoluteWorkPile3YPos + 20)
+
+    if(nearWorkPile3XPos && nearWorkPile3YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
+    }
+
+    const workPile4Card = solitaireWork4Pile[0]
+    const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
+
+    const nearWorkPile4XPos = workPileXPos >= (right3WorkPileXPos - 10) && workPileXPos <= (right3WorkPileXPos + 10)
+    const nearWorkPile4YPos = (workPileYPos + absoluteWorkPile1YPos) >= absoluteWorkPile4YPos && (workPileYPos + absoluteWorkPile1YPos) <= (absoluteWorkPile4YPos + 20)
+
+    if(nearWorkPile4XPos && nearWorkPile4YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
+    }
+  }
+
+  function checkNearWork2Piles() {
+    const movedCard = solitaireWorkPile[0]
+
+    const workPile1Card = solitaireWork1Pile[0]
+    const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
+
+    const nearWorkPile1XPos = workPileXPos >= (left1WorkPileXPos - 10) && workPileXPos <= (left1WorkPileXPos + 10)
+    const nearWorkPile1YPos = (workPileYPos + absoluteWorkPile2YPos) >= absoluteWorkPile1YPos && (workPileYPos + absoluteWorkPile2YPos) <= (absoluteWorkPile1YPos + 20)
+
+    if(nearWorkPile1XPos && nearWorkPile1YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+    }
+
+    const workPile3Card = solitaireWork3Pile[0]
+    const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
+
+    const nearWorkPile3XPos = workPileXPos >= (right1WorkPileXPos - 10) && workPileXPos <= (right1WorkPileXPos + 10)
+    const nearWorkPile3YPos = (workPileYPos + absoluteWorkPile2YPos) >= absoluteWorkPile3YPos && (workPileYPos + absoluteWorkPile2YPos) <= (absoluteWorkPile3YPos + 20)
+
+    if(nearWorkPile3XPos && nearWorkPile3YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
+    }
+
+    const workPile4Card = solitaireWork4Pile[0]
+    const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
+
+    const nearWorkPile4XPos = workPileXPos >= (right2WorkPileXPos - 10) && workPileXPos <= (right2WorkPileXPos + 10)
+    const nearWorkPile4YPos = (workPileYPos + absoluteWorkPile2YPos) >= absoluteWorkPile4YPos && (workPileYPos + absoluteWorkPile2YPos) <= (absoluteWorkPile4YPos + 20)
+
+    if(nearWorkPile4XPos && nearWorkPile4YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
+    }
+  }
+
+  function checkNearWork3Piles() {
+    const movedCard = solitaireWorkPile[0]
+
+    const workPile1Card = solitaireWork1Pile[0]
+    const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
+
+    const nearWorkPile1XPos = workPileXPos >= (left2WorkPileXPos - 10) && workPileXPos <= (left2WorkPileXPos + 10)
+    const nearWorkPile1YPos = (workPileYPos + absoluteWorkPile3YPos) >= absoluteWorkPile1YPos && (workPileYPos + absoluteWorkPile3YPos) <= (absoluteWorkPile1YPos + 20)
+
+    if(nearWorkPile1XPos && nearWorkPile1YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+    }
+
+    const workPile2Card = solitaireWork2Pile[0]
+    const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
+
+    const nearWorkPile2XPos = workPileXPos >= (left1WorkPileXPos - 10) && workPileXPos <= (left1WorkPileXPos + 10)
+    const nearWorkPile2YPos = (workPileYPos + absoluteWorkPile3YPos) >= absoluteWorkPile2YPos && (workPileYPos + absoluteWorkPile3YPos) <= (absoluteWorkPile2YPos + 20)
+
+    if(nearWorkPile2XPos && nearWorkPile2YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
+    }
+
+    const workPile4Card = solitaireWork4Pile[0]
+    const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
+
+    const nearWorkPile4XPos = workPileXPos >= (right1WorkPileXPos - 10) && workPileXPos <= (right1WorkPileXPos + 10)
+    const nearWorkPile4YPos = (workPileYPos + absoluteWorkPile3YPos) >= absoluteWorkPile4YPos && (workPileYPos + absoluteWorkPile3YPos) <= (absoluteWorkPile4YPos + 20)
+
+    if(nearWorkPile4XPos && nearWorkPile4YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
+    }
+  }
+
+  function checkNearWork4Piles() {
+    const movedCard = solitaireWorkPile[0]
+
+    const workPile1Card = solitaireWork1Pile[0]
+    const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
+
+    const nearWorkPile1XPos = workPileXPos >= (left3WorkPileXPos - 10) && workPileXPos <= (left3WorkPileXPos + 10)
+    const nearWorkPile1YPos = (workPileYPos + absoluteWorkPile4YPos) >= absoluteWorkPile1YPos && (workPileYPos + absoluteWorkPile4YPos) <= (absoluteWorkPile1YPos + 20)
+
+    if(nearWorkPile1XPos && nearWorkPile1YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+    }
+
+    const workPile2Card = solitaireWork2Pile[0]
+    const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
+
+    const nearWorkPile2XPos = workPileXPos >= (left2WorkPileXPos - 10) && workPileXPos <= (left2WorkPileXPos + 10)
+    const nearWorkPile2YPos = (workPileYPos + absoluteWorkPile4YPos) >= absoluteWorkPile2YPos && (workPileYPos + absoluteWorkPile4YPos) <= (absoluteWorkPile2YPos + 20)
+
+    if(nearWorkPile2XPos && nearWorkPile2YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
+    }
+
+    const workPile3Card = solitaireWork3Pile[0]
+    const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
+
+    const nearWorkPile3XPos = workPileXPos >= (left1WorkPileXPos - 10) && workPileXPos <= (left1WorkPileXPos + 10)
+    const nearWorkPile3YPos = (workPileYPos + absoluteWorkPile4YPos) >= absoluteWorkPile3YPos && (workPileYPos + absoluteWorkPile4YPos) <= (absoluteWorkPile3YPos + 20)
+
+    if(nearWorkPile3XPos && nearWorkPile3YPos) {
+      setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
+    }
+  }
+
+  function solitaireCriteria(movedCard, workPileCard) {
+    if(!workPileCard) {
+      return true
+    }
+    const movedCardNumber = parseInt(movedCard['number'])
+    const workPileCardNumber = parseInt(workPileCard['number'])
+    const oppositeColor = movedCard['color'] !== workPileCard['color']
+
+    return oppositeColor && movedCardNumber == (workPileCardNumber - 1)
   }
 
   return (
