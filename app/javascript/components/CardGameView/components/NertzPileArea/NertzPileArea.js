@@ -174,6 +174,14 @@ const NertzPileArea = ({
     return oppositeColor && movedCardNumber == (workPileCardNumber - 1)
   }
 
+  function zIndexStyle(xPos, yPos) {
+    if(xPos === 0 && yPos === 0) {
+      return 'zIndexZero'
+    } else {
+      return 'zIndexOne'
+    }
+  }
+
   return (
     <div className="NertzPile">
       <div className={`nertzPilePreviewCard ${previewCardBorderStyle(nertzPile[12])}`}></div>
@@ -193,9 +201,8 @@ const NertzPileArea = ({
         onDrag={(event, ui) => updateNertzPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: nertzPileXPos, y: nertzPileYPos}}
-        defaultClassNameDragging="zIndexTop"
       >
-        <div className={`nertzPileBottomCard ${cardBorderStyle(nertzPile[0])}`}>
+        <div className={`nertzPileBottomCard ${cardBorderStyle(nertzPile[0])} ${zIndexStyle(nertzPileXPos, nertzPileYPos)}`}>
           <div className={`topNumSuit ${cardColor(nertzPile[0])}`}>
             {displayNumSuit(nertzPile[0])}
           </div>

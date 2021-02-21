@@ -311,6 +311,14 @@ const SolitaireWorkPileArea = ({
     return oppositeColor && movedCardNumber == (workPileCardNumber - 1)
   }
 
+  function zIndexStyle(xPos, yPos) {
+    if(xPos === 0 && yPos === 0) {
+      return 'zIndexZero'
+    } else {
+      return 'zIndexOne'
+    }
+  }
+
   return (
     <div className="SolitaireWorkPile">
       <PreviewCards />
@@ -319,9 +327,8 @@ const SolitaireWorkPileArea = ({
         onDrag={(event, ui) => updateWorkPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: workPileXPos, y: workPileYPos}}
-        defaultClassNameDragging="zIndexTop"
       >
-        <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])}`}>
+        <div className={`solitaireWorkCard ${cardBorderStyle(solitaireWorkPile[0])} ${zIndexStyle(workPileXPos, workPileYPos)}`}>
           <div className={`topNumSuit ${cardColor(solitaireWorkPile[0])}`}>
             {displayNumSuit(solitaireWorkPile[0])}
           </div>

@@ -174,6 +174,14 @@ const SolitairePileArea = ({
     }
   }
 
+  function zIndexStyle(xPos, yPos) {
+    if(xPos === 0 && yPos === 0) {
+      return 'zIndexZero'
+    } else {
+      return 'zIndexOne'
+    }
+  }
+
   return (
     <div className="ThreeCardHolder">
       <div className={`solitairePilePreview ${previewBorderStyle(solitairePile[2])}`}>
@@ -191,9 +199,8 @@ const SolitairePileArea = ({
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
         onStop={(event, ui) => checkNearWorkPile(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}
-        defaultClassNameDragging="zIndexTop"
       >
-        <div className={`bottomCard ${cardBorderStyle(solitairePile[0])}`}>
+        <div className={`bottomCard ${cardBorderStyle(solitairePile[0])} ${zIndexStyle(solitaireXPos, solitaireYPos)}`}>
           <div className={`topNumSuit ${cardColor(solitairePile[0])}`}>
             {displayNumSuit(solitairePile[0])}
           </div>
