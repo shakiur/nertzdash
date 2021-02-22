@@ -30,6 +30,12 @@
 
   .solitaireWorkPreviewCard {
     width: 50px;
+    height: 15px;
+    background-color: white;
+
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 
     border-radius: 5px 5px 0px 0px;
 
@@ -37,19 +43,6 @@
     padding-right: 2px;
 
     user-select: none;
-  }
-
-  .previewCardFull {
-    height: 15px;
-    background-color: white;
-
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-  }
-
-  .previewCardHidden {
-    height: 0px;
   }
 
   .topNumSuit {
