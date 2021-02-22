@@ -30,7 +30,6 @@
 
   .solitaireWorkPreviewCard {
     width: 50px;
-    height: 15px;
 
     border-radius: 5px 5px 0px 0px;
 
@@ -40,16 +39,17 @@
     user-select: none;
   }
 
-  .dashedLinePreview {
-    border-top: 1px dashed grey;
-    border-left: 1px dashed grey;
-    border-right: 1px dashed grey;
-  }
+  .previewCardFull {
+    height: 15px;
+    background-color: white;
 
-  .solidLinePreview {
     border-top: 1px solid black;
     border-left: 1px solid black;
     border-right: 1px solid black;
+  }
+
+  .previewCardHidden {
+    height: 0px;
   }
 
   .topNumSuit {
