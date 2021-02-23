@@ -60,6 +60,8 @@ const PlayerTableNew = ({
   setWorkPile3YPos,
   setWorkPile4XPos,
   setWorkPile4YPos,
+  previewIndex,
+  setPreviewIndex,
   workPile1PreviewXPos,
   workPile1PreviewYPos,
   workPile2PreviewXPos,
@@ -338,6 +340,8 @@ const PlayerTableNew = ({
             workPilePreviewYPos={workPile1PreviewYPos}
             setWorkPilePreviewXPos={setWorkPile1PreviewXPos}
             setWorkPilePreviewYPos={setWorkPile1PreviewYPos}
+            previewIndex={previewIndex}
+            setPreviewIndex={setPreviewIndex}
             solitaireWorkPile={solitaireWork1Pile}
             setSolitaireWorkPile={setSolitaireWork1Pile}
             solitaireWork1Pile={solitaireWork1Pile}
@@ -372,6 +376,8 @@ const PlayerTableNew = ({
             workPilePreviewYPos={workPile2PreviewYPos}
             setWorkPilePreviewXPos={setWorkPile2PreviewXPos}
             setWorkPilePreviewYPos={setWorkPile2PreviewYPos}
+            previewIndex={previewIndex}
+            setPreviewIndex={setPreviewIndex}
             solitaireWorkPile={solitaireWork2Pile}
             setSolitaireWorkPile={setSolitaireWork2Pile}
             solitaireWork1Pile={solitaireWork1Pile}
@@ -406,6 +412,8 @@ const PlayerTableNew = ({
             workPilePreviewYPos={workPile3PreviewYPos}
             setWorkPilePreviewXPos={setWorkPile3PreviewXPos}
             setWorkPilePreviewYPos={setWorkPile3PreviewYPos}
+            previewIndex={previewIndex}
+            setPreviewIndex={setPreviewIndex}
             solitaireWorkPile={solitaireWork3Pile}
             setSolitaireWorkPile={setSolitaireWork3Pile}
             solitaireWork1Pile={solitaireWork1Pile}
@@ -440,6 +448,8 @@ const PlayerTableNew = ({
             workPilePreviewYPos={workPile4PreviewYPos}
             setWorkPilePreviewXPos={setWorkPile4PreviewXPos}
             setWorkPilePreviewYPos={setWorkPile4PreviewYPos}
+            previewIndex={previewIndex}
+            setPreviewIndex={setPreviewIndex}
             solitaireWorkPile={solitaireWork4Pile}
             setSolitaireWorkPile={setSolitaireWork4Pile}
             solitaireWork1Pile={solitaireWork1Pile}

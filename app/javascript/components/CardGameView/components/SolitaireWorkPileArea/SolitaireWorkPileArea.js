@@ -18,6 +18,8 @@ const SolitaireWorkPileArea = ({
   workPilePreviewYPos,
   setWorkPilePreviewXPos,
   setWorkPilePreviewYPos,
+  previewIndex,
+  setPreviewIndex,
   solitaireWorkPile,
   setSolitaireWorkPile,
   solitaireWork1Pile,
@@ -347,6 +349,22 @@ const SolitaireWorkPileArea = ({
     }
   }
 
+  function determinePreviewXPos(previewIndex) {
+    if(previewIndex >= 2) {
+      return 0
+    } else {
+      return workPilePreviewXPos
+    }
+  }
+
+  function determinePreviewYPos(previewIndex) {
+    if(previewIndex >= 2) {
+      return 0
+    } else {
+      return workPilePreviewYPos
+    }
+  }
+
   return (
     <div className="SolitaireWorkPile">
       {
@@ -490,7 +508,7 @@ const SolitaireWorkPileArea = ({
           disabled={!solitaireWorkPile[3]}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[3])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(3), y: determinePreviewYPos(3)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[3])}`}>

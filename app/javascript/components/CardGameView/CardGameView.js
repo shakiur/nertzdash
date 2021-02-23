@@ -38,6 +38,7 @@ function CardGameView() {
   const [player1WorkPile3YPos, setPlayer1WorkPile3YPos] = useState(0)
   const [player1WorkPile4XPos, setPlayer1WorkPile4XPos] = useState(0)
   const [player1WorkPile4YPos, setPlayer1WorkPile4YPos] = useState(0)
+  const [player1PreviewIndex, setPlayer1PreviewIndex] = useState(0)
   const [player1WorkPile1PreviewXPos, setPlayer1WorkPile1PreviewXPos] = useState(0)
   const [player1WorkPile1PreviewYPos, setPlayer1WorkPile1PreviewYPos] = useState(0)
   const [player1WorkPile2PreviewXPos, setPlayer1WorkPile2PreviewXPos] = useState(0)
@@ -71,6 +72,7 @@ function CardGameView() {
   const [player2WorkPile3YPos, setPlayer2WorkPile3YPos] = useState(0)
   const [player2WorkPile4XPos, setPlayer2WorkPile4XPos] = useState(0)
   const [player2WorkPile4YPos, setPlayer2WorkPile4YPos] = useState(0)
+  const [player2PreviewIndex, setPlayer2PreviewIndex] = useState(0)
   const [player2WorkPile1PreviewXPos, setPlayer2WorkPile1PreviewXPos] = useState(0)
   const [player2WorkPile1PreviewYPos, setPlayer2WorkPile1PreviewYPos] = useState(0)
   const [player2WorkPile2PreviewXPos, setPlayer2WorkPile2PreviewXPos] = useState(0)
@@ -104,6 +106,7 @@ function CardGameView() {
   const [player3WorkPile3YPos, setPlayer3WorkPile3YPos] = useState(0)
   const [player3WorkPile4XPos, setPlayer3WorkPile4XPos] = useState(0)
   const [player3WorkPile4YPos, setPlayer3WorkPile4YPos] = useState(0)
+  const [player3PreviewIndex, setPlayer3PreviewIndex] = useState(0)
   const [player3WorkPile1PreviewXPos, setPlayer3WorkPile1PreviewXPos] = useState(0)
   const [player3WorkPile1PreviewYPos, setPlayer3WorkPile1PreviewYPos] = useState(0)
   const [player3WorkPile2PreviewXPos, setPlayer3WorkPile2PreviewXPos] = useState(0)
@@ -137,6 +140,7 @@ function CardGameView() {
   const [player4WorkPile3YPos, setPlayer4WorkPile3YPos] = useState(0)
   const [player4WorkPile4XPos, setPlayer4WorkPile4XPos] = useState(0)
   const [player4WorkPile4YPos, setPlayer4WorkPile4YPos] = useState(0)
+  const [player4PreviewIndex, setPlayer4PreviewIndex] = useState(0)
   const [player4WorkPile1PreviewXPos, setPlayer4WorkPile1PreviewXPos] = useState(0)
   const [player4WorkPile1PreviewYPos, setPlayer4WorkPile1PreviewYPos] = useState(0)
   const [player4WorkPile2PreviewXPos, setPlayer4WorkPile2PreviewXPos] = useState(0)
@@ -170,6 +174,7 @@ function CardGameView() {
   const [player5WorkPile3YPos, setPlayer5WorkPile3YPos] = useState(0)
   const [player5WorkPile4XPos, setPlayer5WorkPile4XPos] = useState(0)
   const [player5WorkPile4YPos, setPlayer5WorkPile4YPos] = useState(0)
+  const [player5PreviewIndex, setPlayer5PreviewIndex] = useState(0)
   const [player5WorkPile1PreviewXPos, setPlayer5WorkPile1PreviewXPos] = useState(0)
   const [player5WorkPile1PreviewYPos, setPlayer5WorkPile1PreviewYPos] = useState(0)
   const [player5WorkPile2PreviewXPos, setPlayer5WorkPile2PreviewXPos] = useState(0)
@@ -203,6 +208,7 @@ function CardGameView() {
   const [player6WorkPile3YPos, setPlayer6WorkPile3YPos] = useState(0)
   const [player6WorkPile4XPos, setPlayer6WorkPile4XPos] = useState(0)
   const [player6WorkPile4YPos, setPlayer6WorkPile4YPos] = useState(0)
+  const [player6PreviewIndex, setPlayer6PreviewIndex] = useState(0)
   const [player6WorkPile1PreviewXPos, setPlayer6WorkPile1PreviewXPos] = useState(0)
   const [player6WorkPile1PreviewYPos, setPlayer6WorkPile1PreviewYPos] = useState(0)
   const [player6WorkPile2PreviewXPos, setPlayer6WorkPile2PreviewXPos] = useState(0)
@@ -842,6 +848,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer1WorkPile3YPos}
           setWorkPile4XPos={setPlayer1WorkPile4XPos}
           setWorkPile4YPos={setPlayer1WorkPile4YPos}
+          previewIndex={player1PreviewIndex}
+          setPreviewIndex={setPlayer1PreviewIndex}
           workPile1PreviewXPos={player1WorkPile1PreviewXPos}
           workPile1PreviewYPos={player1WorkPile1PreviewYPos}
           workPile2PreviewXPos={player1WorkPile2PreviewXPos}
@@ -913,6 +921,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer2WorkPile3YPos}
           setWorkPile4XPos={setPlayer2WorkPile4XPos}
           setWorkPile4YPos={setPlayer2WorkPile4YPos}
+          previewIndex={player2PreviewIndex}
+          setPreviewIndex={setPlayer2PreviewIndex}
           workPile1PreviewXPos={player2WorkPile1PreviewXPos}
           workPile1PreviewYPos={player2WorkPile1PreviewYPos}
           workPile2PreviewXPos={player2WorkPile2PreviewXPos}
@@ -987,6 +997,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer3WorkPile3YPos}
           setWorkPile4XPos={setPlayer3WorkPile4XPos}
           setWorkPile4YPos={setPlayer3WorkPile4YPos}
+          previewIndex={player3PreviewIndex}
+          setPreviewIndex={setPlayer3PreviewIndex}
           workPile1PreviewXPos={player3WorkPile1PreviewXPos}
           workPile1PreviewYPos={player3WorkPile1PreviewYPos}
           workPile2PreviewXPos={player3WorkPile2PreviewXPos}
@@ -1059,6 +1071,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer4WorkPile3YPos}
           setWorkPile4XPos={setPlayer4WorkPile4XPos}
           setWorkPile4YPos={setPlayer4WorkPile4YPos}
+          previewIndex={player4PreviewIndex}
+          setPreviewIndex={setPlayer4PreviewIndex}
           workPile1PreviewXPos={player4WorkPile1PreviewXPos}
           workPile1PreviewYPos={player4WorkPile1PreviewYPos}
           workPile2PreviewXPos={player4WorkPile2PreviewXPos}
@@ -1133,6 +1147,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer5WorkPile3YPos}
           setWorkPile4XPos={setPlayer5WorkPile4XPos}
           setWorkPile4YPos={setPlayer5WorkPile4YPos}
+          previewIndex={player5PreviewIndex}
+          setPreviewIndex={setPlayer5PreviewIndex}
           workPile1PreviewXPos={player5WorkPile1PreviewXPos}
           workPile1PreviewYPos={player5WorkPile1PreviewYPos}
           workPile2PreviewXPos={player5WorkPile2PreviewXPos}
@@ -1204,6 +1220,8 @@ function CardGameView() {
           setWorkPile3YPos={setPlayer6WorkPile3YPos}
           setWorkPile4XPos={setPlayer6WorkPile4XPos}
           setWorkPile4YPos={setPlayer6WorkPile4YPos}
+          previewIndex={player6PreviewIndex}
+          setPreviewIndex={setPlayer6PreviewIndex}
           workPile1PreviewXPos={player6WorkPile1PreviewXPos}
           workPile1PreviewYPos={player6WorkPile1PreviewYPos}
           workPile2PreviewXPos={player6WorkPile2PreviewXPos}
