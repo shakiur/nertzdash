@@ -114,8 +114,9 @@ const SolitaireWorkPileArea = ({
     setWorkPileYPos(workPileYPos + ui.deltaY)
   }
 
-  function updateWorkPilePreviewXYPos(event, ui) {
+  function updateWorkPilePreviewXYPos(event, ui, selectedPreviewIndex) {
     setBroadcastPlayerUuid(playerUuid)
+    setPreviewIndex(selectedPreviewIndex)
 
     setWorkPilePreviewXPos(workPilePreviewXPos + ui.deltaX)
     setWorkPilePreviewYPos(workPilePreviewYPos + ui.deltaY)
@@ -349,16 +350,16 @@ const SolitaireWorkPileArea = ({
     }
   }
 
-  function determinePreviewXPos(previewIndex) {
-    if(previewIndex >= 2) {
+  function determinePreviewXPos(previewWorkPileIndex) {
+    if(previewWorkPileIndex > previewIndex) {
       return 0
     } else {
       return workPilePreviewXPos
     }
   }
 
-  function determinePreviewYPos(previewIndex) {
-    if(previewIndex >= 2) {
+  function determinePreviewYPos(previewWorkPileIndex) {
+    if(previewWorkPileIndex > previewIndex) {
       return 0
     } else {
       return workPilePreviewYPos
@@ -371,9 +372,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[12] &&
         <Draggable
           disabled={!solitaireWorkPile[12]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 12)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[12])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(12), y: determinePreviewYPos(12)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[12])}`}>
@@ -386,9 +387,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[11] &&
         <Draggable
           disabled={!solitaireWorkPile[11]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 11)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[11])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(11), y: determinePreviewYPos(11)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[11])}`}>
@@ -401,9 +402,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[10] &&
         <Draggable
           disabled={!solitaireWorkPile[10]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 10)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[10])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(10), y: determinePreviewYPos(10)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[10])}`}>
@@ -416,9 +417,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[9] &&
         <Draggable
           disabled={!solitaireWorkPile[9]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 9)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[9])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(9), y: determinePreviewYPos(9)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[9])}`}>
@@ -431,9 +432,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[8] &&
         <Draggable
           disabled={!solitaireWorkPile[8]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 8)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[8])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(8), y: determinePreviewYPos(8)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[8])}`}>
@@ -446,9 +447,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[7] &&
         <Draggable
           disabled={!solitaireWorkPile[7]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 7)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[7])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(7), y: determinePreviewYPos(7)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[7])}`}>
@@ -461,9 +462,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[6] &&
         <Draggable
           disabled={!solitaireWorkPile[6]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 6)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[6])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(6), y: determinePreviewYPos(6)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[6])}`}>
@@ -476,9 +477,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[5] &&
         <Draggable
           disabled={!solitaireWorkPile[5]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 5)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[5])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(5), y: determinePreviewYPos(5)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[5])}`}>
@@ -491,9 +492,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[4] &&
         <Draggable
           disabled={!solitaireWorkPile[4]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 4)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[4])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(4), y: determinePreviewYPos(4)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[4])}`}>
@@ -506,7 +507,7 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[3] &&
         <Draggable
           disabled={!solitaireWorkPile[3]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 3)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[3])}
           position={{x: determinePreviewXPos(3), y: determinePreviewYPos(3)}}
         >
@@ -521,9 +522,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[2] &&
         <Draggable
           disabled={!solitaireWorkPile[2]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 2)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[2])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(2), y: determinePreviewYPos(2)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[2])}`}>
@@ -536,9 +537,9 @@ const SolitaireWorkPileArea = ({
         solitaireWorkPile[1] &&
         <Draggable
           disabled={!solitaireWorkPile[1]}
-          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui)}
+          onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 1)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, solitaireWorkPile[1])}
-          position={{x: workPilePreviewXPos, y: workPilePreviewYPos}}
+          position={{x: determinePreviewXPos(1), y: determinePreviewYPos(1)}}
         >
           <div className={`solitaireWorkPreviewCard ${zIndexStyle(workPilePreviewXPos, workPilePreviewYPos)}`}>
             <div className={`topNumSuit ${cardColor(solitaireWorkPile[1])}`}>
