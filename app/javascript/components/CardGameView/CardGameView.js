@@ -240,6 +240,9 @@ function CardGameView() {
           case 'player_solitaire_work_piles':
             updatePlayerSolitaireWorkPilesFromBroadcast(data);
             break;
+          case 'player_preview_work_pile_x_y_pos':
+            updatePlayerPreviewWorkPilesXYPosFromBroadcast(data);
+            break;
           case 'player_solitaire_x_y_pos':
             updatePlayerSolitaireXYPosFromBroadcast(data)
             break;
@@ -785,6 +788,206 @@ function CardGameView() {
         break
       default:
         break
+    }
+  }
+
+  function updatePlayerPreviewWorkPilesXYPosFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedWorkPilePos = parseInt(data["work_pile_pos"])
+    const retrievedPreviewIndex = parseInt(data["preview_index"])
+    const retrievedPreviewWorkPileXPos = parseInt(data["preview_work_pile_x_pos"])
+    const retrievedPreviewWorkPileYPos = parseInt(data["preview_work_pile_y_pos"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerPreviewXYPos(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedWorkPilePos,
+        retrievedPreviewIndex,
+        retrievedPreviewWorkPileXPos,
+        retrievedPreviewWorkPileYPos
+      )
+    }
+  }
+
+  function updatePlayerPreviewXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1PreviewIndex(previewIndex)
+        updatePlayer1PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2PreviewIndex(previewIndex)
+        updatePlayer2PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3PreviewIndex(previewIndex)
+        updatePlayer3PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4PreviewIndex(previewIndex)
+        updatePlayer4PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5PreviewIndex(previewIndex)
+        updatePlayer5PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6PreviewIndex(previewIndex)
+        updatePlayer6PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        break
+      default:
+        break
+    }
+  }
+
+  function updatePlayer1PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer1WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer1WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer1WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer1WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer1WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer1WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer1WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer1WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updatePlayer2PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer2WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer2WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer2WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer2WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer2WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer2WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer2WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer2WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updatePlayer3PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer3WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer3WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer3WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer3WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer3WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer3WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer3WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer3WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updatePlayer4PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer4WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer4WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer4WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer4WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer4WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer4WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer4WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer4WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updatePlayer5PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer5WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer5WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer5WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer5WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer5WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer5WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer5WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer5WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updatePlayer6PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer6WorkPile1PreviewXPos(previewWorkPileXPos)
+        setPlayer6WorkPile1PreviewYPos(previewWorkPileYPos)
+        break;
+      case 2:
+        setPlayer6WorkPile2PreviewXPos(previewWorkPileXPos)
+        setPlayer6WorkPile2PreviewYPos(previewWorkPileYPos)
+        break;
+      case 3:
+        setPlayer6WorkPile3PreviewXPos(previewWorkPileXPos)
+        setPlayer6WorkPile3PreviewYPos(previewWorkPileYPos)
+        break;
+      case 4:
+        setPlayer6WorkPile4PreviewXPos(previewWorkPileXPos)
+        setPlayer6WorkPile4PreviewYPos(previewWorkPileYPos)
+        break;
+      default:
+        break;
     }
   }
 

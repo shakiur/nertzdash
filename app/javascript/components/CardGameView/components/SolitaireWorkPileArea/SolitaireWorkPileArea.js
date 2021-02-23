@@ -76,6 +76,41 @@ const SolitaireWorkPileArea = ({
     }
   }
 
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerPreviewWorkPileXYPos(
+        playerPos,
+        playerUuid,
+        workPilePos,
+        previewIndex,
+        workPilePreviewXPos,
+        workPilePreviewYPos
+      )
+    }
+  }, [workPilePreviewXPos, workPilePreviewYPos])
+
+  function broadcastPlayerPreviewWorkPileXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos) {
+    const delay = 25
+    const currentTime = new Date().getTime();
+    const meetsDelayThreshold = (currentTime - delay) > broadcastTime
+    const resetXYPos = previewWorkPileXPos == 0 && previewWorkPileYPos == 0
+
+    if(meetsDelayThreshold || resetXYPos) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_preview_work_pile_x_y_pos?' +
+        'data_type=' + 'player_preview_work_pile_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&work_pile_pos=' + workPilePos +
+        '&preview_index=' + previewIndex +
+        '&preview_work_pile_x_pos=' + previewWorkPileXPos +
+        '&preview_work_pile_y_pos=' + previewWorkPileYPos +
+        '&time=' + broadcastTime
+      );
+    }
+  }
+
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`
