@@ -342,8 +342,9 @@ function CardGameView() {
 
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+    const resetXY = retrievedSolitaireXPos == 0 && retrievedSolitaireYPos == 0
 
-    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
       setRetrievalTime(retrievedTime)
       updatePlayerSolitaireXYPos(
         retrievedPlayerPos,
@@ -363,8 +364,9 @@ function CardGameView() {
 
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+    const resetXY = retrievedNertzPileXPos == 0 && retrievedNertzPileYPos == 0
 
-    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
       setRetrievalTime(retrievedTime)
       updatePlayerNertzPileXYPos(
         retrievedPlayerPos,
@@ -385,8 +387,9 @@ function CardGameView() {
 
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+    const resetXY = retrievedWorkPileXPos == 0 && retrievedWorkPileYPos == 0
 
-    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
       setRetrievalTime(retrievedTime)
       updatePlayerWorkPileXYPos(
         retrievedPlayerPos,
