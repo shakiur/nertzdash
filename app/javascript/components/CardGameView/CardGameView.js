@@ -249,9 +249,6 @@ function CardGameView() {
           case 'player_nertz_pile_x_y_pos':
             updatePlayerNertzPileXYPosFromBroadcast(data)
             break;
-          case 'player_work_pile_x_y_pos':
-            updatePlayerWorkPileXYPosFromBroadcast(data)
-            break;
           case 'player_nertz_pile':
             updatePlayerNertzPileFromBroadcast(data)
             break;
@@ -373,30 +370,6 @@ function CardGameView() {
         retrievedPlayerUuid,
         retrievedNertzPileXPos,
         retrievedNertzPileYPos
-      )
-    }
-  }
-
-  function updatePlayerWorkPileXYPosFromBroadcast(data) {
-    const retrievedPlayerPos = parseInt(data["player_pos"])
-    const retrievedPlayerUuid = data["player_uuid"]
-    const retrievedWorkPilePos = parseInt(data["work_pile_pos"])
-    const retrievedWorkPileXPos = parseInt(data["work_pile_x_pos"])
-    const retrievedWorkPileYPos = parseInt(data["work_pile_y_pos"])
-    const retrievedTime = parseInt(data["time"]);
-
-    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
-    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
-    const resetXY = retrievedWorkPileXPos == 0 && retrievedWorkPileYPos == 0
-
-    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerWorkPileXYPos(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedWorkPilePos,
-        retrievedWorkPileXPos,
-        retrievedWorkPileYPos
       )
     }
   }
@@ -592,37 +565,6 @@ function CardGameView() {
         setPlayer6BroadcastPlayerUuid(playerUuid)
         setPlayer6NertzPileXPos(nertzPileXPos)
         setPlayer6NertzPileYPos(nertzPileYPos)
-        break
-      default:
-        break
-    }
-  }
-
-  function updatePlayerWorkPileXYPos(playerPos, playerUuid, workPilePos, workPileXPos, workPileYPos) {
-    switch(playerPos) {
-      case 1:
-        setPlayer1BroadcastPlayerUuid(playerUuid)
-        updatePlayer1WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
-        break
-      case 2:
-        setPlayer2BroadcastPlayerUuid(playerUuid)
-        updatePlayer2WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
-        break
-      case 3:
-        setPlayer3BroadcastPlayerUuid(playerUuid)
-        updatePlayer3WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
-        break
-      case 4:
-        setPlayer4BroadcastPlayerUuid(playerUuid)
-        updatePlayer4WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
-        break
-      case 5:
-        setPlayer5BroadcastPlayerUuid(playerUuid)
-        updatePlayer5WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
-        break
-      case 6:
-        setPlayer6BroadcastPlayerUuid(playerUuid)
-        updatePlayer6WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       default:
         break
