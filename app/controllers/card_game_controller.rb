@@ -74,6 +74,8 @@ class CardGameController < ApplicationController
       preview_index: params[:preview_index],
       preview_work_pile_y_pos: params[:preview_work_pile_y_pos],
       preview_work_pile_x_pos: params[:preview_work_pile_x_pos],
+      work_pile_x_pos: params[:work_pile_x_pos],
+      work_pile_y_pos: params[:work_pile_y_pos],
       time: params[:time]
     head :ok
   end

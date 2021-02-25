@@ -801,6 +801,8 @@ function CardGameView() {
     const retrievedPreviewIndex = parseInt(data["preview_index"])
     const retrievedPreviewWorkPileXPos = parseInt(data["preview_work_pile_x_pos"])
     const retrievedPreviewWorkPileYPos = parseInt(data["preview_work_pile_y_pos"])
+    const retrievedWorkPileXPos = parseInt(data["work_pile_x_pos"])
+    const retrievedWorkPileYPos = parseInt(data["work_pile_y_pos"])
     const retrievedTime = parseInt(data["time"]);
 
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
@@ -814,42 +816,50 @@ function CardGameView() {
         retrievedWorkPilePos,
         retrievedPreviewIndex,
         retrievedPreviewWorkPileXPos,
-        retrievedPreviewWorkPileYPos
+        retrievedPreviewWorkPileYPos,
+        retrievedWorkPileXPos,
+        retrievedWorkPileYPos
       )
     }
   }
 
-  function updatePlayerPreviewXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos) {
+  function updatePlayerPreviewXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos, workPileXPos, workPileYPos) {
     switch(playerPos) {
       case 1:
         setPlayer1BroadcastPlayerUuid(playerUuid)
         setPlayer1PreviewIndex(previewIndex)
         updatePlayer1PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer1WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       case 2:
         setPlayer2BroadcastPlayerUuid(playerUuid)
         setPlayer2PreviewIndex(previewIndex)
         updatePlayer2PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer2WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       case 3:
         setPlayer3BroadcastPlayerUuid(playerUuid)
         setPlayer3PreviewIndex(previewIndex)
         updatePlayer3PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer3WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       case 4:
         setPlayer4BroadcastPlayerUuid(playerUuid)
         setPlayer4PreviewIndex(previewIndex)
         updatePlayer4PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer4WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       case 5:
         setPlayer5BroadcastPlayerUuid(playerUuid)
         setPlayer5PreviewIndex(previewIndex)
         updatePlayer5PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer5WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       case 6:
         setPlayer6BroadcastPlayerUuid(playerUuid)
         setPlayer6PreviewIndex(previewIndex)
         updatePlayer6PreviewWorkPileXYPos(workPilePos, previewWorkPileXPos, previewWorkPileYPos)
+        updatePlayer6WorkPileXYPos(workPilePos, workPileXPos, workPileYPos)
         break
       default:
         break

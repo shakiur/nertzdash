@@ -45,6 +45,7 @@ const SolitaireWorkPileArea = ({
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
+      /*
       broadcastPlayerWorkPileXYPos(
         playerPos,
         playerUuid,
@@ -52,6 +53,7 @@ const SolitaireWorkPileArea = ({
         workPileXPos,
         workPileYPos
       )
+      */
     }
   }, [workPileXPos, workPileYPos])
 
@@ -84,12 +86,14 @@ const SolitaireWorkPileArea = ({
         workPilePos,
         previewIndex,
         workPilePreviewXPos,
-        workPilePreviewYPos
+        workPilePreviewYPos,
+        workPileXPos,
+        workPileYPos
       )
     }
-  }, [workPilePreviewXPos, workPilePreviewYPos])
+  }, [workPilePreviewXPos, workPilePreviewYPos, workPileXPos, workPileYPos])
 
-  function broadcastPlayerPreviewWorkPileXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos) {
+  function broadcastPlayerPreviewWorkPileXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos, workPileXPos, workPileYPos) {
     const delay = 25
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
@@ -106,6 +110,8 @@ const SolitaireWorkPileArea = ({
         '&preview_index=' + previewIndex +
         '&preview_work_pile_x_pos=' + previewWorkPileXPos +
         '&preview_work_pile_y_pos=' + previewWorkPileYPos +
+        '&work_pile_x_pos=' + workPileXPos +
+        '&work_pile_y_pos=' + workPileYPos +
         '&time=' + broadcastTime
       );
     }
