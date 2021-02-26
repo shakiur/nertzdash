@@ -277,6 +277,9 @@ function CardGameView() {
           case 'player_nertz_pile':
             updatePlayerNertzPileFromBroadcast(data)
             break;
+          case 'center_pile':
+            updateCenterPileBroadcast(data)
+            break;
           default:
             break;
         }
@@ -354,6 +357,7 @@ function CardGameView() {
       )
     }
   }
+
 
   function updatePlayerSolitaireXYPosFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"])
@@ -968,6 +972,137 @@ function CardGameView() {
         break;
       default:
         break;
+    }
+  }
+
+  function updateCenterPileBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedCenterPileNum = parseInt(data["center_pile_num"])
+    const retrievedCenterPile = JSON.parse(data["center_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updateCenterPile(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedCenterPileNum,
+        retrievedCenterPile
+      )
+    }
+  }
+
+  function updateCenterPile(playerPos, playerUuid, centerPileNum, centerPile) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setCenterPile(centerPileNum, centerPile)
+        break
+      default:
+        break
+    }
+  }
+
+  function setCenterPile(centerPileNum, centerPile) {
+    switch(centerPileNum) {
+      case 1:
+        setCenterTablePile1(centerPile)
+        break
+      case 2:
+        setCenterTablePile2(centerPile)
+        break
+      case 3:
+        setCenterTablePile3(centerPile)
+        break
+      case 4:
+        setCenterTablePile4(centerPile)
+        break
+      case 5:
+        setCenterTablePile5(centerPile)
+        break
+      case 6:
+        setCenterTablePile6(centerPile)
+        break
+      case 7:
+        setCenterTablePile7(centerPile)
+        break
+      case 8:
+        setCenterTablePile8(centerPile)
+        break
+      case 9:
+        setCenterTablePile9(centerPile)
+        break
+      case 10:
+        setCenterTablePile10(centerPile)
+        break
+      case 11:
+        setCenterTablePile11(centerPile)
+        break
+      case 12:
+        setCenterTablePile12(centerPile)
+        break
+      case 13:
+        setCenterTablePile13(centerPile)
+        break
+      case 14:
+        setCenterTablePile14(centerPile)
+        break
+      case 15:
+        setCenterTablePile15(centerPile)
+        break
+      case 16:
+        setCenterTablePile16(centerPile)
+        break
+      case 17:
+        setCenterTablePile17(centerPile)
+        break
+      case 18:
+        setCenterTablePile18(centerPile)
+        break
+      case 19:
+        setCenterTablePile19(centerPile)
+        break
+      case 20:
+        setCenterTablePile20(centerPile)
+        break
+      case 21:
+        setCenterTablePile21(centerPile)
+        break
+      case 22:
+        setCenterTablePile22(centerPile)
+        break
+      case 23:
+        setCenterTablePile23(centerPile)
+        break
+      case 24:
+        setCenterTablePile24(centerPile)
+        break
+      default:
+        break
     }
   }
 

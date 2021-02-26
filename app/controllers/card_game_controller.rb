@@ -78,6 +78,17 @@ class CardGameController < ApplicationController
     head :ok
   end
 
+  def broadcast_center_table_pile
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_pos: params[:player_pos],
+      player_uuid: params[:player_uuid],
+      center_pile_num: params[:center_pile_num],
+      center_pile: params[:center_pile],
+      time: params[:time]
+    head :ok
+  end
+
   def broadcast_player_solitaire_work_piles
     ActionCable.server.broadcast 'card_game',
       data_type: params[:data_type],

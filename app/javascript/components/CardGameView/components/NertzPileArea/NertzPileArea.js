@@ -613,7 +613,7 @@ const NertzPileArea = ({
       const centerPileCardNumber = parseInt(centerPileCard['number'])
       const sameSuit = movedCard['suit'] == centerPileCard['suit']
 
-      return sameSuit && movedCardNumber == (workPileCardNumber + 1)
+      return sameSuit && movedCardNumber == (centerPileCardNumber + 1)
     }
   }
 
