@@ -220,6 +220,31 @@ function CardGameView() {
   const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
 
   const [centerTablePile1, setCenterTablePile1] = useState([])
+  const [centerTablePile2, setCenterTablePile2] = useState([])
+  const [centerTablePile3, setCenterTablePile3] = useState([])
+  const [centerTablePile4, setCenterTablePile4] = useState([])
+  const [centerTablePile5, setCenterTablePile5] = useState([])
+  const [centerTablePile6, setCenterTablePile6] = useState([])
+  const [centerTablePile7, setCenterTablePile7] = useState([])
+  const [centerTablePile8, setCenterTablePile8] = useState([])
+
+  const [centerTablePile9, setCenterTablePile9] = useState([])
+  const [centerTablePile10, setCenterTablePile10] = useState([])
+  const [centerTablePile11, setCenterTablePile11] = useState([])
+  const [centerTablePile12, setCenterTablePile12] = useState([])
+  const [centerTablePile13, setCenterTablePile13] = useState([])
+  const [centerTablePile14, setCenterTablePile14] = useState([])
+  const [centerTablePile15, setCenterTablePile15] = useState([])
+  const [centerTablePile16, setCenterTablePile16] = useState([])
+
+  const [centerTablePile17, setCenterTablePile17] = useState([])
+  const [centerTablePile18, setCenterTablePile18] = useState([])
+  const [centerTablePile19, setCenterTablePile19] = useState([])
+  const [centerTablePile20, setCenterTablePile20] = useState([])
+  const [centerTablePile21, setCenterTablePile21] = useState([])
+  const [centerTablePile22, setCenterTablePile22] = useState([])
+  const [centerTablePile23, setCenterTablePile23] = useState([])
+  const [centerTablePile24, setCenterTablePile24] = useState([])
 
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
@@ -1187,7 +1212,29 @@ function CardGameView() {
         />
         <CenterTable
           centerPile1={centerTablePile1}
-          setCenterPile1={setCenterTablePile1}
+          centerPile2={centerTablePile2}
+          centerPile3={centerTablePile3}
+          centerPile4={centerTablePile4}
+          centerPile5={centerTablePile5}
+          centerPile6={centerTablePile6}
+          centerPile7={centerTablePile7}
+          centerPile8={centerTablePile8}
+          centerPile9={centerTablePile9}
+          centerPile10={centerTablePile10}
+          centerPile11={centerTablePile11}
+          centerPile12={centerTablePile12}
+          centerPile13={centerTablePile13}
+          centerPile14={centerTablePile14}
+          centerPile15={centerTablePile15}
+          centerPile16={centerTablePile16}
+          centerPile17={centerTablePile17}
+          centerPile18={centerTablePile18}
+          centerPile19={centerTablePile19}
+          centerPile20={centerTablePile20}
+          centerPile21={centerTablePile21}
+          centerPile22={centerTablePile22}
+          centerPile23={centerTablePile23}
+          centerPile24={centerTablePile24}
         />
         <PlayerTableNew
           playerPos={4}
