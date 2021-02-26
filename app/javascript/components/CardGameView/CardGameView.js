@@ -219,6 +219,8 @@ function CardGameView() {
   const [player6WorkPile4PreviewYPos, setPlayer6WorkPile4PreviewYPos] = useState(0)
   const [player6BroadcastPlayerUuid, setPlayer6BroadcastPlayerUuid] = useState(playerUuid);
 
+  const [centerTablePile1, setCenterTablePile1] = useState([])
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
     fetchAllPlayers()
@@ -1024,6 +1026,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer1WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer1WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer1WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player1BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1097,6 +1101,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer2WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer2WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer2WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player2BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer2BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1173,6 +1179,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer3WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer3WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer3WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player3BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1247,6 +1255,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer4WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer4WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer4WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player4BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer4BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1323,6 +1333,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer5WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer5WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer5WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player5BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer5BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1396,6 +1408,8 @@ function CardGameView() {
           setWorkPile3PreviewYPos={setPlayer6WorkPile3PreviewYPos}
           setWorkPile4PreviewXPos={setPlayer6WorkPile4PreviewXPos}
           setWorkPile4PreviewYPos={setPlayer6WorkPile4PreviewYPos}
+          centerTablePile1={centerTablePile1}
+          setCenterTablePile1={setCenterTablePile1}
           broadcastPlayerUuid={player6BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer6BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}

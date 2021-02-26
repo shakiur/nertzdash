@@ -78,6 +78,8 @@ const PlayerTableNew = ({
   setWorkPile3PreviewYPos,
   setWorkPile4PreviewXPos,
   setWorkPile4PreviewYPos,
+  centerTablePile1,
+  setCenterTablePile1,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   setBroadcastTime
@@ -268,6 +270,8 @@ const PlayerTableNew = ({
             nertzSoliWorkPile2YPos={nertzSoliWorkPile2YPos}
             nertzSoliWorkPile3YPos={nertzSoliWorkPile3YPos}
             nertzSoliWorkPile4YPos={nertzSoliWorkPile4YPos}
+            centerTablePile1={centerTablePile1}
+            setCenterTablePile1={setCenterTablePile1}
           />
         </div>
         <div className="SolitaireDeckArea">

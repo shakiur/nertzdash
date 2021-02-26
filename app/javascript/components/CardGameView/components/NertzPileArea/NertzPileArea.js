@@ -27,7 +27,9 @@ const NertzPileArea = ({
   nertzSoliWorkPile1YPos,
   nertzSoliWorkPile2YPos,
   nertzSoliWorkPile3YPos,
-  nertzSoliWorkPile4YPos
+  nertzSoliWorkPile4YPos,
+  centerTablePile1,
+  setCenterTablePile1
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(120)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(180)
@@ -110,9 +112,22 @@ const NertzPileArea = ({
     setNertzPileYPos(nertzPileYPos + ui.deltaY)
   }
 
-  function checkNearWorkPile(event, ui) {
+  function checkNearPiles(event, ui) {
     const movedCard = nertzPile[0]
 
+    checkNearWorkPile1(movedCard)
+    checkNearWorkPile2(movedCard)
+    checkNearWorkPile3(movedCard)
+    checkNearWorkPile4(movedCard)
+
+    checkNearCenterPile1(movedCard, playerPos)
+
+    setBroadcastPlayerUuid(playerUuid)
+    setNertzPileXPos(0)
+    setNertzPileYPos(0)
+  }
+
+  function checkNearWorkPile1(movedCard) {
     const workPile1Card = solitaireWork1Pile[0]
     const work1solitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
 
@@ -123,7 +138,9 @@ const NertzPileArea = ({
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
     }
+  }
 
+  function checkNearWorkPile2(movedCard) {
     const workPile2Card = solitaireWork2Pile[0]
     const work2solitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
 
@@ -134,7 +151,9 @@ const NertzPileArea = ({
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
     }
+  }
 
+  function checkNearWorkPile3(movedCard) {
     const workPile3Card = solitaireWork3Pile[0]
     const work3solitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
 
@@ -145,7 +164,9 @@ const NertzPileArea = ({
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
     }
+  }
 
+  function checkNearWorkPile4(movedCard) {
     const workPile4Card = solitaireWork4Pile[0]
     const work4solitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
 
@@ -156,11 +177,74 @@ const NertzPileArea = ({
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
     }
-
-    setBroadcastPlayerUuid(playerUuid)
-    setNertzPileXPos(0)
-    setNertzPileYPos(0)
   }
+
+  function checkNearCenterPile1(movedCard, playerPos) {
+    const centerPile1Card = centerTablePile1[0]
+    const centerPile1SolitaireCriteria = solitaireCriteria(movedCard, centerPile1Card)
+
+    const centerPile1XPos = getCenterPileXPos(playerPos)
+    const centerPile1YPos = getCenterPileYPos(playerPos)
+
+    const nearCenterPile1XPos = nertzPileXPos >= (centerPile1XPos - 10) && nertzPileXPos <= (centerPile1XPos + 10)
+    const nearCenterPile1YPos = nertzPileYPos >= (centerPile1YPos - 10) && nertzPileYPos <= (centerPile1YPos + 10)
+
+    if(nearCenterPile1XPos && nearCenterPile1YPos) {
+      setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
+      setCenterTablePile1(centerTablePile1 => [movedCard, ...centerTablePile1])
+    }
+  }
+
+  function getCenterPileXPos(playerPos) {
+    switch(playerPos) {
+      case 1:
+        return 128
+        break;
+      case 2:
+        return -316
+        break;
+      case 3:
+        return 385
+        break;
+      case 4:
+        return -515
+        break;
+      case 5:
+        return 127
+        break;
+      case 6:
+        return -258
+        break;
+      default:
+        break;
+    }
+  }
+
+  function getCenterPileYPos(playerPos) {
+    switch(playerPos) {
+      case 1:
+        return 155
+        break;
+      case 2:
+        return 155
+        break;
+      case 3:
+        return -120
+        break;
+      case 4:
+        return -120
+        break;
+      case 5:
+        return -396
+        break;
+      case 6:
+        return -396
+        break;
+      default:
+        break;
+    }
+  }
+
 
   function solitaireCriteria(movedCard, workPileCard) {
     if(!workPileCard) {
@@ -199,7 +283,7 @@ const NertzPileArea = ({
       <Draggable
         disabled={!nertzPile[0]}
         onDrag={(event, ui) => updateNertzPileXYPos(event, ui)}
-        onStop={(event, ui) => checkNearWorkPile(event, ui)}
+        onStop={(event, ui) => checkNearPiles(event, ui)}
         position={{x: nertzPileXPos, y: nertzPileYPos}}
       >
         <div className={`nertzPileBottomCard ${cardBorderStyle(nertzPile[0])} ${zIndexStyle(nertzPileXPos, nertzPileYPos)}`}>
