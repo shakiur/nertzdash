@@ -1185,7 +1185,10 @@ function CardGameView() {
           setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
         />
-        <CenterTable />
+        <CenterTable
+          centerPile1={centerTablePile1}
+          setCenterPile1={setCenterTablePile1}
+        />
         <PlayerTableNew
           playerPos={4}
           playerUuid={playerUuid}
