@@ -75,7 +75,9 @@ const NertzPileArea = ({
   setCenterTablePile21,
   setCenterTablePile22,
   setCenterTablePile23,
-  setCenterTablePile24
+  setCenterTablePile24,
+  centerPileBroadcastPlayerUuid,
+  setCenterPileBroadcastPlayerUuid
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(120)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(180)
@@ -289,6 +291,7 @@ const NertzPileArea = ({
     if(nearCenterPileXPos && nearCenterPileYPos) {
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
+      setCenterPileBroadcastPlayerUuid(playerUuid)
     }
   }
 

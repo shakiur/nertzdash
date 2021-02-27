@@ -243,6 +243,7 @@ function CardGameView() {
   const [centerTablePile22, setCenterTablePile22] = useState([])
   const [centerTablePile23, setCenterTablePile23] = useState([])
   const [centerTablePile24, setCenterTablePile24] = useState([])
+  const [centerPileBroadcastPlayerUuid, setCenterPileBroadcastPlayerUuid] = useState(playerUuid);
 
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
@@ -997,34 +998,8 @@ function CardGameView() {
   }
 
   function updateCenterPile(playerPos, playerUuid, centerPileNum, centerPile) {
-    switch(playerPos) {
-      case 1:
-        setPlayer1BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      case 2:
-        setPlayer2BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      case 3:
-        setPlayer3BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      case 4:
-        setPlayer4BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      case 5:
-        setPlayer5BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      case 6:
-        setPlayer6BroadcastPlayerUuid(playerUuid)
-        setCenterPile(centerPileNum, centerPile)
-        break
-      default:
-        break
-    }
+    setCenterPileBroadcastPlayerUuid(playerUuid)
+    setCenterPile(centerPileNum, centerPile)
   }
 
   function setCenterPile(centerPileNum, centerPile) {
@@ -1232,6 +1207,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player1BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1353,6 +1330,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player2BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer2BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1477,6 +1456,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player3BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1624,6 +1605,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player4BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer4BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1748,6 +1731,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player5BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer5BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
@@ -1869,6 +1854,8 @@ function CardGameView() {
           setCenterTablePile22={setCenterTablePile22}
           setCenterTablePile23={setCenterTablePile23}
           setCenterTablePile24={setCenterTablePile24}
+          centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+          setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           broadcastPlayerUuid={player6BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer6BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}

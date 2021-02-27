@@ -126,6 +126,8 @@ const PlayerTableNew = ({
   setCenterTablePile22,
   setCenterTablePile23,
   setCenterTablePile24,
+  centerPileBroadcastPlayerUuid,
+  setCenterPileBroadcastPlayerUuid,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   setBroadcastTime
@@ -242,145 +244,145 @@ const PlayerTableNew = ({
   }
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile1, 1);
     }
   }, [centerTablePile1])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile2, 2);
     }
   }, [centerTablePile2])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile3, 3);
     }
   }, [centerTablePile3])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile4, 4);
     }
   }, [centerTablePile4])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile5, 5);
     }
   }, [centerTablePile5])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile6, 6);
     }
   }, [centerTablePile6])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile7, 7);
     }
   }, [centerTablePile7])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile8, 8);
     }
   }, [centerTablePile8])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile9, 9);
     }
   }, [centerTablePile9])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile10, 10);
     }
   }, [centerTablePile10])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile11, 11);
     }
   }, [centerTablePile11])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile12, 12);
     }
   }, [centerTablePile12])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile13, 13);
     }
   }, [centerTablePile13])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile14, 14);
     }
   }, [centerTablePile14])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile15, 15);
     }
   }, [centerTablePile15])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile16, 16);
     }
   }, [centerTablePile16])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile17, 17);
     }
   }, [centerTablePile17])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile18, 18);
     }
   }, [centerTablePile18])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile19, 19);
     }
   }, [centerTablePile19])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile20, 20);
     }
   }, [centerTablePile20])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile21, 21);
     }
   }, [centerTablePile21])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile22, 22);
     }
   }, [centerTablePile22])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile23, 23);
     }
   }, [centerTablePile23])
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerUuid == centerPileBroadcastPlayerUuid) {
       broadcastCenterPile(playerPos, playerUuid, centerTablePile24, 24);
     }
   }, [centerTablePile24])
@@ -528,6 +530,8 @@ const PlayerTableNew = ({
             setCenterTablePile22={setCenterTablePile22}
             setCenterTablePile23={setCenterTablePile23}
             setCenterTablePile24={setCenterTablePile24}
+            centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
+            setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
           />
         </div>
         <div className="SolitaireDeckArea">
