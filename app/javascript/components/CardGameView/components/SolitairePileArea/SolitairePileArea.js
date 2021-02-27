@@ -26,7 +26,57 @@ const SolitairePileArea = ({
   nertzSoliWorkPile1YPos,
   nertzSoliWorkPile2YPos,
   nertzSoliWorkPile3YPos,
-  nertzSoliWorkPile4YPos
+  nertzSoliWorkPile4YPos,
+  centerTablePile1,
+  centerTablePile2,
+  centerTablePile3,
+  centerTablePile4,
+  centerTablePile5,
+  centerTablePile6,
+  centerTablePile7,
+  centerTablePile8,
+  centerTablePile9,
+  centerTablePile10,
+  centerTablePile11,
+  centerTablePile12,
+  centerTablePile13,
+  centerTablePile14,
+  centerTablePile15,
+  centerTablePile16,
+  centerTablePile17,
+  centerTablePile18,
+  centerTablePile19,
+  centerTablePile20,
+  centerTablePile21,
+  centerTablePile22,
+  centerTablePile23,
+  centerTablePile24,
+  setCenterTablePile1,
+  setCenterTablePile2,
+  setCenterTablePile3,
+  setCenterTablePile4,
+  setCenterTablePile5,
+  setCenterTablePile6,
+  setCenterTablePile7,
+  setCenterTablePile8,
+  setCenterTablePile9,
+  setCenterTablePile10,
+  setCenterTablePile11,
+  setCenterTablePile12,
+  setCenterTablePile13,
+  setCenterTablePile14,
+  setCenterTablePile15,
+  setCenterTablePile16,
+  setCenterTablePile17,
+  setCenterTablePile18,
+  setCenterTablePile19,
+  setCenterTablePile20,
+  setCenterTablePile21,
+  setCenterTablePile22,
+  setCenterTablePile23,
+  setCenterTablePile24,
+  centerPileBroadcastPlayerUuid,
+  setCenterPileBroadcastPlayerUuid
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(60)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(120)
@@ -94,56 +144,451 @@ const SolitairePileArea = ({
     setSolitaireYPos(solitaireYPos + ui.deltaY)
   }
 
-  function checkNearWorkPile(event, ui) {
+  function checkNearPiles(event, ui) {
     const movedCard = solitairePile[0]
 
-    const workPile1Card = solitaireWork1Pile[0]
-    const work1solitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
+    checkNearWorkPile(movedCard, 1)
+    checkNearWorkPile(movedCard, 2)
+    checkNearWorkPile(movedCard, 3)
+    checkNearWorkPile(movedCard, 4)
 
-    const nearWorkPile1XPos = solitaireXPos >= (nertzSoliWorkPile1XPos - 10) && solitaireXPos <= (nertzSoliWorkPile1XPos + 10)
-    const nearWorkPile1YPos = solitaireYPos >= nertzSoliWorkPile1YPos && solitaireYPos <= (nertzSoliWorkPile1YPos + 20)
+    checkNearCenterPile(movedCard, playerPos, 1)
+    checkNearCenterPile(movedCard, playerPos, 2)
+    checkNearCenterPile(movedCard, playerPos, 3)
+    checkNearCenterPile(movedCard, playerPos, 4)
+    checkNearCenterPile(movedCard, playerPos, 5)
+    checkNearCenterPile(movedCard, playerPos, 6)
+    checkNearCenterPile(movedCard, playerPos, 7)
+    checkNearCenterPile(movedCard, playerPos, 8)
+    checkNearCenterPile(movedCard, playerPos, 9)
+    checkNearCenterPile(movedCard, playerPos, 10)
+    checkNearCenterPile(movedCard, playerPos, 11)
+    checkNearCenterPile(movedCard, playerPos, 12)
+    checkNearCenterPile(movedCard, playerPos, 13)
+    checkNearCenterPile(movedCard, playerPos, 14)
+    checkNearCenterPile(movedCard, playerPos, 15)
+    checkNearCenterPile(movedCard, playerPos, 16)
+    checkNearCenterPile(movedCard, playerPos, 17)
+    checkNearCenterPile(movedCard, playerPos, 18)
+    checkNearCenterPile(movedCard, playerPos, 19)
+    checkNearCenterPile(movedCard, playerPos, 20)
+    checkNearCenterPile(movedCard, playerPos, 21)
+    checkNearCenterPile(movedCard, playerPos, 22)
+    checkNearCenterPile(movedCard, playerPos, 23)
+    checkNearCenterPile(movedCard, playerPos, 24)
 
-    if(nearWorkPile1XPos && nearWorkPile1YPos) {
-      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
-      setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
-    }
-
-    const workPile2Card = solitaireWork2Pile[0]
-    const work2solitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
-
-    const nearWorkPile2XPos = solitaireXPos >= (nertzSoliWorkPile2XPos - 10) && solitaireXPos <= (nertzSoliWorkPile2XPos + 10)
-    const nearWorkPile2YPos = solitaireYPos >= nertzSoliWorkPile2YPos && solitaireYPos <= (nertzSoliWorkPile2YPos + 20)
-
-    if(nearWorkPile2XPos && nearWorkPile2YPos) {
-      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
-      setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
-    }
-
-    const workPile3Card = solitaireWork3Pile[0]
-    const work3solitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
-
-    const nearWorkPile3XPos = solitaireXPos >= (nertzSoliWorkPile3XPos - 10) && solitaireXPos <= (nertzSoliWorkPile3XPos + 10)
-    const nearWorkPile3YPos = solitaireYPos >= nertzSoliWorkPile3YPos && solitaireYPos <= (nertzSoliWorkPile3YPos + 20)
-
-    if(nearWorkPile3XPos && nearWorkPile3YPos) {
-      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
-      setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
-    }
-
-    const workPile4Card = solitaireWork4Pile[0]
-    const work4solitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
-
-    const nearWorkPile4XPos = solitaireXPos >= (nertzSoliWorkPile4XPos - 10) && solitaireXPos <= (nertzSoliWorkPile4XPos + 10)
-    const nearWorkPile4YPos = solitaireYPos >= nertzSoliWorkPile4YPos && solitaireYPos <= (nertzSoliWorkPile4YPos + 20)
-
-    if(nearWorkPile4XPos && nearWorkPile4YPos) {
-      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
-      setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
-    }
-
-    setBroadcastPlayerUuid(playerUuid)
     setSolitaireXPos(0)
     setSolitaireYPos(0)
+  }
+
+  function checkNearWorkPile(movedCard, workPileNum) {
+    const workPileCard = getTopWorkPileCard(workPileNum)
+    const workSolitaireCriteria = solitaireCriteria(movedCard, workPileCard)
+
+    const nertzSoliWorkXPos = getNertzSoliWorkPileXPos(workPileNum)
+    const nertzSoliWorkYPos = getNertzSoliWorkPileYPos(workPileNum)
+
+    const nearWorkPileXPos = solitaireXPos >= (nertzSoliWorkXPos - 10) && solitaireXPos <= (nertzSoliWorkXPos + 10)
+    const nearWorkPileYPos = solitaireYPos >= nertzSoliWorkYPos && solitaireYPos <= (nertzSoliWorkYPos + 20)
+
+    if(nearWorkPileXPos && nearWorkPileYPos) {
+      setBroadcastPlayerUuid(playerUuid)
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      setSolitaireWorkPile(movedCard, workPileNum)
+    }
+  }
+
+  function getTopWorkPileCard(workPileNum) {
+    switch(workPileNum) {
+      case 1:
+        return solitaireWork1Pile[0]
+      case 2:
+        return solitaireWork2Pile[0]
+      case 3:
+        return solitaireWork3Pile[0]
+      case 4:
+        return solitaireWork4Pile[0]
+      default:
+        break;
+    }
+  }
+
+  function getNertzSoliWorkPileXPos(workPileNum) {
+    switch(workPileNum) {
+      case 1:
+        return nertzSoliWorkPile1XPos
+      case 2:
+        return nertzSoliWorkPile2XPos
+      case 3:
+        return nertzSoliWorkPile3XPos
+      case 4:
+        return nertzSoliWorkPile4XPos
+      default:
+        break;
+    }
+  }
+
+  function getNertzSoliWorkPileYPos(workPileNum) {
+    switch(workPileNum) {
+      case 1:
+        return nertzSoliWorkPile1YPos
+      case 2:
+        return nertzSoliWorkPile2YPos
+      case 3:
+        return nertzSoliWorkPile3YPos
+      case 4:
+        return nertzSoliWorkPile4YPos
+      default:
+        break;
+    }
+  }
+
+  function setSolitaireWorkPile(movedCard, workPileNum) {
+    switch(workPileNum) {
+      case 1:
+        setSolitaireWork1Pile(solitaireWork1Pile => [movedCard, ...solitaireWork1Pile])
+        break;
+      case 2:
+        setSolitaireWork2Pile(solitaireWork2Pile => [movedCard, ...solitaireWork2Pile])
+        break;
+      case 3:
+        setSolitaireWork3Pile(solitaireWork3Pile => [movedCard, ...solitaireWork3Pile])
+        break;
+      case 4:
+        setSolitaireWork4Pile(solitaireWork4Pile => [movedCard, ...solitaireWork4Pile])
+        break;
+      default:
+        break;
+    }
+  }
+
+  function checkNearCenterPile(movedCard, playerPos, centerPileNum) {
+    const centerPileCard = getTopCenterPileCard(centerPileNum)
+    const centerPileSpeedCriteria = speedCriteria(movedCard, centerPileCard)
+
+    const centerPileXPos = getCenterPileXPos(playerPos, centerPileNum)
+    const centerPileYPos = getCenterPileYPos(playerPos, centerPileNum)
+
+    const nearCenterPileXPos = solitaireXPos >= (centerPileXPos - 10) && solitaireXPos <= (centerPileXPos + 10)
+    const nearCenterPileYPos = solitaireYPos >= (centerPileYPos - 10) && solitaireYPos <= (centerPileYPos + 10)
+
+    if(nearCenterPileXPos && nearCenterPileYPos) {
+      setCenterPileBroadcastPlayerUuid(playerUuid)
+      setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
+      updateCenterTablePile(movedCard, centerPileNum)
+    }
+  }
+
+  function getTopCenterPileCard(centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+        return centerTablePile1[0]
+        break;
+      case 2:
+        return centerTablePile2[0]
+        break;
+      case 3:
+        return centerTablePile3[0]
+        break;
+      case 4:
+        return centerTablePile4[0]
+        break;
+      case 5:
+        return centerTablePile5[0]
+        break;
+      case 6:
+        return centerTablePile6[0]
+        break;
+      case 7:
+        return centerTablePile7[0]
+        break;
+      case 8:
+        return centerTablePile8[0]
+        break;
+      case 9:
+        return centerTablePile9[0]
+        break;
+      case 10:
+        return centerTablePile10[0]
+        break;
+      case 11:
+        return centerTablePile11[0]
+        break;
+      case 12:
+        return centerTablePile12[0]
+        break;
+      case 13:
+        return centerTablePile13[0]
+        break;
+      case 14:
+        return centerTablePile14[0]
+        break;
+      case 15:
+        return centerTablePile15[0]
+        break;
+      case 16:
+        return centerTablePile16[0]
+        break;
+      case 17:
+        return centerTablePile17[0]
+        break;
+      case 18:
+        return centerTablePile18[0]
+        break;
+      case 19:
+        return centerTablePile19[0]
+        break;
+      case 20:
+        return centerTablePile20[0]
+        break;
+      case 21:
+        return centerTablePile21[0]
+        break;
+      case 22:
+        return centerTablePile22[0]
+        break;
+      case 23:
+        return centerTablePile23[0]
+        break;
+      case 24:
+        return centerTablePile24[0]
+        break;
+      default:
+        break;
+    }
+  }
+
+  function speedCriteria(movedCard, centerPileCard) {
+    const movedCardNumber = parseInt(movedCard['number'])
+    const emptyPileCriteria = !centerPileCard && movedCardNumber == 1
+
+    if(emptyPileCriteria) {
+      return true
+    } else if(!centerPileCard) {
+      return false
+    } else {
+      const centerPileCardNumber = parseInt(centerPileCard['number'])
+      const sameSuit = movedCard['suit'] == centerPileCard['suit']
+
+      return sameSuit && movedCardNumber == (centerPileCardNumber + 1)
+    }
+  }
+
+  function getCenterPileXPos(playerPos, centerPileNum) {
+    const xPosMultiplier = getXPosMultiplier(centerPileNum)
+
+    switch(playerPos) {
+      case 1:
+        return 68 + (60 * xPosMultiplier)
+        break;
+      case 2:
+        return -318 + (60 * xPosMultiplier)
+        break;
+      case 3:
+        return 325 + (60 * xPosMultiplier)
+        break;
+      case 4:
+        return -575 + (60 * xPosMultiplier)
+        break;
+      case 5:
+        return 68 + (60 * xPosMultiplier)
+        break;
+      case 6:
+        return -318 + (60 * xPosMultiplier)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function getXPosMultiplier(centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+      case 9:
+      case 17:
+        return 0
+        break;
+      case 2:
+      case 10:
+      case 18:
+        return 1
+        break;
+      case 3:
+      case 11:
+      case 19:
+        return 2
+        break;
+      case 4:
+      case 12:
+      case 20:
+        return 3
+        break;
+      case 5:
+      case 13:
+      case 21:
+        return 4
+        break;
+      case 6:
+      case 14:
+      case 22:
+        return 5
+        break;
+      case 7:
+      case 15:
+      case 23:
+        return 6
+        break;
+      case 8:
+      case 16:
+      case 24:
+        return 7
+        break;
+      default:
+        break;
+    }
+  }
+
+  function getCenterPileYPos(playerPos, centerPileNum) {
+    const yPosMultiplier = getYPosMultiplier(centerPileNum)
+
+    switch(playerPos) {
+      case 1:
+        return 155 + (80 * yPosMultiplier)
+        break;
+      case 2:
+        return 155 + (80 * yPosMultiplier)
+        break;
+      case 3:
+        return -120 + (80 * yPosMultiplier)
+        break;
+      case 4:
+        return -120 + (80 * yPosMultiplier)
+        break;
+      case 5:
+        return -396 + (80 * yPosMultiplier)
+        break;
+      case 6:
+        return -396 + (80 * yPosMultiplier)
+        break;
+      default:
+        break;
+    }
+  }
+
+  function getYPosMultiplier(centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+        return 0
+        break;
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+        return 1
+        break;
+      case 17:
+      case 18:
+      case 19:
+      case 20:
+      case 21:
+      case 22:
+      case 23:
+      case 24:
+        return 2
+        break;
+      default:
+        break;
+    }
+  }
+
+  function updateCenterTablePile(movedCard, centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+        setCenterTablePile1(centerTablePile1 => [movedCard, ...centerTablePile1])
+        break;
+      case 2:
+        setCenterTablePile2(centerTablePile2 => [movedCard, ...centerTablePile2])
+        break;
+      case 3:
+        setCenterTablePile3(centerTablePile3 => [movedCard, ...centerTablePile3])
+        break;
+      case 4:
+        setCenterTablePile4(centerTablePile4 => [movedCard, ...centerTablePile4])
+        break;
+      case 5:
+        setCenterTablePile5(centerTablePile5 => [movedCard, ...centerTablePile5])
+        break;
+      case 6:
+        setCenterTablePile6(centerTablePile6 => [movedCard, ...centerTablePile6])
+        break;
+      case 7:
+        setCenterTablePile7(centerTablePile7 => [movedCard, ...centerTablePile7])
+        break;
+      case 8:
+        setCenterTablePile8(centerTablePile8 => [movedCard, ...centerTablePile8])
+        break;
+      case 9:
+        setCenterTablePile9(centerTablePile9 => [movedCard, ...centerTablePile9])
+        break;
+      case 10:
+        setCenterTablePile10(centerTablePile10 => [movedCard, ...centerTablePile10])
+        break;
+      case 11:
+        setCenterTablePile11(centerTablePile11 => [movedCard, ...centerTablePile11])
+        break;
+      case 12:
+        setCenterTablePile12(centerTablePile12 => [movedCard, ...centerTablePile12])
+        break;
+      case 13:
+        setCenterTablePile13(centerTablePile13 => [movedCard, ...centerTablePile13])
+        break;
+      case 14:
+        setCenterTablePile14(centerTablePile14 => [movedCard, ...centerTablePile14])
+        break;
+      case 15:
+        setCenterTablePile15(centerTablePile15 => [movedCard, ...centerTablePile15])
+        break;
+      case 16:
+        setCenterTablePile16(centerTablePile16 => [movedCard, ...centerTablePile16])
+        break;
+      case 17:
+        setCenterTablePile17(centerTablePile17 => [movedCard, ...centerTablePile17])
+        break;
+      case 18:
+        setCenterTablePile18(centerTablePile18 => [movedCard, ...centerTablePile18])
+        break;
+      case 19:
+        setCenterTablePile19(centerTablePile19 => [movedCard, ...centerTablePile19])
+        break;
+      case 20:
+        setCenterTablePile20(centerTablePile20 => [movedCard, ...centerTablePile20])
+        break;
+      case 21:
+        setCenterTablePile21(centerTablePile21 => [movedCard, ...centerTablePile21])
+        break;
+      case 22:
+        setCenterTablePile22(centerTablePile22 => [movedCard, ...centerTablePile22])
+        break;
+      case 23:
+        setCenterTablePile23(centerTablePile23 => [movedCard, ...centerTablePile23])
+        break;
+      case 24:
+        setCenterTablePile24(centerTablePile24 => [movedCard, ...centerTablePile24])
+        break;
+      default:
+        break;
+    }
   }
 
   function solitaireCriteria(movedCard, workPileCard) {
@@ -197,7 +642,7 @@ const SolitairePileArea = ({
       <Draggable
         disabled={!solitairePile[0]}
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
-        onStop={(event, ui) => checkNearWorkPile(event, ui)}
+        onStop={(event, ui) => checkNearPiles(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}
       >
         <div className={`bottomCard ${cardBorderStyle(solitairePile[0])} ${zIndexStyle(solitaireXPos, solitaireYPos)}`}>
