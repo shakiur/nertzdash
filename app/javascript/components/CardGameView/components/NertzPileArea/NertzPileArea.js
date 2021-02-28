@@ -312,7 +312,7 @@ const NertzPileArea = ({
         return -515 + (60 * xPosMultiplier)
         break;
       case 5:
-        return 127 + (60 * xPosMultiplier)
+        return 128 + (60 * xPosMultiplier)
         break;
       case 6:
         return -258 + (60 * xPosMultiplier)
