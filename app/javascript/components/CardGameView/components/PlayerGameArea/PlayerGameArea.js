@@ -61,9 +61,15 @@ const PlayerGameArea = ({
   }
 
   function PlayerGameControl() {
-    return (
-      <SelectPlayerDisplay />
-    )
+    if(playerActive) {
+      return (
+        <SelectPlayerDisplay />
+      )
+    } else {
+      return (
+        <SelectPlayerDisplay />
+      )
+    }
   }
 
   function SelectPlayerDisplay() {
@@ -84,6 +90,7 @@ const PlayerGameArea = ({
           }
         </select>
         <button
+          disabled={playerName == ""}
           onClick={() => handleDealCards()}
           className="DealCardsButton"
         >
