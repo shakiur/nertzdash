@@ -177,8 +177,6 @@ const PlayerTableNew = ({
       broadcastPlayerSolitaire(
         playerPos,
         playerUuid,
-        playerActive,
-        playerName,
         solitaireDeck,
         solitairePile,
         solitaireLeftoverPile
@@ -189,8 +187,6 @@ const PlayerTableNew = ({
   function broadcastPlayerSolitaire(
     playerPos,
     playerUuid,
-    playerActive,
-    playerName,
     solitaireDeck,
     solitairePile,
     solitaireLeftoverPile
@@ -202,8 +198,6 @@ const PlayerTableNew = ({
       'data_type=' + 'player_solitaire' +
       '&player_pos=' + playerPos +
       '&player_uuid=' + playerUuid +
-      '&player_active=' + playerActive +
-      '&player_name=' + playerName +
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
