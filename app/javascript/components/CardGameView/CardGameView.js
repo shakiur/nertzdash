@@ -257,8 +257,8 @@ function CardGameView() {
         const data_type = data["data_type"]
 
         switch(data_type) {
-          case 'player_active_name':
-            updatePlayerActiveNameFromBroadcast(data);
+          case 'player_active_status':
+            updatePlayerActiveStatusFromBroadcast(data);
             break;
           case 'player_solitaire':
             updatePlayerSolitaireFromBroadcast(data);
@@ -287,6 +287,69 @@ function CardGameView() {
       }
     })
   }, []);
+
+  function updatePlayerActiveStatusFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedPlayerActive = data["player_active"] === "true"
+    const retrievedPlayerName = data["player_name"]
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerActiveStatus(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedPlayerActive,
+        retrievedPlayerName
+      )
+    }
+  }
+
+  function updatePlayerActiveStatus(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName
+  ) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1Active(playerActive)
+        setPlayer1Name(playerName)
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        break
+      case 2:
+        setPlayer2Active(playerActive)
+        setPlayer2Name(playerName)
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        break
+      case 3:
+        setPlayer3Active(playerActive)
+        setPlayer3Name(playerName)
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        break
+      case 4:
+        setPlayer4Active(playerActive)
+        setPlayer4Name(playerName)
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        break
+      case 5:
+        setPlayer5Active(playerActive)
+        setPlayer5Name(playerName)
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        break
+      case 6:
+        setPlayer6Active(playerActive)
+        setPlayer6Name(playerName)
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        break
+      default:
+        break
+    }
+  }
 
   function updatePlayerSolitaireFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"])

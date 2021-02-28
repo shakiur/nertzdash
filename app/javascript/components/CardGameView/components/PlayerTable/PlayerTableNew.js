@@ -144,6 +144,36 @@ const PlayerTableNew = ({
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerActiveStatus(
+        playerPos,
+        playerUuid,
+        playerActive,
+        playerName
+      );
+    }
+  }, [playerActive, playerName])
+
+  function broadcastPlayerActiveStatus(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_active_status?' +
+      'data_type=' + 'player_active_status' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_active=' + playerActive +
+      '&player_name=' + playerName +
+      '&time=' + broadcastTime
+    );
+  }
+
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaire(
         playerPos,
         playerUuid,
