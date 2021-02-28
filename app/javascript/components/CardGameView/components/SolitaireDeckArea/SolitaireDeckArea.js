@@ -9,8 +9,6 @@ const CardDeckHolder = ({
   setPlayerActive,
   broadcastTime,
   setBroadcastTime,
-  nertzPile,
-  setNertzPile,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   solitaireDeck,
@@ -18,11 +16,7 @@ const CardDeckHolder = ({
   solitaireLeftoverPile,
   setSolitaireDeck,
   setSolitairePile,
-  setSolitaireLeftoverPile,
-  setSolitaireWork1Pile,
-  setSolitaireWork2Pile,
-  setSolitaireWork3Pile,
-  setSolitaireWork4Pile
+  setSolitaireLeftoverPile
 }) => {
 
   function handleSolitaireFlip() {

@@ -509,18 +509,12 @@ const PlayerTableNew = ({
             setBroadcastTime={setBroadcastTime}
             broadcastPlayerUuid={broadcastPlayerUuid}
             setBroadcastPlayerUuid={setBroadcastPlayerUuid}
-            nertzPile={nertzPile}
-            setNertzPile={setNertzPile}
             solitaireDeck={solitaireDeck}
             solitairePile={solitairePile}
             solitaireLeftoverPile={solitaireLeftoverPile}
             setSolitaireDeck={setSolitaireDeck}
             setSolitairePile={setSolitairePile}
             setSolitaireLeftoverPile={setSolitaireLeftoverPile}
-            setSolitaireWork1Pile={setSolitaireWork1Pile}
-            setSolitaireWork2Pile={setSolitaireWork2Pile}
-            setSolitaireWork3Pile={setSolitaireWork3Pile}
-            setSolitaireWork4Pile={setSolitaireWork4Pile}
           />
           <SolitairePileArea
             playerPos={playerPos}
