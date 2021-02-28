@@ -32,13 +32,32 @@ const PlayerGameArea = ({
   function PlayerGameControl() {
     if(playerActive) {
       return (
-        <SelectPlayerDisplay />
+        <ActivePlayerDisplay />
       )
     } else {
       return (
         <SelectPlayerDisplay />
       )
     }
+  }
+
+  function ActivePlayerDisplay() {
+    return (
+      <div className="ActivePlayerDisplay">
+        <div className="PlayerLabel">
+          <strong>Player:</strong>
+        </div>
+        <div className="PlayerName">
+          {playerName}
+        </div>
+        <div className="ScoreLabel">
+          <strong>Score:</strong>
+        </div>
+        <div className="PlayerScore">
+          -26
+        </div>
+      </div>
+    )
   }
 
   function SelectPlayerDisplay() {
@@ -75,6 +94,7 @@ const PlayerGameArea = ({
   }
 
   function handleDealCards() {
+    setPlayerActive(true)
   }
 
   return (
