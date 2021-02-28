@@ -18,17 +18,6 @@ const PlayerGameArea = ({
   setBroadcastPlayerUuid
 }) => {
 
-  function handleCardDeal() {
-    if(playerActive) {
-      flipThreeSolitaireCards()
-    } else {
-      setPlayerActive(true)
-      dealCards()
-    }
-
-    setBroadcastPlayerUuid(playerUuid)
-  }
-
   function PlayerGameControl() {
     if(playerActive) {
       return (
