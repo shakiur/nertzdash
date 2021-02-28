@@ -113,6 +113,19 @@ const NertzPileArea = ({
         '&time=' + broadcastTime
       );
     }
+
+    if(resetXYPos) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_nertz_pile_x_y_pos?' +
+        'data_type=' + 'player_nertz_pile_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&nertz_pile_x_pos=' + nertzPileXPos +
+        '&nertz_pile_y_pos=' + nertzPileYPos +
+        '&time=' + broadcastTime
+      );
+    }
   }
   function displayNumSuit(card) {
     if(card) {

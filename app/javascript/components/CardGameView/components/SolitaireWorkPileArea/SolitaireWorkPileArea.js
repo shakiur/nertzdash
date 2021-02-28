@@ -130,6 +130,23 @@ const SolitaireWorkPileArea = ({
         '&time=' + broadcastTime
       );
     }
+
+    if(resetXYPos) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_preview_work_pile_x_y_pos?' +
+        'data_type=' + 'player_preview_work_pile_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&work_pile_pos=' + workPilePos +
+        '&preview_index=' + previewIndex +
+        '&preview_work_pile_x_pos=' + previewWorkPileXPos +
+        '&preview_work_pile_y_pos=' + previewWorkPileYPos +
+        '&work_pile_x_pos=' + workPileXPos +
+        '&work_pile_y_pos=' + workPileYPos +
+        '&time=' + broadcastTime
+      );
+    }
   }
 
   function displayNumSuit(card) {
