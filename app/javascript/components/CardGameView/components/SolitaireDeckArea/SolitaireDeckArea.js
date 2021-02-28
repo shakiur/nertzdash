@@ -30,9 +30,11 @@ const CardDeckHolder = ({
       flipSolitaireCards()
       setBroadcastPlayerUuid(playerUuid)
     } else {
+      /*
       dealCards()
       setPlayerActive(true)
       setBroadcastPlayerUuid(playerUuid)
+      */
     }
   }
 

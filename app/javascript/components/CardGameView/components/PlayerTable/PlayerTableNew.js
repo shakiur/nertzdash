@@ -953,12 +953,14 @@ const PlayerTableNew = ({
         setPlayerName={setPlayerName}
         setPlayerActive={setPlayerActive}
         allPlayers={allPlayers}
-        solitaireDeck={solitaireDeck}
-        solitairePile={solitairePile}
-        solitaireLeftoverPile={solitaireLeftoverPile}
+        setNertzPile={setNertzPile}
         setSolitaireDeck={setSolitaireDeck}
         setSolitairePile={setSolitairePile}
         setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+        setSolitaireWork1Pile={setSolitaireWork1Pile}
+        setSolitaireWork2Pile={setSolitaireWork2Pile}
+        setSolitaireWork3Pile={setSolitaireWork3Pile}
+        setSolitaireWork4Pile={setSolitaireWork4Pile}
         setBroadcastPlayerUuid={setBroadcastPlayerUuid}
       />
     </div>
