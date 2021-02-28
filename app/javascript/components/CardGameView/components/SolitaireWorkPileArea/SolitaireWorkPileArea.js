@@ -230,7 +230,7 @@ const SolitaireWorkPileArea = ({
     const currentWorkPileYPos = getCurrentWorkPileYPos(workPilePos)
 
     const workPileRelativeXPos = getWorkPileRelativeXPos(workPilePos, workPileNum)
-    const workPileRelativeYPos = getWorkPileRelativeYPos(workPilePos)
+    const workPileRelativeYPos = getAbsoluteWorkPileYPos(workPileNum)
 
     const nearWorkPileXPos = currentWorkPileXPos >= (workPileRelativeXPos - 10) && currentWorkPileXPos <= (workPileRelativeXPos + 10)
     const nearWorkPileYPos = currentWorkPileYPos >= workPileRelativeYPos && currentWorkPileYPos <= (workPileRelativeYPos + 20)
@@ -334,6 +334,21 @@ const SolitaireWorkPileArea = ({
         return workPileYPos + absoluteWorkPile3YPos
       case 4:
         return workPileYPos + absoluteWorkPile4YPos
+      default:
+        break;
+    }
+  }
+
+  function getAbsoluteWorkPileYPos(workPilePos) {
+    switch(workPilePos) {
+      case 1:
+        return absoluteWorkPile1YPos
+      case 2:
+        return absoluteWorkPile2YPos
+      case 3:
+        return absoluteWorkPile3YPos
+      case 4:
+        return absoluteWorkPile4YPos
       default:
         break;
     }
