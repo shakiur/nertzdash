@@ -112,6 +112,19 @@ const SolitairePileArea = ({
         '&time=' + broadcastTime
       );
     }
+
+    if(resetXYPos) {
+      setBroadcastTime(currentTime)
+
+      fetch('/card_game/broadcast_player_solitaire_x_y_pos?' +
+        'data_type=' + 'player_solitaire_x_y_pos' +
+        '&player_pos=' + playerPos +
+        '&player_uuid=' + playerUuid +
+        '&solitaire_x_pos=' + solitaireXPos +
+        '&solitaire_y_pos=' + solitaireYPos +
+        '&time=' + broadcastTime
+      );
+    }
   }
 
   function displayNumSuit(card) {
