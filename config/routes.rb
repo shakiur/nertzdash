@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   get '/card_game/broadcast_player_preview_work_pile_x_y_pos' => 'card_game#broadcast_player_preview_work_pile_x_y_pos', as: :card_game_broadcast_player_preview_work_pile_x_y_pos
   get '/card_game/broadcast_player_nertz_pile' => 'card_game#broadcast_player_nertz_pile', as: :card_game_broadcast_player_nertz_pile
   get '/card_game/broadcast_center_table_pile' => 'card_game#broadcast_center_table_pile', as: :card_game_broadcast_center_table_pile
-  get '/card_game/broadcast_player_solitaire_work_piles' => 'card_game#broadcast_player_solitaire_work_piles', as: :card_game_broadcast_player_solitaire_work_piles
+  get '/card_game/broadcast_player_solitaire_work_pile' => 'card_game#broadcast_player_solitaire_work_pile', as: :card_game_broadcast_player_solitaire_work_pile
 
   namespace :api do
     namespace :v1 do

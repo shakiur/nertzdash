@@ -89,15 +89,13 @@ class CardGameController < ApplicationController
     head :ok
   end
 
-  def broadcast_player_solitaire_work_piles
+  def broadcast_player_solitaire_work_pile
     ActionCable.server.broadcast 'card_game',
       data_type: params[:data_type],
       player_pos: params[:player_pos],
       player_uuid: params[:player_uuid],
-      solitaire_work_1_pile: params[:solitaire_work_1_pile],
-      solitaire_work_2_pile: params[:solitaire_work_2_pile],
-      solitaire_work_3_pile: params[:solitaire_work_3_pile],
-      solitaire_work_4_pile: params[:solitaire_work_4_pile],
+      work_pile_pos: params[:work_pile_pos],
+      solitaire_work_pile: params[:solitaire_work_pile],
       time: params[:time]
     head :ok
   end

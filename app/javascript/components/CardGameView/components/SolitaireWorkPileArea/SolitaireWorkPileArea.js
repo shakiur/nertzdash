@@ -132,6 +132,36 @@ const SolitaireWorkPileArea = ({
     }
   }
 
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerSolitaireWorkPile(
+        playerPos,
+        playerUuid,
+        workPilePos,
+        solitaireWorkPile
+      );
+    }
+  }, [solitaireWorkPile])
+
+  function broadcastPlayerSolitaireWorkPile(
+    playerPos,
+    playerUuid,
+    workPilePos,
+    solitaireWorkPile
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_solitaire_work_pile?' +
+      'data_type=' + 'player_solitaire_work_pile' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&work_pile_pos=' + workPilePos +
+      '&solitaire_work_pile=' + JSON.stringify(solitaireWorkPile) +
+      '&time=' + broadcastTime
+    );
+  }
+
   function displayNumSuit(card) {
     if(card) {
       return `${card['value']}${card['suit']}`

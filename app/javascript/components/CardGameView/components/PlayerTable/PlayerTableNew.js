@@ -183,42 +183,6 @@ const PlayerTableNew = ({
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
-      broadcastPlayerSolitaireWorkPiles(
-        playerPos,
-        playerUuid,
-        solitaireWork1Pile,
-        solitaireWork2Pile,
-        solitaireWork3Pile,
-        solitaireWork4Pile
-      );
-    }
-  }, [solitaireWork1Pile, solitaireWork2Pile, solitaireWork3Pile, solitaireWork4Pile])
-
-  function broadcastPlayerSolitaireWorkPiles(
-    playerPos,
-    playerUuid,
-    solitaireWork1Pile,
-    solitaireWork2Pile,
-    solitaireWork3Pile,
-    solitaireWork4Pile
-  ) {
-    const currentTime = new Date().getTime();
-    setBroadcastTime(currentTime)
-
-    fetch('/card_game/broadcast_player_solitaire_work_piles?' +
-      'data_type=' + 'player_solitaire_work_piles' +
-      '&player_pos=' + playerPos +
-      '&player_uuid=' + playerUuid +
-      '&solitaire_work_1_pile=' + JSON.stringify(solitaireWork1Pile) +
-      '&solitaire_work_2_pile=' + JSON.stringify(solitaireWork2Pile) +
-      '&solitaire_work_3_pile=' + JSON.stringify(solitaireWork3Pile) +
-      '&solitaire_work_4_pile=' + JSON.stringify(solitaireWork4Pile) +
-      '&time=' + broadcastTime
-    );
-  }
-
-  useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerNertzPile(
         playerPos,
         playerUuid,

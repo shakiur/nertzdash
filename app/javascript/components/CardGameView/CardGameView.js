@@ -263,8 +263,8 @@ function CardGameView() {
           case 'player_solitaire':
             updatePlayerSolitaireFromBroadcast(data);
             break;
-          case 'player_solitaire_work_piles':
-            updatePlayerSolitaireWorkPilesFromBroadcast(data);
+          case 'player_solitaire_work_pile':
+            updatePlayerSolitaireWorkPileFromBroadcast(data);
             break;
           case 'player_preview_work_pile_x_y_pos':
             updatePlayerPreviewWorkPilesXYPosFromBroadcast(data);
@@ -311,31 +311,6 @@ function CardGameView() {
         retrievedSolitaireDeck,
         retrievedSolitairePile,
         retrievedLeftoverSolitairePile
-      )
-    }
-  }
-
-  function updatePlayerSolitaireWorkPilesFromBroadcast(data) {
-    const retrievedPlayerPos = parseInt(data["player_pos"])
-    const retrievedPlayerUuid = data["player_uuid"]
-    const retrievedSolitaireWork1Pile = JSON.parse(data["solitaire_work_1_pile"])
-    const retrievedSolitaireWork2Pile = JSON.parse(data["solitaire_work_2_pile"])
-    const retrievedSolitaireWork3Pile = JSON.parse(data["solitaire_work_3_pile"])
-    const retrievedSolitaireWork4Pile = JSON.parse(data["solitaire_work_4_pile"])
-    const retrievedTime = parseInt(data["time"]);
-
-    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
-    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
-
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerSolitaireWorkPiles(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedSolitaireWork1Pile,
-        retrievedSolitaireWork2Pile,
-        retrievedSolitaireWork3Pile,
-        retrievedSolitaireWork4Pile
       )
     }
   }
@@ -471,57 +446,172 @@ function CardGameView() {
     }
   }
 
-  function updatePlayerSolitaireWorkPiles(
+  function updatePlayerSolitaireWorkPileFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedWorkPilePos = parseInt(data["work_pile_pos"])
+    const retrievedSolitaireWorkPile = JSON.parse(data["solitaire_work_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerSolitaireWorkPile(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedWorkPilePos,
+        retrievedSolitaireWorkPile
+      )
+    }
+  }
+
+  function updatePlayerSolitaireWorkPile(
     playerPos,
     playerUuid,
-    solitaireWork1Pile,
-    solitaireWork2Pile,
-    solitaireWork3Pile,
-    solitaireWork4Pile
+    workPilePos,
+    solitaireWorkPile
   ) {
     switch(playerPos) {
       case 1:
         setPlayer1BroadcastPlayerUuid(playerUuid)
-        setPlayer1SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer1SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer1SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer1SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer1SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
       case 2:
         setPlayer2BroadcastPlayerUuid(playerUuid)
-        setPlayer2SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer2SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer2SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer2SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer2SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
       case 3:
         setPlayer3BroadcastPlayerUuid(playerUuid)
-        setPlayer3SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer3SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer3SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer3SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer3SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
       case 4:
         setPlayer4BroadcastPlayerUuid(playerUuid)
-        setPlayer4SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer4SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer4SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer4SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer4SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
       case 5:
         setPlayer5BroadcastPlayerUuid(playerUuid)
-        setPlayer5SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer5SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer5SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer5SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer5SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
       case 6:
         setPlayer6BroadcastPlayerUuid(playerUuid)
-        setPlayer6SolitaireWork1Pile(solitaireWork1Pile)
-        setPlayer6SolitaireWork2Pile(solitaireWork2Pile)
-        setPlayer6SolitaireWork3Pile(solitaireWork3Pile)
-        setPlayer6SolitaireWork4Pile(solitaireWork4Pile)
+        updatePlayer6SolitaireWorkPile(workPilePos, solitaireWorkPile)
         break
+      default:
+        break
+    }
+  }
+
+  function updatePlayer1SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer1SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer1SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer1SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer1SolitaireWork4Pile(solitaireWorkPile)
+        break;
+      default:
+        break
+    }
+  }
+
+  function updatePlayer2SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer2SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer2SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer2SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer2SolitaireWork4Pile(solitaireWorkPile)
+        break;
+      default:
+        break
+    }
+  }
+
+  function updatePlayer3SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer3SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer3SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer3SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer3SolitaireWork4Pile(solitaireWorkPile)
+        break;
+      default:
+        break
+    }
+  }
+
+  function updatePlayer4SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer4SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer4SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer4SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer4SolitaireWork4Pile(solitaireWorkPile)
+        break;
+      default:
+        break
+    }
+  }
+
+  function updatePlayer5SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer5SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer5SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer5SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer5SolitaireWork4Pile(solitaireWorkPile)
+        break;
+      default:
+        break
+    }
+  }
+
+  function updatePlayer6SolitaireWorkPile(workPilePos, solitaireWorkPile) {
+    switch(workPilePos) {
+      case 1:
+        setPlayer6SolitaireWork1Pile(solitaireWorkPile)
+        break;
+      case 2:
+        setPlayer6SolitaireWork2Pile(solitaireWorkPile)
+        break;
+      case 3:
+        setPlayer6SolitaireWork3Pile(solitaireWorkPile)
+        break;
+      case 4:
+        setPlayer6SolitaireWork4Pile(solitaireWorkPile)
+        break;
       default:
         break
     }
