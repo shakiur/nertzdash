@@ -16,9 +16,11 @@ const PlayerTableNew = ({
   playerName,
   playerDbId,
   playerActive,
+  playerScore,
   setPlayerName,
   setPlayerDbId,
   setPlayerActive,
+  setPlayerScore,
   broadcastTime,
   nertzPile,
   setNertzPile,
@@ -172,6 +174,32 @@ const PlayerTableNew = ({
     );
   }
 
+  useEffect(() => {
+    if(playerActive && playerUuid == broadcastPlayerUuid) {
+      broadcastPlayerScore(
+        playerPos,
+        playerUuid,
+        playerScore
+      );
+    }
+  }, [playerScore])
+
+  function broadcastPlayerScore(
+    playerPos,
+    playerUuid,
+    playerScore
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_score?' +
+      'data_type=' + 'player_score' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_score=' + playerScore +
+      '&time=' + broadcastTime
+    );
+  }
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaire(
@@ -968,8 +996,10 @@ const PlayerTableNew = ({
         playerUuid={playerUuid}
         playerActive={playerActive}
         playerName={playerName}
+        playerScore={playerScore}
         setPlayerName={setPlayerName}
         setPlayerActive={setPlayerActive}
+        setPlayerScore={setPlayerScore}
         allPlayers={allPlayers}
         setNertzPile={setNertzPile}
         setSolitaireDeck={setSolitaireDeck}

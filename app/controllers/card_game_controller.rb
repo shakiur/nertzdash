@@ -24,6 +24,16 @@ class CardGameController < ApplicationController
     head :ok
   end
 
+  def broadcast_player_score
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_pos: params[:player_pos],
+      player_uuid: params[:player_uuid],
+      player_score: params[:player_score],
+      time: params[:time]
+    head :ok
+  end
+
   def broadcast_player_solitaire
     ActionCable.server.broadcast 'card_game',
       data_type: params[:data_type],

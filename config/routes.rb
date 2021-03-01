@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get '/card_game' => 'card_game#index', as: :card_game
   get '/card_game/all_players' => 'card_game#all_players', as: :card_game_all_players
   get '/card_game/broadcast_player_active_status' => 'card_game#broadcast_player_active_status', as: :card_game_broadcast_player_active_status
+  get '/card_game/broadcast_player_score' => 'card_game#broadcast_player_score', as: :card_game_broadcast_player_score
   get '/card_game/broadcast_player_position' => 'card_game#broadcast_player_position', as: :card_game_broadcast_player_position
   get '/card_game/broadcast_player_solitaire' => 'card_game#broadcast_player_solitaire', as: :card_game_broadcast_player_solitaire
   get '/card_game/broadcast_player_solitaire_x_y_pos' => 'card_game#broadcast_player_solitaire_x_y_pos', as: :card_game_broadcast_player_solitaire_x_y_pos

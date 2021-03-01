@@ -5,8 +5,10 @@ const PlayerGameArea = ({
   playerUuid,
   playerActive,
   playerName,
+  playerScore,
   setPlayerName,
   setPlayerActive,
+  setPlayerScore,
   allPlayers,
   setNertzPile,
   setSolitaireDeck,
@@ -44,7 +46,7 @@ const PlayerGameArea = ({
           <strong>Score:</strong>
         </div>
         <div className="PlayerScore">
-          -26
+          {playerScore}
         </div>
       </div>
     )
@@ -85,6 +87,7 @@ const PlayerGameArea = ({
 
   function handleDealCards() {
     setPlayerActive(true)
+    setPlayerScore(-26)
     dealCards()
   }
 

@@ -18,6 +18,7 @@ function CardGameView() {
   const [player1Name, setPlayer1Name] = useState("")
   const [player1DbId, setPlayer1DbId] = useState(0)
   const [player1Active, setPlayer1Active] = useState(false)
+  const [player1Score, setPlayer1Score] = useState(0)
   const [player1NertzPile, setPlayer1NertzPile] = useState([]);
   const [player1SolitaireDeck, setPlayer1SolitaireDeck] = useState([]);
   const [player1SolitairePile, setPlayer1SolitairePile] = useState([]);
@@ -52,6 +53,7 @@ function CardGameView() {
   const [player2Name, setPlayer2Name] = useState("")
   const [player2DbId, setPlayer2DbId] = useState(0)
   const [player2Active, setPlayer2Active] = useState(false)
+  const [player2Score, setPlayer2Score] = useState(0)
   const [player2NertzPile, setPlayer2NertzPile] = useState([]);
   const [player2SolitaireDeck, setPlayer2SolitaireDeck] = useState([]);
   const [player2SolitairePile, setPlayer2SolitairePile] = useState([]);
@@ -86,6 +88,7 @@ function CardGameView() {
   const [player3Name, setPlayer3Name] = useState("")
   const [player3DbId, setPlayer3DbId] = useState(0)
   const [player3Active, setPlayer3Active] = useState(false)
+  const [player3Score, setPlayer3Score] = useState(0)
   const [player3NertzPile, setPlayer3NertzPile] = useState([]);
   const [player3SolitaireDeck, setPlayer3SolitaireDeck] = useState([]);
   const [player3SolitairePile, setPlayer3SolitairePile] = useState([]);
@@ -120,6 +123,7 @@ function CardGameView() {
   const [player4Name, setPlayer4Name] = useState("")
   const [player4DbId, setPlayer4DbId] = useState(0)
   const [player4Active, setPlayer4Active] = useState(false)
+  const [player4Score, setPlayer4Score] = useState(0)
   const [player4NertzPile, setPlayer4NertzPile] = useState([]);
   const [player4SolitaireDeck, setPlayer4SolitaireDeck] = useState([]);
   const [player4SolitairePile, setPlayer4SolitairePile] = useState([]);
@@ -154,6 +158,7 @@ function CardGameView() {
   const [player5Name, setPlayer5Name] = useState("")
   const [player5DbId, setPlayer5DbId] = useState(0)
   const [player5Active, setPlayer5Active] = useState(false)
+  const [player5Score, setPlayer5Score] = useState(0)
   const [player5NertzPile, setPlayer5NertzPile] = useState([]);
   const [player5SolitaireDeck, setPlayer5SolitaireDeck] = useState([]);
   const [player5SolitairePile, setPlayer5SolitairePile] = useState([]);
@@ -188,6 +193,7 @@ function CardGameView() {
   const [player6Name, setPlayer6Name] = useState("")
   const [player6DbId, setPlayer6DbId] = useState(0)
   const [player6Active, setPlayer6Active] = useState(false)
+  const [player6Score, setPlayer6Score] = useState(0)
   const [player6NertzPile, setPlayer6NertzPile] = useState([]);
   const [player6SolitaireDeck, setPlayer6SolitaireDeck] = useState([]);
   const [player6SolitairePile, setPlayer6SolitairePile] = useState([]);
@@ -259,6 +265,9 @@ function CardGameView() {
         switch(data_type) {
           case 'player_active_status':
             updatePlayerActiveStatusFromBroadcast(data);
+            break;
+          case 'player_score':
+            updatePlayerScoreFromBroadcast(data);
             break;
           case 'player_solitaire':
             updatePlayerSolitaireFromBroadcast(data);
@@ -344,6 +353,60 @@ function CardGameView() {
       case 6:
         setPlayer6Active(playerActive)
         setPlayer6Name(playerName)
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        break
+      default:
+        break
+    }
+  }
+
+  function updatePlayerScoreFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedPlayerScore = parseInt(data["player_score"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerScore(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedPlayerScore
+      )
+    }
+  }
+
+  function updatePlayerScore(
+    playerPos,
+    playerUuid,
+    playerScore
+  ) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1Score(playerScore)
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        break
+      case 2:
+        setPlayer2Score(playerScore)
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        break
+      case 3:
+        setPlayer3Score(playerScore)
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        break
+      case 4:
+        setPlayer4Score(playerScore)
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        break
+      case 5:
+        setPlayer5Score(playerScore)
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        break
+      case 6:
+        setPlayer6Score(playerScore)
         setPlayer6BroadcastPlayerUuid(playerUuid)
         break
       default:
@@ -1229,9 +1292,11 @@ function CardGameView() {
           playerName={player1Name}
           playerDbId={player1DbId}
           playerActive={player1Active}
+          playerScore={player1Score}
           setPlayerName={setPlayer1Name}
           setPlayerDbId={setPlayer1DbId}
           setPlayerActive={setPlayer1Active}
+          setPlayerScore={setPlayer1Score}
           nertzPile={player1NertzPile}
           setNertzPile={setPlayer1NertzPile}
           solitaireDeck={player1SolitaireDeck}
@@ -1351,9 +1416,11 @@ function CardGameView() {
           playerName={player2Name}
           playerDbId={player2DbId}
           playerActive={player2Active}
+          playerScore={player2Score}
           setPlayerName={setPlayer2Name}
           setPlayerDbId={setPlayer2DbId}
           setPlayerActive={setPlayer2Active}
+          setPlayerScore={setPlayer2Score}
           broadcastTime={broadcastTime}
           nertzPile={player2NertzPile}
           setNertzPile={setPlayer2NertzPile}
@@ -1477,9 +1544,11 @@ function CardGameView() {
           playerName={player3Name}
           playerDbId={player3DbId}
           playerActive={player3Active}
+          playerScore={player3Score}
           setPlayerName={setPlayer3Name}
           setPlayerDbId={setPlayer3DbId}
           setPlayerActive={setPlayer3Active}
+          setPlayerScore={setPlayer3Score}
           broadcastTime={broadcastTime}
           nertzPile={player3NertzPile}
           setNertzPile={setPlayer3NertzPile}
@@ -1626,9 +1695,11 @@ function CardGameView() {
           playerName={player4Name}
           playerDbId={player4DbId}
           playerActive={player4Active}
+          playerScore={player4Score}
           setPlayerName={setPlayer4Name}
           setPlayerDbId={setPlayer4DbId}
           setPlayerActive={setPlayer4Active}
+          setPlayerScore={setPlayer4Score}
           broadcastTime={broadcastTime}
           nertzPile={player4NertzPile}
           setNertzPile={setPlayer4NertzPile}
@@ -1752,9 +1823,11 @@ function CardGameView() {
           playerName={player5Name}
           playerDbId={player5DbId}
           playerActive={player5Active}
+          playerScore={player5Score}
           setPlayerName={setPlayer5Name}
           setPlayerDbId={setPlayer5DbId}
           setPlayerActive={setPlayer5Active}
+          setPlayerScore={setPlayer5Score}
           broadcastTime={broadcastTime}
           nertzPile={player5NertzPile}
           setNertzPile={setPlayer5NertzPile}
@@ -1875,9 +1948,11 @@ function CardGameView() {
           playerName={player6Name}
           playerDbId={player6DbId}
           playerActive={player6Active}
+          playerScore={player5Score}
           setPlayerName={setPlayer6Name}
           setPlayerDbId={setPlayer6DbId}
           setPlayerActive={setPlayer6Active}
+          setPlayerScore={setPlayer5Score}
           broadcastTime={broadcastTime}
           nertzPile={player6NertzPile}
           setNertzPile={setPlayer6NertzPile}
