@@ -6,6 +6,8 @@ const NertzPileArea = ({
   playerUuid,
   playerName,
   playerActive,
+  playerScore,
+  setPlayerScore,
   broadcastTime,
   setBroadcastTime,
   broadcastPlayerUuid,
@@ -225,6 +227,7 @@ const NertzPileArea = ({
       setBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWorkPile(movedCard, workPileNum)
+      setPlayerScore(playerScore + 2)
     }
   }
 
@@ -306,6 +309,7 @@ const NertzPileArea = ({
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
+      setPlayerScore(playerScore + 3)
     }
   }
 

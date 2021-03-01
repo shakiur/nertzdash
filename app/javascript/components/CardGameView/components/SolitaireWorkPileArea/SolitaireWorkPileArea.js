@@ -5,6 +5,8 @@ const SolitaireWorkPileArea = ({
   playerPos,
   playerUuid,
   playerActive,
+  playerScore,
+  setPlayerScore,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   broadcastTime,
@@ -460,6 +462,7 @@ const SolitaireWorkPileArea = ({
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
+      setPlayerScore(playerScore + 1)
     }
   }
 
