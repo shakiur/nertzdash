@@ -85,6 +85,8 @@ const SolitairePileArea = ({
   const [nertzSoliWorkPile3XPos, setNertzSoliWorkPile3XPos] = useState(180)
   const [nertzSoliWorkPile4XPos, setNertzSoliWorkPile4XPos] = useState(240)
 
+  const enforceRules = true
+
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerSolitaireXYPos(
@@ -206,7 +208,7 @@ const SolitairePileArea = ({
     const nearWorkPileXPos = solitaireXPos >= (nertzSoliWorkXPos - 10) && solitaireXPos <= (nertzSoliWorkXPos + 10)
     const nearWorkPileYPos = solitaireYPos >= nertzSoliWorkYPos && solitaireYPos <= (nertzSoliWorkYPos + 20)
 
-    if(nearWorkPileXPos && nearWorkPileYPos) {
+    if(nearWorkPileXPos && nearWorkPileYPos && workSolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWorkPile(movedCard, workPileNum)
@@ -287,7 +289,7 @@ const SolitairePileArea = ({
     const nearCenterPileXPos = solitaireXPos >= (centerPileXPos - 10) && solitaireXPos <= (centerPileXPos + 10)
     const nearCenterPileYPos = solitaireYPos >= (centerPileYPos - 10) && solitaireYPos <= (centerPileYPos + 10)
 
-    if(nearCenterPileXPos && nearCenterPileYPos) {
+    if(nearCenterPileXPos && nearCenterPileYPos && centerPileSpeedCriteria) {
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setSolitairePile(solitairePile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
@@ -375,6 +377,10 @@ const SolitairePileArea = ({
   }
 
   function speedCriteria(movedCard, centerPileCard) {
+    if(!enforceRules) {
+      return true
+    }
+
     const movedCardNumber = parseInt(movedCard['number'])
     const emptyPileCriteria = !centerPileCard && movedCardNumber == 1
 
@@ -608,6 +614,10 @@ const SolitairePileArea = ({
   }
 
   function solitaireCriteria(movedCard, workPileCard) {
+    if(!enforceRules) {
+      return true
+    }
+
     if(!workPileCard) {
       return true
     }

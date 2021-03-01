@@ -86,6 +86,8 @@ const NertzPileArea = ({
   const [nertzSoliWorkPile3XPos, setNertzSoliWorkPile3XPos] = useState(240)
   const [nertzSoliWorkPile4XPos, setNertzSoliWorkPile4XPos] = useState(300)
 
+  const enforceRules = true
+
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerNertzPileXYPos(
@@ -223,7 +225,7 @@ const NertzPileArea = ({
     const nearWorkPileXPos = nertzPileXPos >= (nertzSoliWorkXPos - 10) && nertzPileXPos <= (nertzSoliWorkXPos + 10)
     const nearWorkPileYPos = nertzPileYPos >= nertzSoliWorkYPos && nertzPileYPos <= (nertzSoliWorkYPos + 20)
 
-    if(nearWorkPileXPos && nearWorkPileYPos) {
+    if(nearWorkPileXPos && nearWorkPileYPos && workSolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWorkPile(movedCard, workPileNum)
@@ -611,6 +613,10 @@ const NertzPileArea = ({
   }
 
   function solitaireCriteria(movedCard, workPileCard) {
+    if(!enforceRules) {
+      return true
+    }
+
     if(!workPileCard) {
       return true
     }
@@ -623,6 +629,10 @@ const NertzPileArea = ({
   }
 
   function speedCriteria(movedCard, centerPileCard) {
+    if(!enforceRules) {
+      return true
+    }
+
     const movedCardNumber = parseInt(movedCard['number'])
     const emptyPileCriteria = !centerPileCard && movedCardNumber == 1
 
