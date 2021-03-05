@@ -85,7 +85,9 @@ const SolitaireWorkPileArea = ({
   setCenterTablePile23,
   setCenterTablePile24,
   centerPileBroadcastPlayerUuid,
-  setCenterPileBroadcastPlayerUuid
+  setCenterPileBroadcastPlayerUuid,
+  activeViewersCount,
+  setActiveViewersCount
 }) => {
   const [left3WorkPileXPos, setLeft3WorkPileXPos] = useState(-180)
   const [left2WorkPileXPos, setLeft2WorkPileXPos] = useState(-120)

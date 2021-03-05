@@ -40,6 +40,9 @@ Rails.application.routes.draw do
   get '/card_game/broadcast_player_nertz_pile' => 'card_game#broadcast_player_nertz_pile', as: :card_game_broadcast_player_nertz_pile
   get '/card_game/broadcast_center_table_pile' => 'card_game#broadcast_center_table_pile', as: :card_game_broadcast_center_table_pile
   get '/card_game/broadcast_player_solitaire_work_pile' => 'card_game#broadcast_player_solitaire_work_pile', as: :card_game_broadcast_player_solitaire_work_pile
+  get '/card_game/send_all_player_data_request' => 'card_game#send_all_player_data_request', as: :send_all_player_data_request
+  get '/card_game/send_new_active_viewer_join' => 'card_game#send_new_active_viewer_join', as: :send_new_active_viewer_join
+  get '/card_game/broadcast_player_all_data' => 'card_game#broadcast_player_all_data', as: :send_broadcast_player_all_data
 
   namespace :api do
     namespace :v1 do

@@ -119,4 +119,31 @@ class CardGameController < ApplicationController
     all_players_hash = Player.all.map{ |player| {:id => player.id, :name => player.name} }
     render json: all_players_hash
   end
+
+  def send_new_active_viewer_join
+    ActionCable.server.broadcast 'card_game',
+      data_type: 'new_active_viewer',
+      player_uuid: params[:player_uuid]
+    head :ok
+  end
+
+  def broadcast_player_all_data
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_pos: params[:player_pos],
+      player_uuid: params[:player_uuid],
+      player_active: params[:player_active],
+      player_name: params[:player_name],
+      player_score: params[:player_score],
+      nertz_pile: params[:nertz_pile],
+      solitaire_deck: params[:solitaire_deck],
+      solitaire_pile: params[:solitaire_pile],
+      leftover_solitaire_pile: params[:leftover_solitaire_pile],
+      solitaire_work_1_pile: params[:solitaire_work_1_pile],
+      solitaire_work_2_pile: params[:solitaire_work_2_pile],
+      solitaire_work_3_pile: params[:solitaire_work_3_pile],
+      solitaire_work_4_pile: params[:solitaire_work_4_pile],
+      time: params[:time]
+    head :ok
+  end
 end

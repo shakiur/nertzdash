@@ -20,6 +20,9 @@ const CardDeckHolder = ({
 }) => {
 
   function handleSolitaireFlip() {
+    console.log('flip active before:')
+    console.log(playerActive)
+
     if(playerActive) {
       flipSolitaireCards()
       setBroadcastPlayerUuid(playerUuid)

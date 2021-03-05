@@ -251,14 +251,17 @@ function CardGameView() {
   const [centerTablePile24, setCenterTablePile24] = useState([])
   const [centerPileBroadcastPlayerUuid, setCenterPileBroadcastPlayerUuid] = useState(playerUuid);
 
+  const [activeViewersCount, setActiveViewersCount] = useState(0)
+  const [cableConnection, setCableConnection] = useState(false)
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
-    fetchAllPlayers()
 
-    cableApp.cable.subscriptions.create({
-      channel: 'CardGameChannel'
-    }, {
-      received: (data) => {
+    cableApp.cable.subscriptions.create('CardGameChannel', {
+      connected() {
+        setCableConnection(true)
+      },
+      received(data) {
         console.log(data);
         const data_type = data["data_type"]
 
@@ -290,12 +293,26 @@ function CardGameView() {
           case 'center_pile':
             updateCenterPileBroadcast(data)
             break;
+          case 'new_active_viewer':
+            updateActiveViewerCount(data)
+            break;
+          case 'player_all_data':
+            updatePlayerAllDataFromBroadcast(data)
+            break;
           default:
             break;
         }
       }
     })
+
+    fetchAllPlayers()
   }, []);
+
+  useEffect(() => {
+    fetch('/card_game/send_new_active_viewer_join?' +
+      'player_uuid=' + playerUuid
+    )
+  }, [cableConnection])
 
   function updatePlayerActiveStatusFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"])
@@ -1275,10 +1292,162 @@ function CardGameView() {
     }
   }
 
+  function updatePlayerAllDataFromBroadcast(data) {
+    const retrievedPlayerPos = parseInt(data["player_pos"])
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedPlayerActive = data["player_active"] === "true"
+    const retrievedPlayerName = data["player_name"]
+    const retrievedPlayerScore = parseInt(data["player_score"])
+    const retrievedNertzPile = JSON.parse(data["nertz_pile"])
+    const retrievedSolitaireDeck = JSON.parse(data["solitaire_deck"])
+    const retrievedSolitairePile = JSON.parse(data["solitaire_pile"])
+    const retrievedLeftoverSolitairePile = JSON.parse(data["leftover_solitaire_pile"])
+    const retrievedSolitaireWork1Pile = JSON.parse(data["solitaire_work_1_pile"])
+    const retrievedSolitaireWork2Pile = JSON.parse(data["solitaire_work_2_pile"])
+    const retrievedSolitaireWork3Pile = JSON.parse(data["solitaire_work_3_pile"])
+    const retrievedSolitaireWork4Pile = JSON.parse(data["solitaire_work_4_pile"])
+    const retrievedTime = parseInt(data["time"]);
+
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+    const retrievedAfterLastUpdate = retrievedTime > retrievalTime
+
+    if(retrievedFromDiffPlayer) {
+      setRetrievalTime(retrievedTime)
+      updatePlayerAllData(
+        retrievedPlayerPos,
+        retrievedPlayerUuid,
+        retrievedPlayerActive,
+        retrievedPlayerName,
+        retrievedPlayerScore,
+        retrievedNertzPile,
+        retrievedSolitaireDeck,
+        retrievedSolitairePile,
+        retrievedLeftoverSolitairePile,
+        retrievedSolitaireWork1Pile,
+        retrievedSolitaireWork2Pile,
+        retrievedSolitaireWork3Pile,
+        retrievedSolitaireWork4Pile
+      )
+    }
+  }
+
+  function updatePlayerAllData(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName,
+    playerScore,
+    nertzPile,
+    solitaireDeck,
+    solitairePile,
+    solitaireLeftoverPile,
+    solitaireWork1Pile,
+    solitaireWork2Pile,
+    solitaireWork3Pile,
+    solitaireWork4Pile
+  ) {
+    switch(playerPos) {
+      case 1:
+        setPlayer1BroadcastPlayerUuid(playerUuid)
+        setPlayer1Active(playerActive)
+        setPlayer1Name(playerName)
+        setPlayer1Score(playerScore)
+        setPlayer1NertzPile(nertzPile)
+        setPlayer1SolitaireDeck(solitaireDeck)
+        setPlayer1SolitairePile(solitairePile)
+        setPlayer1SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer1SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer1SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer1SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer1SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      case 2:
+        setPlayer2BroadcastPlayerUuid(playerUuid)
+        setPlayer2Active(playerActive)
+        setPlayer2Name(playerName)
+        setPlayer2Score(playerScore)
+        setPlayer2NertzPile(nertzPile)
+        setPlayer2SolitaireDeck(solitaireDeck)
+        setPlayer2SolitairePile(solitairePile)
+        setPlayer2SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer2SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer2SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer2SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer2SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      case 3:
+        setPlayer3BroadcastPlayerUuid(playerUuid)
+        setPlayer3Active(playerActive)
+        setPlayer3Name(playerName)
+        setPlayer3Score(playerScore)
+        setPlayer3NertzPile(nertzPile)
+        setPlayer3SolitaireDeck(solitaireDeck)
+        setPlayer3SolitairePile(solitairePile)
+        setPlayer3SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer3SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer3SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer3SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer3SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      case 4:
+        setPlayer4BroadcastPlayerUuid(playerUuid)
+        setPlayer4Active(playerActive)
+        setPlayer4Name(playerName)
+        setPlayer4Score(playerScore)
+        setPlayer4NertzPile(nertzPile)
+        setPlayer4SolitaireDeck(solitaireDeck)
+        setPlayer4SolitairePile(solitairePile)
+        setPlayer4SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer4SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer4SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer4SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer4SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      case 5:
+        setPlayer5BroadcastPlayerUuid(playerUuid)
+        setPlayer5Active(playerActive)
+        setPlayer5Name(playerName)
+        setPlayer5Score(playerScore)
+        setPlayer5NertzPile(nertzPile)
+        setPlayer5SolitaireDeck(solitaireDeck)
+        setPlayer5SolitairePile(solitairePile)
+        setPlayer5SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer5SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer5SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer5SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer5SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      case 6:
+        setPlayer6BroadcastPlayerUuid(playerUuid)
+        setPlayer6Active(playerActive)
+        setPlayer6Name(playerName)
+        setPlayer6Score(playerScore)
+        setPlayer6NertzPile(nertzPile)
+        setPlayer6SolitaireDeck(solitaireDeck)
+        setPlayer6SolitairePile(solitairePile)
+        setPlayer6SolitaireLeftoverPile(solitaireLeftoverPile)
+        setPlayer6SolitaireWork1Pile(solitaireWork1Pile)
+        setPlayer6SolitaireWork2Pile(solitaireWork2Pile)
+        setPlayer6SolitaireWork3Pile(solitaireWork3Pile)
+        setPlayer6SolitaireWork4Pile(solitaireWork4Pile)
+        break
+      default:
+        break
+    }
+  }
   function fetchAllPlayers() {
     fetch('/card_game/all_players.json')
       .then((allPlayersHash) => { return allPlayersHash.json() })
       .then((allPlayersJson) => { setAllPlayers(allPlayersJson) });
+  }
+
+  function updateActiveViewerCount(data) {
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+
+    if(retrievedFromDiffPlayer) {
+      setActiveViewersCount(activeViewersCount => activeViewersCount + 1)
+    }
   }
 
   return (
@@ -1408,6 +1577,8 @@ function CardGameView() {
           broadcastPlayerUuid={player1BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer1BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
         <PlayerTableNew
           playerPos={2}
@@ -1533,6 +1704,8 @@ function CardGameView() {
           broadcastPlayerUuid={player2BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer2BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
       </section>
 
@@ -1661,6 +1834,8 @@ function CardGameView() {
           broadcastPlayerUuid={player3BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer3BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
         <CenterTable
           centerPile1={centerTablePile1}
@@ -1812,6 +1987,8 @@ function CardGameView() {
           broadcastPlayerUuid={player4BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer4BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
       </section>
 
@@ -1940,6 +2117,8 @@ function CardGameView() {
           broadcastPlayerUuid={player5BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer5BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
         <PlayerTableNew
           playerPos={6}
@@ -2065,6 +2244,8 @@ function CardGameView() {
           broadcastPlayerUuid={player6BroadcastPlayerUuid}
           setBroadcastPlayerUuid={setPlayer6BroadcastPlayerUuid}
           setBroadcastTime={setBroadcastTime}
+          activeViewersCount={activeViewersCount}
+          setActiveViewersCount={setActiveViewersCount}
         />
       </section>
     </section>

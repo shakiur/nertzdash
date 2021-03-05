@@ -132,7 +132,9 @@ const PlayerTableNew = ({
   setCenterPileBroadcastPlayerUuid,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
-  setBroadcastTime
+  setBroadcastTime,
+  activeViewersCount,
+  setActiveViewersCount
 }) => {
   const [nertzSoliWorkPile1YPos, setNertzSoliWorkPile1YPos] = useState(-120)
   const [nertzSoliWorkPile2YPos, setNertzSoliWorkPile2YPos] = useState(-120)
@@ -143,6 +145,7 @@ const PlayerTableNew = ({
   const [absoluteWorkPile2YPos, setAbsoluteWorkPile2YPos] = useState(0)
   const [absoluteWorkPile3YPos, setAbsoluteWorkPile3YPos] = useState(0)
   const [absoluteWorkPile4YPos, setAbsoluteWorkPile4YPos] = useState(0)
+
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
@@ -229,6 +232,63 @@ const PlayerTableNew = ({
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
       '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&time=' + broadcastTime
+    );
+  }
+
+  useEffect(() => {
+    if(playerActive) {
+      broadcastPlayerAllData(
+        playerPos,
+        playerUuid,
+        playerActive,
+        playerName,
+        playerScore,
+        nertzPile,
+        solitaireDeck,
+        solitairePile,
+        solitaireLeftoverPile,
+        solitaireWork1Pile,
+        solitaireWork2Pile,
+        solitaireWork3Pile,
+        solitaireWork4Pile
+      );
+    }
+  }, [activeViewersCount])
+
+  function broadcastPlayerAllData(
+    playerPos,
+    playerUuid,
+    playerActive,
+    playerName,
+    playerScore,
+    nertzPile,
+    solitaireDeck,
+    solitairePile,
+    solitaireLeftoverPile,
+    solitaireWork1Pile,
+    solitaireWork2Pile,
+    solitaireWork3Pile,
+    solitaireWork4Pile
+  ) {
+    const currentTime = new Date().getTime();
+    setBroadcastTime(currentTime)
+
+    fetch('/card_game/broadcast_player_all_data?' +
+      'data_type=' + 'player_all_data' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_active=' + playerActive +
+      '&player_name=' + playerName +
+      '&player_score=' + playerScore +
+      '&nertz_pile=' + JSON.stringify(nertzPile) +
+      '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
+      '&solitaire_pile=' + JSON.stringify(solitairePile) +
+      '&leftover_solitaire_pile=' + JSON.stringify(solitaireLeftoverPile) +
+      '&solitaire_work_1_pile=' + JSON.stringify(solitaireWork1Pile) +
+      '&solitaire_work_2_pile=' + JSON.stringify(solitaireWork2Pile) +
+      '&solitaire_work_3_pile=' + JSON.stringify(solitaireWork3Pile) +
+      '&solitaire_work_4_pile=' + JSON.stringify(solitaireWork4Pile) +
       '&time=' + broadcastTime
     );
   }
@@ -736,6 +796,8 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            activeViewersCount={activeViewersCount}
+            setActiveViewersCount={setActiveViewersCount}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -824,6 +886,8 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            activeViewersCount={activeViewersCount}
+            setActiveViewersCount={setActiveViewersCount}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -912,6 +976,8 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            activeViewersCount={activeViewersCount}
+            setActiveViewersCount={setActiveViewersCount}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -1000,6 +1066,8 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            activeViewersCount={activeViewersCount}
+            setActiveViewersCount={setActiveViewersCount}
           />
         </div>
       </div>
