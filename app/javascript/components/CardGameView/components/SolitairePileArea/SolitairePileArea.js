@@ -78,7 +78,8 @@ const SolitairePileArea = ({
   setCenterTablePile23,
   setCenterTablePile24,
   centerPileBroadcastPlayerUuid,
-  setCenterPileBroadcastPlayerUuid
+  setCenterPileBroadcastPlayerUuid,
+  nertzWinner
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(60)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(120)
@@ -666,7 +667,7 @@ const SolitairePileArea = ({
         </div>
       </div>
       <Draggable
-        disabled={!solitairePile[0]}
+        disabled={!solitairePile[0] || nertzWinner}
         onDrag={(event, ui) => updateSolitaireXYPos(event, ui)}
         onStop={(event, ui) => checkNearPiles(event, ui)}
         position={{x: solitaireXPos, y: solitaireYPos}}

@@ -79,7 +79,8 @@ const NertzPileArea = ({
   setCenterTablePile23,
   setCenterTablePile24,
   centerPileBroadcastPlayerUuid,
-  setCenterPileBroadcastPlayerUuid
+  setCenterPileBroadcastPlayerUuid,
+  nertzWinner
 }) => {
   const [nertzSoliWorkPile1XPos, setNertzSoliWorkPile1XPos] = useState(120)
   const [nertzSoliWorkPile2XPos, setNertzSoliWorkPile2XPos] = useState(180)
@@ -671,7 +672,7 @@ const NertzPileArea = ({
       <div className={`nertzPilePreviewCard ${previewCardBorderStyle(nertzPile[2])}`}></div>
       <div className={`nertzPilePreviewCard ${previewCardBorderStyle(nertzPile[1])}`}></div>
       <Draggable
-        disabled={!nertzPile[0]}
+        disabled={!nertzPile[0] || nertzWinner}
         onDrag={(event, ui) => updateNertzPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearPiles(event, ui)}
         position={{x: nertzPileXPos, y: nertzPileYPos}}

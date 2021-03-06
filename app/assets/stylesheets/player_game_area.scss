@@ -58,4 +58,28 @@
     }
 
   }
+
+  .NertzWinnerDisplay {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 18px;
+
+    .NertzWinnerLabel {
+      margin-right: 5px;
+    }
+
+    .PlayerName {
+      margin-right: 5px;
+    }
+
+    .ScoreLabel {
+      margin-left: 5px;
+    }
+
+    .PlayerScore {
+      margin-left: 5px;
+      margin-right: 10px;
+    }
+
+  }
 }

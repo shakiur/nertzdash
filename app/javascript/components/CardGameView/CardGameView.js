@@ -254,6 +254,9 @@ function CardGameView() {
   const [activeViewersCount, setActiveViewersCount] = useState(0)
   const [cableConnection, setCableConnection] = useState(false)
 
+  const [nertzWinner, setNertzWinner] = useState(false)
+  const [nertzWinnerName, setNertzWinnerName] = useState("")
+
   useEffect(() => {
     cableApp.cable = actionCable.createConsumer()
 
@@ -1435,6 +1438,7 @@ function CardGameView() {
         break
     }
   }
+
   function fetchAllPlayers() {
     fetch('/card_game/all_players.json')
       .then((allPlayersHash) => { return allPlayersHash.json() })
@@ -1579,6 +1583,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
         <PlayerTableNew
           playerPos={2}
@@ -1706,6 +1714,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
       </section>
 
@@ -1836,6 +1848,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
         <CenterTable
           centerPile1={centerTablePile1}
@@ -1989,6 +2005,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
       </section>
 
@@ -2119,6 +2139,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
         <PlayerTableNew
           playerPos={6}
@@ -2246,6 +2270,10 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          nertzWinner={nertzWinner}
+          nertzWinnerName={nertzWinnerName}
+          setNertzWinner={setNertzWinner}
+          setNertzWinnerName={setNertzWinnerName}
         />
       </section>
     </section>

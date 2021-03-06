@@ -87,7 +87,8 @@ const SolitaireWorkPileArea = ({
   centerPileBroadcastPlayerUuid,
   setCenterPileBroadcastPlayerUuid,
   activeViewersCount,
-  setActiveViewersCount
+  setActiveViewersCount,
+  nertzWinner
 }) => {
   const [left3WorkPileXPos, setLeft3WorkPileXPos] = useState(-180)
   const [left2WorkPileXPos, setLeft2WorkPileXPos] = useState(-120)
@@ -1048,7 +1049,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[12] &&
         <Draggable
-          disabled={!solitaireWorkPile[12]}
+          disabled={!solitaireWorkPile[12] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 12)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 12)}
           position={{x: determinePreviewXPos(12), y: determinePreviewYPos(12)}}
@@ -1063,7 +1064,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[11] &&
         <Draggable
-          disabled={!solitaireWorkPile[11]}
+          disabled={!solitaireWorkPile[11] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 11)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 11)}
           position={{x: determinePreviewXPos(11), y: determinePreviewYPos(11)}}
@@ -1078,7 +1079,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[10] &&
         <Draggable
-          disabled={!solitaireWorkPile[10]}
+          disabled={!solitaireWorkPile[10] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 10)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 10)}
           position={{x: determinePreviewXPos(10), y: determinePreviewYPos(10)}}
@@ -1093,7 +1094,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[9] &&
         <Draggable
-          disabled={!solitaireWorkPile[9]}
+          disabled={!solitaireWorkPile[9] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 9)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 9)}
           position={{x: determinePreviewXPos(9), y: determinePreviewYPos(9)}}
@@ -1108,7 +1109,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[8] &&
         <Draggable
-          disabled={!solitaireWorkPile[8]}
+          disabled={!solitaireWorkPile[8] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 8)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 8)}
           position={{x: determinePreviewXPos(8), y: determinePreviewYPos(8)}}
@@ -1123,7 +1124,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[7] &&
         <Draggable
-          disabled={!solitaireWorkPile[7]}
+          disabled={!solitaireWorkPile[7] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 7)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 7)}
           position={{x: determinePreviewXPos(7), y: determinePreviewYPos(7)}}
@@ -1138,7 +1139,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[6] &&
         <Draggable
-          disabled={!solitaireWorkPile[6]}
+          disabled={!solitaireWorkPile[6] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 6)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 6)}
           position={{x: determinePreviewXPos(6), y: determinePreviewYPos(6)}}
@@ -1153,7 +1154,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[5] &&
         <Draggable
-          disabled={!solitaireWorkPile[5]}
+          disabled={!solitaireWorkPile[5] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 5)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 5)}
           position={{x: determinePreviewXPos(5), y: determinePreviewYPos(5)}}
@@ -1168,7 +1169,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[4] &&
         <Draggable
-          disabled={!solitaireWorkPile[4]}
+          disabled={!solitaireWorkPile[4] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 4)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 4)}
           position={{x: determinePreviewXPos(4), y: determinePreviewYPos(4)}}
@@ -1183,7 +1184,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[3] &&
         <Draggable
-          disabled={!solitaireWorkPile[3]}
+          disabled={!solitaireWorkPile[3] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 3)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 3)}
           position={{x: determinePreviewXPos(3), y: determinePreviewYPos(3)}}
@@ -1198,7 +1199,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[2] &&
         <Draggable
-          disabled={!solitaireWorkPile[2]}
+          disabled={!solitaireWorkPile[2] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 2)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 2)}
           position={{x: determinePreviewXPos(2), y: determinePreviewYPos(2)}}
@@ -1213,7 +1214,7 @@ const SolitaireWorkPileArea = ({
       {
         solitaireWorkPile[1] &&
         <Draggable
-          disabled={!solitaireWorkPile[1]}
+          disabled={!solitaireWorkPile[1] || nertzWinner}
           onDrag={(event, ui) => updateWorkPilePreviewXYPos(event, ui, 1)}
           onStop={(event, ui) => checkPreviewNearWorkPile(event, ui, 1)}
           position={{x: determinePreviewXPos(1), y: determinePreviewYPos(1)}}
@@ -1226,7 +1227,7 @@ const SolitaireWorkPileArea = ({
         </Draggable>
       }
       <Draggable
-        disabled={!solitaireWorkPile[0]}
+        disabled={!solitaireWorkPile[0] || nertzWinner}
         onDrag={(event, ui) => updateWorkPileXYPos(event, ui)}
         onStop={(event, ui) => checkNearPiles(event, ui)}
         position={{x: workPileXPos, y: workPileYPos}}

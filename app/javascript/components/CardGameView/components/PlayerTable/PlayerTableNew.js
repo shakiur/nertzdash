@@ -134,7 +134,11 @@ const PlayerTableNew = ({
   setBroadcastPlayerUuid,
   setBroadcastTime,
   activeViewersCount,
-  setActiveViewersCount
+  setActiveViewersCount,
+  nertzWinner,
+  nertzWinnerName,
+  setNertzWinner,
+  setNertzWinnerName
 }) => {
   const [nertzSoliWorkPile1YPos, setNertzSoliWorkPile1YPos] = useState(-120)
   const [nertzSoliWorkPile2YPos, setNertzSoliWorkPile2YPos] = useState(-120)
@@ -527,6 +531,13 @@ const PlayerTableNew = ({
     }
   }, [solitaireWork4Pile])
 
+  useEffect(() => {
+    if(playerActive && nertzPile.length == 0) {
+      setNertzWinner(true)
+      setNertzWinnerName(playerName)
+    }
+  }, [nertzPile])
+
   return (
     <div className="PlayerTableNew">
       <div className="CardsArea">
@@ -610,6 +621,7 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            nertzWinner={nertzWinner}
           />
         </div>
         <div className="SolitaireDeckArea">
@@ -629,6 +641,7 @@ const PlayerTableNew = ({
             setSolitaireDeck={setSolitaireDeck}
             setSolitairePile={setSolitairePile}
             setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+            nertzWinner={nertzWinner}
           />
           <SolitairePileArea
             playerPos={playerPos}
@@ -708,6 +721,7 @@ const PlayerTableNew = ({
             setCenterTablePile24={setCenterTablePile24}
             centerPileBroadcastPlayerUuid={centerPileBroadcastPlayerUuid}
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
+            nertzWinner={nertzWinner}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -798,6 +812,7 @@ const PlayerTableNew = ({
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
             activeViewersCount={activeViewersCount}
             setActiveViewersCount={setActiveViewersCount}
+            nertzWinner={nertzWinner}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -888,6 +903,7 @@ const PlayerTableNew = ({
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
             activeViewersCount={activeViewersCount}
             setActiveViewersCount={setActiveViewersCount}
+            nertzWinner={nertzWinner}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -978,6 +994,7 @@ const PlayerTableNew = ({
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
             activeViewersCount={activeViewersCount}
             setActiveViewersCount={setActiveViewersCount}
+            nertzWinner={nertzWinner}
           />
         </div>
         <div className="SolitaireWorkArea">
@@ -1068,6 +1085,7 @@ const PlayerTableNew = ({
             setCenterPileBroadcastPlayerUuid={setCenterPileBroadcastPlayerUuid}
             activeViewersCount={activeViewersCount}
             setActiveViewersCount={setActiveViewersCount}
+            nertzWinner={nertzWinner}
           />
         </div>
       </div>
@@ -1090,6 +1108,10 @@ const PlayerTableNew = ({
         setSolitaireWork3Pile={setSolitaireWork3Pile}
         setSolitaireWork4Pile={setSolitaireWork4Pile}
         setBroadcastPlayerUuid={setBroadcastPlayerUuid}
+        nertzWinner={nertzWinner}
+        nertzWinnerName={nertzWinnerName}
+        setNertzWinner={setNertzWinner}
+        setNertzWinnerName={setNertzWinnerName}
       />
     </div>
   )

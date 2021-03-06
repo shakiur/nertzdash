@@ -16,14 +16,12 @@ const CardDeckHolder = ({
   solitaireLeftoverPile,
   setSolitaireDeck,
   setSolitairePile,
-  setSolitaireLeftoverPile
+  setSolitaireLeftoverPile,
+  nertzWinner
 }) => {
 
   function handleSolitaireFlip() {
-    console.log('flip active before:')
-    console.log(playerActive)
-
-    if(playerActive) {
+    if(playerActive && !nertzWinner) {
       flipSolitaireCards()
       setBroadcastPlayerUuid(playerUuid)
     }

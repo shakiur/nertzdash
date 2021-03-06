@@ -18,14 +18,24 @@ const PlayerGameArea = ({
   setSolitaireWork2Pile,
   setSolitaireWork3Pile,
   setSolitaireWork4Pile,
-  setBroadcastPlayerUuid
+  setBroadcastPlayerUuid,
+  nertzWinner,
+  nertzWinnerName,
+  setNertzWinner,
+  setNertzWinnerName
 }) => {
 
   function PlayerGameControl() {
     if(playerActive) {
-      return (
-        <ActivePlayerDisplay />
-      )
+      if(nertzWinner && nertzWinnerName == playerName) {
+        return (
+          <NertzWinnerDisplay />
+        )
+      } else {
+        return (
+          <ActivePlayerDisplay />
+        )
+      }
     } else {
       return (
         <SelectPlayerDisplay />
@@ -38,6 +48,25 @@ const PlayerGameArea = ({
       <div className="ActivePlayerDisplay">
         <div className="PlayerLabel">
           <strong>Player:</strong>
+        </div>
+        <div className="PlayerName">
+          {playerName}
+        </div>
+        <div className="ScoreLabel">
+          <strong>Score:</strong>
+        </div>
+        <div className="PlayerScore">
+          {playerScore}
+        </div>
+      </div>
+    )
+  }
+
+  function NertzWinnerDisplay() {
+    return (
+      <div className="NertzWinnerDisplay">
+        <div className="NertzWinnerLabel">
+          <strong>NERTZ!</strong>
         </div>
         <div className="PlayerName">
           {playerName}
