@@ -98,7 +98,7 @@ const SolitaireWorkPileArea = ({
   const [right2WorkPileXPos, setRight2WorkPileXPos] = useState(120)
   const [right3WorkPileXPos, setRight3WorkPileXPos] = useState(180)
 
-  const enforceRules = false
+  const enforceRules = true
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {
