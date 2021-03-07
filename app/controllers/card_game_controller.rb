@@ -127,6 +127,13 @@ class CardGameController < ApplicationController
     head :ok
   end
 
+  def broadcast_reset_player_game_data
+    ActionCable.server.broadcast 'card_game',
+      data_type: params[:data_type],
+      player_uuid: params[:player_uuid]
+    head :ok
+  end
+
   def broadcast_player_all_data
     ActionCable.server.broadcast 'card_game',
       data_type: params[:data_type],

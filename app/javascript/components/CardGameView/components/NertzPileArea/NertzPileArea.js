@@ -87,7 +87,7 @@ const NertzPileArea = ({
   const [nertzSoliWorkPile3XPos, setNertzSoliWorkPile3XPos] = useState(240)
   const [nertzSoliWorkPile4XPos, setNertzSoliWorkPile4XPos] = useState(300)
 
-  const enforceRules = true
+  const enforceRules = false
 
   useEffect(() => {
     if(playerActive && playerUuid == broadcastPlayerUuid) {

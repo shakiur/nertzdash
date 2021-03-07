@@ -135,6 +135,7 @@ const PlayerTableNew = ({
   setBroadcastTime,
   activeViewersCount,
   setActiveViewersCount,
+  resetPlayerGameCount,
   nertzWinner,
   nertzWinnerName,
   setNertzWinner,
@@ -259,6 +260,23 @@ const PlayerTableNew = ({
       );
     }
   }, [activeViewersCount])
+
+  useEffect(() => {
+    if(playerActive) {
+      broadcastPlayerAllData(playerPos, playerUuid, false, playerName, -26, [], [], [], [], [], [], [], []);
+
+      setPlayerActive(false)
+      setPlayerScore(-26)
+      setNertzPile([])
+      setSolitaireDeck([])
+      setSolitairePile([])
+      setSolitaireLeftoverPile([])
+      setSolitaireWork1Pile([])
+      setSolitaireWork2Pile([])
+      setSolitaireWork3Pile([])
+      setSolitaireWork4Pile([])
+    }
+  }, [resetPlayerGameCount])
 
   function broadcastPlayerAllData(
     playerPos,
@@ -535,6 +553,9 @@ const PlayerTableNew = ({
     if(playerActive && nertzPile.length == 0) {
       setNertzWinner(true)
       setNertzWinnerName(playerName)
+    } else {
+      setNertzWinner(false)
+      setNertzWinnerName('')
     }
   }, [nertzPile])
 

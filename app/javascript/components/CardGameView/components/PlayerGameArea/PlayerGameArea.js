@@ -76,17 +76,28 @@ const PlayerGameArea = ({
   function NertzWinnerDisplay() {
     return (
       <div className="NertzWinnerDisplay">
-        <div className="NertzWinnerLabel">
-          <strong>NERTZ!</strong>
+        <div className="PlayerAction">
+          <button
+            disabled={playerName == ""}
+            onClick={() => handleResetGame()}
+            className="ResetGameButton"
+          >
+            Reset All
+          </button>
         </div>
-        <div className="PlayerName">
-          {playerName}
-        </div>
-        <div className="ScoreLabel">
-          <strong>Score:</strong>
-        </div>
-        <div className="PlayerScore">
-          {playerScore}
+        <div className="PlayerDisplay">
+          <div className="NertzWinnerLabel">
+            <strong>NERTZ!</strong>
+          </div>
+          <div className="PlayerName">
+            {playerName}
+          </div>
+          <div className="ScoreLabel">
+            <strong>Score:</strong>
+          </div>
+          <div className="PlayerScore">
+            {playerScore}
+          </div>
         </div>
       </div>
     )
@@ -157,6 +168,13 @@ const PlayerGameArea = ({
     setSolitaireWork2Pile([])
     setSolitaireWork3Pile([])
     setSolitaireWork4Pile([])
+  }
+
+  function handleResetGame() {
+    fetch('/card_game/broadcast_reset_player_game_data?' +
+      'data_type=' + 'reset_player_game_data' +
+      '&player_uuid=' + playerUuid
+    )
   }
 
   function handleDealCards() {

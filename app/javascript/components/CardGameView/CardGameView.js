@@ -251,8 +251,10 @@ function CardGameView() {
   const [centerTablePile24, setCenterTablePile24] = useState([])
   const [centerPileBroadcastPlayerUuid, setCenterPileBroadcastPlayerUuid] = useState(playerUuid);
 
-  const [activeViewersCount, setActiveViewersCount] = useState(0)
   const [cableConnection, setCableConnection] = useState(false)
+
+  const [activeViewersCount, setActiveViewersCount] = useState(0)
+  const [resetPlayerGameCount, setResetPlayerGameCount] = useState(0)
 
   const [nertzWinner, setNertzWinner] = useState(false)
   const [nertzWinnerName, setNertzWinnerName] = useState("")
@@ -301,6 +303,9 @@ function CardGameView() {
             break;
           case 'player_all_data':
             updatePlayerAllDataFromBroadcast(data)
+            break;
+          case 'reset_player_game_data':
+            updateResetPlayerGameCount(data)
             break;
           default:
             break;
@@ -1439,6 +1444,16 @@ function CardGameView() {
     }
   }
 
+  function updateResetPlayerGameCount(data) {
+    const retrievedPlayerUuid = data["player_uuid"]
+    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
+
+    if(retrievedFromDiffPlayer) {
+      setResetPlayerGameCount(resetPlayerGameCount => resetPlayerGameCount + 1)
+    }
+  }
+
+
   function fetchAllPlayers() {
     fetch('/card_game/all_players.json')
       .then((allPlayersHash) => { return allPlayersHash.json() })
@@ -1583,6 +1598,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}
@@ -1714,6 +1730,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}
@@ -1848,6 +1865,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}
@@ -2005,6 +2023,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}
@@ -2139,6 +2158,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}
@@ -2270,6 +2290,7 @@ function CardGameView() {
           setBroadcastTime={setBroadcastTime}
           activeViewersCount={activeViewersCount}
           setActiveViewersCount={setActiveViewersCount}
+          resetPlayerGameCount={resetPlayerGameCount}
           nertzWinner={nertzWinner}
           nertzWinnerName={nertzWinnerName}
           setNertzWinner={setNertzWinner}

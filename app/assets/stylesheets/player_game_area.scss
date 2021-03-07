@@ -77,25 +77,41 @@
 
   .NertzWinnerDisplay {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     font-size: 18px;
 
-    .NertzWinnerLabel {
-      margin-right: 5px;
+    width: 340px;
+
+    .PlayerAction {
+      display: flex;
+
+      .ResetGameButton {
+        height: 30px;
+        border: 1px solid black;
+        font-size: 16px;
+      }
     }
 
-    .PlayerName {
-      margin-right: 5px;
-    }
+    .PlayerDisplay {
+      display: flex;
+      justify-content: flex-end;
 
-    .ScoreLabel {
-      margin-left: 5px;
-    }
+      .NertzWinnerLabel {
+        margin-right: 5px;
+      }
 
-    .PlayerScore {
-      margin-left: 5px;
-      margin-right: 10px;
-    }
+      .PlayerName {
+        margin-right: 5px;
+      }
 
+      .ScoreLabel {
+        margin-left: 5px;
+      }
+
+      .PlayerScore {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+    }
   }
 }

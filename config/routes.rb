@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get '/card_game/send_all_player_data_request' => 'card_game#send_all_player_data_request', as: :send_all_player_data_request
   get '/card_game/send_new_active_viewer_join' => 'card_game#send_new_active_viewer_join', as: :send_new_active_viewer_join
   get '/card_game/broadcast_player_all_data' => 'card_game#broadcast_player_all_data', as: :send_broadcast_player_all_data
+  get '/card_game/broadcast_reset_player_game_data' => 'card_game#broadcast_reset_player_game_data', as: :send_broadcast_reset_player_game_data
 
   namespace :api do
     namespace :v1 do
