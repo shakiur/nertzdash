@@ -258,8 +258,17 @@ const PlayerTableNew = ({
         solitaireWork3Pile,
         solitaireWork4Pile
       );
+
+      for(let centerPileNum = 1; centerPileNum <= 24; centerPileNum++) {
+        let centerPile = getCenterPileByNum(centerPileNum)
+
+        if(centerPile.length > 0) {
+          broadcastCenterPile(playerPos, playerUuid, centerPile, centerPileNum);
+        }
+      }
     }
   }, [activeViewersCount])
+
 
   useEffect(() => {
     if(playerActive) {
@@ -275,8 +284,176 @@ const PlayerTableNew = ({
       setSolitaireWork2Pile([])
       setSolitaireWork3Pile([])
       setSolitaireWork4Pile([])
+
+      for(let centerPileNum = 1; centerPileNum <= 24; centerPileNum++) {
+        let centerPile = getCenterPileByNum(centerPileNum)
+        let setCenterPile = getSetCenterPileByNum(centerPileNum)
+
+        if(centerPile.length > 0) {
+          broadcastCenterPile(playerPos, playerUuid, [], centerPileNum);
+          setCenterPile([])
+        }
+      }
     }
   }, [resetPlayerGameCount])
+
+  function getCenterPileByNum(centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+        return centerTablePile1
+        break
+      case 2:
+        return centerTablePile2
+        break
+      case 3:
+        return centerTablePile3
+        break
+      case 4:
+        return centerTablePile4
+        break
+      case 5:
+        return centerTablePile5
+        break
+      case 6:
+        return centerTablePile6
+        break
+      case 7:
+        return centerTablePile7
+        break
+      case 8:
+        return centerTablePile8
+        break
+      case 9:
+        return centerTablePile9
+        break
+      case 10:
+        return centerTablePile10
+        break
+      case 11:
+        return centerTablePile11
+        break
+      case 12:
+        return centerTablePile12
+        break
+      case 13:
+        return centerTablePile13
+        break
+      case 14:
+        return centerTablePile14
+        break
+      case 15:
+        return centerTablePile15
+        break
+      case 16:
+        return centerTablePile16
+        break
+      case 17:
+        return centerTablePile17
+        break
+      case 18:
+        return centerTablePile18
+        break
+      case 19:
+        return centerTablePile19
+        break
+      case 20:
+        return centerTablePile20
+        break
+      case 21:
+        return centerTablePile21
+        break
+      case 22:
+        return centerTablePile22
+        break
+      case 23:
+        return centerTablePile23
+        break
+      case 24:
+        return centerTablePile24
+        break
+      default:
+        break
+    }
+  }
+
+  function getSetCenterPileByNum(centerPileNum) {
+    switch(centerPileNum) {
+      case 1:
+        return setCenterTablePile1
+        break
+      case 2:
+        return setCenterTablePile2
+        break
+      case 3:
+        return setCenterTablePile3
+        break
+      case 4:
+        return setCenterTablePile4
+        break
+      case 5:
+        return setCenterTablePile5
+        break
+      case 6:
+        return setCenterTablePile6
+        break
+      case 7:
+        return setCenterTablePile7
+        break
+      case 8:
+        return setCenterTablePile8
+        break
+      case 9:
+        return setCenterTablePile9
+        break
+      case 10:
+        return setCenterTablePile10
+        break
+      case 11:
+        return setCenterTablePile11
+        break
+      case 12:
+        return setCenterTablePile12
+        break
+      case 13:
+        return setCenterTablePile13
+        break
+      case 14:
+        return setCenterTablePile14
+        break
+      case 15:
+        return setCenterTablePile15
+        break
+      case 16:
+        return setCenterTablePile16
+        break
+      case 17:
+        return setCenterTablePile17
+        break
+      case 18:
+        return setCenterTablePile18
+        break
+      case 19:
+        return setCenterTablePile19
+        break
+      case 20:
+        return setCenterTablePile20
+        break
+      case 21:
+        return setCenterTablePile21
+        break
+      case 22:
+        return setCenterTablePile22
+        break
+      case 23:
+        return setCenterTablePile23
+        break
+      case 24:
+        return setCenterTablePile24
+        break
+      default:
+        break
+    }
+  }
 
   function broadcastPlayerAllData(
     playerPos,
