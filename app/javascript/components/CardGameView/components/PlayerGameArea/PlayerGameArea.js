@@ -46,17 +46,28 @@ const PlayerGameArea = ({
   function ActivePlayerDisplay() {
     return (
       <div className="ActivePlayerDisplay">
-        <div className="PlayerLabel">
-          <strong>Player:</strong>
+        <div className="PlayerAction">
+          <button
+            disabled={playerName == ""}
+            onClick={() => handleLeaveGame()}
+            className="LeaveGameButton"
+          >
+            Leave
+          </button>
         </div>
-        <div className="PlayerName">
-          {playerName}
-        </div>
-        <div className="ScoreLabel">
-          <strong>Score:</strong>
-        </div>
-        <div className="PlayerScore">
-          {playerScore}
+        <div className="PlayerDisplay">
+          <div className="PlayerLabel">
+            <strong>Player:</strong>
+          </div>
+          <div className="PlayerName">
+            {playerName}
+          </div>
+          <div className="ScoreLabel">
+            <strong>Score:</strong>
+          </div>
+          <div className="PlayerScore">
+            {playerScore}
+          </div>
         </div>
       </div>
     )
@@ -114,8 +125,43 @@ const PlayerGameArea = ({
     setPlayerName(selectedName)
   }
 
+  function handleLeaveGame() {
+    const currentTime = new Date().getTime();
+
+    fetch('/card_game/broadcast_player_all_data?' +
+      'data_type=' + 'player_all_data' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_active=' + 'false' +
+      '&player_name=' + '' +
+      '&player_score=' + '0' +
+      '&nertz_pile=' + JSON.stringify([]) +
+      '&solitaire_deck=' + JSON.stringify([]) +
+      '&solitaire_pile=' + JSON.stringify([]) +
+      '&leftover_solitaire_pile=' + JSON.stringify([]) +
+      '&solitaire_work_1_pile=' + JSON.stringify([]) +
+      '&solitaire_work_2_pile=' + JSON.stringify([]) +
+      '&solitaire_work_3_pile=' + JSON.stringify([]) +
+      '&solitaire_work_4_pile=' + JSON.stringify([]) +
+      '&time=' + currentTime
+    );
+
+    setPlayerActive(false)
+    setPlayerName('')
+    setPlayerScore(0)
+    setNertzPile([])
+    setSolitaireDeck([])
+    setSolitairePile([])
+    setSolitaireLeftoverPile([])
+    setSolitaireWork1Pile([])
+    setSolitaireWork2Pile([])
+    setSolitaireWork3Pile([])
+    setSolitaireWork4Pile([])
+  }
+
   function handleDealCards() {
     setPlayerActive(true)
+    setBroadcastPlayerUuid(playerUuid)
     setPlayerScore(-26)
     dealCards()
   }
