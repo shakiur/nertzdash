@@ -308,7 +308,7 @@ const NertzPileArea = ({
     const nearCenterPileXPos = nertzPileXPos >= (centerPileXPos - 10) && nertzPileXPos <= (centerPileXPos + 10)
     const nearCenterPileYPos = nertzPileYPos >= (centerPileYPos - 10) && nertzPileYPos <= (centerPileYPos + 10)
 
-    if(nearCenterPileXPos && nearCenterPileYPos) {
+    if(nearCenterPileXPos && nearCenterPileYPos && centerPileSpeedCriteria) {
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
