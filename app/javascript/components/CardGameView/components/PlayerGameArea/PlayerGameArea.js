@@ -48,7 +48,7 @@ const PlayerGameArea = ({
       <div className="ActivePlayerDisplay">
         <div className="PlayerAction">
           <button
-            disabled={playerActive}
+            disabled={!playerActive}
             onClick={() => handleLeaveGame()}
             className="LeaveGameButton"
           >
