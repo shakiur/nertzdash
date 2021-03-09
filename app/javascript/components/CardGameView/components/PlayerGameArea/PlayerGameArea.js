@@ -178,8 +178,8 @@ const PlayerGameArea = ({
   }
 
   function handleDealCards() {
-    setPlayerActive(true)
     setBroadcastPlayerUuid(playerUuid)
+    setPlayerActive(true)
     setPlayerScore(-26)
     dealCards()
   }

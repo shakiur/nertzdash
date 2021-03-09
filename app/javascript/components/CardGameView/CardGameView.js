@@ -2171,11 +2171,11 @@ function CardGameView() {
           playerName={player6Name}
           playerDbId={player6DbId}
           playerActive={player6Active}
-          playerScore={player5Score}
+          playerScore={player6Score}
           setPlayerName={setPlayer6Name}
           setPlayerDbId={setPlayer6DbId}
           setPlayerActive={setPlayer6Active}
-          setPlayerScore={setPlayer5Score}
+          setPlayerScore={setPlayer6Score}
           broadcastTime={broadcastTime}
           nertzPile={player6NertzPile}
           setNertzPile={setPlayer6NertzPile}

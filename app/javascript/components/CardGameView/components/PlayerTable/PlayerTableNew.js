@@ -161,7 +161,7 @@ const PlayerTableNew = ({
         playerName
       );
     }
-  }, [playerActive, playerName])
+  }, [playerActive])
 
   function broadcastPlayerActiveStatus(
     playerPos,
