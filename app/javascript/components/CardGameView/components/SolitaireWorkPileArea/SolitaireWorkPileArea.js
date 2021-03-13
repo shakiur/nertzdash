@@ -116,7 +116,7 @@ const SolitaireWorkPileArea = ({
   }, [workPilePreviewXPos, workPilePreviewYPos, workPileXPos, workPileYPos])
 
   function broadcastPlayerPreviewWorkPileXYPos(playerPos, playerUuid, workPilePos, previewIndex, previewWorkPileXPos, previewWorkPileYPos, workPileXPos, workPileYPos) {
-    const delay = 25
+    const delay = 100
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
     const resetXYPos = previewWorkPileXPos == 0 && previewWorkPileYPos == 0 && workPileXPos == 0 && workPileYPos == 0

@@ -153,7 +153,7 @@ const PlayerTableNew = ({
 
 
   useEffect(() => {
-    if(playerActive && playerUuid == broadcastPlayerUuid) {
+    if(playerActive && playerName != "" && playerUuid == broadcastPlayerUuid) {
       broadcastPlayerActiveStatus(
         playerPos,
         playerUuid,
