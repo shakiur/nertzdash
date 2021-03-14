@@ -268,47 +268,52 @@ function CardGameView() {
       },
       received(data) {
         console.log(data);
-        const data_type = data["data_type"]
+        const retrievedPlayerUuid = data["player_uuid"]
+        const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
 
-        switch(data_type) {
-          case 'player_active_status':
-            updatePlayerActiveStatusFromBroadcast(data);
-            break;
-          case 'player_score':
-            updatePlayerScoreFromBroadcast(data);
-            break;
-          case 'player_solitaire':
-            updatePlayerSolitaireFromBroadcast(data);
-            break;
-          case 'player_solitaire_work_pile':
-            updatePlayerSolitaireWorkPileFromBroadcast(data);
-            break;
-          case 'player_preview_work_pile_x_y_pos':
-            updatePlayerPreviewWorkPilesXYPosFromBroadcast(data);
-            break;
-          case 'player_solitaire_x_y_pos':
-            updatePlayerSolitaireXYPosFromBroadcast(data)
-            break;
-          case 'player_nertz_pile_x_y_pos':
-            updatePlayerNertzPileXYPosFromBroadcast(data)
-            break;
-          case 'player_nertz_pile':
-            updatePlayerNertzPileFromBroadcast(data)
-            break;
-          case 'center_pile':
-            updateCenterPileBroadcast(data)
-            break;
-          case 'new_active_viewer':
-            updateActiveViewerCount(data)
-            break;
-          case 'player_all_data':
-            updatePlayerAllDataFromBroadcast(data)
-            break;
-          case 'reset_player_game_data':
-            updateResetPlayerGameCount(data)
-            break;
-          default:
-            break;
+        if(retrievedFromDiffPlayer) {
+          const data_type = data["data_type"]
+
+          switch(data_type) {
+            case 'player_active_status':
+              updatePlayerActiveStatusFromBroadcast(data);
+              break;
+            case 'player_score':
+              updatePlayerScoreFromBroadcast(data);
+              break;
+            case 'player_solitaire':
+              updatePlayerSolitaireFromBroadcast(data);
+              break;
+            case 'player_solitaire_work_pile':
+              updatePlayerSolitaireWorkPileFromBroadcast(data);
+              break;
+            case 'player_preview_work_pile_x_y_pos':
+              updatePlayerPreviewWorkPilesXYPosFromBroadcast(data);
+              break;
+            case 'player_solitaire_x_y_pos':
+              updatePlayerSolitaireXYPosFromBroadcast(data)
+              break;
+            case 'player_nertz_pile_x_y_pos':
+              updatePlayerNertzPileXYPosFromBroadcast(data)
+              break;
+            case 'player_nertz_pile':
+              updatePlayerNertzPileFromBroadcast(data)
+              break;
+            case 'center_pile':
+              updateCenterPileBroadcast(data)
+              break;
+            case 'new_active_viewer':
+              updateActiveViewerCount(data)
+              break;
+            case 'player_all_data':
+              updatePlayerAllDataFromBroadcast(data)
+              break;
+            case 'reset_player_game_data':
+              updateResetPlayerGameCount(data)
+              break;
+            default:
+              break;
+          }
         }
       }
     })
@@ -329,18 +334,15 @@ function CardGameView() {
     const retrievedPlayerName = data["player_name"]
     const retrievedTime = parseInt(data["time"]);
 
-    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerActiveStatus(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedPlayerActive,
-        retrievedPlayerName
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerActiveStatus(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedPlayerActive,
+      retrievedPlayerName
+    )
   }
 
   function updatePlayerActiveStatus(
@@ -391,17 +393,14 @@ function CardGameView() {
     const retrievedPlayerScore = parseInt(data["player_score"])
     const retrievedTime = parseInt(data["time"]);
 
-    const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerScore(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedPlayerScore
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerScore(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedPlayerScore
+    )
   }
 
   function updatePlayerScore(
@@ -450,16 +449,14 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerSolitaire(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedSolitaireDeck,
-        retrievedSolitairePile,
-        retrievedLeftoverSolitairePile
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerSolitaire(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedSolitaireDeck,
+      retrievedSolitairePile,
+      retrievedLeftoverSolitairePile
+    )
   }
 
   function updatePlayerSolitaire(
@@ -520,14 +517,12 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerNertzPile(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedNertzPile
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerNertzPile(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedNertzPile
+    )
   }
 
 
@@ -542,7 +537,7 @@ function CardGameView() {
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
     const resetXY = retrievedSolitaireXPos == 0 && retrievedSolitaireYPos == 0
 
-    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
+    if(retrievedAfterLastUpdate || resetXY) {
       setRetrievalTime(retrievedTime)
       updatePlayerSolitaireXYPos(
         retrievedPlayerPos,
@@ -564,7 +559,7 @@ function CardGameView() {
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
     const resetXY = retrievedNertzPileXPos == 0 && retrievedNertzPileYPos == 0
 
-    if(retrievedFromDiffPlayer && (retrievedAfterLastUpdate || resetXY)) {
+    if(retrievedAfterLastUpdate || resetXY) {
       setRetrievalTime(retrievedTime)
       updatePlayerNertzPileXYPos(
         retrievedPlayerPos,
@@ -585,15 +580,13 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerSolitaireWorkPile(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedWorkPilePos,
-        retrievedSolitaireWorkPile
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerSolitaireWorkPile(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedWorkPilePos,
+      retrievedSolitaireWorkPile
+    )
   }
 
   function updatePlayerSolitaireWorkPile(
@@ -999,7 +992,7 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer && retrievedAfterLastUpdate) {
+    if(retrievedAfterLastUpdate) {
       setRetrievalTime(retrievedTime)
       updatePlayerPreviewXYPos(
         retrievedPlayerPos,
@@ -1205,15 +1198,13 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updateCenterPile(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedCenterPileNum,
-        retrievedCenterPile
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updateCenterPile(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedCenterPileNum,
+      retrievedCenterPile
+    )
   }
 
   function updateCenterPile(playerPos, playerUuid, centerPileNum, centerPile) {
@@ -1319,24 +1310,22 @@ function CardGameView() {
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
     const retrievedAfterLastUpdate = retrievedTime > retrievalTime
 
-    if(retrievedFromDiffPlayer) {
-      setRetrievalTime(retrievedTime)
-      updatePlayerAllData(
-        retrievedPlayerPos,
-        retrievedPlayerUuid,
-        retrievedPlayerActive,
-        retrievedPlayerName,
-        retrievedPlayerScore,
-        retrievedNertzPile,
-        retrievedSolitaireDeck,
-        retrievedSolitairePile,
-        retrievedLeftoverSolitairePile,
-        retrievedSolitaireWork1Pile,
-        retrievedSolitaireWork2Pile,
-        retrievedSolitaireWork3Pile,
-        retrievedSolitaireWork4Pile
-      )
-    }
+    setRetrievalTime(retrievedTime)
+    updatePlayerAllData(
+      retrievedPlayerPos,
+      retrievedPlayerUuid,
+      retrievedPlayerActive,
+      retrievedPlayerName,
+      retrievedPlayerScore,
+      retrievedNertzPile,
+      retrievedSolitaireDeck,
+      retrievedSolitairePile,
+      retrievedLeftoverSolitairePile,
+      retrievedSolitaireWork1Pile,
+      retrievedSolitaireWork2Pile,
+      retrievedSolitaireWork3Pile,
+      retrievedSolitaireWork4Pile
+    )
   }
 
   function updatePlayerAllData(
@@ -1448,9 +1437,7 @@ function CardGameView() {
     const retrievedPlayerUuid = data["player_uuid"]
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
 
-    if(retrievedFromDiffPlayer) {
-      setResetPlayerGameCount(resetPlayerGameCount => resetPlayerGameCount + 1)
-    }
+    setResetPlayerGameCount(resetPlayerGameCount => resetPlayerGameCount + 1)
   }
 
 
@@ -1464,9 +1451,7 @@ function CardGameView() {
     const retrievedPlayerUuid = data["player_uuid"]
     const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
 
-    if(retrievedFromDiffPlayer) {
-      setActiveViewersCount(activeViewersCount => activeViewersCount + 1)
-    }
+    setActiveViewersCount(activeViewersCount => activeViewersCount + 1)
   }
 
   return (
