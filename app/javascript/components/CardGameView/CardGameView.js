@@ -267,7 +267,9 @@ function CardGameView() {
         setCableConnection(true)
       },
       received(data) {
+        /*
         console.log(data);
+        */
         const retrievedPlayerUuid = data["player_uuid"]
         const retrievedFromDiffPlayer = retrievedPlayerUuid !== playerUuid
 

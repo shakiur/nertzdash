@@ -101,7 +101,7 @@ const NertzPileArea = ({
   }, [nertzPileXPos, nertzPileYPos])
 
   function broadcastPlayerNertzPileXYPos(playerPos, playerUuid, nertzPileXPos, nertzPileYPos) {
-    const delay = 50
+    const delay = 75
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
     const resetXYPos = nertzPileXPos == 0 && nertzPileYPos == 0

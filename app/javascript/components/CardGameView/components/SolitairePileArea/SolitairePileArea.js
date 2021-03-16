@@ -100,7 +100,7 @@ const SolitairePileArea = ({
   }, [solitaireXPos, solitaireYPos])
 
   function broadcastPlayerSolitaireXYPos(playerPos, playerUuid, solitaireXPos, solitaireYPos) {
-    const delay = 50
+    const delay = 75
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
     const resetXYPos = solitaireXPos == 0 && solitaireYPos == 0
