@@ -27,15 +27,9 @@ const PlayerGameArea = ({
 
   function PlayerGameControl() {
     if(playerActive) {
-      if(nertzWinner && nertzWinnerName == playerName) {
-        return (
-          <NertzWinnerDisplay />
-        )
-      } else {
-        return (
-          <ActivePlayerDisplay />
-        )
-      }
+      return (
+        <ActivePlayerDisplay />
+      )
     } else {
       return (
         <SelectPlayerDisplay />
@@ -57,7 +51,7 @@ const PlayerGameArea = ({
         </div>
         <div className="PlayerDisplay">
           <div className="PlayerLabel">
-            <strong>Player:</strong>
+            <strong>{nertzWinner && nertzWinnerName == playerName ? 'NERTZ!' : 'Player:'}</strong>
           </div>
           <div className="PlayerName">
             {playerName}

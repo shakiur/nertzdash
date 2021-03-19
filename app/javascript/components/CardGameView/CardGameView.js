@@ -329,6 +329,35 @@ function CardGameView() {
     )
   }, [cableConnection])
 
+  useEffect(() => {
+    if(player1Active == false && player2Active == false && player3Active == false && player4Active == false && player5Active == false && player6Active == false) {
+      setCenterTablePile1([])
+      setCenterTablePile2([])
+      setCenterTablePile3([])
+      setCenterTablePile4([])
+      setCenterTablePile5([])
+      setCenterTablePile6([])
+      setCenterTablePile7([])
+      setCenterTablePile8([])
+      setCenterTablePile9([])
+      setCenterTablePile10([])
+      setCenterTablePile11([])
+      setCenterTablePile12([])
+      setCenterTablePile13([])
+      setCenterTablePile14([])
+      setCenterTablePile15([])
+      setCenterTablePile16([])
+      setCenterTablePile17([])
+      setCenterTablePile18([])
+      setCenterTablePile19([])
+      setCenterTablePile20([])
+      setCenterTablePile21([])
+      setCenterTablePile22([])
+      setCenterTablePile23([])
+      setCenterTablePile24([])
+    }
+  }, [player1Active, player2Active, player3Active, player4Active, player5Active, player6Active])
+
   function updatePlayerActiveStatusFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"])
     const retrievedPlayerUuid = data["player_uuid"]
