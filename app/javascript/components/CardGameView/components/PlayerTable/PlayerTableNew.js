@@ -730,9 +730,6 @@ const PlayerTableNew = ({
     if(playerActive && nertzPile.length == 0) {
       setNertzWinner(true)
       setNertzWinnerName(playerName)
-    } else {
-      setNertzWinner(false)
-      setNertzWinnerName('')
     }
   }, [nertzPile])
 

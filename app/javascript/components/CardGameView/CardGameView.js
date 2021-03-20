@@ -355,6 +355,9 @@ function CardGameView() {
       setCenterTablePile22([])
       setCenterTablePile23([])
       setCenterTablePile24([])
+
+      setNertzWinner(false)
+      setNertzWinnerName('')
     }
   }, [player1Active, player2Active, player3Active, player4Active, player5Active, player6Active])
 
