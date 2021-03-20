@@ -206,8 +206,8 @@ const SolitairePileArea = ({
     const nertzSoliWorkXPos = getNertzSoliWorkPileXPos(workPileNum)
     const nertzSoliWorkYPos = getNertzSoliWorkPileYPos(workPileNum)
 
-    const nearWorkPileXPos = solitaireXPos >= (nertzSoliWorkXPos - 10) && solitaireXPos <= (nertzSoliWorkXPos + 10)
-    const nearWorkPileYPos = solitaireYPos >= nertzSoliWorkYPos && solitaireYPos <= (nertzSoliWorkYPos + 20)
+    const nearWorkPileXPos = solitaireXPos >= (nertzSoliWorkXPos - 20) && solitaireXPos <= (nertzSoliWorkXPos + 20)
+    const nearWorkPileYPos = solitaireYPos >= (nertzSoliWorkYPos - 20) && solitaireYPos <= (nertzSoliWorkYPos + 20)
 
     if(nearWorkPileXPos && nearWorkPileYPos && workSolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
@@ -287,8 +287,8 @@ const SolitairePileArea = ({
     const centerPileXPos = getCenterPileXPos(playerPos, centerPileNum)
     const centerPileYPos = getCenterPileYPos(playerPos, centerPileNum)
 
-    const nearCenterPileXPos = solitaireXPos >= (centerPileXPos - 10) && solitaireXPos <= (centerPileXPos + 10)
-    const nearCenterPileYPos = solitaireYPos >= (centerPileYPos - 10) && solitaireYPos <= (centerPileYPos + 10)
+    const nearCenterPileXPos = solitaireXPos >= (centerPileXPos - 20) && solitaireXPos <= (centerPileXPos + 20)
+    const nearCenterPileYPos = solitaireYPos >= (centerPileYPos - 20) && solitaireYPos <= (centerPileYPos + 20)
 
     if(nearCenterPileXPos && nearCenterPileYPos && centerPileSpeedCriteria) {
       setCenterPileBroadcastPlayerUuid(playerUuid)
