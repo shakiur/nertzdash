@@ -119,7 +119,7 @@ const SolitaireWorkPileArea = ({
     const delay = 75
     const currentTime = new Date().getTime();
     const meetsDelayThreshold = (currentTime - delay) > broadcastTime
-    const resetXYPos = previewWorkPileXPos == 0 && previewWorkPileYPos == 0 && workPileXPos == 0 && workPileYPos == 0
+    const resetXYPos = ((previewWorkPileXPos == 0 && previewWorkPileYPos == 0) || (workPileXPos == 0 && workPileYPos == 0))
 
     if(meetsDelayThreshold || resetXYPos) {
       setBroadcastTime(currentTime)
