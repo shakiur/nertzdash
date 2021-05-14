@@ -23,6 +23,12 @@ const CenterCard = ({
     }
   }
 
+  function displayNum(card) {
+    if(card) {
+      return card['value']
+    }
+  }
+
   function displaySuitNum(card) {
     if(card) {
       return `${card['suit']}${card['value']}`
@@ -37,14 +43,11 @@ const CenterCard = ({
 
   return (
     <div className={`centerCard ${cardBorderStyle(centerPile[0])}`}>
-      <div className={`topNumSuit ${cardColor(centerPile[0])}`}>
-        {displayNumSuit(centerPile[0])}
+      <div className={`leftHalfNum ${cardColor(centerPile[0])}`}>
+        {displayNum(centerPile[0])}
       </div>
-      <div className={`middleSuit ${cardColor(centerPile[0])}`}>
+      <div className={`rightHalfSuit ${cardColor(centerPile[0])}`}>
         {displaySuit(centerPile[0])}
-      </div>
-      <div className={`bottomNumSuit ${cardColor(centerPile[0])}`}>
-        {displaySuitNum(centerPile[0])}
       </div>
     </div>
   )

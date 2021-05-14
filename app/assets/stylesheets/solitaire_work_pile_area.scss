@@ -14,8 +14,8 @@
     padding-right: 2px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: center;
 
     user-select: none;
   }
@@ -61,6 +61,22 @@
     display: flex;
     flex-direction: row-reverse;
     font-size: 10px;
+  }
+
+  .leftHalfNum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px;
+    padding-bottom: 20px;
+  }
+
+  .rightHalfSuit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 28px;
+    padding-top: 15px;
   }
 
   .red {

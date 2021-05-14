@@ -138,6 +138,12 @@ const SolitairePileArea = ({
     }
   }
 
+  function displayNum(card) {
+    if(card) {
+      return card['value']
+    }
+  }
+
   function displaySuit(card) {
     if(card) {
       return card['suit']
@@ -673,14 +679,11 @@ const SolitairePileArea = ({
         position={{x: solitaireXPos, y: solitaireYPos}}
       >
         <div className={`bottomCard ${cardBorderStyle(solitairePile[0])} ${zIndexStyle(solitaireXPos, solitaireYPos)}`}>
-          <div className={`topNumSuit ${cardColor(solitairePile[0])}`}>
-            {displayNumSuit(solitairePile[0])}
+          <div className={`leftHalfNum ${cardColor(solitairePile[0])}`}>
+            {displayNum(solitairePile[0])}
           </div>
-          <div className={`middleSuit ${cardColor(solitairePile[0])}`}>
+          <div className={`rightHalfSuit ${cardColor(solitairePile[0])}`}>
             {displaySuit(solitairePile[0])}
-          </div>
-          <div className={`bottomNumSuit ${cardColor(solitairePile[0])}`}>
-            {displaySuitNum(solitairePile[0])}
           </div>
         </div>
       </Draggable>

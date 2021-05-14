@@ -145,6 +145,12 @@ const NertzPileArea = ({
     }
   }
 
+  function displayNum(card) {
+    if(card) {
+      return card['value']
+    }
+  }
+
   function displaySuitNum(card) {
     if(card) {
       return `${card['suit']}${card['value']}`
@@ -678,14 +684,11 @@ const NertzPileArea = ({
         position={{x: nertzPileXPos, y: nertzPileYPos}}
       >
         <div className={`nertzPileBottomCard ${cardBorderStyle(nertzPile[0])} ${zIndexStyle(nertzPileXPos, nertzPileYPos)}`}>
-          <div className={`topNumSuit ${cardColor(nertzPile[0])}`}>
-            {displayNumSuit(nertzPile[0])}
+          <div className={`leftHalfNum ${cardColor(nertzPile[0])}`}>
+            {displayNum(nertzPile[0])}
           </div>
-          <div className={`middleSuit ${cardColor(nertzPile[0])}`}>
+          <div className={`rightHalfSuit ${cardColor(nertzPile[0])}`}>
             {displaySuit(nertzPile[0])}
-          </div>
-          <div className={`bottomNumSuit ${cardColor(nertzPile[0])}`}>
-            {displaySuitNum(nertzPile[0])}
           </div>
         </div>
       </Draggable>
