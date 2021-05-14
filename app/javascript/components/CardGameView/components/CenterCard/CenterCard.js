@@ -3,9 +3,18 @@ import React, { useState, useEffect } from "react";
 const CenterCard = ({
   centerPile
 }) => {
-  function cardBorderStyle(card) {
+  function cardBorderStyle(card, stackWidth) {
     if(card) {
-      return 'solidLineCard'
+      switch(stackWidth) {
+        case 1:
+          return 'solidLineCardOne'
+        case 2:
+          return 'solidLineCardTwo'
+        case 3:
+          return 'solidLineCardThree'
+        default:
+          return 'solidLineCardOne'
+      }
     } else {
       return 'dashedLineCard'
     }
@@ -42,7 +51,7 @@ const CenterCard = ({
   }
 
   return (
-    <div className={`centerCard ${cardBorderStyle(centerPile[0])}`}>
+    <div className={`centerCard ${cardBorderStyle(centerPile[0], Math.floor(centerPile.length/4) + 1)}`}>
       <div className={`leftHalfNum ${cardColor(centerPile[0])}`}>
         {displayNum(centerPile[0])}
       </div>

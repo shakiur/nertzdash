@@ -4,6 +4,7 @@
     height: 70px;
 
     border: 1px solid black;
+
     border-radius: 10%;
     background-color: white;
 
@@ -17,8 +18,25 @@
     user-select: none;
   }
 
-  .solidLineCard {
-    border: 1px solid black;
+  .solidLineCardOne {
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+  }
+
+  .solidLineCardTwo {
+    border-top: 1px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-left: 1px solid black;
+  }
+
+  .solidLineCardThree {
+    border-top: 1px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    border-left: 1px solid black;
   }
 
   .dashedLineCard {
