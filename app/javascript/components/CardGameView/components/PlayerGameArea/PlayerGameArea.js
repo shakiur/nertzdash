@@ -119,7 +119,7 @@ const PlayerGameArea = ({
           onClick={() => handleDealCards()}
           className="DealCardsButton"
         >
-          Deal
+          Sit
         </button>
       </div>
     )
