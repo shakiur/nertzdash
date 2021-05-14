@@ -12,6 +12,8 @@ const CenterCard = ({
           return 'solidLineCardTwo'
         case 3:
           return 'solidLineCardThree'
+        case 4:
+          return 'solidLineCardFour'
         default:
           return 'solidLineCardOne'
       }
