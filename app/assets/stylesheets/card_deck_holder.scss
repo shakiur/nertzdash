@@ -13,3 +13,15 @@
 .dashedLine {
   border: 1px dashed grey;
 }
+
+.solidLineCardOne {
+  box-shadow: 1px 1px white, 2px 2px black;
+}
+
+.solidLineCardTwo {
+  box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black;
+}
+
+.solidLineCardThree {
+  box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black, 5px 5px white, 6px 6px black;
+}

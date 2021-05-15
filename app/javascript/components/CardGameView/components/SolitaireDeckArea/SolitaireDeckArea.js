@@ -70,9 +70,27 @@ const CardDeckHolder = ({
     return classNames
   }
 
+  function cardBorderStyle(deckLength, stackWidth) {
+    if(deckLength > 0) {
+      switch(stackWidth) {
+        case 1:
+          return 'solidLineCardOne'
+        case 2:
+          return 'solidLineCardTwo'
+        case 3:
+          return 'solidLineCardThree'
+        default:
+          return ''
+      }
+    } else {
+      return 'dashedLine'
+    }
+  }
+
+
   return (
     <div
-      className={cardDeckClassNames()}
+      className={`CardDeckHolder ${cardBorderStyle(solitaireDeck.length, Math.floor(solitaireDeck.length/9))}`}
       onClick={() => handleSolitaireFlip()}
     >
     </div>
