@@ -12,10 +12,8 @@ const CenterCard = ({
           return 'solidLineCardTwo'
         case 3:
           return 'solidLineCardThree'
-        case 4:
-          return 'solidLineCardFour'
         default:
-          return 'solidLineCardOne'
+          return ''
       }
     } else {
       return 'dashedLineCard'
@@ -52,14 +50,30 @@ const CenterCard = ({
     }
   }
 
+  function DisplayCenterCard() {
+    if(centerPile.length < 13) {
+      return (
+        <>
+          <div className={`leftHalfNum ${cardColor(centerPile[0])}`}>
+            {displayNum(centerPile[0])}
+          </div>
+          <div className={`rightHalfSuit ${cardColor(centerPile[0])}`}>
+            {displaySuit(centerPile[0])}
+          </div>
+        </>
+      )
+    } else {
+      return (
+        <>
+        </>
+
+      )
+    }
+  }
+
   return (
-    <div className={`centerCard ${cardBorderStyle(centerPile[0], Math.floor(centerPile.length/4) + 1)}`}>
-      <div className={`leftHalfNum ${cardColor(centerPile[0])}`}>
-        {displayNum(centerPile[0])}
-      </div>
-      <div className={`rightHalfSuit ${cardColor(centerPile[0])}`}>
-        {displaySuit(centerPile[0])}
-      </div>
+    <div className={`centerCard ${cardBorderStyle(centerPile[0], Math.floor(centerPile.length/4))}`}>
+      <DisplayCenterCard />
     </div>
   )
 }

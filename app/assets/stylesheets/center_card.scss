@@ -19,31 +19,15 @@
   }
 
   .solidLineCardOne {
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
+    box-shadow: 1px 1px white, 2px 2px black;
   }
 
   .solidLineCardTwo {
-    border-top: 1px solid black;
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-    border-left: 1px solid black;
+    box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black;
   }
 
   .solidLineCardThree {
-    border-top: 1px solid black;
-    border-right: 3px solid black;
-    border-bottom: 3px solid black;
-    border-left: 1px solid black;
-  }
-
-  .solidLineCardFour {
-    border-top: 1px solid black;
-    border-right: 4px solid black;
-    border-bottom: 4px solid black;
-    border-left: 1px solid black;
+    box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black, 5px 5px white, 6px 6px black;
   }
 
   .dashedLineCard {
