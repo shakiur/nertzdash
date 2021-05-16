@@ -87,12 +87,28 @@ const CardDeckHolder = ({
     }
   }
 
+  function DisplayDeckCard() {
+    if(solitaireDeck.length > 0) {
+      return (
+        <div className={`nertzFaceCard`}>
+          <div className={`nertzLogo`}>
+            N
+          </div>
+        </div>
+      )
+    } else {
+      return (<></>)
+    }
+  }
+
+
 
   return (
     <div
       className={`CardDeckHolder ${cardBorderStyle(solitaireDeck.length, Math.floor(solitaireDeck.length/9))}`}
       onClick={() => handleSolitaireFlip()}
     >
+      <DisplayDeckCard/>
     </div>
   )
 }

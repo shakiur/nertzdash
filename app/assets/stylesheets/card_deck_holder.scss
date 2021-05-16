@@ -4,6 +4,7 @@
 
   border: 1px solid black;
   border-radius: 10%;
+
 }
 
 .solidLine {
@@ -24,4 +25,36 @@
 
 .solidLineCardThree {
   box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black, 5px 5px white, 6px 6px black;
+}
+
+.nertzFaceCard {
+  width: 48px;
+  height: 68px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: #B71C1C;
+  border-radius: 10%;
+
+  user-select: none;
+  border: 4px white solid;
+
+  .nertzLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 32px;
+    height: 32px;
+
+    margin: 4px;
+    border: 1px white solid;
+    border-radius: 50%;
+
+    color: white;
+    font-weight: 200;
+  }
 }

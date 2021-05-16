@@ -64,9 +64,11 @@ const CenterCard = ({
       )
     } else {
       return (
-        <>
-        </>
-
+        <div className={`nertzFaceCard`}>
+          <div className={`nertzLogo`}>
+            N
+          </div>
+        </div>
       )
     }
   }
