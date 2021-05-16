@@ -188,35 +188,21 @@ const NertzPileArea = ({
   function checkNearPiles(event, ui) {
     const movedCard = nertzPile[0]
 
-    checkNearWorkPile(movedCard, 1)
-    checkNearWorkPile(movedCard, 2)
-    checkNearWorkPile(movedCard, 3)
-    checkNearWorkPile(movedCard, 4)
+    for(let tempWorkPileNum = 1; tempWorkPileNum < 5; tempWorkPileNum++) {
+      let nearWorkPile = checkNearWorkPile(movedCard, tempWorkPileNum)
 
-    checkNearCenterPile(movedCard, playerPos, 1)
-    checkNearCenterPile(movedCard, playerPos, 2)
-    checkNearCenterPile(movedCard, playerPos, 3)
-    checkNearCenterPile(movedCard, playerPos, 4)
-    checkNearCenterPile(movedCard, playerPos, 5)
-    checkNearCenterPile(movedCard, playerPos, 6)
-    checkNearCenterPile(movedCard, playerPos, 7)
-    checkNearCenterPile(movedCard, playerPos, 8)
-    checkNearCenterPile(movedCard, playerPos, 9)
-    checkNearCenterPile(movedCard, playerPos, 10)
-    checkNearCenterPile(movedCard, playerPos, 11)
-    checkNearCenterPile(movedCard, playerPos, 12)
-    checkNearCenterPile(movedCard, playerPos, 13)
-    checkNearCenterPile(movedCard, playerPos, 14)
-    checkNearCenterPile(movedCard, playerPos, 15)
-    checkNearCenterPile(movedCard, playerPos, 16)
-    checkNearCenterPile(movedCard, playerPos, 17)
-    checkNearCenterPile(movedCard, playerPos, 18)
-    checkNearCenterPile(movedCard, playerPos, 19)
-    checkNearCenterPile(movedCard, playerPos, 20)
-    checkNearCenterPile(movedCard, playerPos, 21)
-    checkNearCenterPile(movedCard, playerPos, 22)
-    checkNearCenterPile(movedCard, playerPos, 23)
-    checkNearCenterPile(movedCard, playerPos, 24)
+      if(nearWorkPile) {
+        break
+      }
+    }
+
+    for(let tempCenterPileNum = 1; tempCenterPileNum < 25; tempCenterPileNum++) {
+      let nearCenterPile = checkNearCenterPile(movedCard, playerPos, tempCenterPileNum)
+
+      if(nearCenterPile) {
+        break
+      }
+    }
 
     setNertzPileXPos(0)
     setNertzPileYPos(0)
@@ -229,15 +215,18 @@ const NertzPileArea = ({
     const nertzSoliWorkXPos = getNertzSoliWorkPileXPos(workPileNum)
     const nertzSoliWorkYPos = getNertzSoliWorkPileYPos(workPileNum)
 
-    const nearWorkPileXPos = nertzPileXPos >= (nertzSoliWorkXPos - 20) && nertzPileXPos <= (nertzSoliWorkXPos + 20)
-    const nearWorkPileYPos = nertzPileYPos >= (nertzSoliWorkYPos - 20) && nertzPileYPos <= (nertzSoliWorkYPos + 20)
+    const nearWorkPileXPos = nertzPileXPos >= (nertzSoliWorkXPos - 40) && nertzPileXPos <= (nertzSoliWorkXPos + 40)
+    const nearWorkPileYPos = nertzPileYPos >= (nertzSoliWorkYPos - 40) && nertzPileYPos <= (nertzSoliWorkYPos + 40)
 
     if(nearWorkPileXPos && nearWorkPileYPos && workSolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       setSolitaireWorkPile(movedCard, workPileNum)
       setPlayerScore(playerScore + 2)
+      return true
     }
+
+    return false
   }
 
   function getTopWorkPileCard(workPileNum) {
@@ -311,15 +300,18 @@ const NertzPileArea = ({
     const centerPileXPos = getCenterPileXPos(playerPos, centerPileNum)
     const centerPileYPos = getCenterPileYPos(playerPos, centerPileNum)
 
-    const nearCenterPileXPos = nertzPileXPos >= (centerPileXPos - 20) && nertzPileXPos <= (centerPileXPos + 20)
-    const nearCenterPileYPos = nertzPileYPos >= (centerPileYPos - 20) && nertzPileYPos <= (centerPileYPos + 20)
+    const nearCenterPileXPos = nertzPileXPos >= (centerPileXPos - 40) && nertzPileXPos <= (centerPileXPos + 40)
+    const nearCenterPileYPos = nertzPileYPos >= (centerPileYPos - 40) && nertzPileYPos <= (centerPileYPos + 40)
 
     if(nearCenterPileXPos && nearCenterPileYPos && centerPileSpeedCriteria) {
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setNertzPile(nertzPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
       setPlayerScore(playerScore + 3)
+      return true
     }
+
+    return false
   }
 
   function getCenterPileXPos(playerPos, centerPileNum) {

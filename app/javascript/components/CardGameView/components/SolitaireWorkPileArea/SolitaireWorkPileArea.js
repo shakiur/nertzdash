@@ -244,35 +244,21 @@ const SolitaireWorkPileArea = ({
   function checkNearPiles(event, ui) {
     const movedCard = solitaireWorkPile[0]
 
-    checkNearWorkPile(movedCard, workPilePos, 1)
-    checkNearWorkPile(movedCard, workPilePos, 2)
-    checkNearWorkPile(movedCard, workPilePos, 3)
-    checkNearWorkPile(movedCard, workPilePos, 4)
+    for(let tempWorkPileNum = 1; tempWorkPileNum < 5; tempWorkPileNum++) {
+      let nearWorkPile = checkNearWorkPile(movedCard, workPilePos, tempWorkPileNum)
 
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 1)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 2)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 3)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 4)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 5)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 6)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 7)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 8)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 9)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 10)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 11)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 12)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 13)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 14)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 15)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 16)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 17)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 18)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 19)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 20)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 21)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 22)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 23)
-    checkNearCenterPile(movedCard, playerPos, workPilePos, 24)
+      if(nearWorkPile) {
+        break
+      }
+    }
+
+    for(let tempCenterPileNum = 1; tempCenterPileNum < 25; tempCenterPileNum++) {
+      let nearCenterPile = checkNearCenterPile(movedCard, playerPos, workPilePos, tempCenterPileNum)
+
+      if(nearCenterPile) {
+        break
+      }
+    }
 
     setWorkPileXPos(0)
     setWorkPileYPos(0)
@@ -280,7 +266,7 @@ const SolitaireWorkPileArea = ({
 
   function checkNearWorkPile(movedCard, workPilePos, workPileNum) {
     if(workPilePos == workPileNum){
-      return
+      return false
     }
 
     const workPileCard = getTopWorkPileCard(workPileNum)
@@ -292,14 +278,18 @@ const SolitaireWorkPileArea = ({
     const workPileRelativeXPos = getWorkPileRelativeXPos(workPilePos, workPileNum)
     const workPileRelativeYPos = getAbsoluteWorkPileYPos(workPileNum)
 
-    const nearWorkPileXPos = currentWorkPileXPos >= (workPileRelativeXPos - 20) && currentWorkPileXPos <= (workPileRelativeXPos + 20)
-    const nearWorkPileYPos = currentWorkPileYPos >= (workPileRelativeYPos - 20) && currentWorkPileYPos <= (workPileRelativeYPos + 20)
+    const nearWorkPileXPos = currentWorkPileXPos >= (workPileRelativeXPos - 40) && currentWorkPileXPos <= (workPileRelativeXPos + 40)
+    const nearWorkPileYPos = currentWorkPileYPos >= (workPileRelativeYPos - 40) && currentWorkPileYPos <= (workPileRelativeYPos + 40)
 
     if(nearWorkPileXPos && nearWorkPileYPos && workSolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
       addCardToSolitaireWorkPile(movedCard, workPileNum)
+
+      return true
     }
+
+    return false
   }
 
   function getTopWorkPileCard(workPileNum) {
@@ -466,15 +456,19 @@ const SolitaireWorkPileArea = ({
     const centerPileXPos = getCenterPileXPos(playerPos, centerPileNum, workPilePos)
     const centerPileYPos = getCenterPileYPos(playerPos, centerPileNum)
 
-    const nearCenterPileXPos = currentWorkPileXPos >= (centerPileXPos - 20) && currentWorkPileXPos <= (centerPileXPos + 20)
-    const nearCenterPileYPos = currentWorkPileYPos >= (centerPileYPos - 20) && currentWorkPileYPos <= (centerPileYPos + 20)
+    const nearCenterPileXPos = currentWorkPileXPos >= (centerPileXPos - 40) && currentWorkPileXPos <= (centerPileXPos + 40)
+    const nearCenterPileYPos = currentWorkPileYPos >= (centerPileYPos - 40) && currentWorkPileYPos <= (centerPileYPos + 40)
 
     if(nearCenterPileXPos && nearCenterPileYPos && centerPileSpeedCriteria) {
       setCenterPileBroadcastPlayerUuid(playerUuid)
       setSolitaireWorkPile(solitaireWorkPile.filter(card => movedCard['id'] !== card['id']))
       updateCenterTablePile(movedCard, centerPileNum)
       setPlayerScore(playerScore + 1)
+
+      return true
     }
+
+    return false
   }
 
   function getCenterPileXPos(playerPos, centerPileNum, workPilePos) {
@@ -822,40 +816,46 @@ const SolitaireWorkPileArea = ({
     const workPile2Card = solitaireWork2Pile[0]
     const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
 
-    const nearWorkPile2XPos = workPilePreviewXPos >= (right1WorkPileXPos - 20) && workPilePreviewXPos <= (right1WorkPileXPos + 20)
-    const nearWorkPile2YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 20) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 20)
+    const nearWorkPile2XPos = workPilePreviewXPos >= (right1WorkPileXPos - 40) && workPilePreviewXPos <= (right1WorkPileXPos + 40)
+    const nearWorkPile2YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 40) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 40)
 
     if(nearWorkPile2XPos && nearWorkPile2YPos && workPile2SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCards, ...solitaireWork2Pile].flat())
+
+      return
     }
 
     const workPile3Card = solitaireWork3Pile[0]
     const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
 
-    const nearWorkPile3XPos = workPilePreviewXPos >= (right2WorkPileXPos - 20) && workPilePreviewXPos <= (right2WorkPileXPos + 20)
-    const nearWorkPile3YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 20) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 20)
+    const nearWorkPile3XPos = workPilePreviewXPos >= (right2WorkPileXPos - 40) && workPilePreviewXPos <= (right2WorkPileXPos + 40)
+    const nearWorkPile3YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 40) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 40)
 
     if(nearWorkPile3XPos && nearWorkPile3YPos && workPile3SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCards, ...solitaireWork3Pile].flat())
+
+      return
     }
 
     const workPile4Card = solitaireWork4Pile[0]
     const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
 
-    const nearWorkPile4XPos = workPilePreviewXPos >= (right3WorkPileXPos - 20) && workPilePreviewXPos <= (right3WorkPileXPos + 20)
-    const nearWorkPile4YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 20) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 20)
+    const nearWorkPile4XPos = workPilePreviewXPos >= (right3WorkPileXPos - 40) && workPilePreviewXPos <= (right3WorkPileXPos + 40)
+    const nearWorkPile4YPos = (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 40) && (absoluteWorkPile1YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 40)
 
     if(nearWorkPile4XPos && nearWorkPile4YPos && workPile4SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCards, ...solitaireWork4Pile].flat())
+
+      return
     }
   }
 
@@ -866,40 +866,46 @@ const SolitaireWorkPileArea = ({
     const workPile1Card = solitaireWork1Pile[0]
     const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
 
-    const nearWorkPile1XPos = workPilePreviewXPos >= (left1WorkPileXPos - 20) && workPilePreviewXPos <= (left1WorkPileXPos + 20)
-    const nearWorkPile1YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 20) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 20)
+    const nearWorkPile1XPos = workPilePreviewXPos >= (left1WorkPileXPos - 40) && workPilePreviewXPos <= (left1WorkPileXPos + 40)
+    const nearWorkPile1YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 40) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 40)
 
     if(nearWorkPile1XPos && nearWorkPile1YPos && workPile1SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCards, ...solitaireWork1Pile].flat())
+
+      return
     }
 
     const workPile3Card = solitaireWork3Pile[0]
     const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
 
-    const nearWorkPile3XPos = workPilePreviewXPos >= (right1WorkPileXPos - 20) && workPilePreviewXPos <= (right1WorkPileXPos + 20)
-    const nearWorkPile3YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 20) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 20)
+    const nearWorkPile3XPos = workPilePreviewXPos >= (right1WorkPileXPos - 40) && workPilePreviewXPos <= (right1WorkPileXPos + 40)
+    const nearWorkPile3YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 40) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 40)
 
     if(nearWorkPile3XPos && nearWorkPile3YPos && workPile3SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCards, ...solitaireWork3Pile].flat())
+
+      return
     }
 
     const workPile4Card = solitaireWork4Pile[0]
     const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
 
-    const nearWorkPile4XPos = workPilePreviewXPos >= (right2WorkPileXPos - 20) && workPilePreviewXPos <= (right2WorkPileXPos + 20)
-    const nearWorkPile4YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 20) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 20)
+    const nearWorkPile4XPos = workPilePreviewXPos >= (right2WorkPileXPos - 40) && workPilePreviewXPos <= (right2WorkPileXPos + 40)
+    const nearWorkPile4YPos = (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 40) && (absoluteWorkPile2YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 40)
 
     if(nearWorkPile4XPos && nearWorkPile4YPos && workPile4SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCards, ...solitaireWork4Pile].flat())
+
+      return
     }
   }
 
@@ -910,40 +916,46 @@ const SolitaireWorkPileArea = ({
     const workPile1Card = solitaireWork1Pile[0]
     const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
 
-    const nearWorkPile1XPos = workPilePreviewXPos >= (left2WorkPileXPos - 20) && workPilePreviewXPos <= (left2WorkPileXPos + 20)
-    const nearWorkPile1YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 20) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 20)
+    const nearWorkPile1XPos = workPilePreviewXPos >= (left2WorkPileXPos - 40) && workPilePreviewXPos <= (left2WorkPileXPos + 40)
+    const nearWorkPile1YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 40) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 40)
 
     if(nearWorkPile1XPos && nearWorkPile1YPos && workPile1SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCards, ...solitaireWork1Pile].flat())
+
+      return
     }
 
     const workPile2Card = solitaireWork2Pile[0]
     const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
 
-    const nearWorkPile2XPos = workPilePreviewXPos >= (left1WorkPileXPos - 20) && workPilePreviewXPos <= (left1WorkPileXPos + 20)
-    const nearWorkPile2YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 20) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 20)
+    const nearWorkPile2XPos = workPilePreviewXPos >= (left1WorkPileXPos - 40) && workPilePreviewXPos <= (left1WorkPileXPos + 40)
+    const nearWorkPile2YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 40) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 40)
 
     if(nearWorkPile2XPos && nearWorkPile2YPos && workPile2SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCards, ...solitaireWork2Pile].flat())
+
+      return
     }
 
     const workPile4Card = solitaireWork4Pile[0]
     const workPile4SolitaireCriteria = solitaireCriteria(movedCard, workPile4Card)
 
-    const nearWorkPile4XPos = workPilePreviewXPos >= (right1WorkPileXPos - 20) && workPilePreviewXPos <= (right1WorkPileXPos + 20)
-    const nearWorkPile4YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 20) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 20)
+    const nearWorkPile4XPos = workPilePreviewXPos >= (right1WorkPileXPos - 40) && workPilePreviewXPos <= (right1WorkPileXPos + 40)
+    const nearWorkPile4YPos = (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile4YPos - 40) && (absoluteWorkPile3YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile4YPos + 40)
 
     if(nearWorkPile4XPos && nearWorkPile4YPos && workPile4SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork4Pile(solitaireWork4Pile => [movedCards, ...solitaireWork4Pile].flat())
+
+      return
     }
   }
 
@@ -954,40 +966,46 @@ const SolitaireWorkPileArea = ({
     const workPile1Card = solitaireWork1Pile[0]
     const workPile1SolitaireCriteria = solitaireCriteria(movedCard, workPile1Card)
 
-    const nearWorkPile1XPos = workPilePreviewXPos >= (left3WorkPileXPos - 20) && workPilePreviewXPos <= (left3WorkPileXPos + 20)
-    const nearWorkPile1YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 20) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 20)
+    const nearWorkPile1XPos = workPilePreviewXPos >= (left3WorkPileXPos - 40) && workPilePreviewXPos <= (left3WorkPileXPos + 40)
+    const nearWorkPile1YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile1YPos - 40) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile1YPos + 40)
 
     if(nearWorkPile1XPos && nearWorkPile1YPos && workPile1SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork1Pile(solitaireWork1Pile => [movedCards, ...solitaireWork1Pile].flat())
+
+      return
     }
 
     const workPile2Card = solitaireWork2Pile[0]
     const workPile2SolitaireCriteria = solitaireCriteria(movedCard, workPile2Card)
 
-    const nearWorkPile2XPos = workPilePreviewXPos >= (left2WorkPileXPos - 20) && workPilePreviewXPos <= (left2WorkPileXPos + 20)
-    const nearWorkPile2YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 20) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 20)
+    const nearWorkPile2XPos = workPilePreviewXPos >= (left2WorkPileXPos - 40) && workPilePreviewXPos <= (left2WorkPileXPos + 40)
+    const nearWorkPile2YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile2YPos - 40) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile2YPos + 40)
 
     if(nearWorkPile2XPos && nearWorkPile2YPos && workPile2SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork2Pile(solitaireWork2Pile => [movedCards, ...solitaireWork2Pile].flat())
+
+      return
     }
 
     const workPile3Card = solitaireWork3Pile[0]
     const workPile3SolitaireCriteria = solitaireCriteria(movedCard, workPile3Card)
 
-    const nearWorkPile3XPos = workPilePreviewXPos >= (left1WorkPileXPos - 20) && workPilePreviewXPos <= (left1WorkPileXPos + 20)
-    const nearWorkPile3YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 20) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 20)
+    const nearWorkPile3XPos = workPilePreviewXPos >= (left1WorkPileXPos - 40) && workPilePreviewXPos <= (left1WorkPileXPos + 40)
+    const nearWorkPile3YPos = (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) >= (absoluteWorkPile3YPos - 40) && (absoluteWorkPile4YPos - yDistanceOfPreviewCards + workPilePreviewYPos) <= (absoluteWorkPile3YPos + 40)
 
     if(nearWorkPile3XPos && nearWorkPile3YPos && workPile3SolitaireCriteria) {
       setBroadcastPlayerUuid(playerUuid)
       const movedCards = solitaireWorkPile.filter((card, index) => index <= previewCardIndex)
       setSolitaireWorkPile(solitaireWorkPile.filter((card, index) => index > previewCardIndex))
       setSolitaireWork3Pile(solitaireWork3Pile => [movedCards, ...solitaireWork3Pile].flat())
+
+      return
     }
   }
 
