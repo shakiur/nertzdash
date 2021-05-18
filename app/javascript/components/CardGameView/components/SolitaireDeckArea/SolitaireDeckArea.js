@@ -7,6 +7,7 @@ const CardDeckHolder = ({
   playerName,
   playerActive,
   setPlayerActive,
+  setPlayerScore,
   broadcastTime,
   setBroadcastTime,
   broadcastPlayerUuid,
@@ -17,14 +18,47 @@ const CardDeckHolder = ({
   setSolitaireDeck,
   setSolitairePile,
   setSolitaireLeftoverPile,
+  setNertzPile,
+  setSolitaireWork1Pile,
+  setSolitaireWork2Pile,
+  setSolitaireWork3Pile,
+  setSolitaireWork4Pile,
   nertzWinner
 }) => {
 
   function handleSolitaireFlip() {
     if(playerActive && !nertzWinner) {
-      flipSolitaireCards()
-      setBroadcastPlayerUuid(playerUuid)
+      if(solitaireDeck.length == 52) {
+        distributeInitialPiles()
+        setBroadcastPlayerUuid(playerUuid)
+      } else {
+        flipSolitaireCards()
+        setBroadcastPlayerUuid(playerUuid)
+      }
     }
+  }
+
+  function distributeInitialPiles() {
+    let nertzPile = solitaireDeck.slice(0,13)
+
+    let solitaireWorkPile1 = solitaireDeck.slice(13,14)
+    let solitaireWorkPile2 = solitaireDeck.slice(14,15)
+    let solitaireWorkPile3 = solitaireDeck.slice(15,16)
+    let solitaireWorkPile4 = solitaireDeck.slice(16,17)
+
+    let solitairePile = solitaireDeck.slice(17,20)
+    let newSolitaireDeck = solitaireDeck.slice(20,52)
+
+    setNertzPile(nertzPile)
+    setSolitaireDeck(newSolitaireDeck)
+    setSolitairePile(solitairePile)
+
+    setSolitaireWork1Pile(solitaireWorkPile1)
+    setSolitaireWork2Pile(solitaireWorkPile2)
+    setSolitaireWork3Pile(solitaireWorkPile3)
+    setSolitaireWork4Pile(solitaireWorkPile4)
+
+    setPlayerScore(-26)
   }
 
   function flipSolitaireCards() {
@@ -105,7 +139,7 @@ const CardDeckHolder = ({
 
   return (
     <div
-      className={`CardDeckHolder ${cardBorderStyle(solitaireDeck.length, Math.floor(solitaireDeck.length/9))}`}
+      className={`CardDeckHolder ${cardBorderStyle(solitaireDeck.length, Math.floor(solitaireDeck.length/14))}`}
       onClick={() => handleSolitaireFlip()}
     >
       <DisplayDeckCard/>

@@ -46,7 +46,14 @@ const PlayerGameArea = ({
             onClick={() => handleLeaveGame()}
             className="LeaveGameButton"
           >
-            Leave
+            Quit
+          </button>
+          <button
+            disabled={!playerActive}
+            onClick={() => handleResetDeck()}
+            className="ResetButton"
+          >
+            Reset
           </button>
         </div>
         <div className="PlayerDisplay">
@@ -164,6 +171,41 @@ const PlayerGameArea = ({
     setSolitaireWork4Pile([])
   }
 
+  function handleResetDeck() {
+    let cardDeck = generateCardDeck()
+    let shuffledCardDeck = shuffleCardDeck(cardDeck)
+    let currentTime = new Date().getTime();
+
+    fetch('/card_game/broadcast_player_all_data?' +
+      'data_type=' + 'player_all_data' +
+      '&player_pos=' + playerPos +
+      '&player_uuid=' + playerUuid +
+      '&player_active=' + 'true' +
+      '&player_name=' + playerName +
+      '&player_score=' + '0' +
+      '&nertz_pile=' + JSON.stringify([]) +
+      '&solitaire_deck=' + JSON.stringify(shuffledCardDeck) +
+      '&solitaire_pile=' + JSON.stringify([]) +
+      '&leftover_solitaire_pile=' + JSON.stringify([]) +
+      '&solitaire_work_1_pile=' + JSON.stringify([]) +
+      '&solitaire_work_2_pile=' + JSON.stringify([]) +
+      '&solitaire_work_3_pile=' + JSON.stringify([]) +
+      '&solitaire_work_4_pile=' + JSON.stringify([]) +
+      '&time=' + currentTime
+    );
+
+    setPlayerScore(0)
+    setNertzPile([])
+    setSolitairePile([])
+    setSolitaireLeftoverPile([])
+    setSolitaireWork1Pile([])
+    setSolitaireWork2Pile([])
+    setSolitaireWork3Pile([])
+    setSolitaireWork4Pile([])
+    setSolitaireDeck(shuffledCardDeck)
+    setPlayerScore(0)
+  }
+
   function handleResetGame() {
     fetch('/card_game/broadcast_reset_player_game_data?' +
       'data_type=' + 'reset_player_game_data' +
@@ -174,7 +216,7 @@ const PlayerGameArea = ({
   function handleDealCards() {
     setBroadcastPlayerUuid(playerUuid)
     setPlayerActive(true)
-    setPlayerScore(-26)
+    setPlayerScore(0)
     dealCards()
   }
 
@@ -182,6 +224,9 @@ const PlayerGameArea = ({
     let cardDeck = generateCardDeck()
     let shuffledCardDeck = shuffleCardDeck(cardDeck)
 
+    setSolitaireDeck(shuffledCardDeck)
+
+    /*
     let nertzPile = shuffledCardDeck.slice(0,13)
 
     let solitaireWorkPile1 = shuffledCardDeck.slice(13,14)
@@ -200,6 +245,7 @@ const PlayerGameArea = ({
     setSolitaireWork2Pile(solitaireWorkPile2)
     setSolitaireWork3Pile(solitaireWorkPile3)
     setSolitaireWork4Pile(solitaireWorkPile4)
+    */
   }
 
   function generateCardDeck() {

@@ -330,7 +330,7 @@ function CardGameView() {
   }, [cableConnection])
 
   useEffect(() => {
-    if(player1Active == false && player2Active == false && player3Active == false && player4Active == false && player5Active == false && player6Active == false) {
+    if(allPlayersInactive() || allPlayersReset()) {
       setCenterTablePile1([])
       setCenterTablePile2([])
       setCenterTablePile3([])
@@ -359,7 +359,35 @@ function CardGameView() {
       setNertzWinner(false)
       setNertzWinnerName('')
     }
-  }, [player1Active, player2Active, player3Active, player4Active, player5Active, player6Active])
+  }, [
+    player1Active,
+    player2Active,
+    player3Active,
+    player4Active,
+    player5Active,
+    player6Active,
+    player1SolitaireDeck.length,
+    player2SolitaireDeck.length,
+    player3SolitaireDeck.length,
+    player4SolitaireDeck.length,
+    player5SolitaireDeck.length,
+    player6SolitaireDeck.length
+  ])
+
+  function allPlayersInactive() {
+    return (player1Active == false && player2Active == false && player3Active == false && player4Active == false && player5Active == false && player6Active == false)
+  }
+
+  function allPlayersReset() {
+    return (
+      ((player1Active == true && player1SolitaireDeck.length == 52) || player1Active == false) &&
+      ((player2Active == true && player2SolitaireDeck.length == 52) || player2Active == false) &&
+      ((player3Active == true && player3SolitaireDeck.length == 52) || player3Active == false) &&
+      ((player4Active == true && player4SolitaireDeck.length == 52) || player4Active == false) &&
+      ((player5Active == true && player5SolitaireDeck.length == 52) || player5Active == false) &&
+      ((player6Active == true && player6SolitaireDeck.length == 52) || player6Active == false)
+    )
+  }
 
   function updatePlayerActiveStatusFromBroadcast(data) {
     const retrievedPlayerPos = parseInt(data["player_pos"])

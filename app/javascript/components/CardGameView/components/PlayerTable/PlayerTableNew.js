@@ -218,7 +218,7 @@ const PlayerTableNew = ({
         solitaireLeftoverPile
       );
     }
-  }, [solitairePile])
+  }, [solitairePile, solitaireDeck])
 
   function broadcastPlayerSolitaire(
     playerPos,
@@ -727,9 +727,11 @@ const PlayerTableNew = ({
   }, [solitaireWork4Pile])
 
   useEffect(() => {
-    if(playerActive && nertzPile.length == 0) {
+    if(playerActive && nertzPile.length == 0 && solitairePile.length != 52) {
+      /*
       setNertzWinner(true)
       setNertzWinnerName(playerName)
+      */
     }
   }, [nertzPile])
 
@@ -826,6 +828,7 @@ const PlayerTableNew = ({
             playerName={playerName}
             playerActive={playerActive}
             setPlayerActive={setPlayerActive}
+            setPlayerScore={setPlayerScore}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             broadcastPlayerUuid={broadcastPlayerUuid}
@@ -836,6 +839,11 @@ const PlayerTableNew = ({
             setSolitaireDeck={setSolitaireDeck}
             setSolitairePile={setSolitairePile}
             setSolitaireLeftoverPile={setSolitaireLeftoverPile}
+            setNertzPile={setNertzPile}
+            setSolitaireWork1Pile={setSolitaireWork1Pile}
+            setSolitaireWork2Pile={setSolitaireWork2Pile}
+            setSolitaireWork3Pile={setSolitaireWork3Pile}
+            setSolitaireWork4Pile={setSolitaireWork4Pile}
             nertzWinner={nertzWinner}
           />
           <SolitairePileArea
