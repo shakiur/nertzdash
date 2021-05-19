@@ -63,7 +63,7 @@ const PlayerGameArea = ({
             <strong>{nertzWinner && nertzWinnerName == playerName ? 'NERTZ!' : 'Player:'}</strong>
           </div>
           <div className="PlayerName">
-            {playerName}
+            {formatPlayerName(playerName)}
           </div>
           <div className="ScoreLabel">
             <strong>Score:</strong>
@@ -74,6 +74,14 @@ const PlayerGameArea = ({
         </div>
       </div>
     )
+  }
+
+  function formatPlayerName(playerName) {
+    if(playerName.length > 9) {
+      return `${playerName.substring(0,7)}..`
+    } else {
+      return playerName
+    }
   }
 
   function NertzWinnerDisplay() {
@@ -137,7 +145,7 @@ const PlayerGameArea = ({
           <option key={6} value='pink'>Pink</option>
         </select>
         <button
-          disabled={playerName == ""}
+          disabled={playerName == "" || deckColor == ""}
           onClick={() => handleSit()}
           className="DealCardsButton"
         >
