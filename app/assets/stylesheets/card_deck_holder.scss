@@ -5,6 +5,29 @@
   border: 1px solid black;
   border-radius: 10%;
 
+  .red {
+    background-color: #B71C1C;
+  }
+
+  .purple {
+    background-color: #8E24AA;
+  }
+
+  .blue {
+    background-color: #3F51B5;
+  }
+
+  .yellow {
+    background-color: #F9A825;
+  }
+
+  .green {
+    background-color: #2E7D32;
+  }
+
+  .pink {
+    background-color: #F48FB1;
+  }
 }
 
 .solidLine {
@@ -35,11 +58,11 @@
   flex-direction: column;
   justify-content: center;
 
-  background-color: #B71C1C;
   border-radius: 10%;
 
   user-select: none;
   border: 4px white solid;
+
 
   .nertzLogo {
     display: flex;
@@ -58,3 +81,4 @@
     font-weight: 200;
   }
 }
+

@@ -64,8 +64,8 @@ const CenterCard = ({
       )
     } else {
       return (
-        <div className={`nertzFaceCard`}>
-          <div className={`nertzLogo`}>
+        <div className={`centerNertzFaceCard`}>
+          <div className={`centerNertzLogo`}>
             N
           </div>
         </div>

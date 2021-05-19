@@ -9,6 +9,8 @@ const PlayerGameArea = ({
   setPlayerName,
   setPlayerActive,
   setPlayerScore,
+  deckColor,
+  setDeckColor,
   allPlayers,
   setNertzPile,
   setSolitaireDeck,
@@ -121,9 +123,22 @@ const PlayerGameArea = ({
             )
           }
         </select>
+        <select
+          value={deckColor}
+          onChange={(event) => handleDeckColorChange(event)}
+          className="DeckColorSelect"
+        >
+          <option key={0} value=''>Pick Color</option>
+          <option key={1} value='red'>Red</option>
+          <option key={2} value='purple'>Purple</option>
+          <option key={3} value='blue'>Blue</option>
+          <option key={4} value='yellow'>Yellow</option>
+          <option key={5} value='green'>Green</option>
+          <option key={6} value='pink'>Pink</option>
+        </select>
         <button
           disabled={playerName == ""}
-          onClick={() => handleDealCards()}
+          onClick={() => handleSit()}
           className="DealCardsButton"
         >
           Sit
@@ -137,6 +152,11 @@ const PlayerGameArea = ({
     setPlayerName(selectedName)
   }
 
+  function handleDeckColorChange(event) {
+    const selectedColor = event.target.value
+    setDeckColor(selectedColor)
+  }
+
   function handleLeaveGame() {
     const currentTime = new Date().getTime();
 
@@ -147,6 +167,7 @@ const PlayerGameArea = ({
       '&player_active=' + 'false' +
       '&player_name=' + '' +
       '&player_score=' + '0' +
+      '&player_deck_color=' + '' +
       '&nertz_pile=' + JSON.stringify([]) +
       '&solitaire_deck=' + JSON.stringify([]) +
       '&solitaire_pile=' + JSON.stringify([]) +
@@ -162,6 +183,7 @@ const PlayerGameArea = ({
     setPlayerName('')
     setPlayerScore(0)
     setNertzPile([])
+    setDeckColor('')
     setSolitaireDeck([])
     setSolitairePile([])
     setSolitaireLeftoverPile([])
@@ -183,6 +205,7 @@ const PlayerGameArea = ({
       '&player_active=' + 'true' +
       '&player_name=' + playerName +
       '&player_score=' + '0' +
+      '&player_deck_color=' + deckColor +
       '&nertz_pile=' + JSON.stringify([]) +
       '&solitaire_deck=' + JSON.stringify(shuffledCardDeck) +
       '&solitaire_pile=' + JSON.stringify([]) +
@@ -213,7 +236,7 @@ const PlayerGameArea = ({
     )
   }
 
-  function handleDealCards() {
+  function handleSit() {
     setBroadcastPlayerUuid(playerUuid)
     setPlayerActive(true)
     setPlayerScore(0)

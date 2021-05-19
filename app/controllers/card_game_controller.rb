@@ -20,6 +20,7 @@ class CardGameController < ApplicationController
       player_uuid: params[:player_uuid],
       player_active: params[:player_active],
       player_name: params[:player_name],
+      deck_color: params[:deck_color],
       time: params[:time]
     head :ok
   end
@@ -142,6 +143,7 @@ class CardGameController < ApplicationController
       player_active: params[:player_active],
       player_name: params[:player_name],
       player_score: params[:player_score],
+      player_deck_color: params[:player_deck_color],
       nertz_pile: params[:nertz_pile],
       solitaire_deck: params[:solitaire_deck],
       solitaire_pile: params[:solitaire_pile],

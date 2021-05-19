@@ -8,6 +8,8 @@ const NertzPileArea = ({
   playerActive,
   playerScore,
   setPlayerScore,
+  deckColor,
+  setDeckColor,
   broadcastTime,
   setBroadcastTime,
   broadcastPlayerUuid,

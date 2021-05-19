@@ -8,6 +8,8 @@ const CardDeckHolder = ({
   playerActive,
   setPlayerActive,
   setPlayerScore,
+  deckColor,
+  setDeckColor,
   broadcastTime,
   setBroadcastTime,
   broadcastPlayerUuid,
@@ -124,7 +126,7 @@ const CardDeckHolder = ({
   function DisplayDeckCard() {
     if(solitaireDeck.length > 0) {
       return (
-        <div className={`nertzFaceCard`}>
+        <div className={`nertzFaceCard ${deckColor}`}>
           <div className={`nertzLogo`}>
             N
           </div>

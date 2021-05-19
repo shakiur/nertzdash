@@ -21,6 +21,8 @@ const PlayerTableNew = ({
   setPlayerDbId,
   setPlayerActive,
   setPlayerScore,
+  deckColor,
+  setDeckColor,
   broadcastTime,
   nertzPile,
   setNertzPile,
@@ -158,7 +160,8 @@ const PlayerTableNew = ({
         playerPos,
         playerUuid,
         playerActive,
-        playerName
+        playerName,
+        deckColor
       );
     }
   }, [playerActive])
@@ -167,7 +170,8 @@ const PlayerTableNew = ({
     playerPos,
     playerUuid,
     playerActive,
-    playerName
+    playerName,
+    deckColor
   ) {
     const currentTime = new Date().getTime();
     setBroadcastTime(currentTime)
@@ -178,6 +182,7 @@ const PlayerTableNew = ({
       '&player_uuid=' + playerUuid +
       '&player_active=' + playerActive +
       '&player_name=' + playerName +
+      '&deck_color=' + deckColor +
       '&time=' + broadcastTime
     );
   }
@@ -480,6 +485,7 @@ const PlayerTableNew = ({
       '&player_active=' + playerActive +
       '&player_name=' + playerName +
       '&player_score=' + playerScore +
+      '&player_deck_color=' + deckColor +
       '&nertz_pile=' + JSON.stringify(nertzPile) +
       '&solitaire_deck=' + JSON.stringify(solitaireDeck) +
       '&solitaire_pile=' + JSON.stringify(solitairePile) +
@@ -746,6 +752,8 @@ const PlayerTableNew = ({
             playerActive={playerActive}
             playerScore={playerScore}
             setPlayerScore={setPlayerScore}
+            deckColor={deckColor}
+            setDeckColor={setDeckColor}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             broadcastPlayerUuid={broadcastPlayerUuid}
@@ -829,6 +837,8 @@ const PlayerTableNew = ({
             playerActive={playerActive}
             setPlayerActive={setPlayerActive}
             setPlayerScore={setPlayerScore}
+            deckColor={deckColor}
+            setDeckColor={setDeckColor}
             broadcastTime={broadcastTime}
             setBroadcastTime={setBroadcastTime}
             broadcastPlayerUuid={broadcastPlayerUuid}
@@ -1301,6 +1311,8 @@ const PlayerTableNew = ({
         setPlayerName={setPlayerName}
         setPlayerActive={setPlayerActive}
         setPlayerScore={setPlayerScore}
+        deckColor={deckColor}
+        setDeckColor={setDeckColor}
         allPlayers={allPlayers}
         setNertzPile={setNertzPile}
         setSolitaireDeck={setSolitaireDeck}
