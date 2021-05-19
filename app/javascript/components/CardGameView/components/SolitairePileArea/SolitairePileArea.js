@@ -7,8 +7,6 @@ const SolitairePileArea = ({
   playerActive,
   playerScore,
   setPlayerScore,
-  deckColor,
-  setDeckColor,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   broadcastTime,
@@ -645,7 +643,7 @@ const SolitairePileArea = ({
       if(solitaireXPos == 0 && solitaireYPos == 0) {
         return 'solidLineCard'
       } else {
-        return `${deckColor}BoldSolidLineCard`
+        return `${card['deckColor']}BoldSolidLineCard`
       }
     } else {
       return 'dashedLineCard'

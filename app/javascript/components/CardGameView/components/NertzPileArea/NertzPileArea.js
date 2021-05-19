@@ -8,8 +8,6 @@ const NertzPileArea = ({
   playerActive,
   playerScore,
   setPlayerScore,
-  deckColor,
-  setDeckColor,
   broadcastTime,
   setBroadcastTime,
   broadcastPlayerUuid,
@@ -172,7 +170,7 @@ const NertzPileArea = ({
       if(nertzPileXPos == 0 && nertzPileYPos == 0) {
         return 'solidLineCard'
       } else {
-        return `${deckColor}BoldSolidLineCard`
+        return `${card['deckColor']}BoldSolidLineCard`
       }
     } else {
       return 'dashedLineCard'

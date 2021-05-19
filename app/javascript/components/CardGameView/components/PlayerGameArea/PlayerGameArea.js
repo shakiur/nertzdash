@@ -287,7 +287,8 @@ const PlayerGameArea = ({
           value: cardValue,
           number: cardNumber,
           suit: cardSuit,
-          color: cardColor
+          color: cardColor,
+          deckColor: deckColor
         }
 
         cardDeck.push(card)

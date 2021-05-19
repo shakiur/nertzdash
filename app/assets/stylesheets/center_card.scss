@@ -16,6 +16,31 @@
     justify-content: center;
 
     user-select: none;
+
+    .redTop {
+      background-color: #B71C1C;
+    }
+
+    .purpleTop {
+      background-color: #8E24AA;
+    }
+
+    .blueTop {
+      background-color: #3F51B5;
+    }
+
+    .yellowTop {
+      background-color: #F9A825;
+    }
+
+    .greenTop {
+      background-color: #2E7D32;
+    }
+
+    .pinkTop {
+      background-color: #F48FB1;
+    }
+
   }
 
   .solidLineCardOne {
@@ -85,7 +110,6 @@
   flex-direction: column;
   justify-content: center;
 
-  background-color: #B71C1C;
   border-radius: 10%;
 
   user-select: none;
