@@ -169,7 +169,11 @@ const NertzPileArea = ({
 
   function cardBorderStyle(card) {
     if(card) {
-      return 'solidLineCard'
+      if(nertzPileXPos == 0 && nertzPileYPos == 0) {
+        return 'solidLineCard'
+      } else {
+        return `${deckColor}BoldSolidLineCard`
+      }
     } else {
       return 'dashedLineCard'
     }

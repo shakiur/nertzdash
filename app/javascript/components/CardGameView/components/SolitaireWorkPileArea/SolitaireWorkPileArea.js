@@ -7,6 +7,8 @@ const SolitaireWorkPileArea = ({
   playerActive,
   playerScore,
   setPlayerScore,
+  deckColor,
+  setDeckColor,
   broadcastPlayerUuid,
   setBroadcastPlayerUuid,
   broadcastTime,
@@ -218,7 +220,11 @@ const SolitaireWorkPileArea = ({
 
   function cardBorderStyle(card) {
     if(card) {
-      return 'solidLineCard'
+      if(workPileXPos == 0 && workPileYPos == 0) {
+        return 'solidLineCard'
+      } else {
+        return `${deckColor}BoldSolidLineCard`
+      }
     } else {
       return 'dashedLineCard'
     }
