@@ -77,7 +77,7 @@ const PlayerGameArea = ({
   }
 
   function formatPlayerName(playerName) {
-    if(playerName.length > 9) {
+    if(playerName.length >= 9) {
       return `${playerName.substring(0,7)}..`
     } else {
       return playerName

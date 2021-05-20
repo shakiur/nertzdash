@@ -218,7 +218,7 @@ const SolitaireWorkPileArea = ({
 
   function cardBorderStyle(card) {
     if(card) {
-      if(workPileXPos == 0 && workPileYPos == 0) {
+      if((workPileXPos == 0 && workPileYPos == 0) || (workPilePreviewXPos != 0 && workPilePreviewYPos != 0)) {
         return 'solidLineCard'
       } else {
         return `${card['deckColor']}BoldSolidLineCard`
