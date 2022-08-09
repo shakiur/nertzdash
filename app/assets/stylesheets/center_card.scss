@@ -1,0 +1,134 @@
+.CenterTable {
+  .centerCard {
+    width: 50px;
+    height: 70px;
+
+    border: 1px solid black;
+
+    border-radius: 10%;
+    background-color: white;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    user-select: none;
+
+    .redTop {
+      background-color: #B71C1C;
+    }
+
+    .purpleTop {
+      background-color: #8E24AA;
+    }
+
+    .blueTop {
+      background-color: #3F51B5;
+    }
+
+    .yellowTop {
+      background-color: #F9A825;
+    }
+
+    .greenTop {
+      background-color: #2E7D32;
+    }
+
+    .pinkTop {
+      background-color: #F48FB1;
+    }
+
+  }
+
+  .solidLineCardOne {
+    box-shadow: 1px 1px white, 2px 2px black;
+  }
+
+  .solidLineCardTwo {
+    box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black;
+  }
+
+  .solidLineCardThree {
+    box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black, 5px 5px white, 6px 6px black;
+  }
+
+  .dashedLineCard {
+    border: 1px dashed grey;
+  }
+
+  .topNumSuit {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+  }
+
+  .middleSuit {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .bottomNumSuit {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 10px;
+  }
+
+  .leftHalfNum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px;
+    padding-bottom: 20px;
+  }
+
+  .rightHalfSuit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 28px;
+    padding-top: 15px;
+  }
+
+  .red {
+    color: #B71C1C;
+  }
+
+  .black {
+    color: #000000;
+  }
+}
+
+.centerNertzFaceCard {
+  width: 48px;
+  height: 68px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 10%;
+
+  user-select: none;
+  border: 4px white solid;
+
+  .centerNertzLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 32px;
+    height: 32px;
+
+    margin: 4px;
+    border: 1px white solid;
+    border-radius: 50%;
+
+    color: white;
+    font-weight: 200;
+  }
+}

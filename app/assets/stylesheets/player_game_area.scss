@@ -1,0 +1,124 @@
+.PlayerGameArea{
+  display: flex;
+  justify-content: flex-end;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  height: 50px;
+  width: 340px;
+
+  .SelectPlayerDisplay {
+    display: flex;
+    justify-content: flex-end;
+
+    .PlayerSelect {
+      width: 110px;
+      height: 30px;
+      margin-right: 5px;
+    }
+
+    .DealCardsButton {
+      width: 50px;
+      height: 30px;
+      margin-left: 5px;
+      border: 1px solid black;
+      font-size: 16px;
+    }
+
+    .DealCardsButton:disabled {
+      width: 50px;
+      height: 30px;
+      margin-left: 5px;
+      border: 1px solid black;
+      font-size: 16px;
+    }
+  }
+
+  .ActivePlayerDisplay {
+    display: flex;
+    justify-content: space-between;
+
+    width: 340px;
+
+    .PlayerAction {
+      display: flex;
+
+      .LeaveGameButton {
+        height: 30px;
+        border: 1px solid black;
+        font-size: 16px;
+      }
+
+      .ResetButton {
+        height: 30px;
+        border: 1px solid black;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+    }
+
+    .PlayerDisplay {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 18px;
+
+      .PlayerLabel {
+        margin-right: 5px;
+      }
+
+      .PlayerName {
+        margin-right: 5px;
+      }
+
+      .ScoreLabel {
+        margin-left: 5px;
+      }
+
+      .PlayerScore {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .NertzWinnerDisplay {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+
+    width: 340px;
+
+    .PlayerAction {
+      display: flex;
+
+      .ResetGameButton {
+        height: 30px;
+        border: 1px solid black;
+        font-size: 16px;
+      }
+    }
+
+    .PlayerDisplay {
+      display: flex;
+      justify-content: flex-end;
+
+      .NertzWinnerLabel {
+        margin-right: 5px;
+      }
+
+      .PlayerName {
+        margin-right: 5px;
+      }
+
+      .ScoreLabel {
+        margin-left: 5px;
+      }
+
+      .PlayerScore {
+        margin-left: 5px;
+        margin-right: 10px;
+      }
+    }
+  }
+}

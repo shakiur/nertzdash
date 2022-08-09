@@ -1,0 +1,84 @@
+.CardDeckHolder {
+  width: 50px;
+  height: 70px;
+
+  border: 1px solid black;
+  border-radius: 10%;
+
+  .red {
+    background-color: #B71C1C;
+  }
+
+  .purple {
+    background-color: #8E24AA;
+  }
+
+  .blue {
+    background-color: #3F51B5;
+  }
+
+  .yellow {
+    background-color: #F9A825;
+  }
+
+  .green {
+    background-color: #2E7D32;
+  }
+
+  .pink {
+    background-color: #F48FB1;
+  }
+}
+
+.solidLine {
+  border: 1px solid black;
+}
+
+.dashedLine {
+  border: 1px dashed grey;
+}
+
+.solidLineCardOne {
+  box-shadow: 1px 1px white, 2px 2px black;
+}
+
+.solidLineCardTwo {
+  box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black;
+}
+
+.solidLineCardThree {
+  box-shadow: 1px 1px white, 2px 2px black, 3px 3px white, 4px 4px black, 5px 5px white, 6px 6px black;
+}
+
+.nertzFaceCard {
+  width: 48px;
+  height: 68px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-radius: 10%;
+
+  user-select: none;
+  border: 4px white solid;
+
+
+  .nertzLogo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    width: 32px;
+    height: 32px;
+
+    margin: 4px;
+    border: 1px white solid;
+    border-radius: 50%;
+
+    color: white;
+    font-weight: 200;
+  }
+}
+

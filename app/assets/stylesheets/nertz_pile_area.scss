@@ -1,0 +1,128 @@
+.NertzPile {
+  display: flex;
+  flex-direction: column;
+
+  .nertzPilePreviewCard {
+    width: 50px;
+    height: 10px;
+
+    border-radius: 5px 5px 0px 0px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .dashedLinePreview {
+    border-top: 1px dashed grey;
+    border-left: 1px dashed grey;
+    border-right: 1px dashed grey;
+  }
+
+  .solidLinePreview {
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+
+
+  .nertzPileBottomCard {
+    width: 50px;
+    height: 70px;
+
+    border: 1px solid black;
+    border-radius: 10%;
+    background-color: white;
+
+    padding-left: 2px;
+    padding-right: 2px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    user-select: none;
+  }
+
+  .solidLineCard {
+    border: 1px solid black;
+  }
+
+  .redBoldSolidLineCard {
+    border: 3px solid #B71C1C;
+  }
+
+  .purpleBoldSolidLineCard {
+    border: 3px solid #8E24AA;
+  }
+
+  .blueBoldSolidLineCard {
+    border: 3px solid #3F51B5;
+  }
+
+  .yellowBoldSolidLineCard {
+    border: 3px solid #F9A825;
+  }
+
+  .greenBoldSolidLineCard {
+    border: 3px solid #2E7D32;
+  }
+
+  .pinkBoldSolidLineCard {
+    border: 3px solid #F48FB1;
+  }
+
+  .dashedLineCard {
+    border: 1px dashed grey;
+  }
+
+  .topNumSuit {
+    display: flex;
+    flex-direction: row;
+    font-size: 10px;
+  }
+
+  .middleSuit {
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+  }
+
+  .bottomNumSuit {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 10px;
+  }
+
+  .leftHalfNum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 22px;
+    padding-bottom: 20px;
+  }
+
+  .rightHalfSuit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 28px;
+    padding-top: 15px;
+  }
+
+  .red {
+    color: #B71C1C;
+  }
+
+  .black {
+    color: #000000;
+  }
+
+  .zIndexZero {
+    z-index: 0;
+  }
+
+  .zIndexOne {
+    z-index: 1;
+  }
+}
+
